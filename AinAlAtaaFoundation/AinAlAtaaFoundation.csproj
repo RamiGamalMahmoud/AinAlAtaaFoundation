@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>ain-al-ataa-foundation.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="ain-al-ataa-foundation.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Auth\AinAlAtaaFoundation.Features.Auth.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Disbursement\AinAlAtaaFoundation.Features.Disbursement.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.FamiliesManagement\AinAlAtaaFoundation.Features.FamiliesManagement.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.MainWindow\AinAlAtaaFoundation.Features.MainWindow.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Management\AinAlAtaaFoundation.Features.Management.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Settings\AinAlAtaaFoundation.Features.Settings.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Users\AinAlAtaaFoundation.Features.Users.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
+  </ItemGroup>
+
+</Project>

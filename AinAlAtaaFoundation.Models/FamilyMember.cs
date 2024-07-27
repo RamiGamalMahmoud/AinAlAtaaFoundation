@@ -1,0 +1,45 @@
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
+
+namespace AinAlAtaaFoundation.Models
+{
+    public partial class FamilyMember : ObservableObject
+    {
+        public int Id { get; set; }
+
+        [ObservableProperty]
+        private string _name;
+
+        [ObservableProperty]
+        private string _surname;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Age))]
+        private DateTime _birthDate;
+
+        [ObservableProperty]
+        private bool _isOrphan = false;
+
+        [ObservableProperty]
+        private bool _isApplicant = false;
+
+        public int Age => (int.Parse(DateTime.Now.ToString("yyyyMMdd")) - int.Parse(BirthDate.ToString("yyyyMMdd"))) / 10000;
+
+        public int GenderId { get; set; }
+        public Gender Gender
+        {
+            get => _gender;
+            set => SetProperty(ref _gender, value);
+        }
+        private Gender _gender;
+
+        public int FamilyId { get; set; }
+        public Family Family
+        {
+            get => _family;
+            set => SetProperty(ref _family, value);
+        }
+        private Family _family;
+
+    }
+}

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Settings\AinAlAtaaFoundation.Features.Settings.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
+  </ItemGroup>
+
+</Project>

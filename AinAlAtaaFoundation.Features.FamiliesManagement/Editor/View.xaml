@@ -1,0 +1,596 @@
+﻿<Window
+    x:Class="AinAlAtaaFoundation.Features.FamiliesManagement.Editor.View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Editor"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="View"
+    d:DataContext="{d:DesignInstance Type=local:EditoViewModelBase}"
+    x:ClassModifier="internal"
+    FontFamily="Arial"
+    FontSize="15"
+    FontWeight="Bold"
+    SizeToContent="Width"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Border
+        Padding="20"
+        HorizontalAlignment="Center"
+        CornerRadius="5"
+        FlowDirection="RightToLeft">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <ScrollViewer Padding="10,0">
+
+                <Grid Grid.Row="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border
+                        Grid.Row="0"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                MinWidth="200"
+                                Margin="5"
+                                Orientation="Vertical">
+                                <TextBlock Foreground="{StaticResource Blue}" Text="نوع العائلة" />
+                                <ComboBox
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{Binding FamilyTypes}"
+                                    SelectedItem="{Binding DataModel.FamilyType}"
+                                    SelectedValue="{Binding DataModel.FamilyType.Id}"
+                                    SelectedValuePath="Id" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                MinWidth="200"
+                                Margin="5">
+                                <TextBlock Foreground="{StaticResource Blue}" Text="الحالة الإجتماعية" />
+                                <ComboBox
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{Binding SocialStatuses}"
+                                    SelectedItem="{Binding DataModel.SocialStatus}"
+                                    SelectedValue="{Binding DataModel.SocialStatus.Id}"
+                                    SelectedValuePath="Id" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                MinWidth="200"
+                                Margin="5"
+                                Visibility="{Binding DataModel.IsOrphan, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="نوع اليتم" />
+                                <ComboBox
+                                    VerticalAlignment="Center"
+                                    DisplayMemberPath="Name"
+                                    ItemsSource="{Binding OrphanTypes}"
+                                    SelectedItem="{Binding DataModel.OrphanType}"
+                                    SelectedValue="{Binding DataModel.OrphanType.Id}"
+                                    SelectedValuePath="Id" />
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Grid.Row="1"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="العشيرة" />
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ComboBox
+                                        Grid.Row="0"
+                                        MinWidth="200"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding Clans}"
+                                        SelectedItem="{Binding DataModel.Clan}"
+                                        SelectedValue="{Binding DataModel.Clan.Id}"
+                                        SelectedValuePath="Id" />
+
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                        Command="{Binding AddClanCommand}"
+                                        Cursor="Hand"
+                                        Style="{StaticResource ButtonPrimary}" />
+
+                                </Grid>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="الفخذ" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <ComboBox
+                                        Grid.Column="0"
+                                        MinWidth="200"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding Branches}"
+                                        SelectedItem="{Binding DataModel.Branch}"
+                                        SelectedValue="{Binding DataModel.Branch.Id}"
+                                        SelectedValuePath="Id" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                        Command="{Binding AddBranchCommand}"
+                                        Cursor="Hand"
+                                        Style="{StaticResource ButtonPrimary}" />
+                                </Grid>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="ممثل الفخذ" />
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ComboBox
+                                        MinWidth="200"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding BranchRepresentatives}"
+                                        SelectedItem="{Binding DataModel.BranchRepresentative}"
+                                        SelectedValue="{Binding DataModel.BranchRepresentative.Id}"
+                                        SelectedValuePath="Id" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                        Command="{Binding AddBranchRepresentativeCommand}"
+                                        Cursor="Hand"
+                                        Style="{StaticResource ButtonPrimary}" />
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="الحي" />
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ComboBox
+                                        MinWidth="200"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding Districts}"
+                                        SelectedItem="{Binding DataModel.District}"
+                                        SelectedValue="{Binding DataModel.District.Id}"
+                                        SelectedValuePath="Id" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                        Command="{Binding AddDistrictCommand}"
+                                        Cursor="Hand"
+                                        Style="{StaticResource ButtonPrimary}" />
+                                </Grid>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="الشارع" />
+                                <TextBox Text="{Binding DataModel.Street, UpdateSourceTrigger=PropertyChanged}" />
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="4"
+                                Grid.ColumnSpan="2"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="أقرب نقطة دالة" />
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ComboBox
+                                        DisplayMemberPath="Name"
+                                        IsEditable="True"
+                                        ItemsSource="{Binding FeaturedPoints}"
+                                        SelectedItem="{Binding DataModel.FeaturedPoint}"
+                                        SelectedValue="{Binding DataModel.FeaturedPoint.Id}"
+                                        SelectedValuePath="Id" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                        Command="{Binding AddFeaturedPointCommand}"
+                                        Cursor="Hand"
+                                        Style="{StaticResource ButtonPrimary}" />
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Grid.Row="3"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="اسم المختار" />
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ComboBox
+                                        MinWidth="200"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding DistrictRepresentatives}"
+                                        SelectedItem="{Binding DataModel.DistrictRepresentative}"
+                                        SelectedValue="{Binding DataModel.DistrictRepresentative.Id}"
+                                        SelectedValuePath="Id" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                        Command="{Binding AddDistrictRepresentativeCommand}"
+                                        Cursor="Hand"
+                                        Style="{StaticResource ButtonPrimary}" />
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Grid.Row="4"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="رقم البطاقة التموينية" />
+                                <TextBox Text="{Binding DataModel.RationCard, UpdateSourceTrigger=PropertyChanged}" />
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="3"
+                                Grid.ColumnSpan="3"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Text="اسم صاحب البطاقة" />
+                                <TextBox Text="{Binding DataModel.RationCardOwnerName, UpdateSourceTrigger=PropertyChanged}" />
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Grid.Row="5"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                MinWidth="150"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="الاسم" />
+                                <TextBox Text="{Binding DataModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="2"
+                                Grid.ColumnSpan="2"
+                                MinWidth="150"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="اللقب" />
+                                <TextBox Text="{Binding DataModel.Surname, UpdateSourceTrigger=PropertyChanged}" />
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="4"
+                                Grid.ColumnSpan="1"
+                                MinWidth="100"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="تاريخ الميلاد" />
+                                <DatePicker DisplayDate="1900-1-1" SelectedDate="{Binding DataModel.BirthDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <TextBlock Text="{Binding DataModel.Age}" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="5"
+                                Grid.ColumnSpan="1"
+                                MinWidth="100"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="النوع" />
+                                <ComboBox
+                                    DisplayMemberPath="NameAr"
+                                    ItemsSource="{Binding Genders}"
+                                    SelectedItem="{Binding DataModel.Gender}"
+                                    SelectedValue="{Binding DataModel.Gender.Id}"
+                                    SelectedValuePath="Id" />
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Grid.Row="6"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="5*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                Foreground="{StaticResource Blue}"
+                                Text="ملاحظات" />
+                            <TextBox Grid.Column="1" HorizontalAlignment="Stretch" />
+
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Grid.Row="7"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Foreground="{StaticResource Blue}"
+                                Text="إضافة هاتف" />
+                            <TextBox
+                                Grid.Column="1"
+                                Grid.ColumnSpan="4"
+                                Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+                            <Button
+                                Grid.Column="5"
+                                Margin="10,0,0,0"
+                                hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                Command="{Binding AddPhoneNumberCommand}"
+                                Cursor="Hand"
+                                FontWeight="Bold" />
+
+                        </Grid>
+                    </Border>
+
+                    <DataGrid
+                        Grid.Row="8"
+                        AutoGenerateColumns="False"
+                        ItemsSource="{Binding DataModel.Phones}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="150"
+                                Binding="{Binding Number}"
+                                Header="رقم الهاتف" />
+
+                            <DataGridTemplateColumn Header="خيارات">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button
+                                            Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.RemovePhoneCommand}"
+                                            CommandParameter="{Binding}"
+                                            Content="حذف"
+                                            Cursor="Hand"
+                                            FontSize="10"
+                                            FontWeight="Bold"
+                                            Style="{StaticResource ButtonDanger}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </Grid>
+
+            </ScrollViewer>
+            <Button
+                Grid.Row="1"
+                Width="100"
+                Margin="0,10,0,0"
+                Command="{Binding SaveCommand}"
+                Content="حفظ"
+                Cursor="Hand"
+                FontFamily="Arial"
+                FontSize="18"
+                FontWeight="Bold"
+                IsDefault="True"
+                Style="{StaticResource ButtonInfo}" />
+
+        </Grid>
+
+    </Border>
+</Window>

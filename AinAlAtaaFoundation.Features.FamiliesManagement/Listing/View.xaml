@@ -1,0 +1,86 @@
+﻿<UserControl
+    x:Class="AinAlAtaaFoundation.Features.FamiliesManagement.Listing.View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Listing"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+    x:ClassModifier="internal"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Button
+            Grid.Row="0"
+            HorizontalAlignment="Right"
+            Command="{Binding ShowCreateCommand}"
+            Content="إضافة"
+            Cursor="Hand"
+            FontFamily="Arial"
+            FontWeight="Bold"
+            Style="{StaticResource ButtonPrimary}" />
+
+        <DataGrid
+            Grid.Row="1"
+            d:ItemsSource="{d:SampleData}"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding Families}">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
+                <DataGridTextColumn Binding="{Binding FamilyType.Name}" Header="نوع العائلة (عام / خاص)" />
+                <DataGridTextColumn Binding="{Binding Clan.Name}" Header="العشيرة" />
+                <DataGridTextColumn Binding="{Binding Applicant.Name}" Header="الاسم" />
+                <DataGridTextColumn Binding="{Binding RationCard}" Header="رقم البطاقة التموينية" />
+                <DataGridTextColumn Binding="{Binding RationCardOwnerName}" Header="اسم صاحب البطاقة التموينية" />
+                <DataGridTextColumn Binding="{Binding BranchRepresentative.Name}" Header="ممثل الفخذ" />
+                <DataGridTextColumn Header="رقم الهاتف" />
+                <DataGridTextColumn Binding="{Binding Address.District.Name}" Header="الحي" />
+                <DataGridTextColumn Binding="{Binding Address.Street}" Header="الشارع" />
+                <DataGridTextColumn Binding="{Binding Address.FeaturedPoint.Name}" Header="أقرب نقطة دالة" />
+                <DataGridTextColumn Binding="{Binding DistrictRepresentative.Name}" Header="اسم المختار" />
+                <DataGridTextColumn Binding="{Binding Notes}" Header="الملاحظات" />
+
+                <DataGridTextColumn Binding="{Binding SocialStatus.Name}" Header="الحالة الإجتماعية" />
+
+                <DataGridTemplateColumn Header="خيارات">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ShowUpdateCommand}"
+                                    CommandParameter="{Binding}"
+                                    Content="تعديل"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="10"
+                                    FontWeight="Bold"
+                                    Style="{StaticResource ButtonInfo}" />
+
+                                <Button
+                                    Margin="10,0,0,0"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ShowPrintCommand}"
+                                    CommandParameter="{Binding}"
+                                    Cursor="Hand"
+                                    Style="{StaticResource ButtonSuccess}">
+                                    <Image Source="{StaticResource PrintIcon}" />
+
+                                </Button>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+    </Grid>
+</UserControl>

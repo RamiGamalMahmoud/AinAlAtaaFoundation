@@ -1,0 +1,148 @@
+﻿<Window
+    x:Class="AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagement.Editor.View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagement.Editor"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="ممثل الفخذ"
+    d:DataContext="{d:DesignInstance Type=local:EditorViewModelBase}"
+    x:ClassModifier="internal"
+    FocusManager.FocusedElement="{Binding ElementName=MainTextBox}"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Border Padding="20" FlowDirection="RightToLeft">
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Vertical">
+
+            <StackPanel Margin="0,0,0,20" Orientation="Horizontal">
+                <TextBlock
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="اسم ممثل الفخذ" />
+                <TextBox
+                    x:Name="MainTextBox"
+                    Width="200"
+                    Focusable="True"
+                    Text="{Binding DataModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock
+                    Margin="20,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="العشيرة" />
+
+                <ComboBox
+                    Width="200"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding Clans}"
+                    SelectedItem="{Binding DataModel.Clan}"
+                    SelectedValue="{Binding DataModel.Clan.Id}"
+                    SelectedValuePath="Id" />
+
+                <TextBlock
+                    Margin="20,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="الفخذ"
+                    Visibility="{Binding HasBranches, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <ComboBox
+                    Width="200"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding Branches}"
+                    SelectedItem="{Binding DataModel.Branch}"
+                    SelectedValue="{Binding DataModel.Branch.Id}"
+                    SelectedValuePath="Id"
+                    Visibility="{Binding HasBranches, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </StackPanel>
+
+            <!--<Border
+            Padding="5"
+            BorderBrush="LightGray"
+            BorderThickness="1"
+            CornerRadius="2">
+            <StackPanel Orientation="Horizontal">
+
+            <Label
+            Height="auto"
+            Margin="0,0,10,0"
+            VerticalAlignment="Stretch"
+            Content="العنوان" />
+
+            <StackPanel Orientation="Vertical">
+            <TextBlock Margin="0,0,0,10" Text="الحي" />
+            <ComboBox
+            Width="200"
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding Districts}"
+            SelectedItem="{Binding DataModel.Branch}"
+            SelectedValue="{Binding DataModel.Branch.Id}"
+            SelectedValuePath="Id" />
+            </StackPanel>
+
+            <StackPanel Margin="10,0,0,0" Orientation="Vertical">
+            <TextBlock Margin="0,0,0,10" Text="الشارع" />
+            <TextBox Width="200" Text="{Binding DataModel.Street, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+
+            </StackPanel>
+            </Border>-->
+
+            <StackPanel Margin="0,20,0,0" Orientation="Vertical">
+                <StackPanel Margin="0,0,0,20" Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,10,0"
+                        VerticalAlignment="Center"
+                        Text="إضافة هاتف" />
+                    <TextBox Width="200" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
+                    <Button
+                        Margin="10,0,0,0"
+                        Command="{Binding AddPhoneNumberCommand}"
+                        Content="+"
+                        FontWeight="Bold"
+                        Style="{StaticResource ButtonPrimary}" />
+                </StackPanel>
+                <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding DataModel.Phones}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn
+                            Width="150"
+                            Binding="{Binding Number}"
+                            Header="رقم الهاتف" />
+
+                        <DataGridTemplateColumn Header="خيارات">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.RemovePhoneCommand}"
+                                        CommandParameter="{Binding}"
+                                        Content="حذف"
+                                        FontSize="10"
+                                        FontWeight="Bold"
+                                        Style="{StaticResource ButtonWarning}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <Button
+                Width="100"
+                Height="auto"
+                Margin="0,10,0,0"
+                Click="Button_Click"
+                Command="{Binding SaveCommand}"
+                Content="حفظ"
+                Cursor="Hand"
+                FontFamily="Arial"
+                FontSize="18"
+                FontWeight="Bold"
+                IsDefault="True"
+                Style="{StaticResource ButtonInfo}" />
+
+        </StackPanel>
+    </Border>
+</Window>
