@@ -8,6 +8,7 @@ namespace AinAlAtaaFoundation.Features.Disbursement
         public static IServiceCollection ConfigureDisbursementFeature(this IServiceCollection services)
         {
             services
+                .AddSingleton<ViewModel>()
                 .AddSingleton< IDisbursementView, View >();
             return services;
         }

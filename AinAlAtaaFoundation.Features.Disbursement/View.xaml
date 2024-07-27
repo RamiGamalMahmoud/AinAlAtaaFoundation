@@ -3,13 +3,150 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.Disbursement"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:Background="White"
+    d:DataContext="{d:DesignInstance Type=local:ViewModel}"
     x:ClassModifier="internal"
+    FontFamily="Arial"
+    FontSize="20"
     mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="صرف سلة" />
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Height="auto"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            BorderBrush="{StaticResource Blue}"
+            Content="{Binding Clock.Time, FallbackValue=2000-01-01 00:00:00 AM}"
+            FlowDirection="LeftToRight"
+            FontFamily="Arial"
+            FontSize="30"
+            FontWeight="Bold"
+            Foreground="{StaticResource Blue}" />
+
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,20,0,0"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <TextBox
+                Width="200"
+                Padding="10"
+                FontSize="30"
+                TextAlignment="Center" />
+            <Button
+                Height="30"
+                Margin="10,0,0,0"
+                VerticalAlignment="Stretch"
+                Command="{Binding AddFeaturedPointCommand}"
+                Cursor="Hand"
+                Style="{StaticResource ButtonPrimary}">
+                <Image Source="{StaticResource PrintIcon}" />
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid
+                Grid.Column="0"
+                Margin="0,0,10,0"
+                VerticalAlignment="Top">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Height="auto"
+                    HorizontalAlignment="Stretch"
+                    Content="بيانات العائلة" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="0,10"
+                    VerticalAlignment="Center"
+                    Text="اسم العائلة" />
+
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Text="Family Name" />
+
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="0,10"
+                    VerticalAlignment="Center"
+                    Text="رقم البطاقة التموينية" />
+
+                <TextBlock
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    Text="1234567890" />
+
+                <TextBlock
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Margin="0,10"
+                    VerticalAlignment="Top"
+                    Text="هاتف" />
+
+                <StackPanel
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    VerticalAlignment="Top">
+                    <TextBlock VerticalAlignment="Center" Text="1234567890" />
+                    <TextBlock VerticalAlignment="Center" Text="1234567890" />
+                    <TextBlock VerticalAlignment="Center" Text="1234567890" />
+                </StackPanel>
+
+            </Grid>
+
+            <DataGrid
+                Grid.Column="1"
+                AutoGenerateColumns="False"
+                Background="Transparent"
+                FontFamily="Arial"
+                FontSize="18"
+                IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="200" Header="رقم التذكرة" />
+                    <DataGridTextColumn Width="200" Header="تاريخ الصرف" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
     </Grid>
 </UserControl>
