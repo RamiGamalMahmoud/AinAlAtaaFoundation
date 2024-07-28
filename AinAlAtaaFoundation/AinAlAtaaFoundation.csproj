@@ -18,7 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
     <ProjectReference Include="..\AinAlAtaaFoundation.Features.Auth\AinAlAtaaFoundation.Features.Auth.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Disbursement\AinAlAtaaFoundation.Features.Disbursement.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Disbursement\AinAlAtaaFoundation.Features.DisbursementManagement.csproj" />
     <ProjectReference Include="..\AinAlAtaaFoundation.Features.FamiliesManagement\AinAlAtaaFoundation.Features.FamiliesManagement.csproj" />
     <ProjectReference Include="..\AinAlAtaaFoundation.Features.MainWindow\AinAlAtaaFoundation.Features.MainWindow.csproj" />
     <ProjectReference Include="..\AinAlAtaaFoundation.Features.Management\AinAlAtaaFoundation.Features.Management.csproj" />

@@ -1,7 +1,7 @@
 ﻿using AinAlAtaaFoundation.Shared.Abstraction;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AinAlAtaaFoundation.Features.Disbursement
+namespace AinAlAtaaFoundation.Features.DisbursementManagement
 {
     public static class ServiceProviderExtension
     {

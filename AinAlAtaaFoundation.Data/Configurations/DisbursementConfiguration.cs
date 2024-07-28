@@ -10,6 +10,8 @@ namespace AinAlAtaaFoundation.Data.Configurations
         {
             builder.HasKey(x => x.Id);
 
+            builder.Property(x => x.Date).IsRequired();
+
             builder.HasOne(x => x.Family)
                 .WithMany()
                 .HasForeignKey(x => x.FamilyId)

@@ -1146,7 +1146,7 @@ namespace AinAlAtaaFoundation.Data.Migrations
 
             modelBuilder.Entity("AinAlAtaaFoundation.Models.User", b =>
                 {
-                    b.OwnsOne("AinAlAtaaFoundation.Models.DeletableModel", "DeletableModel", b1 =>
+                    b.OwnsOne("AinAlAtaaFoundation.Models.User.DeletableModel#AinAlAtaaFoundation.Models.DeletableModel", "DeletableModel", b1 =>
                         {
                             b1.Property<int>("UserId")
                                 .HasColumnType("INTEGER")
@@ -1164,7 +1164,7 @@ namespace AinAlAtaaFoundation.Data.Migrations
 
                             b1.HasKey("UserId");
 
-                            b1.ToTable("users");
+                            b1.ToTable("users", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId")

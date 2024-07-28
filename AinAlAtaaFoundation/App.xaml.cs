@@ -1,6 +1,6 @@
 ﻿using AinAlAtaaFoundation.Data;
 using AinAlAtaaFoundation.Features.Auth;
-using AinAlAtaaFoundation.Features.Disbursement;
+using AinAlAtaaFoundation.Features.DisbursementManagement;
 using AinAlAtaaFoundation.Features.FamiliesManagement;
 using AinAlAtaaFoundation.Features.MainWindow;
 using AinAlAtaaFoundation.Features.Management;
