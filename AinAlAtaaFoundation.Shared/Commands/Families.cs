@@ -7,5 +7,7 @@ namespace AinAlAtaaFoundation.Shared.Commands
     {
         public record CommandShowCreate : IRequest;
         public record CommandShowUpdate(Family Family) : IRequest;
+
+        public record GetFamilyCommand(int Id) : IRequest<Family>;
     }
 }
