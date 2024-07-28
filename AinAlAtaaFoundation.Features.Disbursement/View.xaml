@@ -134,7 +134,7 @@
                     Grid.Row="1"
                     Grid.Column="2"
                     VerticalAlignment="Center"
-                    Text="Family Name" />
+                    Text="{Binding Family.Applicant.Surname}" />
 
                 <TextBlock
                     Grid.Row="2"
@@ -147,22 +147,64 @@
                     Grid.Row="2"
                     Grid.Column="2"
                     VerticalAlignment="Center"
-                    Text="1234567890" />
+                    Text="{Binding Family.RationCard}" />
 
                 <TextBlock
                     Grid.Row="3"
                     Grid.Column="0"
                     Margin="0,10"
                     VerticalAlignment="Top"
-                    Text="هاتف" />
+                    Text="العشيرة" />
 
-                <StackPanel
+                <TextBlock
                     Grid.Row="3"
                     Grid.Column="2"
-                    VerticalAlignment="Top">
-                    <TextBlock VerticalAlignment="Center" Text="1234567890" />
-                    <TextBlock VerticalAlignment="Center" Text="1234567890" />
-                    <TextBlock VerticalAlignment="Center" Text="1234567890" />
+                    Margin="0,10"
+                    VerticalAlignment="Top"
+                    Text="{Binding Family.Clan.Name}" />
+
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Margin="0,10"
+                    VerticalAlignment="Top"
+                    Text="نوع العائلة" />
+
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Margin="0,10"
+                    VerticalAlignment="Top"
+                    Text="{Binding Family.FamilyType.Name}" />
+
+                <TextBlock
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Margin="0,10"
+                    VerticalAlignment="Top"
+                    Text="الحالة الإجتماعية" />
+
+                <TextBlock
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Margin="0,10"
+                    VerticalAlignment="Top"
+                    Text="{Binding Family.SocialStatus.Name}" />
+
+                <TextBlock
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Margin="0,10"
+                    VerticalAlignment="Top"
+                    Text="العنوان" />
+
+                <StackPanel
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Orientation="Vertical">
+                    <TextBlock Text="{Binding Family.Address.District.Name}" />
+                    <TextBlock Text="{Binding Family.Address.Street}" />
+                    <TextBlock Text="{Binding Family.Address.FeaturedPoint.Name}" />
                 </StackPanel>
 
             </Grid>

@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.DisbursementManagement
@@ -46,6 +47,15 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             _messenger.Send<Messages.IdChangedMessage>();
         }
 
+        protected override async void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(Id))
+            {
+                Family = await _mediator.Send(new Shared.Commands.Families.GetFamilyCommand(Id));
+            }
+            base.OnPropertyChanged(e);
+        }
+
         public int Id
         {
             get => _id;
@@ -84,11 +94,22 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             }
         }
 
-        public IEnumerable<Family> Families { get; }
-        public IEnumerable<Disbursement> Disbursements { get; }
+        public Family Family
+        {
+            get => _family;
+            private set => SetProperty(ref _family, value);
+        }
 
+        public IEnumerable<Disbursement> Disbursements
+        {
+            get => _disbursements;
+            private set => SetProperty(ref _disbursements, value);
+        }
+
+        private IEnumerable<Disbursement> _disbursements;
         private int _id;
         private int _readingNumber = 0;
+        private Family _family;
         private readonly IMediator _mediator;
         private readonly IMessenger _messenger;
 
