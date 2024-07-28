@@ -156,5 +156,40 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 return _entities;
             }
         }
+
+        /// <summary>
+        /// Get Family by its id, search firts in the stored families else search in the database
+        /// </summary>
+        /// <param name="id">Family id</param>
+        /// <returns>Models.Family</returns>
+        public async Task<Family> Get(int id)
+        {
+            if(_entities.Any())
+            {
+                return _entities
+                    .Where(x => x.Id == id)
+                    .FirstOrDefault();
+            }
+
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext.Families
+                    .Include(x => x.Address)
+                    .Include(x => x.Applicant)
+                        .ThenInclude(x => x.Gender)
+                    .Include(x => x.Branch)
+                    .Include(x => x.BranchRepresentative)
+                    .Include(x => x.Clan)
+                    .Include(x => x.DistrictRepresentative)
+                        .ThenInclude(x => x.District)
+                    .Include(x => x.FamilyMembers)
+                    .Include(x => x.FamilyType)
+                    .Include(x => x.OrphanType)
+                    .Include(x => x.Phones)
+                    .Include(x => x.SocialStatus)
+                    .Where(x => x.Id == id)
+                    .FirstOrDefaultAsync();
+            }
+        }
     }
 }
