@@ -28,6 +28,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
         {
             Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
                 .Where(x => x.Clan.Id == newValue.Id);
+
+            IEnumerable<FamilyMember> members = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
+            Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Clan.Id == Clan.Id );
         }
 
         public override async Task LoadDataAsync()
@@ -42,6 +45,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
 
         [ObservableProperty]
         private IEnumerable<Family> _families;
+
+        [ObservableProperty]
+        private IEnumerable<FamilyMember> _mothers;
 
         [ObservableProperty]
         private IEnumerable<Gender> _genders;

@@ -39,6 +39,7 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
                 <TextBlock
@@ -90,9 +91,23 @@
                     Grid.Column="0"
                     Margin="0,10"
                     VerticalAlignment="Center"
+                    Text="الأم" />
+                <ComboBox
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding Mothers}"
+                    SelectedValuePath="Id" />
+
+                <TextBlock
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Margin="0,10"
+                    VerticalAlignment="Center"
                     Text="تاريخ الميلاد" />
                 <DatePicker
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     DisplayDate="1950-1-1"
@@ -100,13 +115,13 @@
                     SelectedDate="{Binding DataModel.BirthDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
                 <TextBlock
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="0"
                     Margin="0,10"
                     VerticalAlignment="Center"
                     Text="السن" />
                 <TextBlock
-                    Grid.Row="4"
+                    Grid.Row="5"
                     Grid.Column="1"
                     Padding="5"
                     VerticalAlignment="Center"
@@ -115,13 +130,13 @@
                     TextAlignment="Left" />
 
                 <TextBlock
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="0"
                     Margin="0,10"
                     VerticalAlignment="Center"
                     Text="النوع" />
                 <ComboBox
-                    Grid.Row="5"
+                    Grid.Row="6"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     DisplayMemberPath="NameAr"
