@@ -226,15 +226,6 @@
                     HorizontalContentAlignment="Left"
                     Content="{Binding Family.SocialStatus.Name}" />
 
-                <!--<Label
-                Grid.Row="6"
-                Grid.Column="0"
-                Height="40"
-                Margin="0,5"
-                HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Left"
-                Content="العنوان" />-->
-
                 <Label
                     Grid.Row="6"
                     Grid.Column="0"
@@ -290,6 +281,21 @@
                         Width="200"
                         Binding="{Binding Date, StringFormat=hh:mm:ss - tt}"
                         Header="وقت الصرف" />
+
+                    <DataGridTemplateColumn Header="طباعة" Visibility="Collapsed">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.PrintTicketCommand}"
+                                    CommandParameter="{Binding}"
+                                    Cursor="Hand"
+                                    Style="{StaticResource ButtonInfo}">
+                                    <Image Source="{StaticResource PrintIcon}" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
                 </DataGrid.Columns>
             </DataGrid>
 
