@@ -33,6 +33,12 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(x => x.Mother)
+                .WithMany()
+                .HasForeignKey(x => x.MotherId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

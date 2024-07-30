@@ -41,5 +41,13 @@ namespace AinAlAtaaFoundation.Models
         }
         private Family _family;
 
+        public int? MotherId { get; set; }
+        public FamilyMember Mother
+        {
+            get => _mother;
+            set => SetProperty(ref _mother, value);
+        }
+        private FamilyMember _mother;
+
     }
 }
