@@ -46,6 +46,8 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             {
                 return await dbContext
                     .Disbursements
+                    .Include(x => x.Family)
+                        .ThenInclude(x => x.Applicant)
                     .Where(x => x.FamilyId == familyId)
                     .ToListAsync();
             }
