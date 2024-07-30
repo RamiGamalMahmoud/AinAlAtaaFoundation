@@ -9,7 +9,7 @@
     </Style>
     <ReportItems>
       <Image Name="Image1">
-        <Left>25.82163mm</Left>
+        <Left>24.82124mm</Left>
         <Top>2.11667mm</Top>
         <Value>logo_100</Value>
         <Height>25.73073mm</Height>
@@ -59,7 +59,7 @@
         </Paragraphs>
       </Textbox>
       <Textbox Name="TextBox3">
-        <Left>23.07244mm</Left>
+        <Left>22.07205mm</Left>
         <Top>29.35234mm</Top>
         <Height>6.60631mm</Height>
         <Width>33.85839mm</Width>
@@ -94,7 +94,7 @@
         </Paragraphs>
       </Textbox>
       <Textbox Name="TextBox4">
-        <Left>23.07244mm</Left>
+        <Left>22.07205mm</Left>
         <Top>37.28984mm</Top>
         <Height>6.60631mm</Height>
         <Width>33.85839mm</Width>
@@ -164,7 +164,7 @@
         </Paragraphs>
       </Textbox>
       <Textbox Name="TextBox6">
-        <Left>23.07037mm</Left>
+        <Left>22.06998mm</Left>
         <Top>51.57734mm</Top>
         <Height>17.19378mm</Height>
         <Width>33.86253mm</Width>
@@ -200,7 +200,7 @@
         </Paragraphs>
       </Textbox>
       <Line Name="Line1">
-        <Left>4.01624mm</Left>
+        <Left>3.01792mm</Left>
         <Top>46.83125mm</Top>
         <Height>0mm</Height>
         <Width>71.96666mm</Width>
@@ -236,10 +236,10 @@
       <Prompt>TicketNumber</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>79.99999mm</Width>
+  <Width>77.99999mm</Width>
   <Page>
     <PageHeight>100mm</PageHeight>
-    <PageWidth>80mm</PageWidth>
+    <PageWidth>78mm</PageWidth>
     <LeftMargin>0mm</LeftMargin>
     <RightMargin>0mm</RightMargin>
     <TopMargin>0mm</TopMargin>
