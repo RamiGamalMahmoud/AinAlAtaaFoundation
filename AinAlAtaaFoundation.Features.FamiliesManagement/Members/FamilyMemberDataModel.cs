@@ -19,6 +19,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 Gender = model.Gender;
                 BirthDate = model.BirthDate;
                 Mother = model.Mother;
+                IsOrphan = model.IsOrphan;
             }
             ValidateAllProperties();
         }
@@ -46,7 +47,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             }
         }
 
-        [ObservableProperty]
+        public bool IsOrphan
+        {
+            get => _isOrphan;
+            set => SetProperty(ref _isOrphan, value);
+        }
         private bool _isOrphan = false;
 
         public int Age => (int.Parse(DateTime.Now.ToString("yyyyMMdd")) - int.Parse(BirthDate.ToString("yyyyMMdd"))) / 10000;
@@ -101,6 +106,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             model.Family = Family;
             model.Gender = Gender;
             model.Mother = Mother;
+            model.IsOrphan = IsOrphan;
         }
     }
 }

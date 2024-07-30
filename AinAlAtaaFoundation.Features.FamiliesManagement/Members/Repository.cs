@@ -23,7 +23,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                     FamilyId = dataModel.Family.Id,
                     GenderId = dataModel.Gender.Id,
                     Surname = dataModel.Family.Applicant.Surname,
-                    MotherId = dataModel.Mother.Id
+                    MotherId = dataModel.Mother.Id,
+                    IsOrphan = dataModel.IsOrphan
                 };
 
                 dbContext.FamilyMembers.Add(familyMember);
@@ -67,6 +68,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 familyMember.GenderId = dataModel.Gender.Id;
                 familyMember.Surname = dataModel.Family.Applicant.Surname;
                 familyMember.MotherId = dataModel.Mother.Id;
+                familyMember.IsOrphan = dataModel.IsOrphan;
 
                 dbContext.FamilyMembers.Update(familyMember);
                 await dbContext.SaveChangesAsync();

@@ -15,6 +15,7 @@ namespace AinAlAtaaFoundation.Models
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Age))]
+        [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
         private DateTime _birthDate;
 
         [ObservableProperty]
@@ -23,6 +24,7 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         private bool _isApplicant = false;
 
+        public bool IsNowOrphan => IsOrphan && Age < 18;
         public int Age => (int.Parse(DateTime.Now.ToString("yyyyMMdd")) - int.Parse(BirthDate.ToString("yyyyMMdd"))) / 10000;
 
         public int GenderId { get; set; }

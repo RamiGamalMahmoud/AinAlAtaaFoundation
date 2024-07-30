@@ -40,6 +40,7 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
 
                 <TextBlock
@@ -131,14 +132,24 @@
                     Text="{Binding DataModel.Age}"
                     TextAlignment="Left" />
 
-                <TextBlock
+                <CheckBox
                     Grid.Row="6"
+                    Grid.Column="1"
+                    Margin="0,5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Content="يتيم"
+                    FlowDirection="LeftToRight"
+                    IsChecked="{Binding DataModel.IsOrphan}" />
+
+                <TextBlock
+                    Grid.Row="7"
                     Grid.Column="0"
                     Margin="0,10"
                     VerticalAlignment="Center"
                     Text="النوع" />
                 <ComboBox
-                    Grid.Row="6"
+                    Grid.Row="7"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     DisplayMemberPath="NameAr"

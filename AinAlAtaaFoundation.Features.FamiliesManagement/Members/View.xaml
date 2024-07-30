@@ -6,8 +6,6 @@
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Members"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance Type=local:ViewModel}"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
@@ -90,6 +88,9 @@
                     Width="150"
                     Binding="{Binding BirthDate, StringFormat='{}{0:yyyy-MM-dd}'}"
                     Header="تاريخ الميلاد" />
+
+                <DataGridCheckBoxColumn Binding="{Binding IsOrphan}" Header="يتيم" />
+                <DataGridCheckBoxColumn Binding="{Binding IsNowOrphan, Mode=OneWay}" Header="لا يزال يحسب يتيما" />
 
                 <DataGridTemplateColumn Header="خيارات">
                     <DataGridTemplateColumn.CellTemplate>
