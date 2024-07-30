@@ -29,24 +29,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         private string _name;
 
         [ObservableProperty]
-        //[Required(ErrorMessage = "حقل مطلوب")]
-        //[NotifyDataErrorInfo]
-        //[NotifyPropertyChangedFor(nameof(IsValid))]
         private string _surname;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Age))]
         [Required(ErrorMessage = "حقل مطلوب")]
         private DateTime _birthDate = new DateTime(1950, 1, 1);
-
-        //partial void OnBirthDateChanging(DateTime oldValue, DateTime newValue)
-        //{
-        //    if (newValue > DateTime.Now)
-        //    {
-        //        BirthDate = oldValue;
-        //        //OnPropertyChanged(nameof(BirthDate));
-        //    }
-        //}
 
         partial void OnBirthDateChanged(DateTime oldValue, DateTime newValue)
         {
