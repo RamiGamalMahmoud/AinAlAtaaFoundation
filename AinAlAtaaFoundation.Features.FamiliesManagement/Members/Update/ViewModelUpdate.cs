@@ -11,6 +11,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Update
         public ViewModelUpdate(IMediator mediator, IMessenger messenger, FamilyMember familyMember) : base(mediator, messenger, familyMember)
         {
             Title = "تعديل";
+            Clan = familyMember.Family.Clan;
         }
 
         public override bool CanSave() => base.CanSave() && HasChangesObject.HasChanges;
