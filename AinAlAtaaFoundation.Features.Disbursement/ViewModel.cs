@@ -37,13 +37,9 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
         [ObservableProperty]
         private bool _manualInput;
 
-        private void Print()
+        [RelayCommand]
+        private void PrintTicket(Disbursement disbursement)
         {
-            Disbursement disbursement = new Disbursement();
-            disbursement.TicketNumber = ++LastTicketNumber;
-            disbursement.Date = DateTime.Now;
-            disbursement.Family = Family;
-
             Dictionary<string, List<string>> parameters = new Dictionary<string, List<string>>
             {
                 { "Date", [disbursement.Date.ToString("yyyy-MM-dd")] },
@@ -52,10 +48,18 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
                 { "Name", [disbursement.Family.Applicant.Name] },
                 { "TicketNumber", [disbursement.TicketNumber.ToString()] }
             };
+            _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", parameters));
+        }
 
+        private void Print()
+        {
+            Disbursement disbursement = new Disbursement();
+            disbursement.TicketNumber = ++LastTicketNumber;
+            disbursement.Date = DateTime.Now;
+            disbursement.Family = Family;
 
             _mediator.Send(new CommandHandlerCreate.Command(disbursement));
-            _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", parameters));
+            PrintTicket(disbursement);
             Disbursements.Add(disbursement);
         }
 
