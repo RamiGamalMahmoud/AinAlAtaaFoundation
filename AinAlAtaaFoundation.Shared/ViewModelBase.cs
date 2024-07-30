@@ -9,6 +9,7 @@ namespace AinAlAtaaFoundation.Shared
 {
     public abstract partial class ViewModelBase<TDataModel>(IMediator mediator, IMessenger messenger) : ObservableObject
     {
+        public string Title { get; protected set; }
         public TDataModel DataModel { get; protected set; }
 
         [RelayCommand(CanExecute = nameof(CanSave))]

@@ -2,14 +2,17 @@
 using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using System;
 using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Update
 {
-    internal class ViewModelUpdate(IMediator mediator, IMessenger messenger, FamilyMember familyMember) : 
-        EditorViewModelBase(mediator, messenger, familyMember)
+    internal class ViewModelUpdate : EditorViewModelBase
     {
+        public ViewModelUpdate(IMediator mediator, IMessenger messenger, FamilyMember familyMember) : base(mediator, messenger, familyMember)
+        {
+            Title = "تعديل";
+        }
+
         public override bool CanSave() => base.CanSave() && HasChangesObject.HasChanges;
 
         protected override async Task Save()

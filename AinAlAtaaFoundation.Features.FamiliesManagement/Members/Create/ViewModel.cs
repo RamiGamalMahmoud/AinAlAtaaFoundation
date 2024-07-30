@@ -10,6 +10,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Create
     {
         public ViewModel(IMediator mediator, IMessenger messenger) : base(mediator, messenger, null)
         {
+            Title = "إضافة";
         }
 
         protected override async Task Save()

@@ -7,7 +7,7 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="View"
+    Title="{Binding Title}"
     d:DataContext="{d:DesignInstance Type=local:EditorViewModelBase}"
     x:ClassModifier="internal"
     SizeToContent="WidthAndHeight"
