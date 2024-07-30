@@ -18,7 +18,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
                 .AddSingleton<Repository>()
                 .AddSingleton< IFamiliesView, Listing.View>()
-                .AddTransient<Print.ViewModel>()
                 .AddSingleton<Listing.ViewModel>();
             return services;
         }

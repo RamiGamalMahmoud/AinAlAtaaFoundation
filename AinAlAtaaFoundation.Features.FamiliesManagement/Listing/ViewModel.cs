@@ -29,7 +29,35 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [RelayCommand]
         private void ShowPrint(Family family)
         {
-            _mediator.Send(new Print.CommandHandlerShowPrint.Command(family));
+            _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), "Phones", family.Phones));
+        }
+
+        private static Dictionary<string, List<string>> GetParameters(Family family)
+        {
+            string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
+            Dictionary<string, List<string>> parameters = new Dictionary<string, List<string>>();
+
+            parameters.Add("Id", [family.Id.ToString()]);
+            parameters.Add("img", [barcodeImageString]);
+            parameters.Add("", []);
+
+            parameters.Add("FamilyType", [family.FamilyType.Name]);
+            parameters.Add("SocialStatus", [family.SocialStatus.Name]);
+            parameters.Add("OrphanType", [family.OrphanType?.Name]);
+            parameters.Add("Clan", [family.Clan.Name]);
+            parameters.Add("Branch", [family.Branch?.Name]);
+            parameters.Add("BranchRepresentative", [family.BranchRepresentative.Name]);
+            parameters.Add("District", [family.Address.District.Name]);
+            parameters.Add("FeaturedPoint", [family.Address.FeaturedPoint?.Name]);
+            parameters.Add("Street", [family.Address.Street]);
+            parameters.Add("DistrictRepresentative", [family.DistrictRepresentative.Name]);
+            parameters.Add("RationCard", [family.RationCard]);
+            parameters.Add("RationCardOwnerName", [family.RationCardOwnerName]);
+            parameters.Add("Notes", [family.Notes]);
+            parameters.Add("ApplicantName", [family.Applicant.Name]);
+            parameters.Add("ApplicantSurname", [family.Applicant.Surname]);
+
+            return parameters;
         }
 
         public IEnumerable<Family> Families

@@ -8,7 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Reports\DisbursementTicket.rdlc" />
+    <None Remove="Reports\Family.rdlc" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="ain-al-ataa-foundation.ico" />
+    <Content Include="Reports\DisbursementTicket.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Family.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +36,7 @@
     <ProjectReference Include="..\AinAlAtaaFoundation.Features.Settings\AinAlAtaaFoundation.Features.Settings.csproj" />
     <ProjectReference Include="..\AinAlAtaaFoundation.Features.Users\AinAlAtaaFoundation.Features.Users.csproj" />
     <ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Services.Printing\AinAlAtaaFoundation.Services.Printing.csproj" />
     <ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
   </ItemGroup>
 

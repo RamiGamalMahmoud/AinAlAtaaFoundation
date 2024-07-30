@@ -62,7 +62,7 @@
                 FontSize="30"
                 TextAlignment="Center">
                 <TextBox.Text>
-                    <Binding Path="Id" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="FamilyId" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <rules:ValidateIntRule />
                         </Binding.ValidationRules>
@@ -85,6 +85,19 @@
                 Margin="20,0,0,0"
                 Content="{Binding ReadingNumber}" />
 
+            <Label Height="auto" Margin="20,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Foreground="#c0392b"
+                        Text="أخر رقم" />
+                    <Label Height="auto" Content="{Binding LastTicketNumber}" />
+                </StackPanel>
+            </Label>
+
         </StackPanel>
 
         <Grid Grid.Row="2" Margin="0,20,0,0">
@@ -99,9 +112,9 @@
                 VerticalAlignment="Top">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="200" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -123,102 +136,160 @@
                     HorizontalAlignment="Stretch"
                     Content="بيانات العائلة" />
 
-                <TextBlock
+                <Label
                     Grid.Row="1"
                     Grid.Column="0"
-                    Margin="0,10"
-                    VerticalAlignment="Center"
-                    Text="اسم العائلة" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="اسم العائلة" />
 
-                <TextBlock
+                <Label
                     Grid.Row="1"
                     Grid.Column="2"
-                    VerticalAlignment="Center"
-                    Text="{Binding Family.Applicant.Surname}" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="{Binding Family.Applicant.Surname}" />
 
-                <TextBlock
+                <Label
                     Grid.Row="2"
                     Grid.Column="0"
-                    Margin="0,10"
-                    VerticalAlignment="Center"
-                    Text="رقم البطاقة التموينية" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="رقم البطاقة التموينية" />
 
-                <TextBlock
+                <Label
                     Grid.Row="2"
                     Grid.Column="2"
-                    VerticalAlignment="Center"
-                    Text="{Binding Family.RationCard}" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="{Binding Family.RationCard}" />
 
-                <TextBlock
+                <Label
                     Grid.Row="3"
                     Grid.Column="0"
-                    Margin="0,10"
-                    VerticalAlignment="Top"
-                    Text="العشيرة" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="العشيرة" />
 
-                <TextBlock
+                <Label
                     Grid.Row="3"
                     Grid.Column="2"
-                    Margin="0,10"
-                    VerticalAlignment="Top"
-                    Text="{Binding Family.Clan.Name}" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="{Binding Family.Clan.Name}" />
 
-                <TextBlock
+                <Label
                     Grid.Row="4"
                     Grid.Column="0"
-                    Margin="0,10"
-                    VerticalAlignment="Top"
-                    Text="نوع العائلة" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="نوع العائلة" />
 
-                <TextBlock
+                <Label
                     Grid.Row="4"
                     Grid.Column="2"
-                    Margin="0,10"
-                    VerticalAlignment="Top"
-                    Text="{Binding Family.FamilyType.Name}" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="{Binding Family.FamilyType.Name}" />
 
-                <TextBlock
+                <Label
                     Grid.Row="5"
                     Grid.Column="0"
-                    Margin="0,10"
-                    VerticalAlignment="Top"
-                    Text="الحالة الإجتماعية" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="الحالة الإجتماعية" />
 
-                <TextBlock
+                <Label
                     Grid.Row="5"
                     Grid.Column="2"
-                    Margin="0,10"
-                    VerticalAlignment="Top"
-                    Text="{Binding Family.SocialStatus.Name}" />
+                    Height="40"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left"
+                    Content="{Binding Family.SocialStatus.Name}" />
 
-                <TextBlock
+                <!--<Label
+                Grid.Row="6"
+                Grid.Column="0"
+                Height="40"
+                Margin="0,5"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Left"
+                Content="العنوان" />-->
+
+                <Label
                     Grid.Row="6"
                     Grid.Column="0"
-                    Margin="0,10"
-                    VerticalAlignment="Top"
-                    Text="العنوان" />
+                    Height="auto"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock />
+                        <TextBlock Text="العنوان" />
+                        <TextBlock />
+                    </StackPanel>
+                </Label>
 
-                <StackPanel
+                <Label
                     Grid.Row="6"
                     Grid.Column="2"
-                    Orientation="Vertical">
-                    <TextBlock Text="{Binding Family.Address.District.Name}" />
-                    <TextBlock Text="{Binding Family.Address.Street}" />
-                    <TextBlock Text="{Binding Family.Address.FeaturedPoint.Name}" />
-                </StackPanel>
+                    Height="auto"
+                    Margin="0,5"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Family.Address.District.Name}" />
+                        <TextBlock Text="{Binding Family.Address.Street}" />
+                        <TextBlock Text="{Binding Family.Address.FeaturedPoint.Name}" />
+                    </StackPanel>
+                </Label>
 
             </Grid>
 
             <DataGrid
                 Grid.Column="1"
+                d:ItemsSource="{d:SampleData}"
                 AutoGenerateColumns="False"
                 Background="Transparent"
                 FontFamily="Arial"
                 FontSize="18"
-                IsReadOnly="True">
+                IsReadOnly="True"
+                ItemsSource="{Binding Disbursements}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="200" Header="رقم التذكرة" />
-                    <DataGridTextColumn Width="200" Header="تاريخ الصرف" />
+                    <DataGridTextColumn
+                        Width="200"
+                        Binding="{Binding TicketNumber}"
+                        Header="رقم التذكرة" />
+                    <DataGridTextColumn
+                        Width="200"
+                        Binding="{Binding Date, StringFormat=yyyy-MM-dd}"
+                        Header="تاريخ الصرف" />
+
+                    <DataGridTextColumn
+                        Width="200"
+                        Binding="{Binding Date, StringFormat=hh:mm:ss - tt}"
+                        Header="وقت الصرف" />
                 </DataGrid.Columns>
             </DataGrid>
 

@@ -4,6 +4,7 @@ using AinAlAtaaFoundation.Features.DisbursementManagement;
 using AinAlAtaaFoundation.Features.FamiliesManagement;
 using AinAlAtaaFoundation.Features.MainWindow;
 using AinAlAtaaFoundation.Features.Management;
+using AinAlAtaaFoundation.Services.Printing;
 using AinAlAtaaFoundation.Features.Settings;
 using AinAlAtaaFoundation.Features.Users;
 using AinAlAtaaFoundation.Shared.Abstraction;
@@ -29,6 +30,7 @@ namespace AinAlAtaaFoundation
                     s.AddSingleton<AppDbContextFactory>(new AppDbContextFactory("Data Source = .\\DB\\data.db"));
                     s.ConfigureMainWindowFeature();
                     s.ConfigureFamiliesFeature();
+                    s.ConfigureServicePrint();
                     s.ConfigureManegementFeature();
                     s.ConfigureDisbursementFeature();
                     s.ConfigureUsersFeature();
@@ -40,7 +42,7 @@ namespace AinAlAtaaFoundation
 
         protected override async void OnStartup(StartupEventArgs e)
         {
-            Bold.Licensing.BoldLicenseProvider.RegisterLicense("oVgzSnMRENMQOj1LQkrqvqiHS8ja9c4BZ3W18wyYk7M=");
+            Bold.Licensing.BoldLicenseProvider.RegisterLicense("MDAyQDM2MmUzMTJlMzBOd2hxV01OKzROclgwVE9jaFUwbk5NRHppeEUzR0lzTlZXUWxrSld3cnNrPWV5Sk1hV05sYm5ObFZHOXJaVzRpT2lKdlZtZDZVMjVOVWtWT1RWRlBhakZNVVd0eWNYWnhhVWhUT0dwaE9XTTBRbG96VnpFNGQzbFphemROUFNJc0lreHBZMlZ1YzJWUVpYSnBiMlFpT2lJNU9UazVMVEV5TFRNeFZESXpPalU1T2pVNUxqazVOeUlzSWtselJWTlZjMlZ5SWpwMGNuVmxMQ0pKYzFCbGNuQmxkSFZoYkV4cFkyVnVjMlVpT21aaGJITmxmUT09\r\n", true);
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM2Mzc2M0AzMjM2MmUzMDJlMzBjMEkyZXZObXZQQ0FvTXBvOWdTUmQ2Yk1JLzJGZEk4dWhlZmJHUVI1aUUwPQ==;MzM2Mzc2NEAzMjM2MmUzMDJlMzBnS3NqcFRVTXZtbjNLdUdYYUJvZW1KMG1rNlhaS2x6bHlYSWJYU2htVkFBPQ=="); 
             IMessenger messenger = _host.Services.GetRequiredService<IMessenger>();
             _host.Services.GetRequiredService<IAppState>();

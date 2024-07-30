@@ -24,9 +24,10 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             _viewModel = viewModel;
         }
 
-        private void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             MainInputFocut();
+            await Dispatcher.Invoke(_viewModel.LoadDataAsync);
         }
 
         private void MainInputFocut()
