@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using static AinAlAtaaFoundation.Features.DisbursementManagement.Messages;
 
 namespace AinAlAtaaFoundation.Features.DisbursementManagement
 {
@@ -21,17 +22,19 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             _messenger = messenger;
         }
 
-        public bool CanPrint() => !HasErrors;
+        public bool CanPrint() => Family is not null;
 
         [RelayCommand(CanExecute = nameof(CanPrint))]
-        private void ExecutePrint()
+        private async Task ExecutePrint()
         {
-            Print();
+            Disbursement disbursement = await Create();
+            PrintTicket(disbursement);
+            Disbursements.Add(disbursement);
+
+            FamilyId = 0;
             ReadingNumber = 0;
             _messenger.Send<Messages.IdChangedMessage>();
-            _messenger.Send<Messages.ClearInputMessage>();
-
-
+            //_messenger.Send<Messages.ClearInputMessage>();
         }
 
         [ObservableProperty]
@@ -51,16 +54,18 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", parameters));
         }
 
-        private void Print()
+        private async Task<Disbursement> Create()
         {
-            Disbursement disbursement = new Disbursement();
-            disbursement.TicketNumber = ++LastTicketNumber;
-            disbursement.Date = DateTime.Now;
-            disbursement.Family = Family;
+            Disbursement disbursement = new Disbursement
+            {
+                TicketNumber = ++LastTicketNumber,
+                Date = DateTime.Now,
+                Family = Family
+            };
 
-            _mediator.Send(new CommandHandlerCreate.Command(disbursement));
-            PrintTicket(disbursement);
+            await _mediator.Send(new CommandHandlerCreate.Command(disbursement));
             Disbursements.Add(disbursement);
+            return disbursement;
         }
 
         public async Task LoadDataAsync()
@@ -85,6 +90,23 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
                     Disbursements.Add(disbursement);
                 }
             }
+
+            else if (e.PropertyName == nameof(ReadingNumber))
+            {
+                if (ReadingNumber == 3)
+                {
+                    if (Family is not null)
+                    {
+                        Disbursement disbursement = await Create();
+                        PrintTicket(disbursement);
+
+                        _messenger.Send<Messages.IdChangedMessage>();
+                    }
+
+                    ReadingNumber = 0;
+                }
+            }
+
             base.OnPropertyChanged(e);
         }
 
@@ -96,44 +118,33 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             get => _id;
             set
             {
-                if (ManualInput)
-                {
-                    SetProperty(ref _id, value);
-                    return;
-                }
-                if (value == _id)
-                {
-                    ReadingNumber++;
-                }
-                else
-                {
-                    ReadingNumber = 1;
-                }
+                bool isSame = _id == value;
                 SetProperty(ref _id, value);
-                _messenger.Send<Messages.IdChangedMessage>();
+                ReadingNumber = isSame ? ReadingNumber + 1 : 1;
+
+
+                if (!ManualInput)
+                {
+                    _messenger.Send<IdChangedMessage>();
+                }
             }
         }
 
         public int ReadingNumber
         {
             get => _readingNumber;
-            private set
-            {
-                if (value == 3)
-                {
-                    SetProperty(ref _readingNumber, 0);
-                    Print();
-                    return;
-                }
-                SetProperty(ref _readingNumber, value);
-            }
+            private set => SetProperty(ref _readingNumber, value);
         }
 
-        public Family Family
-        {
-            get => _family;
-            private set => SetProperty(ref _family, value);
-        }
+        //public Family Family
+        //{
+        //    get => _family;
+        //    private set
+        //    {
+        //        SetProperty(ref _family, value);
+        //        ExecutePrintCommand.NotifyCanExecuteChanged();
+        //    }
+        //}
 
         public ObservableCollection<Disbursement> Disbursements
         {
@@ -144,6 +155,9 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
         private ObservableCollection<Disbursement> _disbursements = new ObservableCollection<Disbursement>();
         private int _id;
         private int _readingNumber = 0;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(ExecutePrintCommand))]
         private Family _family;
         private readonly IMediator _mediator;
         private readonly IMessenger _messenger;
