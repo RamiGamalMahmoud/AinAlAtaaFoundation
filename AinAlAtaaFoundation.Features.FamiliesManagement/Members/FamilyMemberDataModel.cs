@@ -18,6 +18,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 Family = model.Family;
                 Gender = model.Gender;
                 BirthDate = model.BirthDate;
+                Mother = model.Mother;
             }
             ValidateAllProperties();
         }
@@ -74,6 +75,20 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         }
         private Family _family;
 
+        public FamilyMember Mother
+        {
+            get => _mother;
+
+            set
+            {
+                if(_mother is null || value is null || _mother.Id != value.Id)
+                {
+                    SetProperty(ref _mother, value);
+                }
+            }
+        }
+        private FamilyMember _mother;
+
         public bool IsValid => !HasErrors;
 
         public FamilyMember Model { get; }
@@ -85,6 +100,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             model.BirthDate = BirthDate;
             model.Family = Family;
             model.Gender = Gender;
+            model.Mother = Mother;
         }
     }
 }

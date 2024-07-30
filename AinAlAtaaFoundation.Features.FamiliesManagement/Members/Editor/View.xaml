@@ -98,6 +98,8 @@
                     VerticalAlignment="Center"
                     DisplayMemberPath="Name"
                     ItemsSource="{Binding Mothers}"
+                    SelectedItem="{Binding DataModel.Mother}"
+                    SelectedValue="{Binding DataModel.Mother.Id}"
                     SelectedValuePath="Id" />
 
                 <TextBlock

@@ -22,7 +22,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                     BirthDate = dataModel.BirthDate,
                     FamilyId = dataModel.Family.Id,
                     GenderId = dataModel.Gender.Id,
-                    Surname = dataModel.Family.Applicant.Surname
+                    Surname = dataModel.Family.Applicant.Surname,
+                    MotherId = dataModel.Mother.Id
                 };
 
                 dbContext.FamilyMembers.Add(familyMember);
@@ -44,6 +45,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                         .Include(x => x.Gender)
                         .Include(x => x.Family)
                             .ThenInclude(x => x.Clan)
+                        .Include(x => x.Mother)
                         .ToListAsync();
                     SetEntities(familyMembers);
                 }
@@ -64,6 +66,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 familyMember.FamilyId = dataModel.Family.Id;
                 familyMember.GenderId = dataModel.Gender.Id;
                 familyMember.Surname = dataModel.Family.Applicant.Surname;
+                familyMember.MotherId = dataModel.Mother.Id;
 
                 dbContext.FamilyMembers.Update(familyMember);
                 await dbContext.SaveChangesAsync();

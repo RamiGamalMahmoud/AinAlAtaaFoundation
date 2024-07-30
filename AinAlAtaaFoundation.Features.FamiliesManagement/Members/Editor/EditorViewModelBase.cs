@@ -30,7 +30,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
                 .Where(x => x.Clan.Id == newValue.Id);
 
             IEnumerable<FamilyMember> members = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
-            Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Clan.Id == Clan.Id );
+            Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Clan.Id == Clan.Id && x.Id != DataModel.Model.Id );
         }
 
         public override async Task LoadDataAsync()

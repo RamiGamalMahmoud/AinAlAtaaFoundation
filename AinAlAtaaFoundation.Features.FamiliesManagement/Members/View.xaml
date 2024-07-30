@@ -72,16 +72,22 @@
                     Header="الاسم" />
 
                 <DataGridTextColumn
-                    Width="200"
+                    Width="150"
                     Binding="{Binding Gender.NameAr}"
-                    Header="الاسم" />
+                    Header="النوع" />
 
                 <DataGridTextColumn
-                    Width="200"
+                    Width="150"
                     Binding="{Binding Family.Clan.Name}"
                     Header="العشيرة" />
+
                 <DataGridTextColumn
-                    Width="200"
+                    Width="150"
+                    Binding="{Binding Mother.Name}"
+                    Header="الأم" />
+
+                <DataGridTextColumn
+                    Width="150"
                     Binding="{Binding BirthDate, StringFormat='{}{0:yyyy-MM-dd}'}"
                     Header="تاريخ الميلاد" />
 
