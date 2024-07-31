@@ -502,7 +502,10 @@
                                 Grid.Column="0"
                                 Foreground="{StaticResource Blue}"
                                 Text="ملاحظات" />
-                            <TextBox Grid.Column="1" HorizontalAlignment="Stretch" />
+                            <TextBox
+                                Grid.Column="1"
+                                HorizontalAlignment="Stretch"
+                                Text="{Binding DataModel.Notes, UpdateSourceTrigger=PropertyChanged}" />
 
                         </Grid>
                     </Border>
