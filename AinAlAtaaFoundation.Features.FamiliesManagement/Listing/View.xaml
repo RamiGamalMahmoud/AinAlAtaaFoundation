@@ -69,14 +69,12 @@
                                     Cursor="Hand"
                                     Style="{StaticResource ButtonSuccess}">
                                     <Image Source="{StaticResource PrintIcon}" />
-
                                 </Button>
 
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
 
             </DataGrid.Columns>
 
