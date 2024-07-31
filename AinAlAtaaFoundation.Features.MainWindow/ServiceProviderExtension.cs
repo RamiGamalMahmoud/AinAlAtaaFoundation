@@ -7,8 +7,8 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         public static IServiceCollection ConfigureMainWindowFeature(this IServiceCollection services)
         {
             services
-                .AddSingleton<View>()
-                .AddSingleton<ViewModel>()
+                .AddTransient<View>()
+                .AddTransient<ViewModel>()
                 .AddSingleton<WelcomeView>();
             return services;
         }

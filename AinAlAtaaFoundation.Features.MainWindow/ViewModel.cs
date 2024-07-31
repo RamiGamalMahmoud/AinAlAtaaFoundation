@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
-using Notification.Wpf;
 using System;
 using System.IO;
 
@@ -14,24 +13,13 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         public ViewModel(IServiceProvider serviceProvider, IMessenger messenger, IAppState appState)
         {
             _serviceProvider = serviceProvider;
+            _messenger = messenger;
             AppState = appState;
-            _notificationManager = new NotificationManager();
-            _notificationManager.Show("رسالة","مرحبا", NotificationType.Information);
             GoToHome();
 
             messenger.Register<Shared.Commands.Generic.GoToManagementCommand>(this, (reciver, message) => GoToManagement());
             messenger.Register<Shared.Commands.Generic.GoToDisbursementCommand>(this, (reciver, message) => GoToDisbursement());
             messenger.Register<Shared.Commands.Generic.GoToHomeCommand>(this, (reciver, message) => GoToHome());
-
-            messenger.Register<Shared.Notifications.SuccessNotification>(this, (r, m) =>
-            {
-                _notificationManager.Show("رسالة", m.Message, NotificationType.Success);
-            });
-
-            messenger.Register<Shared.Notifications.FailerNotification>(this, (r, m) =>
-            {
-                _notificationManager.Show("رسالة", m.Message, NotificationType.Error);
-            });
         }
 
         [ObservableProperty]
@@ -42,6 +30,7 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         public IAppState AppState { get; }
 
         private readonly IServiceProvider _serviceProvider;
+        private readonly IMessenger _messenger;
 
         [RelayCommand]
         private void GoToHome()
@@ -76,9 +65,7 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         [RelayCommand]
         private void Logout()
         {
-
+            _messenger.Send(new Shared.Commands.Generic.CommandLogout());
         }
-
-        private readonly NotificationManager _notificationManager;
     }
 }

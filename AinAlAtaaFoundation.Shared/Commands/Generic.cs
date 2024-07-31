@@ -1,4 +1,5 @@
-﻿using AinAlAtaaFoundation.Shared.Abstraction;
+﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared.Abstraction;
 using MediatR;
 using System.Collections.Generic;
 
@@ -6,6 +7,7 @@ namespace AinAlAtaaFoundation.Shared.Commands
 {
     public static class Generic
     {
+        public record CommandLogout : IRequest;
         public record GoToManagementCommand;
         public record GoToDisbursementCommand;
         public record GoToHomeCommand;

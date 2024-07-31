@@ -4,13 +4,15 @@ using AinAlAtaaFoundation.Features.DisbursementManagement;
 using AinAlAtaaFoundation.Features.FamiliesManagement;
 using AinAlAtaaFoundation.Features.MainWindow;
 using AinAlAtaaFoundation.Features.Management;
-using AinAlAtaaFoundation.Services.Printing;
 using AinAlAtaaFoundation.Features.Settings;
 using AinAlAtaaFoundation.Features.Users;
+using AinAlAtaaFoundation.Services.Printing;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Notification.Wpf;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace AinAlAtaaFoundation
@@ -20,7 +22,6 @@ namespace AinAlAtaaFoundation
         public App()
         {
             ShutdownMode = ShutdownMode.OnMainWindowClose;
-            
 
             _host = Host
                 .CreateDefaultBuilder()
@@ -38,15 +39,38 @@ namespace AinAlAtaaFoundation
                     s.ConfigureAuthFeature();
                 })
                 .Build();
+
+            _messenger = _host.Services.GetRequiredService<IMessenger>();
+
+            _messenger.Register<Shared.Notifications.SuccessNotification>(this, (r, m) =>
+            {
+                _notificationManager.Show("رسالة", m.Message, NotificationType.Success);
+            });
+
+            _messenger.Register<Shared.Notifications.FailerNotification>(this, (r, m) =>
+            {
+                _notificationManager.Show("رسالة", m.Message, NotificationType.Error);
+            });
         }
 
         protected override async void OnStartup(StartupEventArgs e)
         {
+
             Bold.Licensing.BoldLicenseProvider.RegisterLicense("MDAyQDM2MmUzMTJlMzBOd2hxV01OKzROclgwVE9jaFUwbk5NRHppeEUzR0lzTlZXUWxrSld3cnNrPWV5Sk1hV05sYm5ObFZHOXJaVzRpT2lKdlZtZDZVMjVOVWtWT1RWRlBhakZNVVd0eWNYWnhhVWhUT0dwaE9XTTBRbG96VnpFNGQzbFphemROUFNJc0lreHBZMlZ1YzJWUVpYSnBiMlFpT2lJNU9UazVMVEV5TFRNeFZESXpPalU1T2pVNUxqazVOeUlzSWtselJWTlZjMlZ5SWpwMGNuVmxMQ0pKYzFCbGNuQmxkSFZoYkV4cFkyVnVjMlVpT21aaGJITmxmUT09\r\n", true);
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM2Mzc2M0AzMjM2MmUzMDJlMzBjMEkyZXZObXZQQ0FvTXBvOWdTUmQ2Yk1JLzJGZEk4dWhlZmJHUVI1aUUwPQ==;MzM2Mzc2NEAzMjM2MmUzMDJlMzBnS3NqcFRVTXZtbjNLdUdYYUJvZW1KMG1rNlhaS2x6bHlYSWJYU2htVkFBPQ=="); 
-            IMessenger messenger = _host.Services.GetRequiredService<IMessenger>();
+
+            if (!CanConnect())
+            {
+                _messenger.Send(new Shared.Notifications.FailerNotification("سوف يتم الخروج من البرنامج"));
+                _messenger.Send(new Shared.Notifications.FailerNotification("لا يمكن الاتصال بقاعدة البيانات, تحقق من بيانات الاتصال"));
+                await Task.Delay(5000);
+                Shutdown();
+            }
+            else _messenger.Send(new Shared.Notifications.SuccessNotification("تم الاتصال بقاعدة البيانات"));
+            
             _host.Services.GetRequiredService<IAppState>();
-            messenger.Register<Shared.Messages.LoginSuccededMessage>(this, (s, m) =>
+
+            _messenger.Register<Shared.Messages.LoginSuccededMessage>(this, (s, m) =>
             {
                 Window window = MainWindow;
                 MainWindow = _host.Services.GetRequiredService<Features.MainWindow.View>();
@@ -54,9 +78,17 @@ namespace AinAlAtaaFoundation
                 window.Close();
             });
 
+            _messenger.Register<Shared.Commands.Generic.CommandLogout>(this, (r, m) =>
+            {
+                Window window = MainWindow;
+                MainWindow = _host.Services.GetRequiredService<ILoginView>() as Window;
+                MainWindow.Show();
+                window.Close();
+
+            });
+
             await _host.StartAsync();
             MainWindow = _host.Services.GetRequiredService<ILoginView>() as Window;
-            //MainWindow = _host.Services.GetRequiredService<Features.MainWindow.View>();
             MainWindow.Show();
             base.OnStartup(e);
         }
@@ -68,6 +100,9 @@ namespace AinAlAtaaFoundation
                 return dbContext.Database.CanConnect();
             }
         }
+        private readonly NotificationManager _notificationManager = new NotificationManager();
+        private readonly IMessenger _messenger;
+
 
         private readonly IHost _host;
     }
