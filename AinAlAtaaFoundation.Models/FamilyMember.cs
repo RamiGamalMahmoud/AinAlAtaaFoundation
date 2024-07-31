@@ -16,6 +16,7 @@ namespace AinAlAtaaFoundation.Models
         private DateTime _birthDate;
 
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
         private bool _isOrphan = false;
 
         [ObservableProperty]
