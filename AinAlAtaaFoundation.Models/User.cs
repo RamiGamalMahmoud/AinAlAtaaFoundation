@@ -15,6 +15,8 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         private bool? _isActive;
 
-        public DeletableModel DeletableModel { get; set; }
+        [ObservableProperty]
+        private string _password;
+
     }
 }

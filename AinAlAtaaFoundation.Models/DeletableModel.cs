@@ -20,7 +20,7 @@ namespace AinAlAtaaFoundation.Models
             IsDeleted = false;
         }
 
-        private DateTime? _deletedAt;
-        private bool _isDeleted;
+        private DateTime? _deletedAt = null;
+        private bool _isDeleted = false;
     }
 }
