@@ -23,7 +23,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     FamilyMember applicant = new FamilyMember
                     {
                         Name = dataModel.Name,
-                        Surname = dataModel.Surname,
+                        //Surname = dataModel.Surname,
                         BirthDate = dataModel.BirthDate,
                         IsApplicant = true,
                         GenderId = dataModel.Gender.Id
@@ -43,6 +43,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     {
                         BranchId = dataModel.Branch?.Id,
                         AddressId = address.Id,
+                        Name = dataModel.Surname,
                         BranchRepresentativeId = dataModel.BranchRepresentative.Id,
                         ClanId = dataModel.Clan.Id,
                         DistrictRepresentativeId = dataModel.DistrictRepresentative.Id,
@@ -90,7 +91,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 address.FeaturedPointId = dataModel.FeaturedPoint?.Id;
 
                 applicant.Name = dataModel.Name;
-                applicant.Surname = dataModel.Surname;
                 applicant.BirthDate = dataModel.BirthDate;
                 applicant.GenderId = dataModel.Gender.Id;
 
@@ -102,6 +102,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     .FirstOrDefaultAsync();
 
                 stored.RationCard = dataModel.RationCard;
+                stored.Name = dataModel.Surname;
                 stored.RationCardOwnerName = dataModel.RationCardOwnerName;
                 stored.BranchId = dataModel.Branch?.Id;
                 stored.ClanId = dataModel.Clan.Id;

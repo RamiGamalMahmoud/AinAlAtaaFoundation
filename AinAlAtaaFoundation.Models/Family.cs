@@ -21,6 +21,9 @@ namespace AinAlAtaaFoundation.Models
         private string _notes;
 
         [ObservableProperty]
+        private string _name;
+
+        [ObservableProperty]
         private string _rationCardOwnerName;
 
         public int ClanId { get; set; }

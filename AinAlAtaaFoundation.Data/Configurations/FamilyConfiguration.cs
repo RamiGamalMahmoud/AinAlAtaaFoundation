@@ -18,8 +18,11 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .HasColumnType("VARCHAR(20)")
                 .IsRequired();
 
+            builder.Property(x => x.Name)
+                .HasColumnType("VARCHAR(20)")
+                .IsRequired();
+
             builder.HasIndex(x => x.RationCard).IsUnique();
-            builder.HasIndex(x => x.RationCardOwnerName).IsUnique();
 
             builder.Property(x => x.Notes)
                 .HasColumnType("TEXT")

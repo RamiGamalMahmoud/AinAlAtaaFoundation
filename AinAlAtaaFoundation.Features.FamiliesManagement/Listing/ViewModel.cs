@@ -55,7 +55,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             parameters.Add("RationCardOwnerName", [family.RationCardOwnerName]);
             parameters.Add("Notes", [family.Notes]);
             parameters.Add("ApplicantName", [family.Applicant.Name]);
-            parameters.Add("ApplicantSurname", [family.Applicant.Surname]);
+            parameters.Add("ApplicantSurname", [family.Name]);
 
             return parameters;
         }
