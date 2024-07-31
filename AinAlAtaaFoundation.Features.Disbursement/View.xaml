@@ -152,7 +152,7 @@
                     Margin="0,5"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Left"
-                    Content="{Binding Family.Applicant.Surname}" />
+                    Content="{Binding Family.Name}" />
 
                 <Label
                     Grid.Row="2"
