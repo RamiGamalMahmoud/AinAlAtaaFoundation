@@ -17,6 +17,26 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
             DataModel = new FamilyDataModel(model);
             HasChangesObject = new Shared.Helpers.HasChangesObject(SaveCommand.NotifyCanExecuteChanged);
             DataModel.PropertyChanged += DataModel_PropertyChanged1;
+
+            messenger.Register<Shared.Messages.EntityCreated<Branch>>(this, async (r, m) =>
+            {
+                await LoadBranches();
+            });
+
+            messenger.Register<Shared.Messages.EntityCreated<BranchRepresentative>>(this, async (r, m) =>
+            {
+                await LoadBranchRepresentatives();
+            });
+
+            messenger.Register<Shared.Messages.EntityCreated<DistrictRepresentative>>(this, async (r, m) =>
+            {
+                await LoadDistrictRepresentatives();
+            });
+
+            messenger.Register<Shared.Messages.EntityCreated<FeaturedPoint>>(this, async (r, m) =>
+            {
+                await LoadFeaturedPoints();
+            });
         }
 
         private async void DataModel_PropertyChanged1(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -24,26 +44,43 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
             if (e.PropertyName == nameof(DataModel.Clan))
             {
-                Branches = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Branch>()))
-                    .Where(x => x.ClanId == DataModel.Clan.Id);
-
-                var branchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>(true)));
-
-                BranchRepresentatives = branchRepresentatives.Where(x => x.Clan.Id == DataModel.Clan.Id);
+                await LoadBranches();
+                await LoadBranchRepresentatives();
             }
             else if (e.PropertyName == nameof(DataModel.District))
             {
-                DistrictRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<DistrictRepresentative>()))
-                    .Where(x => x.DistrictId == DataModel.District.Id);
-
-                FeaturedPoints = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FeaturedPoint>()))
-                    .Where(x => x.DistrictId == DataModel.District.Id);
+                await LoadDistrictRepresentatives();
+                await LoadFeaturedPoints();
             }
             else if (e.PropertyName == nameof(DataModel.Branch))
             {
 
             }
             HasChangesObject.SetHaschanges();
+        }
+
+        private async Task LoadBranches()
+        {
+            Branches = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Branch>()))
+                .Where(x => x.ClanId == DataModel.Clan.Id);
+        }
+
+        private async Task LoadBranchRepresentatives()
+        {
+            BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>(true)))
+                .Where(x => x.Clan.Id == DataModel.Clan.Id);
+        }
+
+        private async Task LoadDistrictRepresentatives()
+        {
+            DistrictRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<DistrictRepresentative>()))
+                .Where(x => x.DistrictId == DataModel.District.Id);
+        }
+
+        private async Task LoadFeaturedPoints()
+        {
+            FeaturedPoints = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FeaturedPoint>()))
+                .Where(x => x.DistrictId == DataModel.District.Id);
         }
 
         public override async Task LoadDataAsync()
