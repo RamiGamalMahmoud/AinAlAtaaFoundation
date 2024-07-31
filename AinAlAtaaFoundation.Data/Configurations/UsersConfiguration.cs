@@ -24,21 +24,13 @@ namespace AinAlAtaaFoundation.Data.Configurations
             builder.Property(x => x.IsActive).HasDefaultValue(true);
 
             builder
-                .Property<string>("Password")
+                .Property(x => x.Password)
                 .HasColumnType("VARCHAR(20)")
                 .HasMaxLength(20);
 
             builder
                 .Property(x => x.IsAdmin)
                 .HasDefaultValue(false);
-
-            builder.OwnsOne(x => x.DeletableModel)
-                .Property(x => x.IsDeleted)
-                .HasDefaultValue(false);
-
-            builder.OwnsOne(x => x.DeletableModel)
-                .Property(x => x.DeletedAt)
-                .HasDefaultValue(null);
 
             builder.HasData(new { Id = 1, UserName = "admin", Password = "admin", IsAdmin = true, IsActive = true});
         }
