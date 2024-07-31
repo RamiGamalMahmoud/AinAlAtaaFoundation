@@ -21,6 +21,8 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .HasIndex(x => x.UserName)
                 .IsUnique();
 
+            builder.Property(x => x.IsActive).HasDefaultValue(true);
+
             builder
                 .Property<string>("Password")
                 .HasColumnType("VARCHAR(20)")
@@ -38,7 +40,7 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .Property(x => x.DeletedAt)
                 .HasDefaultValue(null);
 
-            builder.HasData(new { Id = 1, UserName = "admin", Password = "admin", IsAdmin = true});
+            builder.HasData(new { Id = 1, UserName = "admin", Password = "admin", IsAdmin = true, IsActive = true});
         }
     }
 }

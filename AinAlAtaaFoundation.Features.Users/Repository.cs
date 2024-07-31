@@ -16,9 +16,14 @@ namespace AinAlAtaaFoundation.Features.Users
             throw new NotImplementedException();
         }
 
-        public override Task<IEnumerable<User>> GetAll(bool reload = false)
+        public override async Task<IEnumerable<User>> GetAll(bool reload = false)
         {
-            throw new NotImplementedException();
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .Users
+                    .ToListAsync();
+            }
         }
 
         public async Task<User> GetUser(string userName, string password)

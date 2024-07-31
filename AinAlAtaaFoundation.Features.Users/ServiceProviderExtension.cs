@@ -10,6 +10,7 @@ namespace AinAlAtaaFoundation.Features.Users
         {
             services
                 .AddMediatR((cfg) => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
+                .AddSingleton<Listing.ViewModel>()
                 .AddSingleton<IUserView, Listing.View>()
                 .AddSingleton<Repository>();
             return services;
