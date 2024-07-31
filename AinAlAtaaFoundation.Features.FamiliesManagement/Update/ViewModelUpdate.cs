@@ -14,7 +14,14 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Update
 
         protected override async Task Save()
         {
-            await _mediator.Send(new CommandHandlerUpdate.Command(DataModel));
+            if(await _mediator.Send(new CommandHandlerUpdate.Command(DataModel)))
+            {
+                _messenger.Send(new Shared.Notifications.SuccessNotification("تمت عملية التعديل بنجاح"));
+            }
+            else
+            {
+                _messenger.Send(new Shared.Notifications.FailerNotification("فشل في عملية التعديل, بيانات مكررة"));
+            }
         }
     }
 }

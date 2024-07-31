@@ -1,4 +1,5 @@
 ﻿using AinAlAtaaFoundation.Features.FamiliesManagement.Editor;
+using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System.Threading.Tasks;
@@ -13,7 +14,16 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Create
 
         protected override async Task Save()
         {
-            await _mediator.Send(new CommandHandlerCreate.Command(DataModel));
+            Family family = await _mediator.Send(new CommandHandlerCreate.Command(DataModel));
+            if (family is not null)
+            {
+                _messenger.Send(new Shared.Notifications.SuccessNotification("تمت الاضافة"));
+            }
+
+            else
+            {
+                _messenger.Send(new Shared.Notifications.FailerNotification("فشل في عملية الاضافة, بيانات مكررة"));
+            }
         }
     }
 }

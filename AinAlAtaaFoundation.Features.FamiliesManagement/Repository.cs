@@ -124,11 +124,19 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 dbContext.Addresses.Update(address);
                 dbContext.FamilyMembers.Update(applicant);
                 dbContext.Families.Update(stored);
-                dataModel.UpdateModel(dataModel.Model);
-                await dbContext.SaveChangesAsync();
+
+                try
+                {
+                    await dbContext.SaveChangesAsync();
+                    dataModel.UpdateModel(dataModel.Model);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
 
             }
-            return true;
         }
 
         public override async Task<IEnumerable<Family>> GetAll(bool reload = false)
@@ -166,7 +174,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         /// <returns>Models.Family</returns>
         public async Task<Family> Get(int id)
         {
-            if(_entities.Any())
+            if (_entities.Any())
             {
                 return _entities
                     .Where(x => x.Id == id)
