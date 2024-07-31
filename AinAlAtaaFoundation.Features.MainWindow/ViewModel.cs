@@ -11,9 +11,10 @@ namespace AinAlAtaaFoundation.Features.MainWindow
 {
     public partial class ViewModel : ObservableObject
     {
-        public ViewModel(IServiceProvider serviceProvider, IMessenger messenger)
+        public ViewModel(IServiceProvider serviceProvider, IMessenger messenger, IAppState appState)
         {
             _serviceProvider = serviceProvider;
+            AppState = appState;
             _notificationManager = new NotificationManager();
             _notificationManager.Show("رسالة","مرحبا", NotificationType.Information);
             GoToHome();
@@ -37,6 +38,8 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         private object _currentView;
 
         public static string LogoPath => Path.Combine(Environment.CurrentDirectory, "Images\\logo-100.png");
+
+        public IAppState AppState { get; }
 
         private readonly IServiceProvider _serviceProvider;
 
@@ -68,6 +71,12 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         private void GoToFamilyMembers()
         {
             CurrentView = _serviceProvider.GetRequiredService<IFamilyMembersView>();
+        }
+
+        [RelayCommand]
+        private void Logout()
+        {
+
         }
 
         private readonly NotificationManager _notificationManager;
