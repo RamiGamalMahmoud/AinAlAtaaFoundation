@@ -1,6 +1,5 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
-using AinAlAtaaFoundation.Shared.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -29,9 +28,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         [NotifyDataErrorInfo]
         [NotifyPropertyChangedFor(nameof(IsValid))]
         private string _name;
-
-        [ObservableProperty]
-        private string _surname;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Age))]
@@ -101,7 +97,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         public void UpdateModel(FamilyMember model = null)
         {
             model.Name = Name;
-            model.Surname = Surname;
             model.BirthDate = BirthDate;
             model.Family = Family;
             model.Gender = Gender;

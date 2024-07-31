@@ -2,7 +2,6 @@
 using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.ComponentModel;
 using HandyControl.Tools.Extension;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,7 +53,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
                 SocialStatus = model.SocialStatus;
                 Street = model.Address.Street;
-                Surname = model.Applicant.Surname;
+                Surname = model.Name;
             }
             ValidateAllProperties();
         }
@@ -78,7 +77,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
             model.FamilyType = FamilyType;
             model.Applicant.Name = Name;
-            model.Applicant.Surname = Surname;
+            model.Name = Surname;
             model.Applicant.BirthDate = BirthDate;
 
             model.Address.Street = Street;
@@ -147,7 +146,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         }
         private Gender _gender;
 
-        //[Required(ErrorMessage = "حقل مطلوب")]
         public FeaturedPoint FeaturedPoint
         {
             get => _featuredPoint;

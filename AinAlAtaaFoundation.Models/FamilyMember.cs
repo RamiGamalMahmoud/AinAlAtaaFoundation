@@ -11,9 +11,6 @@ namespace AinAlAtaaFoundation.Models
         private string _name;
 
         [ObservableProperty]
-        private string _surname;
-
-        [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Age))]
         [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
         private DateTime _birthDate;

@@ -3,7 +3,6 @@ using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using Syncfusion.Data.Extensions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,8 +21,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                     BirthDate = dataModel.BirthDate,
                     FamilyId = dataModel.Family.Id,
                     GenderId = dataModel.Gender.Id,
-                    Surname = dataModel.Family.Applicant.Surname,
-                    MotherId = dataModel.Mother.Id,
+                    MotherId = dataModel.Mother?.Id,
                     IsOrphan = dataModel.IsOrphan
                 };
 
@@ -66,8 +64,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 familyMember.BirthDate = dataModel.BirthDate;
                 familyMember.FamilyId = dataModel.Family.Id;
                 familyMember.GenderId = dataModel.Gender.Id;
-                familyMember.Surname = dataModel.Family.Applicant.Surname;
-                familyMember.MotherId = dataModel.Mother.Id;
+                familyMember.MotherId = dataModel.Mother?.Id;
                 familyMember.IsOrphan = dataModel.IsOrphan;
 
                 dbContext.FamilyMembers.Update(familyMember);

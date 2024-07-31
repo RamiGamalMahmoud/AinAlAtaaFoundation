@@ -47,7 +47,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             {
                 { "Date", [disbursement.Date.ToString("yyyy-MM-dd")] },
                 { "Time", [disbursement.Date.ToString("hh:mm:ss - tt")] },
-                { "FamilyName", [disbursement.Family.Applicant.Surname] },
+                { "FamilyName", [disbursement.Family.Name] },
                 { "Name", [disbursement.Family.Applicant.Name] },
                 { "TicketNumber", [disbursement.TicketNumber.ToString()] }
             };
@@ -135,16 +135,6 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             get => _readingNumber;
             private set => SetProperty(ref _readingNumber, value);
         }
-
-        //public Family Family
-        //{
-        //    get => _family;
-        //    private set
-        //    {
-        //        SetProperty(ref _family, value);
-        //        ExecutePrintCommand.NotifyCanExecuteChanged();
-        //    }
-        //}
 
         public ObservableCollection<Disbursement> Disbursements
         {

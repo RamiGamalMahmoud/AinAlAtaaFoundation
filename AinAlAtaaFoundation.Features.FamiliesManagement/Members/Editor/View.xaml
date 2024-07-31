@@ -81,7 +81,7 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     VerticalAlignment="Center"
-                    DisplayMemberPath="Applicant.Surname"
+                    DisplayMemberPath="Name"
                     ItemsSource="{Binding Families}"
                     SelectedItem="{Binding DataModel.Family}"
                     SelectedValue="{Binding DataModel.Family.Id}"
