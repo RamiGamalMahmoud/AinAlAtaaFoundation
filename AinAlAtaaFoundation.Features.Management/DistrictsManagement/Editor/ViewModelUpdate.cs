@@ -19,6 +19,7 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement.Editor
                 _messenger.Send(new Notifications.FailerNotification("فشل في الحفظ , بيانات مكررة"));
                 return;
             }
+            _messenger.Send(new Messages.EntityUpdated<District>(DataModel.Model));
             _messenger.Send(new Notifications.SuccessNotification("تم حقظ التعديل"));
         }
     }

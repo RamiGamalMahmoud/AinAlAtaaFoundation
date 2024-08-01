@@ -11,14 +11,16 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
     {
         protected override async Task Save()
         {
-            await _mediator.Send(new Shared.Commands.Generic.CommandCreate<DistrictRepresentative, DistrictRepresentativeDataModel>(DataModel));
+            DistrictRepresentative districtRepresentative1 = await _mediator.Send(new Shared.Commands.Generic.CommandCreate<DistrictRepresentative, DistrictRepresentativeDataModel>(DataModel));
 
-            DataModel.Name = "";
-            DataModel.District = null;
-            DataModel.Street = "";
-            DataModel.Phones.Clear();
+            if(districtRepresentative1 is null)
+            {
+                _messenger.Send(new Notifications.FailerNotification("فشل في الحفظ , بيانات مكررة"));
+                return;
+            }
 
             _messenger.Send(new Messages.EntityCreated<DistrictRepresentative>(DataModel.Model));
+            _messenger.Send(new Notifications.SuccessNotification("تمت الإضافة"));
         }
     }
 }

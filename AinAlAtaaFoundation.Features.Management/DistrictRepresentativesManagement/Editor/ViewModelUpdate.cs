@@ -19,7 +19,15 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
 
         protected override async Task Save()
         {
-            await _mediator.Send(new Shared.Commands.Generic.CommandUpdate<DistrictRepresentativeDataModel>(DataModel));
+            if(await _mediator.Send(new Shared.Commands.Generic.CommandUpdate<DistrictRepresentativeDataModel>(DataModel)))
+            {
+                _messenger.Send(new Shared.Messages.EntityUpdated<DistrictRepresentative>(DataModel.Model));
+                _messenger.Send(new Shared.Notifications.FailerNotification("فشل في الحفظ , بيانات مكررة"));
+            }
+            else
+            {
+                _messenger.Send(new Shared.Notifications.FailerNotification("فشل في عملية التعديل, بيانات مكررة"));
+            }
         }
     }
 }

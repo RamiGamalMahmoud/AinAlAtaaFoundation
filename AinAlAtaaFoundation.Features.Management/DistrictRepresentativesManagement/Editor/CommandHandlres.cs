@@ -1,5 +1,4 @@
 ﻿using AinAlAtaaFoundation.Models;
-using AinAlAtaaFoundation.Shared.Commands;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System.Threading.Tasks;
@@ -11,13 +10,14 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
 {
     internal class ShowCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowCreate<DistrictRepresentative>>
     {
-        public Task Handle(Generic.ShowCreate<DistrictRepresentative> request, CancellationToken cancellationToken)
+        public Task Handle(Shared.Commands.Generic.ShowCreate<DistrictRepresentative> request, CancellationToken cancellationToken)
         {
+            IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
             ViewModelCreate viewModel = new ViewModelCreate(
                 _serviceProvider.GetRequiredService<IMediator>(),
-                _serviceProvider.GetRequiredService<IMessenger>());
+                messenger);
 
-            new Editor.View(viewModel).ShowDialog();
+            new View(viewModel, messenger).ShowDialog();
             return Task.CompletedTask;
         }
 
@@ -26,7 +26,7 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
 
     internal class CommandHandlerCreate(Repository repository) : IRequestHandler<Shared.Commands.Generic.CommandCreate<DistrictRepresentative, DistrictRepresentativeDataModel>, DistrictRepresentative>
     {
-        public async Task<DistrictRepresentative> Handle(Generic.CommandCreate<DistrictRepresentative, DistrictRepresentativeDataModel> request, CancellationToken cancellationToken)
+        public async Task<DistrictRepresentative> Handle(Shared.Commands.Generic.CommandCreate<DistrictRepresentative, DistrictRepresentativeDataModel> request, CancellationToken cancellationToken)
         {
             return await _repository.Create(request.DataModel);
         }
@@ -38,12 +38,13 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
     {
         public Task Handle(Shared.Commands.Generic.ShowUpdate<DistrictRepresentative> request, CancellationToken cancellationToken)
         {
+            IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
             ViewModelUpdate viewModel = new ViewModelUpdate(
                 _serviceProvider.GetRequiredService<IMediator>(),
-                _serviceProvider.GetRequiredService<IMessenger>(),
+                messenger,
                 request.Model);
 
-            new Editor.View(viewModel).ShowDialog();
+            new View(viewModel, messenger).ShowDialog();
             return Task.CompletedTask;
         }
         private readonly IServiceProvider _serviceProvider = serviceProvider;
