@@ -41,12 +41,13 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
 
         public BranchRepresentative Model { get; }
 
-        public void UpdateModel(BranchRepresentative model = null)
+        public void UpdateModel(BranchRepresentative model)
         {
-            Model.Name = Name;
-            Model.Branch = Branch;
-            Model.Phones.Clear();
-            Model.Phones.AddRange(Phones);
+            model.Name = Name;
+            model.Branch = Branch;
+            model.Clan = Clan;
+            model.Phones.Clear();
+            model.Phones.AddRange(Phones);
         }
 
         public int Id { get; set; }

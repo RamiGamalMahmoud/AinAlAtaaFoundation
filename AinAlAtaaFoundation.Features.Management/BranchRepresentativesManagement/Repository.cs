@@ -20,7 +20,8 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
                 {
                     Name = dataModel.Name,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    ClanId = dataModel.Clan.Id
                 };
 
                 if (dataModel.HasBranch)
@@ -36,11 +37,6 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
 
                     dbContext.BranchRepresentatives.UpdateRange(stored);
                     branchRepresentative.BranchId = dataModel.Branch.Id;
-                    branchRepresentative.ClanId = dataModel.Clan.Id;
-                }
-                else
-                {
-                    branchRepresentative.ClanId = dataModel.Clan.Id;
                 }
 
                 branchRepresentative.Phones.AddRange(dataModel.Phones);
@@ -86,6 +82,7 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
                     .FirstOrDefaultAsync();
 
                 stored.Name = dataModel.Name;
+                stored.ClanId = dataModel.Clan.Id;
                 if (dataModel.Branch is not null) stored.BranchId = dataModel.Branch.Id;
 
 
@@ -99,7 +96,7 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
 
                 dbContext.BranchRepresentatives.Update(stored);
                 await dbContext.SaveChangesAsync();
-                dataModel.UpdateModel();
+                dataModel.UpdateModel(dataModel.Model);
                 return true;
             }
         }
