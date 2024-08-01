@@ -66,10 +66,21 @@
                                     Margin="10,0,0,0"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ShowPrintCommand}"
                                     CommandParameter="{Binding}"
+                                    Content="طباعة العائلة"
                                     Cursor="Hand"
-                                    Style="{StaticResource ButtonSuccess}">
-                                    <Image Source="{StaticResource PrintIcon}" />
-                                </Button>
+                                    Style="{StaticResource ButtonSuccess}" />
+
+                                <Button
+                                    Margin="10,0,0,0"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.PrintBarcodeCommand}"
+                                    CommandParameter="{Binding}"
+                                    Content="طباعة الباركود"
+                                    Background="{StaticResource Blue-Light}"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="10"
+                                    FontWeight="Bold"
+                                    Style="{StaticResource ButtonPrimary}" />
 
                             </StackPanel>
                         </DataTemplate>

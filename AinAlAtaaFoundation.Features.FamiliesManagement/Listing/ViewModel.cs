@@ -32,6 +32,16 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), "Phones", family.Phones));
         }
 
+        [RelayCommand]
+        private void PrintBarcode(Family family)
+        {
+            string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
+            Dictionary<string, List<string>> parameters = new Dictionary<string, List<string>>();
+            parameters.Add("Barcode", [barcodeImageString]);
+            parameters.Add("FamilyName", [family.Name]);
+            _mediator.Send(new Shared.Commands.Generic.PrintCommand("FamilyBarcode.rdlc", parameters));
+        }
+
         private static Dictionary<string, List<string>> GetParameters(Family family)
         {
             string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);

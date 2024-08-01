@@ -14,9 +14,9 @@ namespace AinAlAtaaFoundation.Services.Printing
         public Task Handle(Generic.PrintCommand request, CancellationToken cancellationToken)
         {
             string reportPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Reports", request.ReportName);
-            if (request.Parameters.Any())
-            {
                 List<ReportParameter> reportParameters = [];
+            if (request.Parameters is not null && request.Parameters.Any())
+            {
 
                 foreach (KeyValuePair<string, List<string>> keyValue in request.Parameters)
                 {
@@ -29,9 +29,9 @@ namespace AinAlAtaaFoundation.Services.Printing
                     reportParameters.Add(reportParameter);
                 }
 
+            }
                 Printing.ViewPrint viewPrint = new ViewPrint(reportPath, reportParameters, request.DataSourceName, request.DataSource);
                 viewPrint.Show();
-            }
             return Task.CompletedTask;
         }
     }
