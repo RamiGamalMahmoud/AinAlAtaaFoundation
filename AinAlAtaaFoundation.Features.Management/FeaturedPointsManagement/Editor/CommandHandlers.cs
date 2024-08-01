@@ -12,12 +12,12 @@ namespace AinAlAtaaFoundation.Features.Management.FeaturedPointsManagement.Edito
     internal static class CommandHandlers
     {
         // show create
-        internal class ShowCreate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.FeaturedPoints.CommandShowCreate>
+        internal class ShowCreate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowCreate<FeaturedPoint>>
         {
-            public Task Handle(FeaturedPoints.CommandShowCreate request, CancellationToken cancellationToken)
+            public Task Handle(Shared.Commands.Generic.ShowCreate<FeaturedPoint> request, CancellationToken cancellationToken)
             {
                 IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
-                ViewModel viewModel = new ViewModel(
+                ViewModelEditorBase viewModel = new ViewModelCreate(
                     _serviceProvider.GetRequiredService<IMediator>(),
                     messenger,
                     null
@@ -48,15 +48,15 @@ namespace AinAlAtaaFoundation.Features.Management.FeaturedPointsManagement.Edito
         }
 
         // show update
-        internal class ShowUpdate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.FeaturedPoints.CommandShowUpdate>
+        internal class ShowUpdate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowUpdate<FeaturedPoint>>
         {
-            public Task Handle(FeaturedPoints.CommandShowUpdate request, CancellationToken cancellationToken)
+            public Task Handle(Shared.Commands.Generic.ShowUpdate<FeaturedPoint> request, CancellationToken cancellationToken)
             {
                 IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
-                ViewModel viewModel = new ViewModel(
+                ViewModelEditorBase viewModel = new ViewModelUpdate(
                     _serviceProvider.GetRequiredService<IMediator>(),
                     messenger,
-                    request.FeaturedPoint
+                    request.Model
                     );
 
                 View view = new View(viewModel, messenger);

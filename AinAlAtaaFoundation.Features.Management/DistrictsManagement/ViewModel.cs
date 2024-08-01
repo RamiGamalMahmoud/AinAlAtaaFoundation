@@ -27,13 +27,13 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement
         [RelayCommand]
         private void ShowCreate()
         {
-            _mediator.Send(new Shared.Commands.Districts.CommandShowCreate());
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<District>());
         }
 
         [RelayCommand]
         private void ShowUpdate(District district)
         {
-            _mediator.Send(new Shared.Commands.Districts.CommandShowUpdate(district));
+            _mediator.Send(new Shared.Commands.Generic.ShowUpdate<District>(district));
         }
 
         public DoBusyWorkObject DoBusyWorkObject { get; } = new DoBusyWorkObject();

@@ -35,13 +35,13 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
         [RelayCommand]
         private async Task ShowCreate()
         {
-            await _mediator.Send(new DistrictRepresentatives.ShowCreate());
+            await _mediator.Send(new Shared.Commands.Generic.ShowCreate<DistrictRepresentative>());
         }
 
         [RelayCommand]
         private async Task ShowUpdate(DistrictRepresentative districtRepresentative)
         {
-            await _mediator.Send(new DistrictRepresentatives.ShowUpdate(districtRepresentative));
+            await _mediator.Send(new Shared.Commands.Generic.ShowUpdate<DistrictRepresentative>(districtRepresentative));
         }
 
         private readonly IMediator _mediator;

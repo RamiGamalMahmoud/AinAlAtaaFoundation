@@ -17,13 +17,13 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [RelayCommand]
         private async Task ShowCreate()
         {
-            await _mediator.Send(new Shared.Commands.Families.CommandShowCreate());
+            await _mediator.Send(new Shared.Commands.Generic.ShowCreate<Family>());
         }
 
         [RelayCommand]
         private void ShowUpdate(Family family)
         {
-            _mediator.Send(new Shared.Commands.Families.CommandShowUpdate(family));
+            _mediator.Send(new Shared.Commands.Generic.ShowUpdate<Family>(family));
         }
 
         [RelayCommand]

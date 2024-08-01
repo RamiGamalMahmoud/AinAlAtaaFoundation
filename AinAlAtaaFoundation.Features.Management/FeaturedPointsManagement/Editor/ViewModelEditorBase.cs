@@ -1,5 +1,6 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared;
+using AinAlAtaaFoundation.Shared.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.Management.FeaturedPointsManagement.Editor
 {
-    internal partial class ViewModel : ViewModelBase<FeaturedPointDataModel>
+    internal abstract partial class ViewModelEditorBase : ViewModelBase<FeaturedPointDataModel>
     {
-        public ViewModel(IMediator mediator, IMessenger messenger, FeaturedPoint featuredPoint) : base(mediator, messenger)
+        public ViewModelEditorBase(IMediator mediator, IMessenger messenger, FeaturedPoint featuredPoint) : base(mediator, messenger)
         {
             DataModel = new FeaturedPointDataModel(featuredPoint);
             HasChangesObject = new Shared.Helpers.HasChangesObject(SaveCommand.NotifyCanExecuteChanged);
@@ -27,10 +28,10 @@ namespace AinAlAtaaFoundation.Features.Management.FeaturedPointsManagement.Edito
 
         protected override async Task Save()
         {
-            if(_editType is EditType.Create)
+            if (_editType is EditType.Create)
             {
                 FeaturedPoint featuredPoint = await _mediator.Send(new CommandHandlers.Create.Command(DataModel));
-                if(featuredPoint is null)
+                if (featuredPoint is null)
                 {
                     _messenger.Send(new Notifications.FailerNotification("فشل في عملية الحفظ , بيانات مكررة!"));
                     return;
@@ -41,7 +42,7 @@ namespace AinAlAtaaFoundation.Features.Management.FeaturedPointsManagement.Edito
                     _messenger.Send(new Notifications.SuccessNotification("تمت عملية الحفظ بنجاح"));
                 }
             }
-            else if(_editType is EditType.Update)
+            else if (_editType is EditType.Update)
             {
                 if (!(await _mediator.Send(new CommandHandlers.Update.Command(DataModel))))
                 {

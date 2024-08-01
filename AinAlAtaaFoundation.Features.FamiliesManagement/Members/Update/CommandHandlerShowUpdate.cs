@@ -1,4 +1,4 @@
-﻿using AinAlAtaaFoundation.Shared.Commands;
+﻿using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Update
 {
-    internal class CommandHandlerShowUpdate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.FamilyMembers.CommandShowUpdate>
+    internal class CommandHandlerShowUpdate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowUpdate<FamilyMember>>
     {
-        public Task Handle(FamilyMembers.CommandShowUpdate request, CancellationToken cancellationToken)
+        public Task Handle(Shared.Commands.Generic.ShowUpdate<FamilyMember> request, CancellationToken cancellationToken)
         {
             ViewModelUpdate viewModel = new ViewModelUpdate(
                 _serviceProvider.GetRequiredService<IMediator>(),
                 _serviceProvider.GetRequiredService<IMessenger>(),
-                request.FamilyMember);
+                request.Model);
 
             Editor.View view = new Editor.View(viewModel);
             view.ShowDialog();

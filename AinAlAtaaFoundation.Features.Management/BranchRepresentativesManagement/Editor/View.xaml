@@ -133,7 +133,6 @@
                 Width="100"
                 Height="auto"
                 Margin="0,10,0,0"
-                Click="Button_Click"
                 Command="{Binding SaveCommand}"
                 Content="حفظ"
                 Cursor="Hand"

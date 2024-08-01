@@ -35,13 +35,13 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
         [RelayCommand]
         private async Task ShowCreate()
         {
-            await _mediator.Send(new BranchRepresentatives.ShowCreate());
+            await _mediator.Send(new Shared.Commands.Generic.ShowCreate<BranchRepresentative>());
         }
 
         [RelayCommand]
         private async Task ShowUpdate(BranchRepresentative branchRepresentative)
         {
-            await _mediator.Send(new BranchRepresentatives.ShowUpdate(branchRepresentative));
+            await _mediator.Send(new Shared.Commands.Generic.ShowUpdate<BranchRepresentative>(branchRepresentative));
         }
 
         public IEnumerable<BranchRepresentative> BranchRepresentatives { get => _branchRepresentatives; set => SetProperty(ref _branchRepresentatives, value); }

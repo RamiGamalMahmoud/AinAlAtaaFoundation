@@ -1,4 +1,4 @@
-﻿using AinAlAtaaFoundation.Shared.Commands;
+﻿using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Create
 {
-    internal class CommandHandlerShowCreate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.FamilyMembers.CommandShowCreate>
+    internal class CommandHandlerShowCreate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowCreate<FamilyMember>>
     {
-        public Task Handle(FamilyMembers.CommandShowCreate request, CancellationToken cancellationToken)
+        public Task Handle(Shared.Commands.Generic.ShowCreate<FamilyMember> request, CancellationToken cancellationToken)
         {
             ViewModel viewModel = new ViewModel(
                 _serviceProvider.GetRequiredService<IMediator>(),

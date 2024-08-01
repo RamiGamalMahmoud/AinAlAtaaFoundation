@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
-using AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagement.Create;
 using MediatR;
 using Moq;
 using FluentAssertions;
+using AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagement.Editor;
 
 namespace AinAlAtaaFoundation.Tests
 {
@@ -16,7 +16,7 @@ namespace AinAlAtaaFoundation.Tests
         [Fact]
         public void SaveCommand_CanNotExecute_AfterInit()
         {
-            ViewModel viewModel = new ViewModel(_mediatorMock.Object, WeakReferenceMessenger.Default);
+            ViewModelCreate viewModel = new ViewModelCreate(_mediatorMock.Object, WeakReferenceMessenger.Default);
             viewModel.SaveCommand.CanExecute(null).Should().BeFalse();
         }
 

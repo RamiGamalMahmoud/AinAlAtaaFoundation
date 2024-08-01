@@ -17,13 +17,13 @@ namespace AinAlAtaaFoundation.Features.Management.ClansManagement
         [RelayCommand]
         private void ShowCreate()
         {
-            _mediator.Send(new Shared.Commands.Clans.CommandShowCreate());
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<Clan>());
         }
 
         [RelayCommand]
         private void ShowUpdate(Clan clan)
         {
-            _mediator.Send(new Shared.Commands.Clans.CommandShowUpdate(clan));
+            _mediator.Send(new Shared.Commands.Generic.ShowUpdate<Clan>(clan));
         }
 
         public IEnumerable<Clan> Clans { get => _clans; private set => SetProperty(ref _clans, value); }

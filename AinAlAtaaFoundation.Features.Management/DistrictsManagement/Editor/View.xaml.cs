@@ -5,7 +5,7 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement.Editor
 {
     internal partial class View : Window
     {
-        public View(ViewModel viewModel, IMessenger messenger)
+        public View(ViewModelEditorBase viewModel, IMessenger messenger)
         {
             InitializeComponent();
             DataContext = viewModel;

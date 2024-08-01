@@ -1,5 +1,4 @@
 ﻿using AinAlAtaaFoundation.Models;
-using AinAlAtaaFoundation.Shared.Commands;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,12 +11,12 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement.Editor
     internal static class CommandHandlers
     {
         // show create
-        internal class ShowCreate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Districts.CommandShowCreate>
+        internal class ShowCreate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowCreate<District>>
         {
-            public Task Handle(Districts.CommandShowCreate request, CancellationToken cancellationToken)
+            public Task Handle(Shared.Commands.Generic.ShowCreate<District> request, CancellationToken cancellationToken)
             {
                 IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
-                ViewModel viewModel = new ViewModel(
+                ViewModelEditorBase viewModel = new ViewModelCreate(
                     _serviceProvider.GetRequiredService<IMediator>(),
                     messenger,
                     null
@@ -35,10 +34,10 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement.Editor
 
         internal static class Create
         {
-            internal record Command(DistrictDataModel DataModel) : IRequest<District>;
-            internal class Handler(Repository repository) : IRequestHandler<Command, District>
+            //internal record Command(DistrictDataModel DataModel) : IRequest<District>;
+            internal class Handler(Repository repository) : IRequestHandler<Shared.Commands.Generic.CommandCreate<District, DistrictDataModel>, District>
             {
-                public async Task<District> Handle(Command request, CancellationToken cancellationToken)
+                public async Task<District> Handle(Shared.Commands.Generic.CommandCreate<District, DistrictDataModel> request, CancellationToken cancellationToken)
                 {
                     return await _repository.Create(request.DataModel);
                 }
@@ -48,15 +47,15 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement.Editor
         }
 
         // show update
-        internal class ShowUpdate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Districts.CommandShowUpdate>
+        internal class ShowUpdate(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowUpdate<District>>
         {
-            public Task Handle(Districts.CommandShowUpdate request, CancellationToken cancellationToken)
+            public Task Handle(Shared.Commands.Generic.ShowUpdate<District> request, CancellationToken cancellationToken)
             {
                 IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
-                ViewModel viewModel = new ViewModel(
+                ViewModelEditorBase viewModel = new ViewModelUpdate(
                     _serviceProvider.GetRequiredService<IMediator>(),
                     messenger,
-                    request.District
+                    request.Model
                     );
 
                 View view = new View(viewModel, messenger);
@@ -70,10 +69,10 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement.Editor
 
         internal static class Update
         {
-            internal record Command(DistrictDataModel DataModel) : IRequest<bool>;
-            internal class Handler(Repository repository) : IRequestHandler<Command, bool>
+            //internal record Command(DistrictDataModel DataModel) : IRequest<bool>;
+            internal class Handler(Repository repository) : IRequestHandler<Shared.Commands.Generic.CommandUpdate<DistrictDataModel>, bool>
             {
-                public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
+                public async Task<bool> Handle(Shared.Commands.Generic.CommandUpdate<DistrictDataModel> request, CancellationToken cancellationToken)
                 {
                     return await _repository.Update(request.DataModel);
                 }

@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.Management.DistrictsManagement.Editor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="View"
-    d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+    d:DataContext="{d:DesignInstance Type=local:ViewModelEditorBase}"
     x:ClassModifier="internal"
     SizeToContent="WidthAndHeight"
     WindowStartupLocation="CenterScreen"

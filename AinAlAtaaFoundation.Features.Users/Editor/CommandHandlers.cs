@@ -50,7 +50,7 @@ namespace AinAlAtaaFoundation.Features.Users.Editor
 
         public async Task<bool> Handle(Generic.CommandUpdate<UserDataModel> request, CancellationToken cancellationToken)
         {
-            return await _repository.Update(request.DamaModel);
+            return await _repository.Update(request.DataModel);
         }
 
         private readonly IServiceProvider _serviceProvider = serviceProvider;

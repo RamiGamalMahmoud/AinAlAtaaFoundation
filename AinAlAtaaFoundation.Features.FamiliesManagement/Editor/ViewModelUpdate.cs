@@ -1,10 +1,9 @@
-﻿using AinAlAtaaFoundation.Features.FamiliesManagement.Editor;
-using AinAlAtaaFoundation.Models;
+﻿using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System.Threading.Tasks;
 
-namespace AinAlAtaaFoundation.Features.FamiliesManagement.Update
+namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 {
     internal class ViewModelUpdate : EditoViewModelBase
     {
@@ -14,7 +13,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Update
 
         protected override async Task Save()
         {
-            if(await _mediator.Send(new CommandHandlerUpdate.Command(DataModel)))
+            if (await _mediator.Send(new Shared.Commands.Generic.CommandUpdate<FamilyDataModel>(DataModel)))
             {
                 _messenger.Send(new Shared.Notifications.SuccessNotification("تمت عملية التعديل بنجاح"));
             }

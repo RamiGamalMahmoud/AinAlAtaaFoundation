@@ -23,13 +23,13 @@ namespace AinAlAtaaFoundation.Features.Management.BranchesManagement
         [RelayCommand]
         private void ShowCreate()
         {
-            _mediator.Send(new Shared.Commands.Branches.CommandShowCreate());
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<Branch>());
         }
 
         [RelayCommand]
         private void ShowUpdate(Branch branch)
         {
-            _mediator.Send(new Shared.Commands.Branches.CommandShowUpdate(branch));
+            _mediator.Send(new Shared.Commands.Generic.ShowUpdate<Branch>(branch));
         }
 
         public IEnumerable<Branch> Branches { get => _branches; private set => SetProperty(ref _branches, value); }

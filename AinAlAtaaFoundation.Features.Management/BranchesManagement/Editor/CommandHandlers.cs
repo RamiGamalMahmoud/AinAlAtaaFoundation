@@ -11,14 +11,14 @@ namespace AinAlAtaaFoundation.Features.Management.BranchesManagement.Editor
 {
     internal static class CommandHandlers
     {
-        internal class Show(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Branches.CommandShowCreate>, 
-            IRequestHandler<Shared.Commands.Branches.CommandShowUpdate>
+        internal class Show(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowCreate<Branch>>, 
+            IRequestHandler<Shared.Commands.Generic.ShowUpdate<Branch>>
         {
-            public Task Handle(Branches.CommandShowCreate request, CancellationToken cancellationToken)
+            public Task Handle(Shared.Commands.Generic.ShowCreate<Branch> request, CancellationToken cancellationToken)
             {
                 IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
 
-                ViewModel viewModel = new ViewModel(
+                ViewModel viewModel = new ViewModelCreate(
                     _serviceProvider.GetRequiredService<IMediator>(),
                     messenger,
                     null
@@ -29,14 +29,14 @@ namespace AinAlAtaaFoundation.Features.Management.BranchesManagement.Editor
                 return Task.CompletedTask;
             }
 
-            public Task Handle(Branches.CommandShowUpdate request, CancellationToken cancellationToken)
+            public Task Handle(Shared.Commands.Generic.ShowUpdate<Branch> request, CancellationToken cancellationToken)
             {
                 IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
 
-                ViewModel viewModel = new ViewModel(
+                ViewModel viewModel = new ViewModelUpdate(
                     _serviceProvider.GetRequiredService<IMediator>(),
                     messenger,
-                    request.Branch
+                    request.Model
                     );
 
                 View view = new View(viewModel, messenger);
@@ -47,11 +47,10 @@ namespace AinAlAtaaFoundation.Features.Management.BranchesManagement.Editor
             private readonly IServiceProvider _serviceProvider = serviceProvider;
         }
 
-        internal record CommandCreate(BranchDataModel DataModel) : IRequest<Branch>;
-
-        internal class HandleCreate(Repository repository) : IRequestHandler<CommandCreate, Branch>
+        internal class HandleCreate(Repository repository) :
+            IRequestHandler<Shared.Commands.Generic.CommandCreate<Branch, BranchDataModel>, Branch>
         {
-            public async Task<Branch> Handle(CommandCreate request, CancellationToken cancellationToken)
+            public async Task<Branch> Handle(Generic.CommandCreate<Branch, BranchDataModel> request, CancellationToken cancellationToken)
             {
                 return await _repository.Create(request.DataModel);
             }
@@ -59,13 +58,13 @@ namespace AinAlAtaaFoundation.Features.Management.BranchesManagement.Editor
             private readonly Repository _repository = repository;
         }
 
-        internal record CommandUpdate(BranchDataModel DataModel) : IRequest<bool>;
-        internal class HandleUpdate(Repository repository) : IRequestHandler<CommandUpdate, bool>
+        internal class HandleUpdate(Repository repository) : IRequestHandler<Shared.Commands.Generic.CommandUpdate<BranchDataModel>, bool>
         {
-            public async Task<bool> Handle(CommandUpdate request, CancellationToken cancellationToken)
+            public async Task<bool> Handle(Generic.CommandUpdate<BranchDataModel> request, CancellationToken cancellationToken)
             {
                 return await _repository.Update(request.DataModel);
             }
+
             private readonly Repository _repository = repository;
         }
     }

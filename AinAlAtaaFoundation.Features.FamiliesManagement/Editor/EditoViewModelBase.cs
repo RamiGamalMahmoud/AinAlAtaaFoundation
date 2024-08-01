@@ -61,26 +61,30 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
         private async Task LoadBranches()
         {
-            Branches = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Branch>()))
-                .Where(x => x.ClanId == DataModel.Clan.Id);
+            if (DataModel.Clan is not null)
+                Branches = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Branch>()))
+                    .Where(x => x.ClanId == DataModel.Clan.Id);
         }
 
         private async Task LoadBranchRepresentatives()
         {
-            BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>(true)))
-                .Where(x => x.Clan.Id == DataModel.Clan.Id);
+            if (DataModel.Clan is not null)
+                BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>(true)))
+                    .Where(x => x.Clan.Id == DataModel.Clan.Id);
         }
 
         private async Task LoadDistrictRepresentatives()
         {
-            DistrictRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<DistrictRepresentative>()))
-                .Where(x => x.DistrictId == DataModel.District.Id);
+            if (DataModel.District is not null)
+                DistrictRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<DistrictRepresentative>()))
+                    .Where(x => x.DistrictId == DataModel.District.Id);
         }
 
         private async Task LoadFeaturedPoints()
         {
-            FeaturedPoints = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FeaturedPoint>()))
-                .Where(x => x.DistrictId == DataModel.District.Id);
+            if (DataModel.District is not null)
+                FeaturedPoints = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FeaturedPoint>()))
+                    .Where(x => x.DistrictId == DataModel.District.Id);
         }
 
         public override async Task LoadDataAsync()
@@ -115,37 +119,37 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
         [RelayCommand]
         private async Task AddBranchRepresentative()
         {
-            await _mediator.Send(new Shared.Commands.BranchRepresentatives.ShowCreate());
+            await _mediator.Send(new Shared.Commands.Generic.ShowCreate<BranchRepresentative>());
         }
 
         [RelayCommand]
         private async Task AddDistrictRepresentative()
         {
-            await _mediator.Send(new Shared.Commands.DistrictRepresentatives.ShowCreate());
+            await _mediator.Send(new Shared.Commands.Generic.ShowCreate<DistrictRepresentative>());
         }
 
         [RelayCommand]
         private void AddClan()
         {
-            _mediator.Send(new Shared.Commands.Clans.CommandShowCreate());
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<Clan>());
         }
 
         [RelayCommand]
         private void AddBranch()
         {
-            _mediator.Send(new Shared.Commands.Branches.CommandShowCreate());
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<Branch>());
         }
 
         [RelayCommand]
         private void AddDistrict()
         {
-            _mediator.Send(new Shared.Commands.Districts.CommandShowCreate());
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<District>());
         }
 
         [RelayCommand]
         private void AddFeaturedPoint()
         {
-            _mediator.Send(new Shared.Commands.FeaturedPoints.CommandShowCreate());
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<FeaturedPoint>());
         }
 
         private bool CanAddPhoneNumber() => !string.IsNullOrEmpty(PhoneNumber);
