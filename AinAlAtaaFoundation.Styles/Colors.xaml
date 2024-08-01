@@ -2,6 +2,7 @@
 
     <Color x:Key="BlackColor">#2c3e50</Color>
     <SolidColorBrush x:Key="Blue" Color="#2980b9" />
+    <SolidColorBrush x:Key="Blue-Light" Color="#64b5f6" />
     <SolidColorBrush x:Key="White" Color="#ecf0f1" />
     <SolidColorBrush x:Key="Black" Color="#2c3e50" />
 
