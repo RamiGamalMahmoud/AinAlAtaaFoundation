@@ -32,7 +32,11 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .Property(x => x.IsAdmin)
                 .HasDefaultValue(false);
 
-            builder.HasData(new { Id = 1, UserName = "admin", Password = "admin", IsAdmin = true, IsActive = true});
+            builder.HasData(new[]
+            { 
+                new { Id = 1, UserName = "admin", Password = "admin", IsAdmin = true, IsActive = true},
+                new { Id = 2, UserName = "user", Password = "user", IsAdmin = false, IsActive = true}
+            });
         }
     }
 }
