@@ -44,6 +44,10 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                         .Include(x => x.Gender)
                         .Include(x => x.Family)
                             .ThenInclude(x => x.Clan)
+                        .Include(x => x.Family)
+                            .ThenInclude(x => x.OrphanType)
+                        .Include(x => x.Family)
+                            .ThenInclude(x => x.SocialStatus)
                         .Include(x => x.Mother)
                         .ToListAsync();
                     SetEntities(familyMembers);

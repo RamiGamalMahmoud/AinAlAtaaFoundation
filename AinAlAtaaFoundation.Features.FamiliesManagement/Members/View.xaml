@@ -121,8 +121,8 @@
                     Binding="{Binding BirthDate, StringFormat='{}{0:yyyy-MM-dd}'}"
                     Header="تاريخ الميلاد" />
 
-                <DataGridCheckBoxColumn Binding="{Binding IsOrphan}" Header="يتيم" />
-                <DataGridCheckBoxColumn Binding="{Binding IsNowOrphan, Mode=OneWay}" Header="لا يزال يحسب يتيما" />
+                <!--<DataGridCheckBoxColumn Binding="{Binding IsOrphan}" Header="يتيم" />-->
+                <DataGridCheckBoxColumn Binding="{Binding IsNowOrphan, Mode=OneWay}" Header="يتيم" />
 
                 <DataGridTemplateColumn Header="خيارات">
                     <DataGridTemplateColumn.CellTemplate>

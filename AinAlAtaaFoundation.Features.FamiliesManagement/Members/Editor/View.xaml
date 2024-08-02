@@ -132,15 +132,17 @@
                     Text="{Binding DataModel.Age}"
                     TextAlignment="Left" />
 
-                <CheckBox
+                <Label
                     Grid.Row="6"
                     Grid.Column="1"
-                    Margin="0,5"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    BorderThickness="1"
                     Content="يتيم"
-                    FlowDirection="LeftToRight"
-                    IsChecked="{Binding DataModel.IsOrphan}" />
+                    Cursor="Hand"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource Blue}"
+                    Visibility="{Binding DataModel.IsNowOrphan, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
                 <TextBlock
                     Grid.Row="7"

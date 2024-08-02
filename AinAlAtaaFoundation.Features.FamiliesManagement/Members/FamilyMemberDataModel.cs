@@ -31,6 +31,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Age))]
+        [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
         [Required(ErrorMessage = "حقل مطلوب")]
         private DateTime _birthDate = new DateTime(1950, 1, 1);
 
@@ -42,6 +43,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 OnPropertyChanged(nameof(BirthDate));
             }
         }
+
+        public bool IsNowOrphan => Family.SocialStatus.Name == "أيتام" && Age < 18;
 
         public bool IsOrphan
         {
