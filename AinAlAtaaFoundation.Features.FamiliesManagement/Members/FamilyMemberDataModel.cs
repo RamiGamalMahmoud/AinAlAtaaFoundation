@@ -44,7 +44,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             }
         }
 
-        public bool IsNowOrphan => Family.SocialStatus.Name == "أيتام" && Age < 18;
+        public bool IsNowOrphan => Family?.SocialStatus.Name == "أيتام" && Age < 18;
 
         public bool IsOrphan
         {
