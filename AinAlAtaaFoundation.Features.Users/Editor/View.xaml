@@ -108,7 +108,7 @@
                 VerticalAlignment="Stretch"
                 BorderThickness="0"
                 Command="{Binding SaveCommand}"
-                Content="دخول"
+                Content="حفظ"
                 Cursor="Hand"
                 FontFamily="Arial"
                 FontSize="14"
