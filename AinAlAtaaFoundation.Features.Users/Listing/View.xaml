@@ -53,7 +53,8 @@
                 <DataGridCheckBoxColumn
                     Width="100"
                     Binding="{Binding IsActive, Mode=OneWay}"
-                    Header="نشط" />
+                    Header="نشط"
+                    Visibility="Collapsed" />
 
                 <DataGridTemplateColumn Header="خيارات">
                     <DataGridTemplateColumn.CellTemplate>
