@@ -13,6 +13,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         public async Task LoadDataAsync()
         {
             _allFamilyMembers = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
+            Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
             FamilyMembers = _allFamilyMembers;
         }
 
@@ -21,20 +22,44 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             FamilyMembers = _allFamilyMembers.Where(x => x.Name.Contains(newValue) || x.Family.Clan.Name.Contains(newValue));
         }
 
+        async partial void OnSelectedClanChanged(Clan oldValue, Clan newValue)
+        {
+            Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
+                .Where(x => x.Clan.Id == newValue.Id)
+                .OrderBy(x => x.Name);
+        }
+
+        partial void OnSelectedFamilyChanged(Family oldValue, Family newValue)
+        {
+            FamilyMembers = _allFamilyMembers.Where(x => x.Family.Id == newValue.Id);
+        }
+
         [RelayCommand]
         private void ShowCreate()
         {
-            _mediator.Send(new Shared.Commands.FamilyMembers.CommandShowCreate());
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<FamilyMember>());
         }
 
         [RelayCommand]
         private void ShowUpdate(FamilyMember familyMember)
         {
-            _mediator.Send(new Shared.Commands.FamilyMembers.CommandShowUpdate(familyMember));
+            _mediator.Send(new Shared.Commands.Generic.ShowUpdate<FamilyMember>(familyMember));
         }
 
         [ObservableProperty]
         private string _searchValue;
+
+        [ObservableProperty]
+        private IEnumerable<Clan> _clans;
+
+        [ObservableProperty]
+        private Clan _selectedClan;
+
+        [ObservableProperty]
+        private IEnumerable<Family> _families;
+
+        [ObservableProperty]
+        private Family _selectedFamily;
 
         public IEnumerable<FamilyMember> FamilyMembers
         {

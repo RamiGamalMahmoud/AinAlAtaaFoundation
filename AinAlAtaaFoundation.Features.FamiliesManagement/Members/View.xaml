@@ -38,6 +38,38 @@
                 VerticalAlignment="Center"
                 Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}" />
 
+            <StackPanel
+                Grid.Column="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <TextBlock
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="العشيرة" />
+                <ComboBox
+                    Width="200"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding Clans}"
+                    SelectedItem="{Binding SelectedClan, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedValue="{Binding SelectedClan.Id}"
+                    SelectedValuePath="Id" />
+
+                <TextBlock
+                    Margin="10,0,10,0"
+                    VerticalAlignment="Center"
+                    Text="العائلة" />
+                <ComboBox
+                    Width="200"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding Families}"
+                    SelectedItem="{Binding SelectedFamily, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedValue="{Binding SelectedFamily.Id}"
+                    SelectedValuePath="Id" />
+
+            </StackPanel>
+
             <Button
                 Grid.Column="3"
                 Command="{Binding ShowCreateCommand}"
