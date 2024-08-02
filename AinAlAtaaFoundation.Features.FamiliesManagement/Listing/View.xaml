@@ -33,6 +33,7 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
+                <DataGridTextColumn Binding="{Binding Name}" Header="اسم العائلة" />
                 <DataGridTextColumn Binding="{Binding FamilyType.Name}" Header="نوع العائلة (عام / خاص)" />
                 <DataGridTextColumn Binding="{Binding Clan.Name}" Header="العشيرة" />
                 <DataGridTextColumn Binding="{Binding Applicant.Name}" Header="الاسم" />
@@ -72,10 +73,10 @@
 
                                 <Button
                                     Margin="10,0,0,0"
+                                    Background="{StaticResource Blue-Light}"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.PrintBarcodeCommand}"
                                     CommandParameter="{Binding}"
                                     Content="طباعة الباركود"
-                                    Background="{StaticResource Blue-Light}"
                                     Cursor="Hand"
                                     FontFamily="Arial"
                                     FontSize="10"
