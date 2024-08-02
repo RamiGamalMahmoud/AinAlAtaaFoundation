@@ -302,7 +302,6 @@
 
                                     <ComboBox
                                         DisplayMemberPath="Name"
-                                        IsEditable="True"
                                         ItemsSource="{Binding FeaturedPoints}"
                                         SelectedItem="{Binding DataModel.FeaturedPoint}"
                                         SelectedValue="{Binding DataModel.FeaturedPoint.Id}"

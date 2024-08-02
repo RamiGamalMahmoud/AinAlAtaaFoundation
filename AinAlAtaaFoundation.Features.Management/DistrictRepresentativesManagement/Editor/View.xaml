@@ -49,7 +49,6 @@
                         <ComboBox
                             Width="200"
                             DisplayMemberPath="Name"
-                            IsEditable="True"
                             ItemsSource="{Binding Districts}"
                             SelectedItem="{Binding DataModel.District}"
                             SelectedValue="{Binding DataModel.District.Id}"
