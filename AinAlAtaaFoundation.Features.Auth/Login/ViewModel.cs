@@ -53,7 +53,7 @@ namespace AinAlAtaaFoundation.Features.Auth.Login
                 }
                 else
                 {
-                    _messenger.Send(new Messages.LoginFailedMessage());
+                    _messenger.Send(new Messages.LoginFailedMessage(UserName));
                 }
             }
         }

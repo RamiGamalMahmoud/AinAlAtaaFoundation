@@ -7,6 +7,7 @@ using AinAlAtaaFoundation.Features.Management;
 using AinAlAtaaFoundation.Features.Settings;
 using AinAlAtaaFoundation.Features.Users;
 using AinAlAtaaFoundation.Services.Printing;
+using AinAlAtaaFoundation.Shared;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,6 +51,12 @@ namespace AinAlAtaaFoundation
             _messenger.Register<Shared.Notifications.FailerNotification>(this, (r, m) =>
             {
                 _notificationManager.Show("رسالة", m.Message, NotificationType.Error);
+            });
+
+            _messenger.Register<Messages.LoginFailedMessage>(this, (r, m) =>
+            {
+                _messenger.Send(new Shared.Notifications.FailerNotification("مستخدم غير موجود أو كلمة مرور غير صحيحة"));
+                _messenger.Send(new Shared.Notifications.FailerNotification("للمستخدم : " + m.UserName));
             });
         }
 
