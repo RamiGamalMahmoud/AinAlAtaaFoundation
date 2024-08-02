@@ -17,6 +17,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
             if (family is not null)
             {
                 _messenger.Send(new Shared.Notifications.SuccessNotification("تمت الاضافة"));
+                _messenger.Send(new Shared.Messages.EntityCreated<Family>(family));
             }
 
             else

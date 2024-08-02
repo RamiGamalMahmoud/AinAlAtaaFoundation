@@ -16,6 +16,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
             if (await _mediator.Send(new Shared.Commands.Generic.CommandUpdate<FamilyDataModel>(DataModel)))
             {
                 _messenger.Send(new Shared.Notifications.SuccessNotification("تمت عملية التعديل بنجاح"));
+                _messenger.Send(new Shared.Messages.EntityUpdated<Family>(DataModel.Model));
             }
             else
             {
