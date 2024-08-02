@@ -1,10 +1,9 @@
-﻿using AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor;
-using AinAlAtaaFoundation.Models;
+﻿using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System.Threading.Tasks;
 
-namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Update
+namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
 {
     internal class ViewModelUpdate : EditorViewModelBase
     {
@@ -18,7 +17,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Update
 
         protected override async Task Save()
         {
-            await _mediator.Send(new CommandHandlerUpdate.Command(DataModel));
+            await _mediator.Send(new Shared.Commands.Generic.CommandUpdate<FamilyMemberDataModel>(DataModel));
         }
     }
 }
