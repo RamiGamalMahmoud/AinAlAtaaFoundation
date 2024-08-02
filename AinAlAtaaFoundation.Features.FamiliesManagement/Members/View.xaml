@@ -102,6 +102,11 @@
                     Header="الاسم" />
 
                 <DataGridTextColumn
+                    Width="200"
+                    Binding="{Binding Family.Name}"
+                    Header="العائلة" />
+
+                <DataGridTextColumn
                     Width="150"
                     Binding="{Binding Gender.NameAr}"
                     Header="النوع" />
