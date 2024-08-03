@@ -15,6 +15,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
         public EditorViewModelBase(IMediator mediator, IMessenger messenger, FamilyMember familyMember) : base(mediator, messenger)
         {
             DataModel = new FamilyMemberDataModel(familyMember);
+            Family = familyMember?.Family;
             HasChangesObject = new Shared.Helpers.HasChangesObject(SaveCommand.NotifyCanExecuteChanged);
             DataModel.PropertyChanged += DataModel_PropertyChanged;
         }
@@ -29,9 +30,26 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
             Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
                 .Where(x => x.Clan.Id == newValue.Id);
 
-            IEnumerable<FamilyMember> members = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
-            Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Clan.Id == Clan.Id && x.Id != DataModel.Model.Id );
+            //IEnumerable<FamilyMember> members = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
+            //if(DataModel.Model is null)
+            //{
+            //    Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Clan.Id == Clan.Id);
+            //}
+            //else Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Clan.Id == Clan.Id && x.Id != DataModel.Model.Id );
         }
+
+        async partial void OnFamilyChanged(Family oldValue, Family newValue)
+        {
+            DataModel.Family = newValue;
+
+            IEnumerable<FamilyMember> members = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
+            if (DataModel.Model is null)
+            {
+                Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Id == newValue.Id);
+            }
+            else Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Id == newValue.Id && x.Id != DataModel.Model.Id);
+        }
+
 
         public override async Task LoadDataAsync()
         {
@@ -42,6 +60,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
 
         [ObservableProperty]
         private Clan _clan;
+
+        [ObservableProperty]
+        private Family _family;
 
         [ObservableProperty]
         private IEnumerable<Family> _families;
