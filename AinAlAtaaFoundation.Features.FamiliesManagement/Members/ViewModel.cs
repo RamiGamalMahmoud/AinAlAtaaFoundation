@@ -18,7 +18,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             messenger.Register<Shared.Messages.EntityUpdated<Family>>(this, async (r, m) =>
             {
                 await LoadDataAsync(true);
-            } );
+            });
         }
 
         public async Task LoadDataAsync(bool reload = false)
@@ -38,11 +38,14 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
                 .Where(x => x.Clan.Id == newValue.Id)
                 .OrderBy(x => x.Name);
+            FamilyMembers = _allFamilyMembers.Where(x => x.Family.Clan.Id == SelectedClan.Id);
         }
 
         partial void OnSelectedFamilyChanged(Family oldValue, Family newValue)
         {
-            FamilyMembers = _allFamilyMembers.Where(x => x.Family.Id == newValue.Id);
+            if (newValue is not null)
+                FamilyMembers = _allFamilyMembers.Where(x => x.Family.Id == newValue.Id);
+            //else FamilyMembers = _allFamilyMembers.Where(x => x.Family.Clan.Id == SelectedClan.Id);
         }
 
         [RelayCommand]
