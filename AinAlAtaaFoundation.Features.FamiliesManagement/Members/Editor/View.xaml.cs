@@ -15,9 +15,14 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
 
         private async void View_Loaded(object sender, RoutedEventArgs e)
         {
-            await Dispatcher.InvokeAsync(_viewModel.LoadDataAsync);
+            if (!_isLoaded)
+            {
+                await Dispatcher.InvokeAsync(_viewModel.LoadDataAsync);
+                _isLoaded = true;
+            }
         }
 
         private readonly EditorViewModelBase _viewModel;
+        private bool _isLoaded;
     }
 }
