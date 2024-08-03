@@ -9,11 +9,11 @@
     </Style>
     <ReportItems>
       <Image Name="Image1">
-        <Left>61.60657mm</Left>
-        <Top>47.88958mm</Top>
+        <Left>1.45521mm</Left>
+        <Top>46.82298mm</Top>
         <Value>=Parameters!Barcode.Value</Value>
-        <Height>26.45833mm</Height>
-        <Width>86.78333mm</Width>
+        <Height>26.4542mm</Height>
+        <Width>74.34791mm</Width>
         <Visibility />
         <Style>
           <Border>
@@ -24,10 +24,10 @@
         <Sizing>Fit</Sizing>
       </Image>
       <Textbox Name="FamilyName1">
-        <Left>64.29374mm</Left>
-        <Top>34.925mm</Top>
+        <Left>4.23333mm</Left>
+        <Top>33.86666mm</Top>
         <Height>11.90625mm</Height>
-        <Width>58.20832mm</Width>
+        <Width>48.67919mm</Width>
         <Style>
           <BackgroundColor>#f2f2f2</BackgroundColor>
           <VerticalAlign>Middle</VerticalAlign>
@@ -60,10 +60,10 @@
         </Paragraphs>
       </Textbox>
       <Textbox Name="TextBox2">
-        <Left>122.2375mm</Left>
-        <Top>34.925mm</Top>
+        <Left>52.91666mm</Left>
+        <Top>33.86666mm</Top>
         <Height>11.90625mm</Height>
-        <Width>28.575mm</Width>
+        <Width>20.10833mm</Width>
         <Style>
           <VerticalAlign>Middle</VerticalAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -95,11 +95,11 @@
         </Paragraphs>
       </Textbox>
       <Image Name="Image2">
-        <Left>89.52224mm</Left>
-        <Top>2.11253mm</Top>
+        <Left>23.15517mm</Left>
+        <Top>1.05006mm</Top>
         <Value>logo_100</Value>
-        <Height>32.8042mm</Height>
-        <Width>30.95211mm</Width>
+        <Height>32.8041mm</Height>
+        <Width>30.94804mm</Width>
         <Visibility />
         <Style>
           <Border>
@@ -110,7 +110,7 @@
         <Sizing>FitProportional</Sizing>
       </Image>
     </ReportItems>
-    <Height>128.0583mm</Height>
+    <Height>79.37499mm</Height>
   </Body>
   <ReportParameters>
     <ReportParameter Name="Barcode">
@@ -122,10 +122,10 @@
       <Prompt>FamilyName</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>210mm</Width>
+  <Width>77.25832mm</Width>
   <Page>
-    <PageHeight>296.926mm</PageHeight>
-    <PageWidth>210.058mm</PageWidth>
+    <PageHeight>80mm</PageHeight>
+    <PageWidth>78mm</PageWidth>
     <LeftMargin>0mm</LeftMargin>
     <RightMargin>0mm</RightMargin>
     <TopMargin>0mm</TopMargin>
