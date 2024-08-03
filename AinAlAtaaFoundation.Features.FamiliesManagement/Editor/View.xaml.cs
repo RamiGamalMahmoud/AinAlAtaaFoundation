@@ -10,6 +10,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
             DataContext = viewModel;
             _viewModel = viewModel;
             Loaded += View_Loaded;
+            PreviewKeyDown += (s, e) => { if (e.Key == System.Windows.Input.Key.Escape) Close(); };
         }
 
         private async void View_Loaded(object sender, RoutedEventArgs e)
