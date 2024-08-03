@@ -102,12 +102,12 @@
                     Header="الاسم" />
 
                 <DataGridTextColumn
-                    Width="200"
+                    Width="120"
                     Binding="{Binding Family.Name}"
                     Header="العائلة" />
 
                 <DataGridTextColumn
-                    Width="150"
+                    Width="60"
                     Binding="{Binding Gender.NameAr}"
                     Header="النوع" />
 
@@ -125,6 +125,10 @@
                     Width="150"
                     Binding="{Binding BirthDate, StringFormat='{}{0:yyyy-MM-dd}'}"
                     Header="تاريخ الميلاد" />
+                <DataGridTextColumn
+                    Width="50"
+                    Binding="{Binding Age}"
+                    Header="السن" />
 
                 <!--<DataGridCheckBoxColumn Binding="{Binding IsOrphan}" Header="يتيم" />-->
                 <DataGridCheckBoxColumn Binding="{Binding IsNowOrphan, Mode=OneWay}" Header="يتيم" />
