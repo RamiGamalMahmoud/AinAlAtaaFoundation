@@ -22,7 +22,7 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
             if(await _mediator.Send(new Shared.Commands.Generic.CommandUpdate<DistrictRepresentativeDataModel>(DataModel)))
             {
                 _messenger.Send(new Shared.Messages.EntityUpdated<DistrictRepresentative>(DataModel.Model));
-                _messenger.Send(new Shared.Notifications.FailerNotification("فشل في الحفظ , بيانات مكررة"));
+                _messenger.Send(new Shared.Notifications.SuccessNotification("تم الحفظ بنجاح"));
             }
             else
             {
