@@ -5,6 +5,7 @@
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<ApplicationIcon>ain-al-ataa-foundation.ico</ApplicationIcon>
+		<AssemblyVersion>0.1.0</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

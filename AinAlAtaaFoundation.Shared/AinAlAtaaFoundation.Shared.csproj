@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
+		<AssemblyVersion>0.1.0</AssemblyVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
