@@ -17,10 +17,4 @@
 		<ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<None Update="Images\logo.png">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-
 </Project>
