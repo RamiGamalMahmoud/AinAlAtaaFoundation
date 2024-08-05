@@ -52,7 +52,7 @@
                             Height="40"
                             HorizontalAlignment="Stretch"
                             Command="{Binding GoToManagementCommand}"
-                            Content="عام"
+                            Content="إدارة"
                             Cursor="Hand"
                             FontFamily="Arial"
                             FontSize="16"
