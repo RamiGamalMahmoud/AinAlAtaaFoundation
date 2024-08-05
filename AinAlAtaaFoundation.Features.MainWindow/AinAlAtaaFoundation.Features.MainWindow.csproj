@@ -1,26 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
-    <PackageReference Include="Notification.Wpf" Version="8.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Notification.Wpf" Version="8.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Images\logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Images\logo.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>

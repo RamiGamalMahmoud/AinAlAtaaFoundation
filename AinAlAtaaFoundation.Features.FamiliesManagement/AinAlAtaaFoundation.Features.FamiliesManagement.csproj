@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Syncfusion.Themes.Windows11Light.WPF" Version="26.2.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Syncfusion.Themes.Windows11Light.WPF" Version="26.2.5" />
+	</ItemGroup>
 
 </Project>

@@ -1,45 +1,45 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-	  <TargetFramework>net8.0-windows</TargetFramework>
-	  <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-    <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
-  </PropertyGroup>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="FluentAssertions" Version="6.12.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
-    <PackageReference Include="Moq" Version="4.20.70" />
-    <PackageReference Include="xunit" Version="2.9.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="6.0.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="FluentAssertions" Version="6.12.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
+		<PackageReference Include="Moq" Version="4.20.70" />
+		<PackageReference Include="xunit" Version="2.9.0" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Auth\AinAlAtaaFoundation.Features.Auth.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Disbursement\AinAlAtaaFoundation.Features.DisbursementManagement.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Features.MainWindow\AinAlAtaaFoundation.Features.MainWindow.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Management\AinAlAtaaFoundation.Features.Management.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Settings\AinAlAtaaFoundation.Features.Settings.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Users\AinAlAtaaFoundation.Features.Users.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
-    <ProjectReference Include="..\AinAlAtaaFoundation\AinAlAtaaFoundation.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Features.Auth\AinAlAtaaFoundation.Features.Auth.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Features.Disbursement\AinAlAtaaFoundation.Features.DisbursementManagement.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Features.MainWindow\AinAlAtaaFoundation.Features.MainWindow.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Features.Management\AinAlAtaaFoundation.Features.Management.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Features.Settings\AinAlAtaaFoundation.Features.Settings.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Features.Users\AinAlAtaaFoundation.Features.Users.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
+		<ProjectReference Include="..\AinAlAtaaFoundation\AinAlAtaaFoundation.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Using Include="Xunit" />
-  </ItemGroup>
+	<ItemGroup>
+		<Using Include="Xunit" />
+	</ItemGroup>
 
 </Project>
