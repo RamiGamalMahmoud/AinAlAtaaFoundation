@@ -22,6 +22,9 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         private bool _isApplicant = false;
 
+        [ObservableProperty]
+        private bool _isDeserves = true;
+
         public bool IsNowOrphan => Family.SocialStatus.Name == "أيتام" && Age < 18;
         public int Age => (int.Parse(DateTime.Now.ToString("yyyyMMdd")) - int.Parse(BirthDate.ToString("yyyyMMdd"))) / 10000;
 

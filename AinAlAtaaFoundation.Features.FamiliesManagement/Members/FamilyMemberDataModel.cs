@@ -19,6 +19,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 BirthDate = model.BirthDate;
                 Mother = model.Mother;
                 IsOrphan = model.IsOrphan;
+                IsDeserves = model.IsDeserves;
             }
             ValidateAllProperties();
         }
@@ -34,6 +35,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
         [Required(ErrorMessage = "حقل مطلوب")]
         private DateTime _birthDate = new DateTime(1950, 1, 1);
+
+        [ObservableProperty]
+        private bool _isDeserves = true;
 
         partial void OnBirthDateChanged(DateTime oldValue, DateTime newValue)
         {
@@ -105,6 +109,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             model.Gender = Gender;
             model.Mother = Mother;
             model.IsOrphan = IsOrphan;
+            model.IsDeserves = IsDeserves;
         }
     }
 }

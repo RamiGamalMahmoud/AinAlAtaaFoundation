@@ -147,6 +147,16 @@
                     Foreground="{StaticResource Blue}"
                     Visibility="{Binding DataModel.IsNowOrphan, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
+                <CheckBox
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    Content="هل يستحق ؟"
+                    Cursor="Hand"
+                    FlowDirection="LeftToRight"
+                    IsChecked="{Binding DataModel.IsDeserves}" />
+
                 <TextBlock
                     Grid.Row="7"
                     Grid.Column="0"

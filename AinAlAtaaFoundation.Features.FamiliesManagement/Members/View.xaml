@@ -122,6 +122,7 @@
                     Width="150"
                     Binding="{Binding BirthDate, StringFormat='{}{0:yyyy-MM-dd}'}"
                     Header="تاريخ الميلاد" />
+
                 <DataGridTextColumn
                     Width="50"
                     Binding="{Binding Age}"
@@ -129,6 +130,7 @@
 
                 <!--<DataGridCheckBoxColumn Binding="{Binding IsOrphan}" Header="يتيم" />-->
                 <DataGridCheckBoxColumn Binding="{Binding IsNowOrphan, Mode=OneWay}" Header="يتيم" />
+                <DataGridCheckBoxColumn Binding="{Binding IsDeserves, Mode=OneWay}" Header="يستحق" />
 
                 <DataGridTemplateColumn Header="خيارات">
                     <DataGridTemplateColumn.CellTemplate>

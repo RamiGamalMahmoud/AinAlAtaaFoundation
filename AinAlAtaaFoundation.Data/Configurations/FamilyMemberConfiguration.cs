@@ -17,6 +17,10 @@ namespace AinAlAtaaFoundation.Data.Configurations
             builder.Property(x => x.BirthDate)
                 .IsRequired();
 
+            builder.Property(x => x.IsDeserves)
+                .IsRequired()
+                .HasDefaultValue(true);
+
             builder.HasOne(x => x.Family)
                 .WithMany(x => x.FamilyMembers)
                 .HasForeignKey(x => x.FamilyId)

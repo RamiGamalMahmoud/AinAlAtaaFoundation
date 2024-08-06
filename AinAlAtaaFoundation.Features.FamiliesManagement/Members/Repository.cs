@@ -22,7 +22,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                     FamilyId = dataModel.Family.Id,
                     GenderId = dataModel.Gender.Id,
                     MotherId = dataModel.Mother?.Id,
-                    IsOrphan = dataModel.IsOrphan
+                    IsOrphan = dataModel.IsOrphan,
+                    IsDeserves = dataModel.IsDeserves
                 };
 
                 dbContext.FamilyMembers.Add(familyMember);
@@ -70,6 +71,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 familyMember.GenderId = dataModel.Gender.Id;
                 familyMember.MotherId = dataModel.Mother?.Id;
                 familyMember.IsOrphan = dataModel.IsOrphan;
+                familyMember.IsDeserves = dataModel.IsDeserves;
 
                 dbContext.FamilyMembers.Update(familyMember);
                 await dbContext.SaveChangesAsync();
