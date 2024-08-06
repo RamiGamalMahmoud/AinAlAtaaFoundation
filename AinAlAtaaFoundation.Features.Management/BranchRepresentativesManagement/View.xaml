@@ -18,15 +18,15 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <TextBlock
+        <Label
             Grid.Row="0"
+            Height="auto"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            FontFamily="Arial"
-            FontSize="18"
-            FontWeight="Bold"
-            Foreground="{StaticResource DangerBrush}"
-            Text="ممثلي الفخوذ" />
+            Background="#ff7675"
+            Content="ممثل الفخذ"
+            FontSize="20"
+            Foreground="White" />
 
         <Button
             Grid.Row="0"
@@ -49,7 +49,7 @@
 
                 <DataGridTextColumn Binding="{Binding Branch.Name, FallbackValue=N/A}" Header="الفخذ" />
 
-                <DataGridTextColumn Binding="{Binding AllPhones, FallbackValue=N/A}" Header="أرقام الهواتف" />
+                <DataGridTextColumn Binding="{Binding AllPhones, FallbackValue=N/A}" Header="رقم الهاتف" />
 
                 <DataGridTemplateColumn Header="خيارات">
                     <DataGridTemplateColumn.CellTemplate>

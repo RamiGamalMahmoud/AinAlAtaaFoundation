@@ -18,15 +18,15 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <TextBlock
+        <Label
             Grid.Row="0"
+            Height="auto"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            FontFamily="Arial"
-            FontSize="18"
-            FontWeight="Bold"
-            Foreground="{StaticResource DangerBrush}"
-            Text="الأحياء" />
+            Background="#ff7675"
+            Content="الأحياء"
+            FontSize="20"
+            Foreground="White" />
 
         <Button
             Grid.Row="0"
