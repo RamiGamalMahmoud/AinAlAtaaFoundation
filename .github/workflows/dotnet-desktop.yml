@@ -53,9 +53,9 @@ jobs:
     - name: Create Velopack Release
       run: |
         dotnet tool install -g vpk
-        vpk download github --repoUrl https://github.com/RamiGamalMahmoud/AinAlAtaaFoundation.git
+        vpk download github --repoUrl https://github.com/RamiGamalMahmoud/AinAlAtaaFoundation.git --token "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"
         vpk pack -u AinAlAtaaFoundation -v ${{ steps.get-version.outputs.version }} -p publish
-        vpk upload github --repoUrl https://github.com/RamiGamalMahmoud/AinAlAtaaFoundation.git --publish --releaseName "AinAlAtaaFoundation ${{ steps.get-version.outputs.version }}" --tag v${{ steps.get-version.outputs.version }} --token ${{ "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" }}
+        vpk upload github --repoUrl https://github.com/RamiGamalMahmoud/AinAlAtaaFoundation.git --publish --releaseName "AinAlAtaaFoundation ${{ steps.get-version.outputs.version }}" --tag v${{ steps.get-version.outputs.version }} --token "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"
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
