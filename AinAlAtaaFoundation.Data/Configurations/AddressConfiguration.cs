@@ -12,7 +12,9 @@ namespace AinAlAtaaFoundation.Data.Configurations
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.Street).IsRequired().HasColumnType("VARCHAR(50)");
+            builder.Property(x => x.Street)
+                .IsRequired(false)
+                .HasColumnType("VARCHAR(50)");
 
             builder.HasOne(x => x.District)
                 .WithMany()

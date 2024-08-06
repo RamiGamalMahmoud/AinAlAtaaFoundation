@@ -158,9 +158,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         private FeaturedPoint _featuredPoint;
 
         [ObservableProperty]
-        [Required(ErrorMessage = "حقل مطلوب")]
-        [NotifyDataErrorInfo]
-        [NotifyPropertyChangedFor(nameof(IsValid))]
         private string _street;
 
         public bool IsOrphan { get => _isOrphan; private set => SetProperty(ref _isOrphan, value); }

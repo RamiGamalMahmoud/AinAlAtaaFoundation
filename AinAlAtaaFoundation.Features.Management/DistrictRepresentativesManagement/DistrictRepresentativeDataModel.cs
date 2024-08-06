@@ -38,9 +38,6 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
         private string _name;
 
         [ObservableProperty]
-        [Required(ErrorMessage = "حقل مطلوب")]
-        [NotifyDataErrorInfo]
-        [NotifyPropertyChangedFor(nameof(IsValid))]
         private string _street;
 
         [Required(ErrorMessage = "حقل مطلوب")]

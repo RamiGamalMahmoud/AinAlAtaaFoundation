@@ -22,7 +22,7 @@ namespace AinAlAtaaFoundation.Data.Configurations
 
             builder.HasOne(x => x.Address)
                 .WithOne()
-                .HasForeignKey<DistrictRepresentative>(nameof(Address) + "Id")
+                .HasForeignKey<DistrictRepresentative>(x => x.AddressId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired();
 
