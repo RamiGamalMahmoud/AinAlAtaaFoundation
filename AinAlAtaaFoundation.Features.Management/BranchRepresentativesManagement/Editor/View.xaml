@@ -9,6 +9,9 @@
     d:DataContext="{d:DesignInstance Type=local:EditorViewModelBase}"
     x:ClassModifier="internal"
     FocusManager.FocusedElement="{Binding ElementName=MainTextBox}"
+    FontFamily="Arial"
+    FontSize="16"
+    FontWeight="Bold"
     SizeToContent="WidthAndHeight"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">

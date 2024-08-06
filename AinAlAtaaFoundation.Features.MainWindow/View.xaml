@@ -6,9 +6,10 @@
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.MainWindow"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="مؤسسة عين العطاء للإغاثة و التنمية"
-    MinWidth="800"
-    MinHeight="600"
     d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+    FontFamily="Arial"
+    FontSize="16"
+    FontWeight="Bold"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     mc:Ignorable="d">

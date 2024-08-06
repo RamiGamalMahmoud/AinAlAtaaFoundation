@@ -11,7 +11,7 @@
     d:DataContext="{d:DesignInstance Type=local:EditoViewModelBase}"
     x:ClassModifier="internal"
     FontFamily="Arial"
-    FontSize="15"
+    FontSize="16"
     FontWeight="Bold"
     SizeToContent="Width"
     WindowStartupLocation="CenterScreen"

@@ -8,6 +8,9 @@
     Title="أعضاء العائلة"
     d:DataContext="{d:DesignInstance Type=local:ListingWindow}"
     x:ClassModifier="internal"
+    FontFamily="Arial"
+    FontSize="16"
+    FontWeight="Bold"
     SizeToContent="WidthAndHeight"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">

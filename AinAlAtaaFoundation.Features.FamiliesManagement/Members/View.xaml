@@ -85,9 +85,6 @@
             Grid.Row="1"
             d:ItemsSource="{d:SampleData}"
             AutoGenerateColumns="False"
-            FontFamily="Arial"
-            FontSize="14"
-            FontWeight="Bold"
             IsReadOnly="True"
             ItemsSource="{Binding FamilyMembers}">
 

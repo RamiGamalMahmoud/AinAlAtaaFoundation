@@ -11,7 +11,8 @@
     d:DataContext="{d:DesignInstance Type=local:ViewModel}"
     x:ClassModifier="internal"
     FontFamily="Arial"
-    FontSize="20"
+    FontSize="16"
+    FontWeight="Bold"
     mc:Ignorable="d">
     <Grid>
 
@@ -263,8 +264,6 @@
                 d:ItemsSource="{d:SampleData}"
                 AutoGenerateColumns="False"
                 Background="Transparent"
-                FontFamily="Arial"
-                FontSize="18"
                 IsReadOnly="True"
                 ItemsSource="{Binding Disbursements}">
                 <DataGrid.Columns>
