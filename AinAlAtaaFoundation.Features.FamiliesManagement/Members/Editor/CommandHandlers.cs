@@ -12,12 +12,14 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
     {
         public Task Handle(Shared.Commands.Generic.ShowCreate<FamilyMember> request, CancellationToken cancellationToken)
         {
+            IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
+
             ViewModelCreate viewModel = new ViewModelCreate(
                 _serviceProvider.GetRequiredService<IMediator>(),
-                _serviceProvider.GetRequiredService<IMessenger>()
+                messenger
                 );
 
-            View view = new View(viewModel);
+            View view = new View(viewModel, messenger);
             view.ShowDialog();
 
             return Task.CompletedTask;
@@ -40,12 +42,13 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
     {
         public Task Handle(Shared.Commands.Generic.ShowUpdate<FamilyMember> request, CancellationToken cancellationToken)
         {
+            IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
             ViewModelUpdate viewModel = new ViewModelUpdate(
                 _serviceProvider.GetRequiredService<IMediator>(),
-                _serviceProvider.GetRequiredService<IMessenger>(),
+                messenger,
                 request.Model);
 
-            View view = new View(viewModel);
+            View view = new View(viewModel, messenger);
             view.ShowDialog();
 
             return Task.CompletedTask;

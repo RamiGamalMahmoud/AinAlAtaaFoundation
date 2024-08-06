@@ -12,7 +12,15 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
         protected override async Task Save()
         {
             BranchRepresentative created = await _mediator.Send(new Shared.Commands.Generic.CommandCreate<BranchRepresentative, BranchRepresentativeDataModel>(DataModel));
-            _messenger.Send(new Messages.EntityCreated<BranchRepresentative>(created));
+            if (created is not null)
+            {
+                _messenger.Send(new Messages.EntityCreated<BranchRepresentative>(created));
+                _messenger.Send(new Shared.Notifications.SuccessNotification("تم الحفظ بنجاح"));
+            }
+            else
+            {
+                _messenger.Send(new Shared.Notifications.FailerNotification("فشل في عملية الحفظ"));
+            }
         }
     }
 }

@@ -14,7 +14,16 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
 
         protected override async Task Save()
         {
-            await _mediator.Send(new Shared.Commands.Generic.CommandCreate<FamilyMember, FamilyMemberDataModel>(DataModel));
+            FamilyMember familyMember = await _mediator.Send(new Shared.Commands.Generic.CommandCreate<FamilyMember, FamilyMemberDataModel>(DataModel));
+            if(familyMember is not null)
+            {
+                _messenger.Send(new Shared.Messages.EntityCreated<FamilyMember>(DataModel.Model));
+                _messenger.Send(new Shared.Notifications.SuccessNotification("تم الحفظ بنجاح"));
+            }
+            else
+            {
+                _messenger.Send(new Shared.Notifications.FailerNotification("فشل في عملية الحفظ"));
+            }
         }
 
 

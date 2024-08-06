@@ -14,15 +14,9 @@ namespace AinAlAtaaFoundation.Features.Management.ClansManagement.Editor
 
             Loaded += View_Loaded;
 
-            messenger.Register<Shared.Messages.EntityCreated<Clan>>(this, (r, m) =>
-            {
+            messenger.Register<Shared.Messages.EntityCreated<Clan>>(this, (r, m) => Close());
 
-            });
-
-            messenger.Register<Shared.Messages.EntityUpdated<Clan>>(this, (r, m) =>
-            {
-                Close();
-            });
+            messenger.Register<Shared.Messages.EntityUpdated<Clan>>(this, (r, m) => Close());
         }
 
         private async void View_Loaded(object sender, RoutedEventArgs e)

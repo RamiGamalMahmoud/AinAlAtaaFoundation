@@ -14,6 +14,7 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
             Loaded += View_Loaded;
 
             messenger.Register<Shared.Messages.EntityUpdated<BranchRepresentative>>(this, (r, m) => Close());
+            messenger.Register<Shared.Messages.EntityCreated<BranchRepresentative>>(this, (r, m) => Close());
         }
 
         private async void View_Loaded(object sender, RoutedEventArgs e)

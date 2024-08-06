@@ -12,10 +12,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
     {
         public Task Handle(Shared.Commands.Generic.ShowCreate<Family> request, CancellationToken cancellationToken)
         {
+            IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
             EditoViewModelBase viewModel = new ViewModelCreate(
                 _serviceProvider.GetRequiredService<IMediator>(),
                 _serviceProvider.GetRequiredService<IMessenger>());
-            Editor.View view = new Editor.View(viewModel);
+            Editor.View view = new Editor.View(viewModel, messenger);
             view.ShowDialog();
             return Task.CompletedTask;
         }
@@ -37,11 +38,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
     {
         public Task Handle(Shared.Commands.Generic.ShowUpdate<Family> request, CancellationToken cancellationToken)
         {
+            IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
             EditoViewModelBase viewModel = new ViewModelUpdate(
                 _serviceProvider.GetRequiredService<IMediator>(),
                 _serviceProvider.GetRequiredService<IMessenger>(),
                 request.Model);
-            Editor.View view = new Editor.View(viewModel);
+            Editor.View view = new Editor.View(viewModel, messenger);
             view.ShowDialog();
             return Task.CompletedTask;
         }

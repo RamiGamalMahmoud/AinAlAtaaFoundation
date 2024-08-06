@@ -13,8 +13,8 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
             _viewModel = viewModel;
             Loaded += View_Loaded;
 
-            messenger.Register<Shared.Messages.EntityCreated<Branch>>(this, (r, m) => Close());
-            messenger.Register<Shared.Messages.EntityUpdated<Branch>>(this, (r, m) => Close());
+            messenger.Register<Shared.Messages.EntityCreated<DistrictRepresentative>>(this, (r, m) => Close());
+            messenger.Register<Shared.Messages.EntityUpdated<DistrictRepresentative>>(this, (r, m) => Close());
         }
 
         private async void View_Loaded(object sender, RoutedEventArgs e)
