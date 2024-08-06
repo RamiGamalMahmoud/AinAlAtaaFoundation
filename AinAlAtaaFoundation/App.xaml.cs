@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Notification.Wpf;
 using System.Threading.Tasks;
 using System.Windows;
+using Velopack;
 
 namespace AinAlAtaaFoundation
 {
@@ -22,6 +23,7 @@ namespace AinAlAtaaFoundation
     {
         public App()
         {
+            VelopackApp.Build().Run();
             ShutdownMode = ShutdownMode.OnMainWindowClose;
 
             _host = Host
