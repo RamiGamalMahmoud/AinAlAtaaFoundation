@@ -38,7 +38,7 @@ jobs:
       run: echo "version=$(grep -oE '<Version>[^<]+' MyApplication/MyApplication.csproj | sed 's/<Version>//')" >> $GITHUB_OUTPUT
 
     - name: Publish Application
-      run: dotnet publish MyProject/MyProject.csproj -c Release -o publish -r win-x64 --self-contained true
+      run: dotnet publish AinAlAtaaFoundation/AinAlAtaaFoundation.csproj -c Release -o publish -r win-x64 --self-contained true
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
