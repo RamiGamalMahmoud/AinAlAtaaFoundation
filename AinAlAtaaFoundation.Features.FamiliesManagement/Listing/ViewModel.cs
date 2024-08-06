@@ -29,7 +29,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [RelayCommand]
         private void ShowPrint(Family family)
         {
-            _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), "Phones", family.Phones));
+            Dictionary<string, object> dataSources = new Dictionary<string, object>
+            {
+                { "Phones", family.Phones },
+                { "Members", family.FamilyMembers }
+            };
+            _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
         }
 
         [RelayCommand]

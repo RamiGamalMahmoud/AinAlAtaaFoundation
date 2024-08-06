@@ -20,7 +20,7 @@ namespace AinAlAtaaFoundation.Services.Printing
             reportViewer.RefreshReport();
         }
 
-        public ViewPrint(string reportPath, List<ReportParameter> reportParameters, string dataSourceName, object dataSource)
+        public ViewPrint(string reportPath, List<ReportParameter> reportParameters, Dictionary<string, object> dataSources)
         {
             InitializeComponent();
 
@@ -28,9 +28,12 @@ namespace AinAlAtaaFoundation.Services.Printing
             reportViewer.SetParameters(reportParameters);
             reportViewer.DataSources.Clear();
 
-            if(!string.IsNullOrEmpty(dataSourceName) && dataSource is not null)
+            if(dataSources is not null)
             {
-                reportViewer.DataSources.Add(new ReportDataSource(dataSourceName, dataSource));
+                foreach(KeyValuePair<string, object> keyValuePair in dataSources)
+                {
+                    reportViewer.DataSources.Add(new ReportDataSource(keyValuePair.Key, keyValuePair.Value));
+                }
             }
 
             reportViewer.RefreshReport();

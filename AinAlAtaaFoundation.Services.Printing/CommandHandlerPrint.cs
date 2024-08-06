@@ -30,7 +30,7 @@ namespace AinAlAtaaFoundation.Services.Printing
                 }
 
             }
-                Printing.ViewPrint viewPrint = new ViewPrint(reportPath, reportParameters, request.DataSourceName, request.DataSource);
+                Printing.ViewPrint viewPrint = new ViewPrint(reportPath, reportParameters, request.DataSources);
                 viewPrint.Show();
             return Task.CompletedTask;
         }
