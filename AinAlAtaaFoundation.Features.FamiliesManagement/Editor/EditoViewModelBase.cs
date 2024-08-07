@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -62,7 +63,21 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
                 await OnRationCardChanged(DataModel.RationCard);
             }
 
+            else if(e.PropertyName == nameof(DataModel.RationCardOwnerName))
+            {
+                await OnRationCardOwnerChanged(DataModel.RationCardOwnerName);
+            }
+
             HasChangesObject.SetHaschanges();
+        }
+
+        private async Task OnRationCardOwnerChanged(string rationCardOwnerName)
+        {
+            if(string.IsNullOrEmpty(rationCardOwnerName))
+            {
+                FoundFamiliesForRationCardOwner = [];
+            }
+            else FoundFamiliesForRationCardOwner = await _mediator.Send(new Shared.Commands.Families.GetByRationCardOwner(rationCardOwnerName));
         }
 
         private async Task LoadBranches()
@@ -174,6 +189,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
         [ObservableProperty]
         private IEnumerable<Family> _foundFamiliesForRationCard;
+
+        [ObservableProperty]
+        private IEnumerable<Family> _foundFamiliesForRationCardOwner;
 
         [ObservableProperty]
         IEnumerable<Gender> _genders;

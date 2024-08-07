@@ -97,7 +97,7 @@
 
                                 <TextBlock Text="اسم صاحب البطاقة" />
                                 <TextBox Text="{Binding DataModel.RationCardOwnerName, UpdateSourceTrigger=PropertyChanged}" />
-                                <ListBox ItemsSource="{Binding FoundFamiliesForRationCard}">
+                                <ListBox ItemsSource="{Binding FoundFamiliesForRationCardOwner  }">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Cursor="Hand">

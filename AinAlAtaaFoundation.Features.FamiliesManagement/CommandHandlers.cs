@@ -25,4 +25,13 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         }
         private readonly Repository _repository = repository;
     }
+
+    internal class CommandHandlerGetByRationCardOwner(Repository repository) : IRequestHandler<Shared.Commands.Families.GetByRationCardOwner, IEnumerable<Family>>
+    {
+        public async Task<IEnumerable<Family>> Handle(Families.GetByRationCardOwner request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByRationCardOwner(request.RationCardOwnerName);
+        }
+        private readonly Repository _repository = repository;
+    }
 }
