@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Shared
 {
-    public abstract partial class ViewModelBase<TDataModel>(IMediator mediator, IMessenger messenger) : ObservableObject
+    public abstract partial class ViewModelBase<TDataModel>(IMediator mediator, IMessenger messenger) : ObservableValidator
     {
         public string Title { get; protected set; }
         public TDataModel DataModel { get; protected set; }

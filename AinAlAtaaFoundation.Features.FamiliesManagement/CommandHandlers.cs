@@ -1,6 +1,7 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Commands;
 using MediatR;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +14,15 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             return await _repository.Get(request.Id);
         }
 
+        private readonly Repository _repository = repository;
+    }
+
+    internal class CommandHandlerGetByRationCard(Repository repository) : IRequestHandler<Shared.Commands.Families.GetByRationCard, IEnumerable<Family>>
+    {
+        public async Task<IEnumerable<Family>> Handle(Families.GetByRationCard request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByRationCard(request.RationCard);
+        }
         private readonly Repository _repository = repository;
     }
 }

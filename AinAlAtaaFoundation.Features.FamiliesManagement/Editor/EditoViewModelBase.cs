@@ -56,6 +56,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
             {
 
             }
+
+            else if (e.PropertyName == nameof(DataModel.RationCard))
+            {
+                await OnRationCardChanged(DataModel.RationCard);
+            }
+
             HasChangesObject.SetHaschanges();
         }
 
@@ -154,7 +160,20 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
         private bool CanAddPhoneNumber() => !string.IsNullOrEmpty(PhoneNumber);
 
-        public override bool CanSave() => DataModel.IsValid;
+        public override bool CanSave() => !HasErrors && DataModel.IsValid;
+
+        private async Task OnRationCardChanged(string rationCard)
+        {
+            if(string.IsNullOrEmpty(rationCard))
+            {
+                FoundFamiliesForRationCard = [];
+            }
+
+            else FoundFamiliesForRationCard = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(rationCard));
+        }
+
+        [ObservableProperty]
+        private IEnumerable<Family> _foundFamiliesForRationCard;
 
         [ObservableProperty]
         IEnumerable<Gender> _genders;

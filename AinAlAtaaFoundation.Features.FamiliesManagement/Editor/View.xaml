@@ -71,6 +71,22 @@
                                 <TextBlock Foreground="{StaticResource Blue}" Text="رقم البطاقة التموينية" />
                                 <TextBox Text="{Binding DataModel.RationCard, UpdateSourceTrigger=PropertyChanged}" />
 
+                                <ListBox ItemsSource="{Binding FoundFamiliesForRationCard}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Cursor="Hand">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} - {1} - {2}">
+                                                        <Binding Path="Clan.Name" />
+                                                        <Binding Path="Name" />
+                                                        <Binding Path="RationCard" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
                             </StackPanel>
 
                             <StackPanel
@@ -81,6 +97,21 @@
 
                                 <TextBlock Text="اسم صاحب البطاقة" />
                                 <TextBox Text="{Binding DataModel.RationCardOwnerName, UpdateSourceTrigger=PropertyChanged}" />
+                                <ListBox ItemsSource="{Binding FoundFamiliesForRationCard}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Cursor="Hand">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} / {1} / {2}">
+                                                        <Binding Path="Clan.Name" />
+                                                        <Binding Path="Name" />
+                                                        <Binding Path="RationCard" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
 
                             </StackPanel>
 

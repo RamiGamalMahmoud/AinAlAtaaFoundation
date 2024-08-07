@@ -167,6 +167,36 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             }
         }
 
+        public async Task<IEnumerable<Family>> GetByRationCard(string RationCard)
+        {
+            IEnumerable<Family> families;
+            families = _entities.Where(x => x.RationCard == RationCard).ToList();
+
+            if (families is null || !families.Any())
+            {
+                using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+                {
+                    families = await dbContext.Families
+                        .Include(x => x.Address)
+                        .Include(x => x.Applicant)
+                            .ThenInclude(x => x.Gender)
+                        .Include(x => x.Branch)
+                        .Include(x => x.BranchRepresentative)
+                        .Include(x => x.Clan)
+                        .Include(x => x.DistrictRepresentative)
+                            .ThenInclude(x => x.District)
+                        .Include(x => x.FamilyMembers)
+                        .Include(x => x.FamilyType)
+                        .Include(x => x.OrphanType)
+                        .Include(x => x.Phones)
+                        .Include(x => x.SocialStatus)
+                        .Where(x => x.RationCard.Contains(RationCard))
+                        .ToListAsync();
+                }
+            }
+            return families;
+        }
+
         /// <summary>
         /// Get Family by its id, search firts in the stored families else search in the database
         /// </summary>
