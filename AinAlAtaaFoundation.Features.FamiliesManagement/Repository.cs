@@ -170,7 +170,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         public async Task<IEnumerable<Family>> GetByRationCard(string RationCard)
         {
             IEnumerable<Family> families;
-            families = _entities.Where(x => x.RationCard.Contains(RationCard)).ToList();
+            families = _entities
+                .Where(x => x.RationCard == RationCard)
+                .ToList();
 
             if (families is null || !families.Any())
             {
@@ -190,7 +192,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         .Include(x => x.OrphanType)
                         .Include(x => x.Phones)
                         .Include(x => x.SocialStatus)
-                        .Where(x => x.RationCard.Contains(RationCard))
+                        .Where(x => x.RationCard ==RationCard)
                         .ToListAsync();
                 }
             }

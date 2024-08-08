@@ -87,6 +87,11 @@
                                     </ListBox.ItemTemplate>
                                 </ListBox>
 
+                                <TextBlock
+                                    Foreground="Red"
+                                    Text="{Binding HasMessageObject.Message}"
+                                    Visibility="{Binding HasMessageObject.HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
                             </StackPanel>
 
                             <StackPanel
@@ -97,7 +102,7 @@
 
                                 <TextBlock Text="اسم صاحب البطاقة" />
                                 <TextBox Text="{Binding DataModel.RationCardOwnerName, UpdateSourceTrigger=PropertyChanged}" />
-                                <ListBox ItemsSource="{Binding FoundFamiliesForRationCardOwner  }">
+                                <ListBox ItemsSource="{Binding FoundFamiliesForRationCardOwner}">
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Cursor="Hand">

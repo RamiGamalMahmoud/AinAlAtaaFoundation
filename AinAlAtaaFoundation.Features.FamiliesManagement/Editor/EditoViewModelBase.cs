@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -63,7 +64,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
                 await OnRationCardChanged(DataModel.RationCard);
             }
 
-            else if(e.PropertyName == nameof(DataModel.RationCardOwnerName))
+            else if (e.PropertyName == nameof(DataModel.RationCardOwnerName))
             {
                 await OnRationCardOwnerChanged(DataModel.RationCardOwnerName);
             }
@@ -73,7 +74,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
         private async Task OnRationCardOwnerChanged(string rationCardOwnerName)
         {
-            if(string.IsNullOrEmpty(rationCardOwnerName))
+            if (string.IsNullOrEmpty(rationCardOwnerName))
             {
                 FoundFamiliesForRationCardOwner = [];
             }
@@ -175,17 +176,31 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
         private bool CanAddPhoneNumber() => !string.IsNullOrEmpty(PhoneNumber);
 
-        public override bool CanSave() => !HasErrors && DataModel.IsValid;
+        public override bool CanSave() => !HasMessageObject.HasMessage && !HasErrors && DataModel.IsValid;
 
         private async Task OnRationCardChanged(string rationCard)
         {
-            if(string.IsNullOrEmpty(rationCard))
+            if (string.IsNullOrEmpty(rationCard))
             {
                 FoundFamiliesForRationCard = [];
+                HasMessageObject.Clear();
             }
 
-            else FoundFamiliesForRationCard = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(rationCard));
+            else
+            {
+                FoundFamiliesForRationCard = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(rationCard));
+                if (FoundFamiliesForRationCard is null || !FoundFamiliesForRationCard.Any())
+                {
+                    HasMessageObject.Clear();
+                }
+                else
+                {
+                    HasMessageObject.Message = "رقم بطاقة تموينية مكرر";
+                }
+            }
         }
+
+        public HasMessageObject HasMessageObject { get; } = new HasMessageObject();
 
         [ObservableProperty]
         private IEnumerable<Family> _foundFamiliesForRationCard;
