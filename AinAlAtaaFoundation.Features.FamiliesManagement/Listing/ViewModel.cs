@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
@@ -11,7 +12,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
     {
         public async Task LoadDataAsync()
         {
-            Families = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>());
+            _allFamilies = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>());
+            Families = _allFamilies;
+
+            Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
+            FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
+            SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
         }
 
         [RelayCommand]
@@ -75,12 +81,91 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             return parameters;
         }
 
+        [RelayCommand]
+        private void ViewAll()
+        {
+            Clan = null;
+            Branch = null;
+            BranchRepresentative = null;
+            FamilyType = null;
+            SocialStatus = null;
+            Families = _allFamilies;
+        }
+
+        [RelayCommand]
+        private void Filter()
+        {
+            IsVewAll = false;
+            Families = _allFamilies
+                .Where(x => Clan is null || x.Clan is null || x.Clan.Id == Clan.Id)
+                .Where(x => Branch is null || x.Branch is not null && x.Branch.Id == Branch.Id)
+                .Where(x => BranchRepresentative is null || x.BranchRepresentative is null || x.BranchRepresentative.Id == BranchRepresentative.Id)
+                .Where(x => SocialStatus is null || x.SocialStatus is null || x.SocialStatus.Id == SocialStatus.Id)
+                .Where(x => FamilyType is null || x.FamilyType is null ||
+                x.FamilyType.Id == FamilyType.Id);
+        }
+
+        [ObservableProperty]
+        private bool _isVewAll = true;
+
         public IEnumerable<Family> Families
         {
             get => _families;
             private set => SetProperty(ref _families, value);
         }
         private IEnumerable<Family> _families;
+        private IEnumerable<Family> _allFamilies;
+
+        [ObservableProperty]
+        private IEnumerable<Clan> _clans;
+
+        [ObservableProperty]
+        private IEnumerable<Branch> _branches;
+
+        [ObservableProperty]
+        private IEnumerable<BranchRepresentative> _branchRepresentatives;
+
+        [ObservableProperty]
+        private IEnumerable<FamilyType> _familyTypes;
+
+        [ObservableProperty]
+        private IEnumerable<SocialStatus> _socialStatuses;
+
+        [ObservableProperty]
+        private Clan _clan;
+        async partial void OnClanChanged(Clan oldValue, Clan newValue)
+        {
+            Branches = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Branch>()))
+                .Where(x => newValue is not null && x.Clan.Id == newValue.Id);
+
+            BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>()))
+                .Where(x => newValue is not null && x.Clan.Id == newValue.Id);
+        }
+
+        [ObservableProperty]
+        private Branch _branch;
+        async partial void OnBranchChanged(Branch oldValue, Branch newValue)
+        {
+            if (newValue is null)
+            {
+                BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>()))
+                    .Where(x => x.Clan.Id == Clan.Id);
+            }
+            else
+            {
+                BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>()))
+                    .Where(x => x.Branch is not null && x.Branch.Id == newValue.Id);
+            }
+        }
+
+        [ObservableProperty]
+        private BranchRepresentative _branchRepresentative;
+
+        [ObservableProperty]
+        private FamilyType _familyType;
+
+        [ObservableProperty]
+        private SocialStatus _socialStatus;
 
         private readonly IMediator _mediator = mediator;
     }
