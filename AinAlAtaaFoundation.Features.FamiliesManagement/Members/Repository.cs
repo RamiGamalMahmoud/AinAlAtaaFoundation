@@ -46,6 +46,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                         .Include(x => x.Family)
                             .ThenInclude(x => x.Clan)
                         .Include(x => x.Family)
+                            .ThenInclude(x => x.Branch)
+                        .Include(x => x.Family)
                             .ThenInclude(x => x.OrphanType)
                         .Include(x => x.Family)
                             .ThenInclude(x => x.SocialStatus)

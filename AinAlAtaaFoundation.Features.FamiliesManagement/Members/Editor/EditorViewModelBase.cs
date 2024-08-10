@@ -28,7 +28,10 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
         async partial void OnClanChanged(Clan oldValue, Clan newValue)
         {
             Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
-                .Where(x => x.Clan.Id == newValue.Id);
+                .Where(x => x.Clan?.Id == newValue?.Id);
+
+            Branches = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Branch>()))
+                .Where(x => x.Clan?.Id == newValue?.Id);
 
             //IEnumerable<FamilyMember> members = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
             //if(DataModel.Model is null)
@@ -75,6 +78,24 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
 
         [ObservableProperty]
         private IEnumerable<Clan> _clans;
+
+        async partial void OnBranchChanged(Branch oldValue, Branch newValue)
+        {
+            Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
+                .Where(x =>
+                {
+                    if(newValue is null)
+                    {
+                        return x.Clan.Id == Clan?.Id;
+                    }
+                    return x.Branch?.Id == newValue?.Id;
+                });
+        }
+
+        [ObservableProperty]
+        private IEnumerable<Branch> _branches;
+        [ObservableProperty]
+        private Branch _branch;
 
         public override bool CanSave() => !DataModel.HasErrors;
     }

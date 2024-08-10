@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Members"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance Type=local:ViewModel}"
@@ -48,8 +49,9 @@
                     Margin="0,0,10,0"
                     VerticalAlignment="Center"
                     Text="العشيرة" />
-                <ComboBox
+                <hc:ComboBox
                     Width="200"
+                    hc:InfoElement.ShowClearButton="True"
                     DisplayMemberPath="Name"
                     ItemsSource="{Binding Clans}"
                     SelectedItem="{Binding SelectedClan, UpdateSourceTrigger=PropertyChanged}"
@@ -59,10 +61,11 @@
                 <TextBlock
                     Margin="10,0,10,0"
                     VerticalAlignment="Center"
-                    Text="العائلة" />
-                <ComboBox
+                    Text="رقم البطاقة" />
+                <hc:ComboBox
                     Width="200"
-                    DisplayMemberPath="Name"
+                    hc:InfoElement.ShowClearButton="True"
+                    DisplayMemberPath="RationCard"
                     ItemsSource="{Binding Families}"
                     SelectedItem="{Binding SelectedFamily, UpdateSourceTrigger=PropertyChanged}"
                     SelectedValue="{Binding SelectedFamily.Id}"
@@ -100,8 +103,8 @@
 
                 <DataGridTextColumn
                     Width="120"
-                    Binding="{Binding Family.Name}"
-                    Header="العائلة" />
+                    Binding="{Binding Family.RationCard}"
+                    Header="رقم البطاقة" />
 
                 <DataGridTextColumn
                     Width="60"

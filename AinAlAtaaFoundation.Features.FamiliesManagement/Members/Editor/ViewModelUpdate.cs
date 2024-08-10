@@ -11,6 +11,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
         {
             Title = "تعديل";
             Clan = familyMember.Family.Clan;
+            Branch = familyMember.Family.Branch;
         }
 
         public override bool CanSave() => base.CanSave() && HasChangesObject.HasChanges;

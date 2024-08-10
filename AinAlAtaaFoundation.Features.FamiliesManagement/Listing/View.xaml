@@ -134,12 +134,11 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
-                <DataGridTextColumn Binding="{Binding Name}" Header="اسم العائلة" />
                 <DataGridTextColumn Binding="{Binding FamilyType.Name}" Header="(عام / خاص)" />
+                <DataGridTextColumn Binding="{Binding RationCardOwnerName}" Header="اسم صاحب البطاقة التموينية" />
                 <DataGridTextColumn Binding="{Binding Clan.Name}" Header="العشيرة" />
                 <DataGridTextColumn Binding="{Binding Applicant.Name}" Header="الاسم" />
                 <DataGridTextColumn Binding="{Binding RationCard}" Header="رقم البطاقة التموينية" />
-                <DataGridTextColumn Binding="{Binding RationCardOwnerName}" Header="اسم صاحب البطاقة التموينية" />
                 <DataGridTextColumn Binding="{Binding BranchRepresentative.Name}" Header="ممثل الفخذ" />
                 <DataGridTextColumn Binding="{Binding Address.District.Name}" Header="الحي" />
                 <DataGridTextColumn Binding="{Binding Address.Street}" Header="الشارع" />

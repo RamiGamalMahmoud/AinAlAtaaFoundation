@@ -470,23 +470,12 @@
 
                             <StackPanel
                                 Grid.Column="0"
-                                Grid.ColumnSpan="2"
+                                Grid.ColumnSpan="4"
                                 MinWidth="150"
                                 Margin="5">
 
-                                <TextBlock Foreground="{StaticResource Blue}" Text="الاسم" />
+                                <TextBlock Foreground="{StaticResource Blue}" Text="اسم مقدم الطلب" />
                                 <TextBox Text="{Binding DataModel.Name, UpdateSourceTrigger=PropertyChanged}" />
-
-                            </StackPanel>
-
-                            <StackPanel
-                                Grid.Column="2"
-                                Grid.ColumnSpan="2"
-                                MinWidth="150"
-                                Margin="5">
-
-                                <TextBlock Foreground="{StaticResource Blue}" Text="اللقب" />
-                                <TextBox Text="{Binding DataModel.Surname, UpdateSourceTrigger=PropertyChanged}" />
 
                             </StackPanel>
 
@@ -496,8 +485,9 @@
                                 MinWidth="100"
                                 Margin="5">
 
-                                <TextBlock Foreground="{StaticResource Blue}" Text="تاريخ الميلاد" />
-                                <DatePicker DisplayDate="1900-1-1" SelectedDate="{Binding DataModel.BirthDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <TextBlock Foreground="{StaticResource Blue}" Text="سنة الميلاد" />
+                                <!--<DatePicker DisplayDate="1900-1-1" SelectedDate="{Binding DataModel.BirthDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                                <TextBox Text="{Binding DataModel.BirthDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <TextBlock Text="{Binding DataModel.Age}" />
                             </StackPanel>
 
@@ -565,7 +555,7 @@
 
                             <TextBlock
                                 Grid.Column="0"
-                                HorizontalAlignment="Center"
+                                HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
                                 Foreground="{StaticResource Blue}"
                                 Text="إضافة هاتف" />

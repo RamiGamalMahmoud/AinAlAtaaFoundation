@@ -53,7 +53,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
                 SocialStatus = model.SocialStatus;
                 Street = model.Address.Street;
-                Surname = model.Name;
             }
             ValidateAllProperties();
         }
@@ -77,8 +76,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
             model.FamilyType = FamilyType;
             model.Applicant.Name = Name;
-            model.Name = Surname;
             model.Applicant.BirthDate = BirthDate;
+            model.Applicant = Applicant;
 
             model.Address.Street = Street;
             model.Address.FeaturedPoint = FeaturedPoint;
@@ -106,12 +105,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [NotifyDataErrorInfo]
         [NotifyPropertyChangedFor(nameof(IsValid))]
         private string _name;
-
-        [ObservableProperty]
-        [Required(ErrorMessage = "حقل مطلوب")]
-        [NotifyDataErrorInfo]
-        [NotifyPropertyChangedFor(nameof(IsValid))]
-        private string _surname;
 
         [ObservableProperty]
         [Required(ErrorMessage = "حقل مطلوب")]

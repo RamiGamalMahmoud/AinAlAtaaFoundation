@@ -49,7 +49,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
             Dictionary<string, List<string>> parameters = new Dictionary<string, List<string>>();
             parameters.Add("Barcode", [barcodeImageString]);
-            parameters.Add("FamilyName", [family.Name]);
+            parameters.Add("RationCard", [family.RationCard]);
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("FamilyBarcode.rdlc", parameters));
         }
 
@@ -76,7 +76,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             parameters.Add("RationCardOwnerName", [family.RationCardOwnerName]);
             parameters.Add("Notes", [family.Notes]);
             parameters.Add("ApplicantName", [family.Applicant.Name]);
-            parameters.Add("ApplicantSurname", [family.Name]);
 
             return parameters;
         }

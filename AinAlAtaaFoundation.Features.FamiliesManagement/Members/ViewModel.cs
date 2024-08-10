@@ -1,4 +1,5 @@
 ﻿using AinAlAtaaFoundation.Models;
+using BoldReports.RDL.DOM;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -30,22 +31,44 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
 
         partial void OnSearchValueChanged(string oldValue, string newValue)
         {
-            FamilyMembers = _allFamilyMembers.Where(x => x.Name.Contains(newValue) || x.Family.Clan.Name.Contains(newValue));
+            SelectedClan = null;
+            FamilyMembers = _allFamilyMembers.Where(
+                x => x.Name.Contains(newValue) || 
+                x.Family.Clan.Name.Contains(newValue) || 
+                x.Family.RationCard.Contains(newValue));
         }
 
         async partial void OnSelectedClanChanged(Clan oldValue, Clan newValue)
         {
-            Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
-                .Where(x => x.Clan.Id == newValue.Id)
-                .OrderBy(x => x.Name);
-            FamilyMembers = _allFamilyMembers.Where(x => x.Family.Clan.Id == SelectedClan.Id);
+            await FilterFamilies();
+            FilterMembers();
         }
 
         partial void OnSelectedFamilyChanged(Family oldValue, Family newValue)
         {
             if (newValue is not null)
                 FamilyMembers = _allFamilyMembers.Where(x => x.Family.Id == newValue.Id);
-            //else FamilyMembers = _allFamilyMembers.Where(x => x.Family.Clan.Id == SelectedClan.Id);
+        }
+
+        private async Task FilterFamilies()
+        {
+            if (SelectedClan is null)
+            {
+                Families = [];
+                return;
+            }
+            Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
+                .Where(x => SelectedClan is not null && x.Clan.Id == SelectedClan.Id);
+        }
+
+        private void FilterMembers()
+        {
+            if (SelectedClan is null)
+            {
+                FamilyMembers = _allFamilyMembers;
+                return;
+            }
+            FamilyMembers = _allFamilyMembers.Where(x => SelectedClan is not null && x.Family.Clan.Id == SelectedClan.Id);
         }
 
         [RelayCommand]

@@ -47,7 +47,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             {
                 { "Date", [disbursement.Date.ToString("yyyy-MM-dd")] },
                 { "Time", [disbursement.Date.ToString("hh:mm:ss - tt")] },
-                { "FamilyName", [disbursement.Family.Name] },
+                { "RationCard", [disbursement.Family.RationCard] },
                 { "Name", [disbursement.Family.Applicant.Name] },
                 { "TicketNumber", [disbursement.TicketNumber.ToString()] }
             };

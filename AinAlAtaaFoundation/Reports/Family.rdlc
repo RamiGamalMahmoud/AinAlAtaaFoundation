@@ -539,43 +539,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>الاسم</Value>
-                <Style>
-                  <FontSize>4.58801mm</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <Color>#000000</Color>
-                  <Language>ar</Language>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-      </Textbox>
-      <Textbox Name="TextBox15">
-        <Left>60.7136mm</Left>
-        <Top>98.88801mm</Top>
-        <Height>10mm</Height>
-        <Width>35mm</Width>
-        <Style>
-          <VerticalAlign>Middle</VerticalAlign>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>اللقب</Value>
+                <Value>الاسم مقدم الطلب</Value>
                 <Style>
                   <FontSize>4.58801mm</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -1144,43 +1108,6 @@
           </Paragraph>
         </Paragraphs>
       </Textbox>
-      <Textbox Name="ApplicantSurname1">
-        <Left>4.23333mm</Left>
-        <Top>98.88801mm</Top>
-        <Height>10mm</Height>
-        <Width>60mm</Width>
-        <Style>
-          <BackgroundColor>#f2f2f2</BackgroundColor>
-          <VerticalAlign>Middle</VerticalAlign>
-          <PaddingLeft>2mm</PaddingLeft>
-          <PaddingRight>2mm</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!ApplicantSurname.Value</Value>
-                <Style>
-                  <FontSize>3.52777mm</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <Color>#000000</Color>
-                  <Language>ar</Language>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-      </Textbox>
       <Tablix Name="Tablix2">
         <Left>119.5916mm</Left>
         <Top>128.79mm</Top>
@@ -1205,7 +1132,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>83.00887mm</Width>
+              <Width>83.00475mm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1218,7 +1145,7 @@
                       <Left>0in</Left>
                       <Top>0in</Top>
                       <Height>8.46667mm</Height>
-                      <Width>83.00877mm</Width>
+                      <Width>83.00481mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1265,7 +1192,7 @@
                       <Left>0in</Left>
                       <Top>0in</Top>
                       <Height>11.1125mm</Height>
-                      <Width>83.00877mm</Width>
+                      <Width>83.00481mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -1418,13 +1345,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>64.19865mm</Width>
+              <Width>64.19453mm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>64.19865mm</Width>
+              <Width>64.19453mm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>64.21519mm</Width>
+              <Width>64.21933mm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1437,7 +1364,7 @@
                       <Left>0in</Left>
                       <Top>0in</Top>
                       <Height>8.9917mm</Height>
-                      <Width>64.19875mm</Width>
+                      <Width>64.19453mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
@@ -1479,7 +1406,7 @@
                       <Left>0in</Left>
                       <Top>0in</Top>
                       <Height>8.9917mm</Height>
-                      <Width>64.19875mm</Width>
+                      <Width>64.19453mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
@@ -1521,7 +1448,7 @@
                       <Left>0in</Left>
                       <Top>0in</Top>
                       <Height>8.9917mm</Height>
-                      <Width>64.21516mm</Width>
+                      <Width>64.21939mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
@@ -1560,15 +1487,15 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>9.78958mm</Height>
+              <Height>9.78545mm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="TextBox27">
                       <Left>0in</Left>
                       <Top>0in</Top>
-                      <Height>9.78958mm</Height>
-                      <Width>64.19875mm</Width>
+                      <Height>9.78545mm</Height>
+                      <Width>64.19453mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
@@ -1609,8 +1536,8 @@
                     <Textbox Name="TextBox28">
                       <Left>0in</Left>
                       <Top>0in</Top>
-                      <Height>9.78958mm</Height>
-                      <Width>64.19875mm</Width>
+                      <Height>9.78545mm</Height>
+                      <Width>64.19453mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
@@ -1651,8 +1578,8 @@
                     <Textbox Name="TextBox29">
                       <Left>0in</Left>
                       <Top>0in</Top>
-                      <Height>9.78958mm</Height>
-                      <Width>64.21516mm</Width>
+                      <Height>9.78545mm</Height>
+                      <Width>64.21939mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
@@ -1838,10 +1765,6 @@
     <ReportParameter Name="ApplicantName">
       <DataType>String</DataType>
       <Prompt>ApplicantName</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="ApplicantSurname">
-      <DataType>String</DataType>
-      <Prompt>ApplicantSurname</Prompt>
     </ReportParameter>
   </ReportParameters>
   <Width>209.9999mm</Width>

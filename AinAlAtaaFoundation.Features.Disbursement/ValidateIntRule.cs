@@ -11,7 +11,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             {
                 return System.Windows.Controls.ValidationResult.ValidResult;
             }
-            return new System.Windows.Controls.ValidationResult(false, "غير مسموح بإدخال حروف");
+            return new System.Windows.Controls.ValidationResult(false, "إدخال غير صالح !");
         }
     }
 }

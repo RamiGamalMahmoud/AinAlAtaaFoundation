@@ -45,7 +45,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!FamilyName.Value</Value>
+                <Value>=Parameters!RationCard.Value</Value>
                 <Style>
                   <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -80,7 +80,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>اسم العائلة</Value>
+                <Value>رقم البطاقة</Value>
                 <Style>
                   <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -98,7 +98,7 @@
         <Left>23.15517mm</Left>
         <Top>1.05006mm</Top>
         <Value>logo_100</Value>
-        <Height>32.8041mm</Height>
+        <Height>32.80013mm</Height>
         <Width>30.94804mm</Width>
         <Visibility />
         <Style>
@@ -117,9 +117,9 @@
       <DataType>String</DataType>
       <Prompt>Barcode</Prompt>
     </ReportParameter>
-    <ReportParameter Name="FamilyName">
+    <ReportParameter Name="RationCard">
       <DataType>String</DataType>
-      <Prompt>FamilyName</Prompt>
+      <Prompt>RationCard</Prompt>
     </ReportParameter>
   </ReportParameters>
   <Width>77.25832mm</Width>

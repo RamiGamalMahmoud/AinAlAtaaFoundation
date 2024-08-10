@@ -114,7 +114,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!FamilyName.Value</Value>
+                <Value>=Parameters!RationCard.Value</Value>
                 <Style>
                   <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -215,9 +215,9 @@
     <Height>88.37082mm</Height>
   </Body>
   <ReportParameters>
-    <ReportParameter Name="FamilyName">
+    <ReportParameter Name="RationCard">
       <DataType>String</DataType>
-      <Prompt>FamilyName</Prompt>
+      <Prompt>RationCard</Prompt>
     </ReportParameter>
     <ReportParameter Name="Name">
       <DataType>String</DataType>
