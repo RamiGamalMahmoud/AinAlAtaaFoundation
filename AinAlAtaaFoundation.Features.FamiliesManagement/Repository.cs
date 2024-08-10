@@ -23,7 +23,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     FamilyMember applicant = new FamilyMember
                     {
                         Name = dataModel.Name,
-                        BirthDate = dataModel.BirthDate,
+                        YearOfBirth = dataModel.YearOfBirth,
                         IsApplicant = true,
                         GenderId = dataModel.Gender.Id
                     };
@@ -89,7 +89,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 address.FeaturedPointId = dataModel.FeaturedPoint?.Id;
 
                 applicant.Name = dataModel.Name;
-                applicant.BirthDate = dataModel.BirthDate;
+                applicant.YearOfBirth = dataModel.YearOfBirth;
                 applicant.GenderId = dataModel.Gender.Id;
 
                 Family stored = await dbContext

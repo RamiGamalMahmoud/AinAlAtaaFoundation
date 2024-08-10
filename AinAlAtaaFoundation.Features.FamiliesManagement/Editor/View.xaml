@@ -487,7 +487,7 @@
 
                                 <TextBlock Foreground="{StaticResource Blue}" Text="سنة الميلاد" />
                                 <!--<DatePicker DisplayDate="1900-1-1" SelectedDate="{Binding DataModel.BirthDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
-                                <TextBox Text="{Binding DataModel.BirthDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <TextBox Text="{Binding DataModel.YearOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                 <TextBlock Text="{Binding DataModel.Age}" />
                             </StackPanel>
 

@@ -14,7 +14,7 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .HasColumnType("VARCHAR(50)")
                 .IsRequired();
 
-            builder.Property(x => x.BirthDate)
+            builder.Property(x => x.YearOfBirth)
                 .IsRequired();
 
             builder.Property(x => x.IsDeserves)

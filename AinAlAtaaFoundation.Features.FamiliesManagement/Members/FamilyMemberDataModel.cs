@@ -16,7 +16,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 Name = model.Name;
                 Family = model.Family;
                 Gender = model.Gender;
-                BirthDate = model.BirthDate;
+                YearOfBirth = model.YearOfBirth;
                 Mother = model.Mother;
                 IsOrphan = model.IsOrphan;
                 IsDeserves = model.IsDeserves;
@@ -34,19 +34,19 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         [NotifyPropertyChangedFor(nameof(Age))]
         [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
         [Required(ErrorMessage = "حقل مطلوب")]
-        private DateTime _birthDate = new DateTime(1950, 1, 1);
+        private int _yearOfBirth;
 
         [ObservableProperty]
         private bool _isDeserves = true;
 
-        partial void OnBirthDateChanged(DateTime oldValue, DateTime newValue)
-        {
-            if (newValue > DateTime.Now)
-            {
-                BirthDate = oldValue;
-                OnPropertyChanged(nameof(BirthDate));
-            }
-        }
+        //partial void OnBirthDateChanged(DateTime oldValue, DateTime newValue)
+        //{
+        //    if (newValue > DateTime.Now)
+        //    {
+        //        BirthDate = oldValue;
+        //        OnPropertyChanged(nameof(BirthDate));
+        //    }
+        //}
 
         public bool IsNowOrphan => Family?.SocialStatus.Name == "أيتام" && Age < 18;
 
@@ -57,7 +57,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         }
         private bool _isOrphan = false;
 
-        public int Age => (int.Parse(DateTime.Now.ToString("yyyyMMdd")) - int.Parse(BirthDate.ToString("yyyyMMdd"))) / 10000;
+        public int Age => DateTime.Now.Year - YearOfBirth;
 
         [Required(ErrorMessage = "حقل مطلوب")]
         public Gender Gender
@@ -104,7 +104,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         public void UpdateModel(FamilyMember model = null)
         {
             model.Name = Name;
-            model.BirthDate = BirthDate;
+            model.YearOfBirth = YearOfBirth;
             model.Family = Family;
             model.Gender = Gender;
             model.Mother = Mother;

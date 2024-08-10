@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace AinAlAtaaFoundation.Features.FamiliesManagement
 {
@@ -30,7 +31,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 Model = model;
                 Address = model.Address;
                 Applicant = model.Applicant;
-                BirthDate = model.Applicant.BirthDate;
+                YearOfBirth = model.Applicant.YearOfBirth;
                 Branch = model.Branch;
                 BranchRepresentative = model.BranchRepresentative;
                 Clan = model.Clan;
@@ -76,7 +77,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
             model.FamilyType = FamilyType;
             model.Applicant.Name = Name;
-            model.Applicant.BirthDate = BirthDate;
+            model.Applicant.YearOfBirth = YearOfBirth;
             model.Applicant = Applicant;
 
             model.Address.Street = Street;
@@ -115,7 +116,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Age))]
         [Required(ErrorMessage = "حقل مطلوب")]
-        private DateTime _birthDate = new DateTime(1950, 1, 1);
+        private int _yearOfBirth;
 
         [Required(ErrorMessage = "حقل مطلوب")]
         public District District
@@ -129,7 +130,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         }
         private District _district;
 
-        public int Age => (int.Parse(DateTime.Now.ToString("yyyyMMdd")) - int.Parse(BirthDate.ToString("yyyyMMdd"))) / 10000;
+        public int Age => DateTime.Now.Year - YearOfBirth;
 
         [Required(ErrorMessage = "حقل مطلوب")]
         public Gender Gender

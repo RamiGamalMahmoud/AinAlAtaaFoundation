@@ -13,7 +13,7 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Age))]
         [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
-        private DateTime _birthDate;
+        private int _yearOfBirth;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
@@ -26,7 +26,7 @@ namespace AinAlAtaaFoundation.Models
         private bool _isDeserves = true;
 
         public bool IsNowOrphan => Family.SocialStatus.Name == "أيتام" && Age < 18;
-        public int Age => (int.Parse(DateTime.Now.ToString("yyyyMMdd")) - int.Parse(BirthDate.ToString("yyyyMMdd"))) / 10000;
+        public int Age => DateTime.Now.Year - YearOfBirth;
 
         public int GenderId { get; set; }
         public Gender Gender

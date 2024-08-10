@@ -18,7 +18,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 FamilyMember familyMember = new FamilyMember()
                 {
                     Name = dataModel.Name,
-                    BirthDate = dataModel.BirthDate,
+                    YearOfBirth = dataModel.YearOfBirth,
                     FamilyId = dataModel.Family.Id,
                     GenderId = dataModel.Gender.Id,
                     MotherId = dataModel.Mother?.Id,
@@ -68,7 +68,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                     .FirstOrDefaultAsync();
 
                 familyMember.Name = dataModel.Name;
-                familyMember.BirthDate = dataModel.BirthDate;
+                familyMember.YearOfBirth = dataModel.YearOfBirth;
                 familyMember.FamilyId = dataModel.Family.Id;
                 familyMember.GenderId = dataModel.Gender.Id;
                 familyMember.MotherId = dataModel.Mother?.Id;
