@@ -32,25 +32,21 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
 
             Branches = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Branch>()))
                 .Where(x => x.Clan?.Id == newValue?.Id);
-
-            //IEnumerable<FamilyMember> members = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
-            //if(DataModel.Model is null)
-            //{
-            //    Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Clan.Id == Clan.Id);
-            //}
-            //else Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Clan.Id == Clan.Id && x.Id != DataModel.Model.Id );
         }
 
         async partial void OnFamilyChanged(Family oldValue, Family newValue)
         {
             DataModel.Family = newValue;
 
-            IEnumerable<FamilyMember> members = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>());
-            if (DataModel.Model is null)
-            {
-                Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Id == newValue.Id);
-            }
-            else Mothers = members.Where(x => x.Gender.Id == 2 && x.Family.Id == newValue.Id && x.Id != DataModel.Model.Id);
+            Mothers = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>())
+                .ContinueWith(x => x
+                .Result
+                .Where(x =>
+                    DataModel.Model is not null &&
+                    newValue is not null &&
+                    x.Gender.Id == 2 &&
+                    x.Family.Id == newValue.Id && x.
+                    Id != DataModel.Model.Id));
         }
 
 
@@ -84,7 +80,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
             Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
                 .Where(x =>
                 {
-                    if(newValue is null)
+                    if (newValue is null)
                     {
                         return x.Clan.Id == Clan?.Id;
                     }
