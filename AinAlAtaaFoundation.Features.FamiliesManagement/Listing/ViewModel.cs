@@ -161,6 +161,21 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         private BranchRepresentative _branchRepresentative;
 
         [ObservableProperty]
+        private IEnumerable<District> _districts;
+
+        [ObservableProperty]
+        private District _district;
+        async partial void OnDistrictChanged(District oldValue, District newValue)
+        {
+            DistrictRepresentatives = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<DistrictRepresentative>());
+        }
+
+        [ObservableProperty]
+        private IEnumerable<DistrictRepresentative> _districtRepresentatives;
+        [ObservableProperty]
+        private DistrictRepresentative _districtRepresentative;
+
+        [ObservableProperty]
         private FamilyType _familyType;
 
         [ObservableProperty]

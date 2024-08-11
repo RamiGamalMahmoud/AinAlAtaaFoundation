@@ -64,7 +64,7 @@ namespace AinAlAtaaFoundation
             });
         }
 
-        private static string AppDataFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "AinAlAtaaFoundation");
+        private static string AppDataFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AinAlAtaaFoundation");
         private static string DatabaseFile => Path.Combine(AppDataFolder, "data.db");
 
         private static void CreateDatabaseFile()

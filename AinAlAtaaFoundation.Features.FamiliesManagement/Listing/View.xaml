@@ -112,6 +112,38 @@
                 SelectedValue="{Binding SocialStatus.Id}"
                 SelectedValuePath="Id" />
 
+            <hc:ComboBox
+                Grid.Column="5"
+                Width="120"
+                Margin="10,0"
+                VerticalAlignment="Center"
+                hc:ComboBoxAttach.IsMouseWheelEnabled="true"
+                hc:InfoElement.Placeholder="الحي"
+                hc:InfoElement.ShowClearButton="True"
+                helpes:SelectionChangedBehaviour.Command="{Binding FilterCommand}"
+                Cursor="Hand"
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding SocialStatuses}"
+                SelectedItem="{Binding SocialStatus, UpdateSourceTrigger=PropertyChanged}"
+                SelectedValue="{Binding SocialStatus.Id}"
+                SelectedValuePath="Id" />
+
+            <hc:ComboBox
+                Grid.Column="5"
+                Width="120"
+                Margin="10,0"
+                VerticalAlignment="Center"
+                hc:ComboBoxAttach.IsMouseWheelEnabled="true"
+                hc:InfoElement.Placeholder="المختار"
+                hc:InfoElement.ShowClearButton="True"
+                helpes:SelectionChangedBehaviour.Command="{Binding FilterCommand}"
+                Cursor="Hand"
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding SocialStatuses}"
+                SelectedItem="{Binding SocialStatus, UpdateSourceTrigger=PropertyChanged}"
+                SelectedValue="{Binding SocialStatus.Id}"
+                SelectedValuePath="Id" />
+
 
             <Button
                 Grid.Column="10"
