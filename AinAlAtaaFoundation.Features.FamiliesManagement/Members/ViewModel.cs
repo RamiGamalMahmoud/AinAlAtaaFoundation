@@ -1,5 +1,4 @@
 ﻿using AinAlAtaaFoundation.Models;
-using BoldReports.RDL.DOM;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -16,10 +15,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         {
             _mediator = mediator;
 
-            messenger.Register<Shared.Messages.EntityUpdated<Family>>(this, async (r, m) =>
-            {
-                await LoadDataAsync(true);
-            });
+            messenger.Register<Shared.Messages.EntityUpdated<Family>>(this, async (r, m) => await LoadDataAsync(true));
         }
 
         public async Task LoadDataAsync(bool reload = false)
@@ -33,8 +29,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         {
             SelectedClan = null;
             FamilyMembers = _allFamilyMembers.Where(
-                x => x.Name.Contains(newValue) || 
-                x.Family.Clan.Name.Contains(newValue) || 
+                x => x.Name.Contains(newValue) ||
+                x.Family.Clan.Name.Contains(newValue) ||
                 x.Family.RationCard.Contains(newValue));
         }
 
