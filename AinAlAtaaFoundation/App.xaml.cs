@@ -13,6 +13,8 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Notification.Wpf;
+using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using Velopack;
@@ -31,7 +33,7 @@ namespace AinAlAtaaFoundation
                 .ConfigureServices(s =>
                 {
                     s.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
-                    s.AddSingleton<AppDbContextFactory>(new AppDbContextFactory("Data Source = .\\DB\\data.db"));
+                    s.AddSingleton<AppDbContextFactory>(new AppDbContextFactory($"Data Source = {DatabaseFile}"));
                     s.ConfigureMainWindowFeature();
                     s.ConfigureFamiliesFeature();
                     s.ConfigureServicePrint();
@@ -62,13 +64,22 @@ namespace AinAlAtaaFoundation
             });
         }
 
-        protected override async void OnStartup(StartupEventArgs e)
+        private static string AppDataFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "AinAlAtaaFoundation");
+        private static string DatabaseFile => Path.Combine(AppDataFolder, "data.db");
+
+        private static void CreateDatabaseFile()
         {
+            Directory.CreateDirectory(AppDataFolder);
+            string currentPath = AppDomain.CurrentDomain.BaseDirectory;
+            if (!File.Exists(DatabaseFile))
+            {
+                File.Copy(Path.Combine(currentPath, "DB\\data.db"), DatabaseFile);
+            }
+        }
 
-            Bold.Licensing.BoldLicenseProvider.RegisterLicense("MDAyQDM2MmUzMTJlMzBOd2hxV01OKzROclgwVE9jaFUwbk5NRHppeEUzR0lzTlZXUWxrSld3cnNrPWV5Sk1hV05sYm5ObFZHOXJaVzRpT2lKdlZtZDZVMjVOVWtWT1RWRlBhakZNVVd0eWNYWnhhVWhUT0dwaE9XTTBRbG96VnpFNGQzbFphemROUFNJc0lreHBZMlZ1YzJWUVpYSnBiMlFpT2lJNU9UazVMVEV5TFRNeFZESXpPalU1T2pVNUxqazVOeUlzSWtselJWTlZjMlZ5SWpwMGNuVmxMQ0pKYzFCbGNuQmxkSFZoYkV4cFkyVnVjMlVpT21aaGJITmxmUT09\r\n", true);
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM2Mzc2M0AzMjM2MmUzMDJlMzBjMEkyZXZObXZQQ0FvTXBvOWdTUmQ2Yk1JLzJGZEk4dWhlZmJHUVI1aUUwPQ==;MzM2Mzc2NEAzMjM2MmUzMDJlMzBnS3NqcFRVTXZtbjNLdUdYYUJvZW1KMG1rNlhaS2x6bHlYSWJYU2htVkFBPQ=="); 
-
-            if (!CanConnect())
+        private async Task ConnecteToDatabase()
+        {
+            if (!await CanConnect())
             {
                 _messenger.Send(new Shared.Notifications.FailerNotification("سوف يتم الخروج من البرنامج"));
                 _messenger.Send(new Shared.Notifications.FailerNotification("لا يمكن الاتصال بقاعدة البيانات, تحقق من بيانات الاتصال"));
@@ -76,8 +87,22 @@ namespace AinAlAtaaFoundation
                 Shutdown();
             }
             else _messenger.Send(new Shared.Notifications.SuccessNotification("تم الاتصال بقاعدة البيانات"));
-            
-            _host.Services.GetRequiredService<IAppState>();
+
+
+        }
+
+        private static void RegisterLicences()
+        {
+            Bold.Licensing.BoldLicenseProvider.RegisterLicense("MDAyQDM2MmUzMTJlMzBOd2hxV01OKzROclgwVE9jaFUwbk5NRHppeEUzR0lzTlZXUWxrSld3cnNrPWV5Sk1hV05sYm5ObFZHOXJaVzRpT2lKdlZtZDZVMjVOVWtWT1RWRlBhakZNVVd0eWNYWnhhVWhUT0dwaE9XTTBRbG96VnpFNGQzbFphemROUFNJc0lreHBZMlZ1YzJWUVpYSnBiMlFpT2lJNU9UazVMVEV5TFRNeFZESXpPalU1T2pVNUxqazVOeUlzSWtselJWTlZjMlZ5SWpwMGNuVmxMQ0pKYzFCbGNuQmxkSFZoYkV4cFkyVnVjMlVpT21aaGJITmxmUT09\r\n", true);
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM2Mzc2M0AzMjM2MmUzMDJlMzBjMEkyZXZObXZQQ0FvTXBvOWdTUmQ2Yk1JLzJGZEk4dWhlZmJHUVI1aUUwPQ==;MzM2Mzc2NEAzMjM2MmUzMDJlMzBnS3NqcFRVTXZtbjNLdUdYYUJvZW1KMG1rNlhaS2x6bHlYSWJYU2htVkFBPQ==");
+        }
+
+        protected override async void OnStartup(StartupEventArgs e)
+        {
+            CreateDatabaseFile();
+            await ConnecteToDatabase();
+            RegisterLicences();
+            LoadSettings();
 
             _messenger.Register<Shared.Messages.LoginSuccededMessage>(this, (s, m) =>
             {
@@ -87,26 +112,39 @@ namespace AinAlAtaaFoundation
                 window.Close();
             });
 
-            _messenger.Register<Shared.Commands.Generic.CommandLogout>(this, (r, m) =>
-            {
-                Window window = MainWindow;
-                MainWindow = _host.Services.GetRequiredService<ILoginView>() as Window;
-                MainWindow.Show();
-                window.Close();
 
-            });
+
+            _messenger.Register(this, (MessageHandler<object, Shared.Commands.Generic.CommandLogout>)((r, m) => ShowLoing()));
 
             await _host.StartAsync();
-            MainWindow = _host.Services.GetRequiredService<ILoginView>() as Window;
-            MainWindow.Show();
+            ShowMainWindow();
             base.OnStartup(e);
         }
 
-        private bool CanConnect()
+        private void ShowMainWindow()
+        {
+            MainWindow = _host.Services.GetRequiredService<ILoginView>() as Window;
+            MainWindow.Show();
+        }
+
+        private void ShowLoing()
+        {
+            Window window = MainWindow;
+            MainWindow = _host.Services.GetRequiredService<ILoginView>() as Window;
+            MainWindow.Show();
+            window.Close();
+        }
+
+        private void LoadSettings()
+        {
+            _host.Services.GetRequiredService<IAppState>();
+        }
+
+        private async Task<bool> CanConnect()
         {
             using (AppDbContext dbContext = _host.Services.GetRequiredService<AppDbContextFactory>().CreateDbContext())
             {
-                return dbContext.Database.CanConnect();
+                return await dbContext.Database.CanConnectAsync();
             }
         }
         private readonly NotificationManager _notificationManager = new NotificationManager();
