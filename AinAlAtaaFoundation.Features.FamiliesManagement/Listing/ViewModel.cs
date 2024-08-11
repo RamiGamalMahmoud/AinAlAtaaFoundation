@@ -18,6 +18,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
             FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
             SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
+
+            Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
         }
 
         [RelayCommand]
@@ -100,8 +102,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 .Where(x => Branch is null || x.Branch is not null && x.Branch.Id == Branch.Id)
                 .Where(x => BranchRepresentative is null || x.BranchRepresentative is null || x.BranchRepresentative.Id == BranchRepresentative.Id)
                 .Where(x => SocialStatus is null || x.SocialStatus is null || x.SocialStatus.Id == SocialStatus.Id)
-                .Where(x => FamilyType is null || x.FamilyType is null ||
-                x.FamilyType.Id == FamilyType.Id);
+                .Where(x => FamilyType is null || x.FamilyType is null ||  x.FamilyType.Id == FamilyType.Id)
+                .Where(x => District is null || x.Address.District.Id == District.Id )
+                .Where(x => DistrictRepresentative is null || x.DistrictRepresentative.Id == DistrictRepresentative.Id);
         }
 
         [ObservableProperty]
@@ -167,7 +170,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         private District _district;
         async partial void OnDistrictChanged(District oldValue, District newValue)
         {
-            DistrictRepresentatives = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<DistrictRepresentative>());
+            DistrictRepresentatives = await _mediator
+                .Send(new Shared.Commands.Generic.GetAllCommand<DistrictRepresentative>())
+                .ContinueWith(x => x
+                .Result
+                .Where(x => newValue is not null && x.District.Id == newValue.Id));
         }
 
         [ObservableProperty]

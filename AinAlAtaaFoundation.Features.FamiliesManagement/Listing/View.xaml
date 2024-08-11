@@ -26,6 +26,8 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
 
@@ -113,7 +115,7 @@
                 SelectedValuePath="Id" />
 
             <hc:ComboBox
-                Grid.Column="5"
+                Grid.Column="6"
                 Width="120"
                 Margin="10,0"
                 VerticalAlignment="Center"
@@ -123,13 +125,13 @@
                 helpes:SelectionChangedBehaviour.Command="{Binding FilterCommand}"
                 Cursor="Hand"
                 DisplayMemberPath="Name"
-                ItemsSource="{Binding SocialStatuses}"
-                SelectedItem="{Binding SocialStatus, UpdateSourceTrigger=PropertyChanged}"
-                SelectedValue="{Binding SocialStatus.Id}"
+                ItemsSource="{Binding Districts}"
+                SelectedItem="{Binding District, UpdateSourceTrigger=PropertyChanged}"
+                SelectedValue="{Binding District.Id}"
                 SelectedValuePath="Id" />
 
             <hc:ComboBox
-                Grid.Column="5"
+                Grid.Column="7"
                 Width="120"
                 Margin="10,0"
                 VerticalAlignment="Center"
@@ -139,9 +141,9 @@
                 helpes:SelectionChangedBehaviour.Command="{Binding FilterCommand}"
                 Cursor="Hand"
                 DisplayMemberPath="Name"
-                ItemsSource="{Binding SocialStatuses}"
-                SelectedItem="{Binding SocialStatus, UpdateSourceTrigger=PropertyChanged}"
-                SelectedValue="{Binding SocialStatus.Id}"
+                ItemsSource="{Binding DistrictRepresentatives}"
+                SelectedItem="{Binding DistrictRepresentative, UpdateSourceTrigger=PropertyChanged}"
+                SelectedValue="{Binding DistrictRepresentative.Id}"
                 SelectedValuePath="Id" />
 
 
