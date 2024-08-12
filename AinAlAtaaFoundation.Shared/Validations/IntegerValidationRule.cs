@@ -1,13 +1,13 @@
 ﻿using System.Globalization;
 using System.Windows.Controls;
 
-namespace AinAlAtaaFoundation.Features.DisbursementManagement
+namespace AinAlAtaaFoundation.Shared.Validations
 {
-    internal class ValidateIntRule : ValidationRule
+    public class IntegerValidationRule : ValidationRule
     {
         public override System.Windows.Controls.ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if(int.TryParse(value as string, out int id))
+            if(int.TryParse(value as string, out int _))
             {
                 return System.Windows.Controls.ValidationResult.ValidResult;
             }
