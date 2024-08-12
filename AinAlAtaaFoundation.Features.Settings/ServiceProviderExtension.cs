@@ -8,6 +8,7 @@ namespace AinAlAtaaFoundation.Features.Settings
         public static IServiceCollection ConfigureSettingsFeature(this IServiceCollection services)
         {
             services
+                .AddSingleton<Properties.Settings>()
                 .AddSingleton<IAppState, ViewModel>();
             return services;
         }
