@@ -1,6 +1,7 @@
 ﻿using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,19 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
 {
-    internal partial class ViewModel(IMediator mediator) : ObservableObject
+    internal partial class ViewModel : ObservableObject
     {
-        public async Task LoadDataAsync()
+        public ViewModel(IMediator mediator, IMessenger messenger)
         {
-            _allFamilies = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>());
+            _mediator = mediator;
+
+            messenger.Register<ViewModel, Shared.Messages.EntityCreated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
+            messenger.Register<ViewModel, Shared.Messages.EntityUpdated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
+        }
+
+        public async Task LoadDataAsync(bool reload = false)
+        {
+            _allFamilies = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>(reload));
             Families = _allFamilies;
 
             Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
@@ -188,6 +197,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [ObservableProperty]
         private SocialStatus _socialStatus;
 
-        private readonly IMediator _mediator = mediator;
+        private readonly IMediator _mediator;
     }
 }

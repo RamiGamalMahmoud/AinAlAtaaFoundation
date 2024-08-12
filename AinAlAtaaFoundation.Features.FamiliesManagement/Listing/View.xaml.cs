@@ -15,7 +15,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
 
         private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            await Dispatcher.InvokeAsync(_viewModel.LoadDataAsync);
+            await Dispatcher.InvokeAsync(() => _viewModel.LoadDataAsync(false));
         }
 
         private readonly ViewModel _viewModel;
