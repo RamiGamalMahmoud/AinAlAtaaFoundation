@@ -6,8 +6,8 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Editor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    Title="View"
+    xmlns:rules="clr-namespace:AinAlAtaaFoundation.Shared.Validations;assembly=AinAlAtaaFoundation.Shared"
+    Title="عائلة"
     d:DataContext="{d:DesignInstance Type=local:EditoViewModelBase}"
     x:ClassModifier="internal"
     FontFamily="Arial"
@@ -470,7 +470,7 @@
 
                             <StackPanel
                                 Grid.Column="0"
-                                Grid.ColumnSpan="4"
+                                Grid.ColumnSpan="3"
                                 MinWidth="150"
                                 Margin="5">
 
@@ -480,15 +480,32 @@
                             </StackPanel>
 
                             <StackPanel
-                                Grid.Column="4"
+                                Grid.Column="3"
                                 Grid.ColumnSpan="1"
                                 MinWidth="100"
                                 Margin="5">
 
                                 <TextBlock Foreground="{StaticResource Blue}" Text="سنة الميلاد" />
-                                <!--<DatePicker DisplayDate="1900-1-1" SelectedDate="{Binding DataModel.BirthDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
-                                <TextBox Text="{Binding DataModel.YearOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                <TextBlock Text="{Binding DataModel.Age}" />
+                                <TextBox x:Name="yearOfBirthInput">
+                                    <TextBox.Text>
+                                        <Binding Path="DataModel.YearOfBirth" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <rules:IntegerValidationRule />
+                                                <rules:YearValidationRule />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="4"
+                                Grid.ColumnSpan="1"
+                                MinWidth="100"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="العمر" />
+                                <Label HorizontalAlignment="Stretch" Content="{Binding DataModel.Age}" />
                             </StackPanel>
 
                             <StackPanel
@@ -616,7 +633,14 @@
                 FontSize="18"
                 FontWeight="Bold"
                 IsDefault="True"
-                Style="{StaticResource ButtonInfo}" />
+                Style="{StaticResource ButtonInfo}">
+                <Button.IsEnabled>
+                    <Binding
+                        Converter="{StaticResource InverseBooleanConverter}"
+                        ElementName="yearOfBirthInput"
+                        Path="(Validation.HasError)" />
+                </Button.IsEnabled>
+            </Button>
 
         </Grid>
 

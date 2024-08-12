@@ -1,5 +1,6 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
+using AinAlAtaaFoundation.Shared.Validations;
 using CommunityToolkit.Mvvm.ComponentModel;
 using HandyControl.Tools.Extension;
 using System;
@@ -115,6 +116,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Age))]
+        [NotifyDataErrorInfo]
         [Required(ErrorMessage = "حقل مطلوب")]
         private int _yearOfBirth;
 

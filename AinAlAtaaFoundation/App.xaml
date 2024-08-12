@@ -2,6 +2,7 @@
     x:Class="AinAlAtaaFoundation.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convertes="clr-namespace:AinAlAtaaFoundation.Shared.Converters;assembly=AinAlAtaaFoundation.Shared"
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation">
     <Application.Resources>
@@ -30,6 +31,7 @@
                 <ResourceDictionary Source="pack://application:,,,/AinAlAtaaFoundation.Styles;component/Resources/Geometries.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <convertes:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

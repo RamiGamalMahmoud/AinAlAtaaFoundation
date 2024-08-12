@@ -7,6 +7,7 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rules="clr-namespace:AinAlAtaaFoundation.Shared.Validations;assembly=AinAlAtaaFoundation.Shared"
     Title="{Binding Title}"
     d:DataContext="{d:DesignInstance Type=local:EditorViewModelBase}"
     x:ClassModifier="internal"
@@ -133,11 +134,21 @@
                     Margin="0,10"
                     VerticalAlignment="Center"
                     Text="سنة الميلاد" />
+
                 <TextBox
+                    x:Name="yearOfBirthInput"
                     Grid.Row="5"
                     Grid.Column="1"
-                    VerticalAlignment="Center"
-                    Text="{Binding DataModel.YearOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    VerticalAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="DataModel.YearOfBirth" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rules:IntegerValidationRule />
+                                <rules:YearValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <TextBlock
                     Grid.Row="6"
@@ -205,7 +216,14 @@
                 FontSize="18"
                 FontWeight="Bold"
                 IsDefault="True"
-                Style="{StaticResource ButtonInfo}" />
+                Style="{StaticResource ButtonInfo}">
+                <Button.IsEnabled>
+                    <Binding
+                        Converter="{StaticResource InverseBooleanConverter}"
+                        ElementName="yearOfBirthInput"
+                        Path="(Validation.HasError)" />
+                </Button.IsEnabled>
+            </Button>
 
         </Grid>
 

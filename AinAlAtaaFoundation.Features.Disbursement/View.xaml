@@ -6,7 +6,7 @@
     xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.DisbursementManagement"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:rules="clr-namespace:AinAlAtaaFoundation.Features.DisbursementManagement"
+    xmlns:rules="clr-namespace:AinAlAtaaFoundation.Shared.Validations;assembly=AinAlAtaaFoundation.Shared"
     d:Background="White"
     d:DataContext="{d:DesignInstance Type=local:ViewModel}"
     x:ClassModifier="internal"
@@ -65,7 +65,7 @@
                 <TextBox.Text>
                     <Binding Path="FamilyId" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
-                            <rules:ValidateIntRule />
+                            <rules:IntegerValidationRule />
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
