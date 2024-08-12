@@ -42,11 +42,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members.Editor
                 .ContinueWith(x => x
                 .Result
                 .Where(x =>
-                    DataModel.Model is not null &&
                     newValue is not null &&
                     x.Gender.Id == 2 &&
-                    x.Family.Id == newValue.Id && x.
-                    Id != DataModel.Model.Id));
+                    x.Family.Id == newValue.Id &&
+                    (DataModel.Model is null || x.Id != DataModel.Model.Id)
+                    ));
         }
 
 
