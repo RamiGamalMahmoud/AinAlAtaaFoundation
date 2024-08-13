@@ -89,7 +89,7 @@
             d:ItemsSource="{d:SampleData}"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding FamilyMembers}">
+            ItemsSource="{Binding FamilyMembers, IsAsync=True}">
 
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -155,6 +155,8 @@
             </DataGrid.Columns>
 
         </DataGrid>
+
+        <ProgressBar IsIndeterminate="True" Visibility="{Binding DoBusyWorkObject.IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
     </Grid>
 

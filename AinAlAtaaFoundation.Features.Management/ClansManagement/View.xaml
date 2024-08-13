@@ -39,7 +39,7 @@
             d:ItemsSource="{d:SampleData}"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Clans}">
+            ItemsSource="{Binding Clans, IsAsync=True}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="اسم العشيرة" />
                 <DataGridTemplateColumn Header="خيارات">

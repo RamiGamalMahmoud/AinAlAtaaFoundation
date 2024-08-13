@@ -41,7 +41,7 @@
             d:ItemsSource="{d:SampleData}"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding DistrictRepresentatives}">
+            ItemsSource="{Binding DistrictRepresentatives, IsAsync=True}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="الاسم" />
 

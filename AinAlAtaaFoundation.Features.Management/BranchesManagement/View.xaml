@@ -39,7 +39,7 @@
             d:ItemsSource="{d:SampleData}"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Branches}">
+            ItemsSource="{Binding Branches, IsAsync=True}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="اسم الفخذ" />
 
