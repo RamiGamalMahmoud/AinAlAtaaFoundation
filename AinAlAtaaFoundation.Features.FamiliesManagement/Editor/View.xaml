@@ -136,6 +136,86 @@
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                MinWidth="150"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="اسم مقدم الطلب" />
+                                <TextBox Text="{Binding DataModel.Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="3"
+                                Grid.ColumnSpan="1"
+                                MinWidth="100"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="سنة الميلاد" />
+                                <TextBox x:Name="yearOfBirthInput">
+                                    <TextBox.Text>
+                                        <Binding
+                                            FallbackValue=""
+                                            Mode="TwoWay"
+                                            Path="DataModel.YearOfBirth"
+                                            UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <rules:IntegerValidationRule />
+                                                <rules:YearValidationRule />
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="4"
+                                Grid.ColumnSpan="1"
+                                MinWidth="100"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="العمر" />
+                                <Label HorizontalAlignment="Stretch" Content="{Binding DataModel.Age}" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="5"
+                                Grid.ColumnSpan="1"
+                                MinWidth="100"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="النوع" />
+                                <ComboBox
+                                    DisplayMemberPath="NameAr"
+                                    ItemsSource="{Binding Genders}"
+                                    SelectedItem="{Binding DataModel.Gender}"
+                                    SelectedValue="{Binding DataModel.Gender.Id}"
+                                    SelectedValuePath="Id" />
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        Grid.Row="2"
+                        Margin="0,10"
+                        Padding="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
 
                             <StackPanel
@@ -190,7 +270,7 @@
                     </Border>
 
                     <Border
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Margin="0,10"
                         Padding="5"
                         BorderBrush="LightGray"
@@ -307,7 +387,7 @@
                     </Border>
 
                     <Border
-                        Grid.Row="3"
+                        Grid.Row="4"
                         Margin="0,10"
                         Padding="5"
                         BorderBrush="LightGray"
@@ -404,7 +484,7 @@
                     </Border>
 
                     <Border
-                        Grid.Row="4"
+                        Grid.Row="5"
                         Margin="0,10"
                         Padding="5"
                         BorderBrush="LightGray"
@@ -448,86 +528,6 @@
                                         Style="{StaticResource ButtonPrimary}" />
                                 </Grid>
 
-                            </StackPanel>
-
-                        </Grid>
-                    </Border>
-
-                    <Border
-                        Grid.Row="5"
-                        Margin="0,10"
-                        Padding="5"
-                        BorderBrush="LightGray"
-                        BorderThickness="1"
-                        CornerRadius="5">
-                        <Grid>
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel
-                                Grid.Column="0"
-                                Grid.ColumnSpan="3"
-                                MinWidth="150"
-                                Margin="5">
-
-                                <TextBlock Foreground="{StaticResource Blue}" Text="اسم مقدم الطلب" />
-                                <TextBox Text="{Binding DataModel.Name, UpdateSourceTrigger=PropertyChanged}" />
-
-                            </StackPanel>
-
-                            <StackPanel
-                                Grid.Column="3"
-                                Grid.ColumnSpan="1"
-                                MinWidth="100"
-                                Margin="5">
-
-                                <TextBlock Foreground="{StaticResource Blue}" Text="سنة الميلاد" />
-                                <TextBox x:Name="yearOfBirthInput">
-                                    <TextBox.Text>
-                                        <Binding
-                                            FallbackValue=""
-                                            Mode="TwoWay"
-                                            Path="DataModel.YearOfBirth"
-                                            UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <rules:IntegerValidationRule />
-                                                <rules:YearValidationRule />
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
-                            </StackPanel>
-
-                            <StackPanel
-                                Grid.Column="4"
-                                Grid.ColumnSpan="1"
-                                MinWidth="100"
-                                Margin="5">
-
-                                <TextBlock Foreground="{StaticResource Blue}" Text="العمر" />
-                                <Label HorizontalAlignment="Stretch" Content="{Binding DataModel.Age}" />
-                            </StackPanel>
-
-                            <StackPanel
-                                Grid.Column="5"
-                                Grid.ColumnSpan="1"
-                                MinWidth="100"
-                                Margin="5">
-
-                                <TextBlock Foreground="{StaticResource Blue}" Text="النوع" />
-                                <ComboBox
-                                    DisplayMemberPath="NameAr"
-                                    ItemsSource="{Binding Genders}"
-                                    SelectedItem="{Binding DataModel.Gender}"
-                                    SelectedValue="{Binding DataModel.Gender.Id}"
-                                    SelectedValuePath="Id" />
                             </StackPanel>
 
                         </Grid>
