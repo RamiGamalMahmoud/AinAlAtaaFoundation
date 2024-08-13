@@ -1,4 +1,5 @@
 ﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -20,10 +21,15 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
 
         public async Task LoadDataAsync(bool reload = false)
         {
-            _allFamilyMembers = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>(reload));
-            Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
-            FamilyMembers = _allFamilyMembers;
+            using (DoBusyWorkFactory.CreateBusyWork(DoBusyWorkObject))
+            {
+                _allFamilyMembers = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>(reload));
+                Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
+                FamilyMembers = _allFamilyMembers;
+            }
         }
+
+        public DoBusyWorkObject DoBusyWorkObject { get; } = new DoBusyWorkObject();
 
         partial void OnSearchValueChanged(string oldValue, string newValue)
         {
