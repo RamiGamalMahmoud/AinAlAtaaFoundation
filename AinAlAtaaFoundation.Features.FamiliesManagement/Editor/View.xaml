@@ -76,10 +76,9 @@
                                         <DataTemplate>
                                             <TextBlock Cursor="Hand">
                                                 <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0} - {1} - {2}">
-                                                        <Binding Path="Clan.Name" />
-                                                        <Binding Path="Name" />
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
                                                         <Binding Path="RationCard" />
+                                                        <Binding Path="Clan.Name" />
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>
@@ -107,10 +106,9 @@
                                         <DataTemplate>
                                             <TextBlock Cursor="Hand">
                                                 <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0} / {1} / {2}">
-                                                        <Binding Path="Clan.Name" />
-                                                        <Binding Path="Name" />
+                                                    <MultiBinding StringFormat="{}{0} - {1}">
                                                         <Binding Path="RationCard" />
+                                                        <Binding Path="Clan.Name" />
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>
