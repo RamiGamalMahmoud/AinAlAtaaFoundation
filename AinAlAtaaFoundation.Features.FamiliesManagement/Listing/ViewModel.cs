@@ -46,10 +46,21 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [RelayCommand]
         private void ShowPrint(Family family)
         {
+            var members = family.FamilyMembers.Select(member =>
+            {
+                return new
+                {
+                    member.Name,
+                    member.YearOfBirth,
+                    member.Age,
+                    IsDeserves = member.IsDeserves ? "نعم" : "لا",
+                    MotherName = member.Mother?.Name
+                };
+            });
             Dictionary<string, object> dataSources = new Dictionary<string, object>
             {
                 { "Phones", family.Phones },
-                { "Members", family.FamilyMembers }
+                { "Members", members }
             };
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
         }
@@ -111,8 +122,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 .Where(x => Branch is null || x.Branch is not null && x.Branch.Id == Branch.Id)
                 .Where(x => BranchRepresentative is null || x.BranchRepresentative is null || x.BranchRepresentative.Id == BranchRepresentative.Id)
                 .Where(x => SocialStatus is null || x.SocialStatus is null || x.SocialStatus.Id == SocialStatus.Id)
-                .Where(x => FamilyType is null || x.FamilyType is null ||  x.FamilyType.Id == FamilyType.Id)
-                .Where(x => District is null || x.Address.District.Id == District.Id )
+                .Where(x => FamilyType is null || x.FamilyType is null || x.FamilyType.Id == FamilyType.Id)
+                .Where(x => District is null || x.Address.District.Id == District.Id)
                 .Where(x => DistrictRepresentative is null || x.DistrictRepresentative.Id == DistrictRepresentative.Id);
         }
 

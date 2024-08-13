@@ -56,13 +56,17 @@
           <DataField>Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="BirthDate">
-          <DataField>BirthDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
+        <Field Name="YearOfBirth">
+          <DataField>YearOfBirth</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Age">
           <DataField>Age</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IsDeserves">
+          <DataField>IsDeserves</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
         </Field>
       </Fields>
       <Query>
@@ -1322,10 +1326,10 @@
         </Paragraphs>
       </Textbox>
       <Tablix Name="Tablix1">
-        <Left>7.40833mm</Left>
-        <Top>167.2166mm</Top>
+        <Left>32.02291mm</Left>
+        <Top>167.2085mm</Top>
         <Height>18.78541mm</Height>
-        <Width>192.6166mm</Width>
+        <Width>145.9549mm</Width>
         <CustomProperties>
           <CustomProperty>
             <Name>MaxRowCount</Name>
@@ -1345,13 +1349,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>64.19453mm</Width>
+              <Width>25.4mm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>25.4mm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>30.95625mm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>64.19453mm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>64.21933mm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1360,11 +1367,11 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TextBox22">
+                    <Textbox Name="TextBox34">
                       <Left>0in</Left>
                       <Top>0in</Top>
                       <Height>8.9917mm</Height>
-                      <Width>64.19453mm</Width>
+                      <Width>25.4mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
@@ -1382,7 +1389,91 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>تاريخ الميلاد</Value>
+                              <Value>يستحق</Value>
+                              <Style>
+                                <FontSize>4.99999mm</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#000000</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                    </Textbox>
+                    <ColSpan>1</ColSpan>
+                    <RowSpan>1</RowSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TextBox32">
+                      <Left>0in</Left>
+                      <Top>0in</Top>
+                      <Height>8.9917mm</Height>
+                      <Width>25.4mm</Width>
+                      <Style>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2mm</PaddingLeft>
+                        <PaddingRight>2mm</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Border>
+                          <Color>#4d4d4d</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>السن</Value>
+                              <Style>
+                                <FontSize>4.99999mm</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#000000</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                    </Textbox>
+                    <ColSpan>1</ColSpan>
+                    <RowSpan>1</RowSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TextBox22">
+                      <Left>0in</Left>
+                      <Top>0in</Top>
+                      <Height>8.9917mm</Height>
+                      <Width>30.95625mm</Width>
+                      <Style>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2mm</PaddingLeft>
+                        <PaddingRight>2mm</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Border>
+                          <Color>#4d4d4d</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>سنة الميلا</Value>
                               <Style>
                                 <FontSize>4.99999mm</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -1442,14 +1533,20 @@
                     <RowSpan>1</RowSpan>
                   </CellContents>
                 </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>9.78545mm</Height>
+              <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TextBox25">
+                    <Textbox Name="TextBox35">
                       <Left>0in</Left>
                       <Top>0in</Top>
-                      <Height>8.9917mm</Height>
-                      <Width>64.21939mm</Width>
+                      <Height>9.78545mm</Height>
+                      <Width>25.4mm</Width>
                       <Style>
+                        <BackgroundColor>=IF(Fields!IsDeserves.Value= "لا","#fce4ec", "Transparent")</BackgroundColor>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
                         <PaddingRight>2mm</PaddingRight>
@@ -1466,9 +1563,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>مسلسل</Value>
+                              <Value>=Fields!IsDeserves.Value</Value>
                               <Style>
-                                <FontSize>4.99999mm</FontSize>
+                                <FontSize>4mm</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#000000</Color>
                               </Style>
@@ -1484,18 +1581,13 @@
                     <RowSpan>1</RowSpan>
                   </CellContents>
                 </TablixCell>
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
-              <Height>9.78545mm</Height>
-              <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TextBox27">
+                    <Textbox Name="TextBox33">
                       <Left>0in</Left>
                       <Top>0in</Top>
                       <Height>9.78545mm</Height>
-                      <Width>64.19453mm</Width>
+                      <Width>25.4mm</Width>
                       <Style>
                         <VerticalAlign>Middle</VerticalAlign>
                         <PaddingLeft>2mm</PaddingLeft>
@@ -1513,9 +1605,51 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=FormatDateTime(Fields!BirthDate.Value,DateFormat.ShortDate)</Value>
+                              <Value>=Fields!Age.Value</Value>
                               <Style>
-                                <FontSize>3.52777mm</FontSize>
+                                <FontSize>4mm</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#000000</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                    </Textbox>
+                    <ColSpan>1</ColSpan>
+                    <RowSpan>1</RowSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TextBox27">
+                      <Left>0in</Left>
+                      <Top>0in</Top>
+                      <Height>9.78545mm</Height>
+                      <Width>30.95625mm</Width>
+                      <Style>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2mm</PaddingLeft>
+                        <PaddingRight>2mm</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Border>
+                          <Color>#4d4d4d</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!YearOfBirth.Value</Value>
+                              <Style>
+                                <FontSize>4mm</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#000000</Color>
                               </Style>
@@ -1557,49 +1691,7 @@
                             <TextRun>
                               <Value>=Fields!Name.Value</Value>
                               <Style>
-                                <FontSize>3.52777mm</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>#000000</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Right</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                    </Textbox>
-                    <ColSpan>1</ColSpan>
-                    <RowSpan>1</RowSpan>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="TextBox29">
-                      <Left>0in</Left>
-                      <Top>0in</Top>
-                      <Height>9.78545mm</Height>
-                      <Width>64.21939mm</Width>
-                      <Style>
-                        <VerticalAlign>Middle</VerticalAlign>
-                        <PaddingLeft>2mm</PaddingLeft>
-                        <PaddingRight>2mm</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <Border>
-                          <Color>#4d4d4d</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontSize>3.52777mm</FontSize>
+                                <FontSize>4mm</FontSize>
                                 <FontWeight>Bold</FontWeight>
                                 <Color>#000000</Color>
                               </Style>
@@ -1621,6 +1713,7 @@
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -1689,7 +1782,7 @@
         <KeepTogether>true</KeepTogether>
       </Rectangle>
     </ReportItems>
-    <Height>188.9125mm</Height>
+    <Height>193.675mm</Height>
   </Body>
   <ReportParameters>
     <ReportParameter Name="Id">
