@@ -64,6 +64,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
                 await OnRationCardChanged(DataModel.RationCard);
             }
 
+            else if (e.PropertyName == nameof(DataModel.Name))
+            {
+                await OnNameChanged(DataModel.Name);
+            }
+
             else if (e.PropertyName == nameof(DataModel.RationCardOwnerName))
             {
                 await OnRationCardOwnerChanged(DataModel.RationCardOwnerName);
@@ -208,10 +213,28 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
             }
         }
 
+        private async Task OnNameChanged(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                FoundedNames = [];
+            }
+            else
+            {
+                FoundedNames = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>())
+                    .ContinueWith(x => x
+                    .Result
+                    .Where(x => x.Applicant.Name == name));
+            }
+        }
+
         public HasMessageObject HasMessageObject { get; } = new HasMessageObject();
 
         [ObservableProperty]
         private IEnumerable<Family> _foundFamiliesForRationCard;
+
+        [ObservableProperty]
+        private IEnumerable<Family> _foundedNames;
 
         [ObservableProperty]
         private IEnumerable<Family> _foundFamiliesForRationCardOwner;

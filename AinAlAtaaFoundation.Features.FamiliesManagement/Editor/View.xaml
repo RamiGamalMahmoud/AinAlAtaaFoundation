@@ -150,6 +150,21 @@
                                 <TextBlock Foreground="{StaticResource Blue}" Text="اسم مقدم الطلب" />
                                 <TextBox Text="{Binding DataModel.Name, UpdateSourceTrigger=PropertyChanged}" />
 
+                                <ListBox ItemsSource="{Binding FoundedNames}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Cursor="Hand">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0} / {1}">
+                                                        <Binding Path="RationCard" />
+                                                        <Binding Path="Clan.Name" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
                             </StackPanel>
 
                             <StackPanel
