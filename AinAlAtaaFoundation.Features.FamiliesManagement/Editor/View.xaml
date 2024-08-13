@@ -175,8 +175,9 @@
                                 Visibility="{Binding DataModel.IsOrphan, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                                 <TextBlock Foreground="{StaticResource Blue}" Text="نوع اليتم" />
-                                <ComboBox
+                                <hc:ComboBox
                                     VerticalAlignment="Center"
+                                    hc:InfoElement.ShowClearButton="True"
                                     DisplayMemberPath="Name"
                                     ItemsSource="{Binding OrphanTypes}"
                                     SelectedItem="{Binding DataModel.OrphanType}"
@@ -250,9 +251,10 @@
                                         <ColumnDefinition Width="5*" />
                                         <ColumnDefinition Width="1*" />
                                     </Grid.ColumnDefinitions>
-                                    <ComboBox
+                                    <hc:ComboBox
                                         Grid.Column="0"
                                         MinWidth="200"
+                                        hc:InfoElement.ShowClearButton="True"
                                         DisplayMemberPath="Name"
                                         ItemsSource="{Binding Branches}"
                                         SelectedItem="{Binding DataModel.Branch}"
@@ -379,7 +381,8 @@
                                         <ColumnDefinition Width="1*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <ComboBox
+                                    <hc:ComboBox
+                                        hc:InfoElement.ShowClearButton="True"
                                         DisplayMemberPath="Name"
                                         ItemsSource="{Binding FeaturedPoints}"
                                         SelectedItem="{Binding DataModel.FeaturedPoint}"
@@ -488,7 +491,11 @@
                                 <TextBlock Foreground="{StaticResource Blue}" Text="سنة الميلاد" />
                                 <TextBox x:Name="yearOfBirthInput">
                                     <TextBox.Text>
-                                        <Binding Path="DataModel.YearOfBirth" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding
+                                            FallbackValue=""
+                                            Mode="TwoWay"
+                                            Path="DataModel.YearOfBirth"
+                                            UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
                                                 <rules:IntegerValidationRule />
                                                 <rules:YearValidationRule />

@@ -1,5 +1,6 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
+using AinAlAtaaFoundation.Shared.Validations;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -31,30 +32,19 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         private string _name;
 
         [ObservableProperty]
+        [Required(ErrorMessage = "حقل مطلوب")]
+        [YearValidation(ErrorMessage = "تأكد من كتابة السنة بشكل صحيح")]
         [NotifyPropertyChangedFor(nameof(Age))]
         [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
-        [Required(ErrorMessage = "حقل مطلوب")]
+        [NotifyDataErrorInfo]
         private int _yearOfBirth;
 
         [ObservableProperty]
         private bool _isDeserves = true;
 
-        //partial void OnBirthDateChanged(DateTime oldValue, DateTime newValue)
-        //{
-        //    if (newValue > DateTime.Now)
-        //    {
-        //        BirthDate = oldValue;
-        //        OnPropertyChanged(nameof(BirthDate));
-        //    }
-        //}
-
         public bool IsNowOrphan => Family?.SocialStatus.Name == "أيتام" && Age < 18;
 
-        public bool IsOrphan
-        {
-            get => _isOrphan;
-            set => SetProperty(ref _isOrphan, value);
-        }
+        [ObservableProperty]
         private bool _isOrphan = false;
 
         public int Age => DateTime.Now.Year - YearOfBirth;

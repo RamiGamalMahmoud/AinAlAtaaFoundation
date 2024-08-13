@@ -118,6 +118,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [NotifyPropertyChangedFor(nameof(Age))]
         [NotifyDataErrorInfo]
         [Required(ErrorMessage = "حقل مطلوب")]
+        [YearValidation(ErrorMessage = "تأكد من كتابة السنة بشكل صحيح")]
         private int _yearOfBirth;
 
         [Required(ErrorMessage = "حقل مطلوب")]

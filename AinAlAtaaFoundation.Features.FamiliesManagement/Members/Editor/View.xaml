@@ -141,7 +141,10 @@
                     Grid.Column="1"
                     VerticalAlignment="Center">
                     <TextBox.Text>
-                        <Binding Path="DataModel.YearOfBirth" UpdateSourceTrigger="PropertyChanged">
+                        <Binding
+                            Mode="TwoWay"
+                            Path="DataModel.YearOfBirth"
+                            UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <rules:IntegerValidationRule />
                                 <rules:YearValidationRule />

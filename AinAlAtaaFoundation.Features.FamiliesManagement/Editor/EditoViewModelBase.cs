@@ -56,7 +56,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
             }
             else if (e.PropertyName == nameof(DataModel.Branch))
             {
-
+                await LoadBranchRepresentatives();
             }
 
             else if (e.PropertyName == nameof(DataModel.RationCard))
@@ -90,8 +90,16 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
         private async Task LoadBranchRepresentatives()
         {
-            if (DataModel.Clan is not null)
-                BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>(true)))
+            //if (DataModel.Branch is null || DataModel.Clan is null) BranchRepresentatives = [];
+            if (DataModel.Branch is not null)
+            {
+                BranchRepresentatives = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>())
+                    .ContinueWith(x =>
+                    x.Result
+                    .Where(x => x.Branch is not null && x.Branch.Id == DataModel.Branch.Id));
+            }
+            else if (DataModel.Clan is not null)
+                BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>()))
                     .Where(x => x.Clan.Id == DataModel.Clan.Id);
         }
 
