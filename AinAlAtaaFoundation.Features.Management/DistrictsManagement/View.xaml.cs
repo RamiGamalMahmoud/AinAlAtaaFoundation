@@ -15,9 +15,14 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement
 
         private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            await Dispatcher.InvokeAsync(_viewModel.LoadDataAsync);
+            if (!_isLoaded)
+            {
+                await Dispatcher.InvokeAsync(_viewModel.LoadDataAsync);
+                _isLoaded = true;
+            }
         }
-    
+
         private readonly ViewModel _viewModel;
+        private bool _isLoaded;
     }
 }

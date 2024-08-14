@@ -17,7 +17,13 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
 
         private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            await Dispatcher.InvokeAsync(() => _vewModel.LoadDataAsync());
+            if (!_isLoaded)
+            {
+                await Dispatcher.InvokeAsync(() => _vewModel.LoadDataAsync());
+                _isLoaded = true;
+            }
         }
+
+        private Bold _isLoaded;
     }
 }

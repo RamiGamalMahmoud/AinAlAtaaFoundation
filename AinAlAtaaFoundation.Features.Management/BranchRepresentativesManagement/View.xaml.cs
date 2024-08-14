@@ -16,9 +16,14 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
 
         private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            await Dispatcher.InvokeAsync(_viewModel.LoadDataAsync);
+            if (!_isLoaded)
+            {
+                await Dispatcher.InvokeAsync(_viewModel.LoadDataAsync);
+                _isLoaded = true;
+            }
         }
 
+        private bool _isLoaded;
         private readonly ViewModel _viewModel;
     }
 }

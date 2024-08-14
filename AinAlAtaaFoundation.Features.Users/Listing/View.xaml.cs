@@ -5,8 +5,6 @@ namespace AinAlAtaaFoundation.Features.Users.Listing
 {
     internal partial class View : UserControl, IUserView
     {
-        private readonly ViewModel _viewModel;
-
         public View(ViewModel viewModel)
         {
             InitializeComponent();
@@ -17,7 +15,14 @@ namespace AinAlAtaaFoundation.Features.Users.Listing
 
         private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            await Dispatcher.Invoke(_viewModel.LoadDataAsync);
+            if (!_isLoaded)
+            {
+                await Dispatcher.Invoke(_viewModel.LoadDataAsync);
+                _isLoaded = true;
+            }
         }
+
+        private readonly ViewModel _viewModel;
+        private bool _isLoaded;
     }
 }
