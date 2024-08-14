@@ -7,6 +7,7 @@
     xmlns:helpes="clr-namespace:AinAlAtaaFoundation.Shared.Helpers;assembly=AinAlAtaaFoundation.Shared"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Listing"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sf="http://schemas.syncfusion.com/wpf"
     d:DataContext="{d:DesignInstance Type=local:ViewModel}"
     x:ClassModifier="internal"
     mc:Ignorable="d">
@@ -223,6 +224,15 @@
             </DataGrid.Columns>
 
         </DataGrid>
+
+        <sf:SfBusyIndicator
+            Grid.Row="1"
+            Margin="0,10,0,0"
+            AnimationType="Cupertino"
+            Foreground="{StaticResource Blue}"
+            IsBusy="{Binding DoBusyWorkObject.IsBusy}"
+            ViewboxHeight="150"
+            ViewboxWidth="150" />
 
     </Grid>
 </UserControl>

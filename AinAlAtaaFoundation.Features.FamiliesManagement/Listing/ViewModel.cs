@@ -1,4 +1,5 @@
 ﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -21,14 +22,17 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
 
         public async Task LoadDataAsync(bool reload = false)
         {
-            _allFamilies = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>(reload));
-            Families = _allFamilies;
+            using (DoBusyWorkFactory.CreateBusyWork(DoBusyWorkObject))
+            {
+                _allFamilies = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>(reload));
+                Families = _allFamilies;
 
-            Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
-            FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
-            SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
+                Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
+                FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
+                SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
 
-            Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
+                Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
+            }
         }
 
         [RelayCommand]
@@ -101,6 +105,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
 
             return parameters;
         }
+
+        public DoBusyWorkObject DoBusyWorkObject { get; } = new DoBusyWorkObject();
 
         [RelayCommand]
         private void ViewAll()
