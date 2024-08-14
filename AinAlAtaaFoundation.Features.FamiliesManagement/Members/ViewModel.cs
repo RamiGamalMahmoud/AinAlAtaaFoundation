@@ -26,6 +26,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 _allFamilyMembers = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyMember>(reload));
                 Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
                 FamilyMembers = _allFamilyMembers;
+                Families = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>());
             }
         }
 
@@ -50,13 +51,15 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
         {
             if (newValue is not null)
                 FamilyMembers = _allFamilyMembers.Where(x => x.Family.Id == newValue.Id);
+            else FamilyMembers = _allFamilyMembers;
         }
 
         private async Task FilterFamilies()
         {
             if (SelectedClan is null)
             {
-                Families = [];
+                SelectedFamily = null;   
+                Families = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>());
                 return;
             }
             Families = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>()))
