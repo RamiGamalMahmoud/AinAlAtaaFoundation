@@ -52,6 +52,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                         .Include(x => x.Family)
                             .ThenInclude(x => x.SocialStatus)
                         .Include(x => x.Mother)
+                        .OrderBy(x => x.Family.RationCard)
+                        .ThenBy(x => x.Mother.Name)
+                        .ThenBy(x => x.Name)
                         .ToListAsync();
                     SetEntities(familyMembers);
                 }
