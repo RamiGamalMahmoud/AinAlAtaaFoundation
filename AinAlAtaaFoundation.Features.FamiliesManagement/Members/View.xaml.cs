@@ -24,6 +24,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             }
         }
 
-        private Bold _isLoaded;
+        private bool _isLoaded;
     }
 }
