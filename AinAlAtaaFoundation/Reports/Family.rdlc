@@ -1326,9 +1326,9 @@
         </Paragraphs>
       </Textbox>
       <Tablix Name="Tablix1">
-        <Left>32.02291mm</Left>
-        <Top>167.2085mm</Top>
-        <Height>18.78541mm</Height>
+        <Left>32.02285mm</Left>
+        <Top>158.7417mm</Top>
+        <Height>30.94798mm</Height>
         <Width>145.9549mm</Width>
         <CustomProperties>
           <CustomProperty>
@@ -1346,6 +1346,9 @@
           </Border>
         </Style>
         <DataSetName>Members</DataSetName>
+        <PageBreak>
+          <BreakLocation>Start</BreakLocation>
+        </PageBreak>
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
@@ -1362,6 +1365,56 @@
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
+            <TablixRow>
+              <Height>12.17083mm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TextBox15">
+                      <Left>0in</Left>
+                      <Top>0in</Top>
+                      <Height>12.17083mm</Height>
+                      <Width>145.9508mm</Width>
+                      <Style>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2mm</PaddingLeft>
+                        <PaddingRight>2mm</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                        <Border>
+                          <Color>#4d4d4d</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>أفراد العائلة</Value>
+                              <Style>
+                                <FontSize>7mm</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#000000</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                    </Textbox>
+                    <ColSpan>4</ColSpan>
+                    <RowSpan>1</RowSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
             <TablixRow>
               <Height>8.9917mm</Height>
               <TablixCells>
@@ -1722,7 +1775,16 @@
         <TablixRowHierarchy>
           <TablixMembers>
             <TablixMember>
+              <FixedData>true</FixedData>
               <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+            <TablixMember>
+              <FixedData>true</FixedData>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+              <KeepTogether>true</KeepTogether>
             </TablixMember>
             <TablixMember>
               <Group Name="Details" />
@@ -1730,59 +1792,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
       </Tablix>
-      <Textbox Name="TextBox30">
-        <Left>50.53128mm</Left>
-        <Top>154.2521mm</Top>
-        <Height>9.99629mm</Height>
-        <Width>90.35933mm</Width>
-        <Style>
-          <VerticalAlign>Middle</VerticalAlign>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>أفراد العائلة</Value>
-                <Style>
-                  <FontSize>7mm</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <Color>#000000</Color>
-                  <Language>ar</Language>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-      </Textbox>
-      <Rectangle Name="Rectangle1">
-        <Left>4.23333mm</Left>
-        <Top>149.4896mm</Top>
-        <Height>1.05833mm</Height>
-        <Width>200.2896mm</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-        <PageBreak>
-          <BreakLocation>Start</BreakLocation>
-        </PageBreak>
-        <KeepTogether>true</KeepTogether>
-      </Rectangle>
     </ReportItems>
-    <Height>193.675mm</Height>
+    <Height>198.1564mm</Height>
   </Body>
   <ReportParameters>
     <ReportParameter Name="Id">
