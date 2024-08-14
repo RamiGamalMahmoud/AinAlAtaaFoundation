@@ -43,7 +43,7 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
 
                 dbContext.BranchRepresentatives.Add(branchRepresentative);
                 await dbContext.SaveChangesAsync();
-                branchRepresentative.Branch = dataModel.Branch;
+                dataModel.UpdateModel(branchRepresentative);
                 _entities.Add(branchRepresentative);
 
                 return branchRepresentative;
@@ -66,6 +66,7 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
                         .Where(x => x.IsActive)
                         .ToListAsync();
                     SetEntities(branchRepresentatives);
+                    _isLoaded = true;
                 }
             }
             return _entities;
