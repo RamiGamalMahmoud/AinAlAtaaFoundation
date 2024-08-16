@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.FamiliesManagement
 {
-    internal class Repository(AppDbContextFactory dbContextFactory) : RepositoryBase<Family, FamilyDataModel>(dbContextFactory)
+    internal class Repository(IAppDbContextFactory dbContextFactory) : RepositoryBase<Family, FamilyDataModel>(dbContextFactory)
     {
         public override async Task<Family> Create(FamilyDataModel dataModel)
         {
@@ -52,6 +52,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         RationCardOwnerName = dataModel.RationCardOwnerName,
                         SocialStatusId = dataModel.SocialStatus.Id
                     };
+
+                    foreach(Phone phone in dataModel.Phones)
+                    {
+                        family.Phones.Add(phone);
+                    }
 
                     dbContext.Families.Add(family);
                     await dbContext.SaveChangesAsync();

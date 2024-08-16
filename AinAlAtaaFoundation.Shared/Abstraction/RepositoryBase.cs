@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Shared.Abstraction
 {
-    public abstract class RepositoryBase<TModel, TDataModel>(AppDbContextFactory dbContextFactory)
+    public abstract class RepositoryBase<TModel, TDataModel>(IAppDbContextFactory dbContextFactory)
     {
         public abstract Task<TModel> Create(TDataModel dataModel);
         public abstract Task<bool> Update(TDataModel dataModel);
@@ -18,7 +18,7 @@ namespace AinAlAtaaFoundation.Shared.Abstraction
             _isLoaded = true;
         }
 
-        protected readonly AppDbContextFactory _dbContextFactory = dbContextFactory;
+        protected readonly IAppDbContextFactory _dbContextFactory = dbContextFactory;
         protected static ObservableCollection<TModel> _entities = [];
         protected static bool _isLoaded;
     }

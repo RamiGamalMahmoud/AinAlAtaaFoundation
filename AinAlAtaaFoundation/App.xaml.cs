@@ -34,6 +34,7 @@ namespace AinAlAtaaFoundation
                 {
                     s.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
                     s.AddSingleton<AppDbContextFactory>(new AppDbContextFactory($"Data Source = {DatabaseFile}"));
+                    s.AddSingleton<IAppDbContextFactory>(new AppDbContextFactory($"Data Source = {DatabaseFile}"));
                     s.ConfigureMainWindowFeature();
                     s.ConfigureFamiliesFeature();
                     s.ConfigureServicePrint();

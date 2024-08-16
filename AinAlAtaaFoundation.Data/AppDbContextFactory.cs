@@ -2,7 +2,7 @@
 
 namespace AinAlAtaaFoundation.Data
 {
-    public class AppDbContextFactory(string connectionString)
+    public class AppDbContextFactory(string connectionString) : IAppDbContextFactory
     {
         public AppDbContext CreateDbContext()
         {
