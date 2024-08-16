@@ -79,7 +79,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             model.FamilyType = FamilyType;
             model.Applicant.Name = Name;
             model.Applicant.YearOfBirth = YearOfBirth;
-            model.Applicant = Applicant;
 
             model.Address.Street = Street;
             model.Address.FeaturedPoint = FeaturedPoint;
