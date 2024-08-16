@@ -18,7 +18,7 @@ namespace AinAlAtaaFoundation.Features.Users.Editor
         public Task Handle(Generic.ShowCreate<User> request, CancellationToken cancellationToken)
         {
             IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
-            ViewModel viewModel = new ViewModel(
+            ViewModel viewModel = new ViewModelCreate(
                 _serviceProvider.GetRequiredService<IMediator>(),
                 messenger,
                 null
@@ -32,7 +32,7 @@ namespace AinAlAtaaFoundation.Features.Users.Editor
         public Task Handle(Generic.ShowUpdate<User> request, CancellationToken cancellationToken)
         {
             IMessenger messenger = _serviceProvider.GetRequiredService<IMessenger>();
-            ViewModel viewModel = new ViewModel(
+            ViewModel viewModel = new ViewModelUpdate(
                 _serviceProvider.GetRequiredService<IMediator>(),
                 messenger,
                 request.Model

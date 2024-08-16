@@ -27,6 +27,7 @@ namespace AinAlAtaaFoundation.Features.Users
         public void UpdateModel(User model = null)
         {
             model.UserName = UserName;
+            model.Password = Password;
             model.IsAdmin = IsAdmin;
             model.IsActive = IsActive;
         }
