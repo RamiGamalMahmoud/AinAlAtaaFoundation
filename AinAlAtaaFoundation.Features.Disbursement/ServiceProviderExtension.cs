@@ -11,8 +11,13 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             services
                 .AddMediatR((cfg) => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
                 .AddSingleton<Repository>()
-                .AddSingleton<ViewModel>()
-                .AddSingleton<IDisbursementView, View>();
+
+                .AddSingleton<Create.ViewModel>()
+                .AddSingleton<IDisbursementView, Create.View>()
+
+                .AddSingleton<IDisbursementHistoryView, History.View>()
+                .AddSingleton<History.ViewModel>();
+
             return services;
         }
     }

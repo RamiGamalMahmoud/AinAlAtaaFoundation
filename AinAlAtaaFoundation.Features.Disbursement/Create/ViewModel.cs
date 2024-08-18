@@ -1,4 +1,5 @@
 ﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared.Commands;
 using AinAlAtaaFoundation.Shared.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -8,10 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using static AinAlAtaaFoundation.Features.DisbursementManagement.Messages;
 
-namespace AinAlAtaaFoundation.Features.DisbursementManagement
+namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 {
     internal partial class ViewModel : ObservableValidator
     {
@@ -34,7 +36,6 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             FamilyId = 0;
             ReadingNumber = 0;
             _messenger.Send<Messages.IdChangedMessage>();
-            //_messenger.Send<Messages.ClearInputMessage>();
         }
 
         [ObservableProperty]
@@ -84,7 +85,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             {
                 Family = await _mediator.Send(new Shared.Commands.Families.GetFamilyCommand(FamilyId));
                 Disbursements.Clear();
-                IEnumerable<Disbursement> disbursements = await _mediator.Send(new Shared.Commands.Disbursements.GetByFamily(FamilyId));
+                IEnumerable<Disbursement> disbursements = await _mediator.Send(new Shared.Commands.Disbursements.GetByFamilyId(FamilyId));
                 foreach (Disbursement disbursement in disbursements)
                 {
                     Disbursements.Add(disbursement);
@@ -136,6 +137,23 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             private set => SetProperty(ref _readingNumber, value);
         }
 
+        [ObservableProperty]
+        private string _rationCard;
+        async partial void OnRationCardChanged(string oldValue, string newValue)
+        {
+            IEnumerable<Disbursement> disbursements = await _mediator.Send(new Shared.Commands.Disbursements.GetByRationCard(newValue));
+            _disbursements.Clear();
+            foreach(Disbursement disbursement in disbursements)
+            {
+                _disbursements.Add(disbursement);
+            }
+
+            Family = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(newValue))
+                .ContinueWith(x => x
+                .Result
+                .Where(family => family.RationCard == newValue).FirstOrDefault());
+        }
+
         public ObservableCollection<Disbursement> Disbursements
         {
             get => _disbursements;
@@ -153,5 +171,12 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
         private readonly IMessenger _messenger;
 
         public Clock Clock { get; }
+        private InsertionType _insertionType = InsertionType.Id;
+    }
+
+    enum InsertionType
+    {
+        Id,
+        RationCard
     }
 }

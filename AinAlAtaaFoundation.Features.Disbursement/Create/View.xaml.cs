@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.Messaging;
 using System.Windows.Controls;
 
-namespace AinAlAtaaFoundation.Features.DisbursementManagement
+namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 {
     internal partial class View : UserControl, IDisbursementView
     {

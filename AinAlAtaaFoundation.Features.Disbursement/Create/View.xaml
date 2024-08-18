@@ -1,10 +1,10 @@
 ﻿<UserControl
-    x:Class="AinAlAtaaFoundation.Features.DisbursementManagement.View"
+    x:Class="AinAlAtaaFoundation.Features.DisbursementManagement.Create.View"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
-    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.DisbursementManagement"
+    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.DisbursementManagement.Create"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rules="clr-namespace:AinAlAtaaFoundation.Shared.Validations;assembly=AinAlAtaaFoundation.Shared"
     d:Background="White"
@@ -42,7 +42,7 @@
             FocusManager.FocusedElement="{Binding ElementName=MainInput}"
             Orientation="Horizontal">
 
-            <Label Margin="0,0,10,0">
+            <Label Margin="5,0">
                 <CheckBox
                     x:Name="ManulInput"
                     Height="30"
@@ -55,25 +55,41 @@
                     IsChecked="{Binding ManualInput}" />
             </Label>
 
-            <TextBox
-                x:Name="MainInput"
-                Width="200"
-                Padding="10"
-                Focusable="True"
-                FontSize="30"
-                TextAlignment="Center">
-                <TextBox.Text>
-                    <Binding Path="FamilyId" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <rules:IntegerValidationRule />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
+            <StackPanel Margin="5,0">
+                <TextBlock Text="تسلسل العائلة" TextAlignment="Center" />
+
+                <TextBox
+                    x:Name="MainInput"
+                    Width="200"
+                    Padding="10"
+                    Focusable="True"
+                    FontSize="30"
+                    TextAlignment="Center">
+                    <TextBox.Text>
+                        <Binding Path="FamilyId" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <rules:IntegerValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="5,0">
+                <TextBlock Text="رقم البطاقة التموينية" TextAlignment="Center" />
+
+                <TextBox
+                    Width="200"
+                    Padding="10"
+                    Focusable="True"
+                    FontSize="30"
+                    Text="{Binding RationCard, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    TextAlignment="Center" />
+            </StackPanel>
 
             <Button
                 Height="30"
-                Margin="10,0,0,0"
+                Margin="5,0"
                 VerticalAlignment="Stretch"
                 Command="{Binding ExecutePrintCommand}"
                 Cursor="Hand"
@@ -83,10 +99,10 @@
 
             <Label
                 Height="auto"
-                Margin="20,0,0,0"
+                Margin="10,0"
                 Content="{Binding ReadingNumber}" />
 
-            <Label Height="auto" Margin="20,0,0,0">
+            <Label Height="auto" Margin="5,0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock
                         Margin="10,0"
