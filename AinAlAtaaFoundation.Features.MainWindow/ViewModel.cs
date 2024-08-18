@@ -51,6 +51,12 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         }
 
         [RelayCommand]
+        private void GoToDisbursementHistory()
+        {
+            CurrentView = _serviceProvider.GetRequiredService<IDisbursementHistoryView>();
+        }
+
+        [RelayCommand]
         private void GoToFamilies()
         {
             CurrentView = _serviceProvider.GetRequiredService<IFamiliesView>();
