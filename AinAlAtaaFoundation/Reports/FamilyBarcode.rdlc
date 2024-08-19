@@ -9,11 +9,11 @@
     </Style>
     <ReportItems>
       <Image Name="Image1">
-        <Left>1.45521mm</Left>
-        <Top>46.82298mm</Top>
+        <Left>1.00046mm</Left>
+        <Top>2.12287mm</Top>
         <Value>=Parameters!Barcode.Value</Value>
-        <Height>26.4542mm</Height>
-        <Width>74.34791mm</Width>
+        <Height>20.75325mm</Height>
+        <Width>47.99706mm</Width>
         <Visibility />
         <Style>
           <Border>
@@ -23,94 +23,8 @@
         <Source>Database</Source>
         <Sizing>Fit</Sizing>
       </Image>
-      <Textbox Name="FamilyName1">
-        <Left>4.23333mm</Left>
-        <Top>33.86666mm</Top>
-        <Height>11.90625mm</Height>
-        <Width>48.67919mm</Width>
-        <Style>
-          <BackgroundColor>#f2f2f2</BackgroundColor>
-          <VerticalAlign>Middle</VerticalAlign>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!RationCard.Value</Value>
-                <Style>
-                  <FontSize>4.99999mm</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-      </Textbox>
-      <Textbox Name="TextBox2">
-        <Left>52.91666mm</Left>
-        <Top>33.86666mm</Top>
-        <Height>11.90625mm</Height>
-        <Width>20.10833mm</Width>
-        <Style>
-          <VerticalAlign>Middle</VerticalAlign>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>رقم البطاقة</Value>
-                <Style>
-                  <FontSize>4.99999mm</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-      </Textbox>
-      <Image Name="Image2">
-        <Left>23.15517mm</Left>
-        <Top>1.05006mm</Top>
-        <Value>logo_100</Value>
-        <Height>32.80013mm</Height>
-        <Width>30.94804mm</Width>
-        <Visibility />
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-        <Source>Embedded</Source>
-        <Sizing>FitProportional</Sizing>
-      </Image>
     </ReportItems>
-    <Height>79.37499mm</Height>
+    <Height>25mm</Height>
   </Body>
   <ReportParameters>
     <ReportParameter Name="Barcode">
@@ -122,10 +36,10 @@
       <Prompt>RationCard</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>77.25832mm</Width>
+  <Width>49.99999mm</Width>
   <Page>
-    <PageHeight>80mm</PageHeight>
-    <PageWidth>78mm</PageWidth>
+    <PageHeight>25mm</PageHeight>
+    <PageWidth>50mm</PageWidth>
     <LeftMargin>0mm</LeftMargin>
     <RightMargin>0mm</RightMargin>
     <TopMargin>0mm</TopMargin>
