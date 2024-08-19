@@ -2,10 +2,9 @@
 
 namespace AinAlAtaaFoundation.Models
 {
-    public partial class User : ObservableObject
+    [ObservableObject]
+    public partial class User : ModelBase
     {
-        public int Id { get; set; }
-
         [ObservableProperty]
         private string _userName;
 

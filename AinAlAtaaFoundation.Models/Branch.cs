@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 
 namespace AinAlAtaaFoundation.Models
 {
-    public class Branch : ObservableObject
+    [ObservableObject]
+    public partial class Branch : ModelBase
     {
         public Branch()
         {
             BranchRepresentatives = new Collection<BranchRepresentative>();
         }
-        public int Id { get; set; }
         public string Name { get => _name; set => SetProperty(ref _name, value); }
         private string _name;
 

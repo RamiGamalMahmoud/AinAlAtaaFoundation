@@ -2,10 +2,9 @@
 
 namespace AinAlAtaaFoundation.Models
 {
-    public class FeaturedPoint : ObservableObject
+    [ObservableObject]
+    public partial class FeaturedPoint : ModelBase
     {
-        public int Id { get; set; }
-
         public string Name { get => _name; set => SetProperty(ref _name, value); }
         private string _name;
 

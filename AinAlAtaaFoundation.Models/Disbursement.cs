@@ -3,9 +3,9 @@ using System;
 
 namespace AinAlAtaaFoundation.Models
 {
-    public class Disbursement : ObservableObject
+    [ObservableObject]
+    public partial class Disbursement : ModelBase
     {
-        public int Id { get; set; }
         public DateTime Date { get; set; }
         public int TicketNumber { get; set; }
 

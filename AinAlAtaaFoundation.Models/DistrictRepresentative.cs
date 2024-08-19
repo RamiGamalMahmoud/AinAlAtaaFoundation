@@ -5,15 +5,13 @@ using System.Collections.ObjectModel;
 
 namespace AinAlAtaaFoundation.Models
 {
-    public class DistrictRepresentative : ObservableObject
+    [ObservableObject]
+    public partial class DistrictRepresentative : ModelBase
     {
         public DistrictRepresentative()
         {
             Phones = new ObservableCollection<Phone>();    
         }
-
-        public int Id { get; set; }
-
         public string Name { get => _name; set => SetProperty(ref _name, value); }
         private string _name;
 

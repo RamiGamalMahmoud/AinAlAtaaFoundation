@@ -6,14 +6,14 @@ using System.Linq;
 
 namespace AinAlAtaaFoundation.Models
 {
-    public class BranchRepresentative : ObservableObject
+    [ObservableObject]
+    public partial class BranchRepresentative : ModelBase
     {
         public BranchRepresentative()
         {
             Phones = new Collection<Phone>();
         }
 
-        public int Id { get; set; }
         public string Name { get => _name; set => SetProperty(ref _name, value); }
         private string _name;
 

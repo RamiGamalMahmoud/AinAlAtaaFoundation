@@ -3,10 +3,9 @@ using System;
 
 namespace AinAlAtaaFoundation.Models
 {
-    public partial class FamilyMember : ObservableObject
+    [ObservableObject]
+    public partial class FamilyMember : ModelBase
     {
-        public int Id { get; set; }
-
         [ObservableProperty]
         private string _name;
 

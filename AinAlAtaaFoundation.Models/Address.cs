@@ -2,9 +2,9 @@
 
 namespace AinAlAtaaFoundation.Models
 {
-    public class Address : ObservableObject
+    [ObservableObject]
+    public partial class Address : ModelBase
     {
-        public int Id { get; set; }
         public string Street { get => _street; set => SetProperty(ref _street, value); }
         private string _street;
         public int DistrictId { get; set; }

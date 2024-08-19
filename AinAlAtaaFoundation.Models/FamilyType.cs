@@ -2,10 +2,9 @@
 
 namespace AinAlAtaaFoundation.Models
 {
-    public partial class FamilyType : ObservableObject
+    [ObservableObject]
+    public partial class FamilyType : ModelBase
     {
-        public int Id { get; set; }
-
         [ObservableProperty]
         private string _name;
     }

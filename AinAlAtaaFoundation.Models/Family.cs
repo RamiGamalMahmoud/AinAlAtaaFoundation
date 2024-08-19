@@ -4,15 +4,14 @@ using System.Collections.ObjectModel;
 
 namespace AinAlAtaaFoundation.Models
 {
-    public partial class Family : ObservableObject
+    [ObservableObject]
+    public partial class Family : ModelBase
     {
         public Family()
         {
             Phones = new Collection<Phone>();
             FamilyMembers = new Collection<FamilyMember>();
         }
-
-        public int Id { get; set; }
 
         [ObservableProperty]
         private string _rationCard;

@@ -2,10 +2,9 @@
 
 namespace AinAlAtaaFoundation.Models
 {
-    public partial class OrphanType : ObservableObject
+    [ObservableObject]
+    public partial class OrphanType : ModelBase
     {
-        public int Id { get; set; }
-
         [ObservableProperty]
         private string _name;
     }

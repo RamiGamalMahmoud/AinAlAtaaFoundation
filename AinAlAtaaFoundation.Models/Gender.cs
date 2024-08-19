@@ -1,8 +1,10 @@
-﻿namespace AinAlAtaaFoundation.Models
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace AinAlAtaaFoundation.Models
 {
-    public class Gender
+    [ObservableObject]
+    public partial class Gender : ModelBase
     {
-        public int Id { get; set; }
         public string NameEn { get; set; }
         public string NameAr { get; set; }
     }

@@ -2,10 +2,9 @@
 
 namespace AinAlAtaaFoundation.Models
 {
-    public partial class SocialStatus : ObservableObject
+    [ObservableObject]
+    public partial class SocialStatus : ModelBase
     {
-        public int Id { get; set; }
-
         [ObservableProperty]
         private string _name;
     }
