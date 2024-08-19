@@ -17,4 +17,14 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
 
         private readonly Repository _repository = repository;
     }
+
+    internal class GetByDistrictCommandHandler(Repository repository) : IRequestHandler<DistrictRepresentatives.CommandGetByDistrict, IEnumerable<DistrictRepresentative>>
+    {
+        public async Task<IEnumerable<DistrictRepresentative>> Handle(DistrictRepresentatives.CommandGetByDistrict request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByDistrict(request.District);
+        }
+
+        private readonly Repository _repository = repository;
+    }
 }

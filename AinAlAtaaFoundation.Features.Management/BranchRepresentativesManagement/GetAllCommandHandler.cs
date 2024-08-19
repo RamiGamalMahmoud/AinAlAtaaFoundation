@@ -16,4 +16,24 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
 
         private readonly Repository _repository = repository;
     }
+
+    internal class CommandHandlerGetByClan(Repository repository) : IRequestHandler<BranchRepresentatives.CommandGetByClan, IEnumerable<BranchRepresentative>>
+    {
+        public async Task<IEnumerable<BranchRepresentative>> Handle(BranchRepresentatives.CommandGetByClan request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByClan(request.Clan);
+        }
+
+        private readonly Repository _repository = repository;
+    }
+
+    internal class CommandHandlerGetByBranch(Repository repository) : IRequestHandler<BranchRepresentatives.CommandGetByBranch, IEnumerable<BranchRepresentative>>
+    {
+        public async Task<IEnumerable<BranchRepresentative>> Handle(BranchRepresentatives.CommandGetByBranch request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByBranch(request.Branch);
+        }
+
+        private readonly Repository _repository = repository;
+    }
 }

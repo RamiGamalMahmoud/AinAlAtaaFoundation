@@ -5,14 +5,34 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using static AinAlAtaaFoundation.Shared.Commands.Disbursements;
 
 namespace AinAlAtaaFoundation.Features.DisbursementManagement
 {
-    internal class CommandHandlers(Repository repository) : IRequestHandler<Shared.Commands.Disbursements.GetByFamily, IEnumerable<Disbursement>>
+    internal class CommandHandlerGetFamilyById(Repository repository) : IRequestHandler<Shared.Commands.Disbursements.GetByFamilyId, IEnumerable<Disbursement>>
     {
-        public async Task<IEnumerable<Disbursement>> Handle(Disbursements.GetByFamily request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Disbursement>> Handle(Disbursements.GetByFamilyId request, CancellationToken cancellationToken)
         {
             return await _repository.GetByFamily(request.FamilyId);
+        }
+
+        private readonly Repository _repository = repository;
+    }
+
+    internal class CommandHandlerGetDisbursements(Repository repository) : IRequestHandler<GetHistory, IEnumerable<Disbursement>>
+    {
+        public async Task<IEnumerable<Disbursement>> Handle(GetHistory request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetDisbursementsAsync(request);
+        }
+        private readonly Repository _repository = repository;
+    }
+
+    internal class CommandHandlerGetFamilyByRationCard(Repository repository) : IRequestHandler<Shared.Commands.Disbursements.GetByRationCard, IEnumerable<Disbursement>>
+    {
+        public async Task<IEnumerable<Disbursement>> Handle(Disbursements.GetByRationCard request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByRationCard(request.RationCard);
         }
 
         private readonly Repository _repository = repository;

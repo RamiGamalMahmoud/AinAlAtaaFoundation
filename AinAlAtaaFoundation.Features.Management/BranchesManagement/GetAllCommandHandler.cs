@@ -16,4 +16,14 @@ namespace AinAlAtaaFoundation.Features.Management.BranchesManagement
             return await _repository.GetAll(request.Reload);
         }
     }
+
+    internal class CommandHandlerGetByClan(Repository repository) : IRequestHandler<Shared.Commands.Branches.CommandGetByClan, IEnumerable<Branch>>
+    {
+        public async Task<IEnumerable<Branch>> Handle(Branches.CommandGetByClan request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByClan(request.Clan);
+        }
+
+        private readonly Repository _repository = repository;
+    }
 }
