@@ -1,5 +1,6 @@
 ﻿using AinAlAtaaFoundation.Data;
 using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using Syncfusion.Data.Extensions;
 using System;
@@ -53,6 +54,19 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             }
         }
 
+        public async Task<IEnumerable<Disbursement>> GetByRationCard(string rationCard)
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .Disbursements
+                    .Include(x => x.Family)
+                        .ThenInclude(x => x.Applicant)
+                    .Where(x => x.Family.RationCard == rationCard)
+                    .ToListAsync();
+            }
+        }
+
         public async Task<int> GetLastTicketNumber(DateTime date)
         {
             using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
@@ -68,6 +82,36 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
                 {
                     return 0;
                 }
+            }
+        }
+
+        public async Task<IEnumerable<Disbursement>> GetDisbursementsAsync(IFilterParameters parameters)
+        {
+            var isPropertiesIsNull = parameters
+                .GetType()
+                .GetProperties()
+                .Select(p => p.GetValue(parameters))
+                .All(v => v is null);
+
+            if (isPropertiesIsNull) return [];
+
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext.Disbursements
+                    .Include(disbursement => disbursement.Family)
+
+                    .Where(x => parameters.Clan == null || x.Family.Clan == parameters.Clan)
+                    .Where(x => parameters.Branch == null || x.Family.Branch == null || x.Family.Branch == parameters.Branch)
+                    .Where(x => parameters.BranchRepresentative == null || x.Family.BranchRepresentative == null || x.Family.BranchRepresentative == parameters.BranchRepresentative)
+
+                    .Where(x => parameters.District == null || x.Family.Address.District == parameters.District)
+                    .Where(x => parameters.DistrictRepresentative == null || x.Family.DistrictRepresentative == parameters.DistrictRepresentative)
+
+                    .Where(x => parameters.FamilyType == null || x.Family.FamilyType == parameters.FamilyType)
+                    .Where(x => parameters.SocialStatus == null || x.Family.SocialStatus == parameters.SocialStatus)
+                    .Where(x => parameters.OrphanType == null || x.Family.OrphanType == parameters.OrphanType)
+
+                    .ToListAsync();
             }
         }
 

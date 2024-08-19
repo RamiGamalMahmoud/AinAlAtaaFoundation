@@ -1,6 +1,7 @@
 ﻿using AinAlAtaaFoundation.Data;
 using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
+using AinAlAtaaFoundation.Shared.Commands;
 using HandyControl.Tools.Extension;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -47,6 +48,44 @@ namespace AinAlAtaaFoundation.Features.Management.BranchRepresentativesManagemen
                 _entities.Add(branchRepresentative);
 
                 return branchRepresentative;
+            }
+        }
+
+        public async Task<IEnumerable<BranchRepresentative>> GetByClan(Clan clan)
+        {
+            if (clan is null) return [];
+            if (_entities is not null && _entities.Any()) return _entities.Where(x => x.Clan.Id == clan.Id);
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .BranchRepresentatives
+                    .Include(x => x.Clan)
+                    .Include(x => x.Branch)
+                        .ThenInclude(x => x.Clan)
+                    .Include(x => x.Phones)
+                    .OrderBy(x => x.Name)
+                    .Where(x => x.Clan.Id == clan.Id)
+                    .ToListAsync();
+
+            }
+        }
+
+        public async Task<IEnumerable<BranchRepresentative>> GetByBranch(Branch branch)
+        {
+            if (branch is null) return [];
+            if (_entities is not null && _entities.Any()) return _entities.Where(x => x.Branch.Id == branch.Id);
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .BranchRepresentatives
+                    .Include(x => x.Clan)
+                    .Include(x => x.Branch)
+                        .ThenInclude(x => x.Clan)
+                    .Include(x => x.Phones)
+                    .OrderBy(x => x.Name)
+                    .Where(x => x.Branch.Id == branch.Id)
+                    .ToListAsync();
+
             }
         }
 

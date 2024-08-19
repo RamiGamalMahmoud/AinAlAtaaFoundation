@@ -3,6 +3,7 @@ using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using HandyControl.Tools.Extension;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -111,6 +112,25 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictRepresentativesManagem
                 await dbContext.SaveChangesAsync();
                 dataModel.UpdateModel();
                 return true;
+
+            }
+        }
+
+        internal async Task<IEnumerable<DistrictRepresentative>> GetByDistrict(District district)
+        {
+            if (district is null) return [];
+            if (_entities is not null && _entities.Any()) return _entities.Where(x => x.Id == district.Id);
+
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .DistrictRepresentatives
+                    .Include(x => x.District)
+                    .Include(x => x.Address)
+                    .ThenInclude(x => x.District)
+                    .Include(x => x.Phones)
+                    .Where(x => x.District.Id == district.Id)
+                    .ToListAsync();
 
             }
         }

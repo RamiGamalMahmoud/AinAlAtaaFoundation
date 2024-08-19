@@ -38,6 +38,23 @@ namespace AinAlAtaaFoundation.Features.Management.BranchesManagement
             }
         }
 
+        public async Task<IEnumerable<Branch>> GetByClan(Clan clan)
+        {
+            if (clan is null) return [];
+            if (_entities is not null && _entities.Any()) return _entities.Where(x => x.Clan.Id == clan.Id);
+
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                        .Branches
+                        .Include(x => x.Clan)
+                        .OrderBy(x => x.Clan.Name)
+                        .OrderBy(x => x.Name)
+                        .Where(x => x.Clan.Id == clan.Id)
+                        .ToListAsync();
+            }
+        }
+
         public override async Task<IEnumerable<Branch>> GetAll(bool reload = false)
         {
             using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
