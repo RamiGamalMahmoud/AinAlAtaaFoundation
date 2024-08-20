@@ -9,6 +9,20 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
         {
             InitializeComponent();
             DataContext = viewModel;
+            _viewModel = viewModel;
+            Loaded += View_Loaded;
         }
+
+        private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (!_isLoaded)
+            {
+                await Dispatcher.InvokeAsync(_viewModel.LoadDataAsync);
+                _isLoaded = true;
+            }
+        }
+
+        private bool _isLoaded;
+        private readonly ViewModel _viewModel;
     }
 }
