@@ -36,8 +36,37 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
                     .Disbursements
                     .Include(x => x.Family)
                         .ThenInclude(x => x.Applicant)
+                    .OrderByDescending(x => x.Date)
                     .Where(x => x.Date == date)
                     .ToListAsync();
+            }
+        }
+
+        public async Task<Disbursement> GetLastFamilyDisbursementById(int familyId)
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .Disbursements
+                    .Include(x => x.Family)
+                        .ThenInclude(x => x.Applicant)
+                    .OrderByDescending(x => x.Date)
+                    .Where(x => x.FamilyId == familyId)
+                    .FirstOrDefaultAsync();
+            }
+        }
+
+        public async Task<Disbursement> GetLastFamilyDisbursementByRationCard(string rationCard)
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .Disbursements
+                    .Include(x => x.Family)
+                        .ThenInclude(x => x.Applicant)
+                    .OrderByDescending(x => x.Date)
+                    .Where(x => x.Family.RationCard == rationCard)
+                    .FirstOrDefaultAsync();
             }
         }
 
@@ -49,6 +78,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
                     .Disbursements
                     .Include(x => x.Family)
                         .ThenInclude(x => x.Applicant)
+                    .OrderByDescending(x => x.Date)
                     .Where(x => x.FamilyId == familyId)
                     .ToListAsync();
             }
@@ -62,6 +92,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
                     .Disbursements
                     .Include(x => x.Family)
                         .ThenInclude(x => x.Applicant)
+                    .OrderByDescending(x => x.Date)
                     .Where(x => x.Family.RationCard == rationCard)
                     .ToListAsync();
             }
@@ -99,6 +130,8 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             {
                 return await dbContext.Disbursements
                     .Include(disbursement => disbursement.Family)
+                        .ThenInclude(x => x.Applicant)
+                    .OrderByDescending(x => x.Date)
 
                     .Where(x => parameters.Clan == null || x.Family.Clan == parameters.Clan)
                     .Where(x => parameters.Branch == null || x.Family.Branch == null || x.Family.Branch == parameters.Branch)
