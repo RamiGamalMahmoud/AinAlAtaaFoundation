@@ -19,6 +19,26 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
         private readonly Repository _repository = repository;
     }
 
+    internal class CommandGetLastDisbursementByFamilyIdHandler(Repository repository) : IRequestHandler<CommandGetLastDisbursementByFamilyId, Disbursement>
+    {
+        public async Task<Disbursement> Handle(CommandGetLastDisbursementByFamilyId request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetLastFamilyDisbursementById(request.FamilyId);
+        }
+
+        private readonly Repository _repository = repository;
+    }
+
+    internal class CommandGetLastDisbursementByRationCardHandler(Repository repository) : IRequestHandler<CommandGetLastDisbursementByRationCard, Disbursement>
+    {
+        public async Task<Disbursement> Handle(CommandGetLastDisbursementByRationCard request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetLastFamilyDisbursementByRationCard(request.RationCard);
+        }
+
+        private readonly Repository _repository = repository;
+    }
+
     internal class CommandHandlerGetDisbursements(Repository repository) : IRequestHandler<GetHistory, IEnumerable<Disbursement>>
     {
         public async Task<IEnumerable<Disbursement>> Handle(GetHistory request, CancellationToken cancellationToken)
