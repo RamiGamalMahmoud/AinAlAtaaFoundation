@@ -53,7 +53,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         SocialStatusId = dataModel.SocialStatus.Id
                     };
 
-                    foreach(Phone phone in dataModel.Phones)
+                    foreach (Phone phone in dataModel.Phones)
                     {
                         family.Phones.Add(phone);
                     }
@@ -194,7 +194,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         .Include(x => x.OrphanType)
                         .Include(x => x.Phones)
                         .Include(x => x.SocialStatus)
-                        .Where(x => x.RationCard ==RationCard)
+                        .Where(x => x.RationCard == RationCard)
                         .ToListAsync();
                 }
             }
