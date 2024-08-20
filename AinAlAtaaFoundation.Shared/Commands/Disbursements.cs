@@ -9,6 +9,8 @@ namespace AinAlAtaaFoundation.Shared.Commands
     {
         public record GetByFamilyId(int FamilyId) : IRequest<IEnumerable<Disbursement>>;
         public record GetByRationCard(string RationCard) : IRequest<IEnumerable<Disbursement>>;
+        public record CommandGetLastDisbursementByFamilyId(int FamilyId) : IRequest<Disbursement>;
+        public record CommandGetLastDisbursementByRationCard(string RationCard) : IRequest<Disbursement>;
 
         public record GetHistory(
             Clan Clan, 
