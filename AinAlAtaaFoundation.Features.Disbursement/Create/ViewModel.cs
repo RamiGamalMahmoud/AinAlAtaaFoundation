@@ -22,6 +22,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             Clock = new Clock();
             _mediator = mediator;
             _messenger = messenger;
+            _insertionType = InsertionType.Id;
         }
 
         public bool CanPrint() => Family is not null;
@@ -31,15 +32,28 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         {
             Disbursement disbursement = await Create();
             PrintTicket(disbursement);
-            Disbursements.Add(disbursement);
+            LastFamilyDisbursement = disbursement;
 
             FamilyId = 0;
             ReadingNumber = 0;
+            RationCard = "";
             _messenger.Send<Messages.IdChangedMessage>();
         }
 
         [ObservableProperty]
         private bool _manualInput;
+
+        [RelayCommand]
+        private void SetInputToId()
+        {
+            _insertionType = InsertionType.Id;
+        }
+
+        [RelayCommand]
+        private  void SetInputToRationCard()
+        {
+            _insertionType = InsertionType.RationCard;
+        }
 
         [RelayCommand]
         private void PrintTicket(Disbursement disbursement)
@@ -65,7 +79,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             };
 
             await _mediator.Send(new CommandHandlerCreate.Command(disbursement));
-            Disbursements.Add(disbursement);
+            LastFamilyDisbursement = disbursement;
             return disbursement;
         }
 
@@ -81,20 +95,16 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 
         protected override async void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(FamilyId))
+            if (e.PropertyName == nameof(FamilyId) && _insertionType == InsertionType.Id)
             {
+                LastFamilyDisbursement = await _mediator.Send(new Shared.Commands.Disbursements.CommandGetLastDisbursementByFamilyId(FamilyId));
                 Family = await _mediator.Send(new Shared.Commands.Families.GetFamilyCommand(FamilyId));
-                Disbursements.Clear();
-                IEnumerable<Disbursement> disbursements = await _mediator.Send(new Shared.Commands.Disbursements.GetByFamilyId(FamilyId));
-                foreach (Disbursement disbursement in disbursements)
-                {
-                    Disbursements.Add(disbursement);
-                }
+                RationCard = Family?.RationCard;
             }
 
-            else if (e.PropertyName == nameof(ReadingNumber))
+            else if (e.PropertyName == nameof(ReadingNumber) && _insertionType == InsertionType.Id )
             {
-                if (ReadingNumber == 3)
+                if (ReadingNumber >= 3)
                 {
                     if (Family is not null)
                     {
@@ -141,26 +151,24 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         private string _rationCard;
         async partial void OnRationCardChanged(string oldValue, string newValue)
         {
+            if (_insertionType != InsertionType.RationCard) return;
+            LastFamilyDisbursement = await _mediator.Send(new Shared.Commands.Disbursements.CommandGetLastDisbursementByRationCard(newValue));
             IEnumerable<Disbursement> disbursements = await _mediator.Send(new Shared.Commands.Disbursements.GetByRationCard(newValue));
-            _disbursements.Clear();
-            foreach(Disbursement disbursement in disbursements)
-            {
-                _disbursements.Add(disbursement);
-            }
 
             Family = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(newValue))
                 .ContinueWith(x => x
                 .Result
                 .Where(family => family.RationCard == newValue).FirstOrDefault());
+            if(Family is not null)FamilyId = Family.Id;
         }
 
-        public ObservableCollection<Disbursement> Disbursements
+        public Disbursement LastFamilyDisbursement
         {
-            get => _disbursements;
-            private set => SetProperty(ref _disbursements, value);
+            get => _lastFamilyDisbursement;
+            private set => SetProperty(ref _lastFamilyDisbursement, value);
         }
+        private Disbursement _lastFamilyDisbursement;
 
-        private ObservableCollection<Disbursement> _disbursements = new ObservableCollection<Disbursement>();
         private int _id;
         private int _readingNumber = 0;
 
