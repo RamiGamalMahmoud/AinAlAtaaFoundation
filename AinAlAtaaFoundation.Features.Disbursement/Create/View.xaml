@@ -40,18 +40,18 @@
             FocusManager.FocusedElement="{Binding ElementName=MainInput}"
             Orientation="Horizontal">
 
-            <Label Margin="5,0">
-                <CheckBox
-                    x:Name="ManulInput"
-                    Height="30"
-                    Content="إدخال يدوي"
-                    Cursor="Hand"
-                    FlowDirection="LeftToRight"
-                    FontSize="14"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource Blue}"
-                    IsChecked="{Binding ManualInput}" />
-            </Label>
+            <ToggleButton
+                x:Name="ManulInput"
+                Height="30"
+                Margin="5,0"
+                Content="{Binding InputType}"
+                Cursor="Hand"
+                FlowDirection="LeftToRight"
+                FontSize="14"
+                FontWeight="Bold"
+                Style="{StaticResource ToggleButtonDanger}"
+                Width="100"
+                IsChecked="{Binding ManualInput}" />
 
             <StackPanel Margin="5,0">
                 <TextBlock Text="تسلسل العائلة" TextAlignment="Center" />
@@ -62,6 +62,7 @@
                     Padding="10"
                     Focusable="True"
                     FontSize="30"
+                    GotFocus="Input_GotFocus"
                     TextAlignment="Center">
 
                     <Behaviors:Interaction.Triggers>
@@ -71,7 +72,10 @@
                     </Behaviors:Interaction.Triggers>
 
                     <TextBox.Text>
-                        <Binding Path="FamilyId" UpdateSourceTrigger="PropertyChanged">
+                        <Binding
+                            Mode="TwoWay"
+                            Path="FamilyGetter.FamilyId"
+                            UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <rules:IntegerValidationRule />
                             </Binding.ValidationRules>
@@ -89,7 +93,8 @@
                     Padding="10"
                     Focusable="True"
                     FontSize="30"
-                    Text="{Binding RationCard, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    GotFocus="Input_GotFocus"
+                    Text="{Binding FamilyGetter.RationCard, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     TextAlignment="Center">
                     <Behaviors:Interaction.Triggers>
                         <Behaviors:EventTrigger EventName="GotFocus" SourceObject="{Binding ElementName=RationCardInput}">
