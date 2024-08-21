@@ -150,13 +150,15 @@
 
             <Button
                 Grid.Column="10"
+                Height="auto"
                 HorizontalAlignment="Right"
                 Command="{Binding ShowCreateCommand}"
                 Content="إضافة"
                 Cursor="Hand"
                 FontFamily="Arial"
+                FontSize="20"
                 FontWeight="Bold"
-                Style="{StaticResource ButtonPrimary}" />
+                Style="{StaticResource ButtonSuccess}" />
         </Grid>
 
 
