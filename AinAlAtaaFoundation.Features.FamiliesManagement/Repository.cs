@@ -265,5 +265,16 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     .FirstOrDefaultAsync();
             }
         }
+
+        public async Task<bool> Remove(Disbursement disbursement)
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                dbContext.Disbursements
+                    .Remove(disbursement);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
+        }
     }
 }
