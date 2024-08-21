@@ -2,6 +2,7 @@
 using AinAlAtaaFoundation.Shared.Commands;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
@@ -9,7 +10,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
     internal partial class ViewModel
     {
         [ObservableProperty]
-        private IEnumerable<Disbursement> _disbursements;
+        private ObservableCollection<Disbursement> _disbursements;
 
         [ObservableProperty]
         private IEnumerable<Clan> _clans;
