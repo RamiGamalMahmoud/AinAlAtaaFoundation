@@ -211,7 +211,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button
-                                Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.PrintTicketCommand}"
+                                Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.RemoveCommand}"
                                 CommandParameter="{Binding}"
                                 Content="حذف"
                                 Cursor="Hand"
