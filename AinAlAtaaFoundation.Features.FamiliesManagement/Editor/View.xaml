@@ -71,20 +71,14 @@
                                 <TextBlock Foreground="{StaticResource Blue}" Text="رقم البطاقة التموينية" />
                                 <TextBox Text="{Binding DataModel.RationCard, UpdateSourceTrigger=PropertyChanged}" />
 
-                                <ListBox ItemsSource="{Binding FoundFamiliesForRationCard}">
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Cursor="Hand">
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0} - {1}">
-                                                        <Binding Path="RationCard" />
-                                                        <Binding Path="Clan.Name" />
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
+                                <TextBlock Cursor="Hand">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} - {1}">
+                                            <Binding Path="FoundFamilyForRationCard.RationCard" />
+                                            <Binding Path="FoundFamilyForRationCard.Clan.Name" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
 
                                 <TextBlock
                                     Foreground="Red"

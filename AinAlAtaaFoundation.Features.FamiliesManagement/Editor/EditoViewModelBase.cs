@@ -195,14 +195,14 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
         {
             if (string.IsNullOrEmpty(rationCard))
             {
-                FoundFamiliesForRationCard = [];
+                FoundFamilyForRationCard = null;
                 HasMessageObject.Clear();
             }
 
             else
             {
-                //FoundFamiliesForRationCard = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(rationCard));
-                if (FoundFamiliesForRationCard is null || !FoundFamiliesForRationCard.Any())
+                FoundFamilyForRationCard = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(rationCard));
+                if (FoundFamilyForRationCard is null)
                 {
                     HasMessageObject.Clear();
                 }
@@ -231,7 +231,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
         public HasMessageObject HasMessageObject { get; } = new HasMessageObject();
 
         [ObservableProperty]
-        private IEnumerable<Family> _foundFamiliesForRationCard;
+        private Family _foundFamilyForRationCard;
 
         [ObservableProperty]
         private IEnumerable<Family> _foundedNames;
