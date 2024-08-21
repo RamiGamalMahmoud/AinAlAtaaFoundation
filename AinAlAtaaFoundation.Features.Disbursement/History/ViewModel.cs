@@ -1,11 +1,12 @@
 ﻿using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
 {
-    internal partial class ViewModel(IMediator mediator) : ObservableObject
+    internal partial class ViewModel(IMediator mediator, IMessenger messenger) : ObservableObject
     {
         public async Task LoadDataAsync()
         {
@@ -17,5 +18,6 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
         }
 
         private readonly IMediator _mediator = mediator;
+        private readonly IMessenger _messenger = messenger;
     }
 }
