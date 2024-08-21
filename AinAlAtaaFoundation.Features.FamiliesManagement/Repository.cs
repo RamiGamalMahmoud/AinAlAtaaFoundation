@@ -169,18 +169,18 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             }
         }
 
-        public async Task<IEnumerable<Family>> GetByRationCard(string RationCard)
+        public async Task<Family> GetByRationCard(string RationCard)
         {
-            IEnumerable<Family> families;
-            families = _entities
+            Family family;
+            family = _entities
                 .Where(x => x.RationCard == RationCard)
-                .ToList();
+                .FirstOrDefault();
 
-            if (families is null || !families.Any())
+            if (family is null)
             {
                 using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
                 {
-                    families = await dbContext.Families
+                    family = await dbContext.Families
                         .Include(x => x.Address)
                         .Include(x => x.Applicant)
                             .ThenInclude(x => x.Gender)
@@ -195,10 +195,10 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         .Include(x => x.Phones)
                         .Include(x => x.SocialStatus)
                         .Where(x => x.RationCard == RationCard)
-                        .ToListAsync();
+                        .FirstOrDefaultAsync();
                 }
             }
-            return families;
+            return family;
         }
 
         public async Task<IEnumerable<Family>> GetByRationCardOwner(string RationCardOwnerName)

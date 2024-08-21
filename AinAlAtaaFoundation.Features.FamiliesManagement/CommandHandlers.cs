@@ -17,9 +17,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         private readonly Repository _repository = repository;
     }
 
-    internal class CommandHandlerGetByRationCard(Repository repository) : IRequestHandler<Shared.Commands.Families.GetByRationCard, IEnumerable<Family>>
+    internal class CommandHandlerGetByRationCard(Repository repository) : IRequestHandler<Shared.Commands.Families.GetByRationCard, Family>
     {
-        public async Task<IEnumerable<Family>> Handle(Families.GetByRationCard request, CancellationToken cancellationToken)
+        public async Task<Family> Handle(Families.GetByRationCard request, CancellationToken cancellationToken)
         {
             return await _repository.GetByRationCard(request.RationCard);
         }

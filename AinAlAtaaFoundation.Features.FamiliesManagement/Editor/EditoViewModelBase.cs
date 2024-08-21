@@ -201,7 +201,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
             else
             {
-                FoundFamiliesForRationCard = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(rationCard));
+                //FoundFamiliesForRationCard = await _mediator.Send(new Shared.Commands.Families.GetByRationCard(rationCard));
                 if (FoundFamiliesForRationCard is null || !FoundFamiliesForRationCard.Any())
                 {
                     HasMessageObject.Clear();
