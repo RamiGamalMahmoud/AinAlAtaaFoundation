@@ -22,5 +22,7 @@ namespace AinAlAtaaFoundation.Shared.Commands
             SocialStatus SocialStatus,
             OrphanType OrphanType
             ) : IFilterParameters, IRequest<IEnumerable<Disbursement>>;
+
+        public record CommandRemove(Disbursement Disbursement) : IRequest<bool>;
     }
 }
