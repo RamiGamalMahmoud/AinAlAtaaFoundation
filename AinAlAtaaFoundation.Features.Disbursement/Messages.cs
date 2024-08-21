@@ -4,5 +4,7 @@
     {
         public record IdChangedMessage;
         public record ClearInputMessage;
+        public record MessageInputFinished;
+        public record MessageManualInputChanged(bool State);
     }
 }
