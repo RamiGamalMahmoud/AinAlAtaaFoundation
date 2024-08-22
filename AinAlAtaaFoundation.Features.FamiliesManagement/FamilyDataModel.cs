@@ -120,105 +120,55 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [YearValidation(ErrorMessage = "تأكد من كتابة السنة بشكل صحيح")]
         private int _yearOfBirth;
 
+        [ObservableProperty]
         [Required(ErrorMessage = "حقل مطلوب")]
-        public District District
-        {
-            get => _district;
-            set
-            {
-                SetProperty(ref _district, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [NotifyDataErrorInfo]
+        [NotifyPropertyChangedFor(nameof(IsValid))]
         private District _district;
 
         public int Age => DateTime.Now.Year - YearOfBirth;
 
+        [ObservableProperty]
         [Required(ErrorMessage = "حقل مطلوب")]
-        public Gender Gender
-        {
-            get => _gender;
-            set => SetProperty(ref _gender, value, true);
-        }
+        [NotifyDataErrorInfo]
+        [NotifyPropertyChangedFor(nameof(IsValid))]
         private Gender _gender;
 
-        public FeaturedPoint FeaturedPoint
-        {
-            get => _featuredPoint;
-            set
-            {
-                SetProperty(ref _featuredPoint, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [ObservableProperty]
         private FeaturedPoint _featuredPoint;
 
         [ObservableProperty]
         private string _street;
 
-        public bool IsOrphan { get => _isOrphan; private set => SetProperty(ref _isOrphan, value); }
+        [ObservableProperty]
         private bool _isOrphan;
 
         [ObservableProperty]
         private string _notes;
 
+        [ObservableProperty]
         [Required(ErrorMessage = "حقل مطلوب")]
-        public Clan Clan
-        {
-            get => _clan;
-            set
-            {
-                SetProperty(ref _clan, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [NotifyDataErrorInfo]
+        [NotifyPropertyChangedFor(nameof(IsValid))]
         private Clan _clan;
 
-        public Branch Branch
-        {
-            get => _branch;
-            set
-            {
-                SetProperty(ref _branch, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [ObservableProperty]
         private Branch _branch;
 
+        [ObservableProperty]
         [Required(ErrorMessage = "حقل مطلوب")]
-        public BranchRepresentative BranchRepresentative
-        {
-            get => _branchRepresentative;
-            set
-            {
-                SetProperty(ref _branchRepresentative, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [NotifyDataErrorInfo]
+        [NotifyPropertyChangedFor(nameof(IsValid))]
         private BranchRepresentative _branchRepresentative;
 
+        [ObservableProperty]
         [Required(ErrorMessage = "حقل مطلوب")]
-        public DistrictRepresentative DistrictRepresentative
-        {
-            get => _districtRepresentative;
-            set
-            {
-                SetProperty(ref _districtRepresentative, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [NotifyDataErrorInfo]
+        [NotifyPropertyChangedFor(nameof(IsValid))]
         private DistrictRepresentative _districtRepresentative;
 
         public int AddressId { get; set; }
-        public Address Address
-        {
-            get => _address;
-            set
-            {
-                SetProperty(ref _address, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [ObservableProperty]
         private Address _address;
 
         [Required(ErrorMessage = "حقل مطلوب")]
@@ -234,38 +184,16 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         }
         private SocialStatus _socialStatus;
 
+        [ObservableProperty]
         [Required(ErrorMessage = "حقل مطلوب")]
-        public FamilyType FamilyType
-        {
-            get => _familyType;
-            set
-            {
-                SetProperty(ref _familyType, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [NotifyDataErrorInfo]
+        [NotifyPropertyChangedFor(nameof(IsValid))]
         private FamilyType _familyType;
 
-        public OrphanType OrphanType
-        {
-            get => _orphanType;
-            set
-            {
-                SetProperty(ref _orphanType, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [ObservableProperty]
         private OrphanType _orphanType;
 
-        public FamilyMember Applicant
-        {
-            get => _applicant;
-            set
-            {
-                SetProperty(ref _applicant, value, true);
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+        [ObservableProperty]
         private FamilyMember _applicant;
 
         public ObservableCollection<Phone> Phones { get; } = [];
