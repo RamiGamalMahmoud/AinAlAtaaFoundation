@@ -150,6 +150,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     IEnumerable<Family> families = await dbContext
                         .Families
                         .Include(x => x.Address)
+                            .ThenInclude(x => x.FeaturedPoint)
                         .Include(x => x.Applicant)
                             .ThenInclude(x => x.Gender)
                         .Include(x => x.Branch)
