@@ -4,8 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:components="clr-namespace:AinAlAtaaFoundation.Shared.Components;assembly=AinAlAtaaFoundation.Shared"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:hc="https://handyorg.github.io/handycontrol"
-    xmlns:helpes="clr-namespace:AinAlAtaaFoundation.Shared.Helpers;assembly=AinAlAtaaFoundation.Shared"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.DisbursementManagement.History"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sf="http://schemas.syncfusion.com/wpf"
@@ -19,12 +17,12 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-
-
         <components:TopFilter
             Grid.Row="0"
+            Margin="0,5"
             FilterCommand="{Binding FilterCommand}"
             TopFilterViewModel="{Binding TopFilterViewModel}" />
+
         <DataGrid
             Grid.Row="1"
             d:ItemsSource="{d:SampleData}"

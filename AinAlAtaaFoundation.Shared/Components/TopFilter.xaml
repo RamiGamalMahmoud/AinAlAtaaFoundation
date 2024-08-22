@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:hc="https://handyorg.github.io/handycontrol"
-    xmlns:helpes="clr-namespace:AinAlAtaaFoundation.Shared.Helpers"
+    xmlns:helpers="clr-namespace:AinAlAtaaFoundation.Shared.Helpers"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Shared.Components"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="root"
@@ -12,10 +12,7 @@
 
     <StackPanel Orientation="Horizontal">
 
-
-
         <Button
-            Grid.Column="0"
             Command="{Binding ElementName=root, Path=TopFilterViewModel.ClearFiltersCommand}"
             Content="إعادة ضبط"
             Cursor="Hand"
@@ -24,13 +21,12 @@
             Style="{StaticResource ButtonWarning}" />
 
         <hc:ComboBox
-            Grid.Column="1"
             Width="120"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:InfoElement.Placeholder="العشيرة"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.Clans}"
@@ -39,13 +35,12 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Grid.Column="2"
             Width="150"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:InfoElement.Placeholder="الفخذ"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.Branches}"
@@ -54,13 +49,12 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Grid.Column="3"
             Width="150"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:InfoElement.Placeholder="ممثل الفخذ"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.BranchRepresentatives}"
@@ -69,13 +63,12 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Grid.Column="4"
             Width="120"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:InfoElement.Placeholder="نوع العائلة"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.FamilyTypes}"
@@ -84,14 +77,13 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Grid.Column="5"
             Width="120"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="الحالة الإجتماعية"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.SocialStatuses}"
@@ -100,14 +92,13 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Grid.Column="6"
             Width="120"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="نوع اليتم"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.OrphanTypes}"
@@ -116,14 +107,13 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Grid.Column="7"
             Width="120"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="الحي"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.Districts}"
@@ -132,14 +122,13 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Grid.Column="8"
             Width="120"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="المختار"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.DistrictRepresentatives}"
@@ -148,14 +137,13 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Grid.Column="9"
             Width="120"
             Margin="10,0"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="أقرب نقطة دالة"
             hc:InfoElement.ShowClearButton="True"
-            helpes:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
             Cursor="Hand"
             DisplayMemberPath="Name"
             ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.FeaturedPoints}"
