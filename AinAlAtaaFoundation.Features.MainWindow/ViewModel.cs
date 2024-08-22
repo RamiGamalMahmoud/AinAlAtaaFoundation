@@ -69,6 +69,12 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         }
 
         [RelayCommand]
+        private void GoToStatistics()
+        {
+            CurrentView = _serviceProvider.GetRequiredService<Statistics.View>();
+        }
+
+        [RelayCommand]
         private void Logout()
         {
             _messenger.Send(new Shared.Commands.Generic.CommandLogout());
