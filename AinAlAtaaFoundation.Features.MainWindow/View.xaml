@@ -77,6 +77,20 @@
                             Height="40"
                             Margin="0,10,0,0"
                             HorizontalAlignment="Stretch"
+                            Command="{Binding AddFamilyCommand}"
+                            Content="إضافة عائلة"
+                            Background="#1abc9c"
+                            Cursor="Hand"
+                            FontFamily="Arial"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Style="{StaticResource ButtonPrimary}" />
+
+                        <Button
+                            Width="auto"
+                            Height="40"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Stretch"
                             Command="{Binding GoToFamilyMembersCommand}"
                             Content="أفراد العائلات"
                             Cursor="Hand"

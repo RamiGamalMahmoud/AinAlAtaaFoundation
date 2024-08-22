@@ -1,7 +1,9 @@
-﻿using AinAlAtaaFoundation.Shared.Abstraction;
+﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
@@ -10,9 +12,10 @@ namespace AinAlAtaaFoundation.Features.MainWindow
 {
     public partial class ViewModel : ObservableObject
     {
-        public ViewModel(IServiceProvider serviceProvider, IMessenger messenger, IAppState appState)
+        public ViewModel(IServiceProvider serviceProvider, IMediator mediator, IMessenger messenger, IAppState appState)
         {
             _serviceProvider = serviceProvider;
+            _mediator = mediator;
             _messenger = messenger;
             AppState = appState;
             GoToHome();
@@ -30,12 +33,19 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         public IAppState AppState { get; }
 
         private readonly IServiceProvider _serviceProvider;
+        private readonly IMediator _mediator;
         private readonly IMessenger _messenger;
 
         [RelayCommand]
         private void GoToHome()
         {
             CurrentView = _serviceProvider.GetRequiredService<WelcomeView>();
+        }
+
+        [RelayCommand]
+        private void AddFamily()
+        {
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<Family>());
         }
 
         [RelayCommand]
