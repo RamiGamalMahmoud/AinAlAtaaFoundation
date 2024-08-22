@@ -9,6 +9,12 @@ namespace AinAlAtaaFoundation.Features.MainWindow.Statistics
             InitializeComponent();
             DataContext = viewModel;
             _viewModel = viewModel;
+            Loaded += View_Loaded;
+        }
+
+        private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            await Dispatcher.InvokeAsync(_viewModel.InitAsync);
         }
 
         private readonly ViewModel _viewModel;
