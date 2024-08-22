@@ -131,10 +131,14 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
                 Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
                 Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
 
-                FeaturedPoints = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FeaturedPoint>());
                 OrphanTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<OrphanType>());
 
                 Genders = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Gender>());
+
+                await LoadBranches();
+                await LoadBranchRepresentatives();
+                await LoadDistrictRepresentatives();
+                await LoadFeaturedPoints();
             }
         }
 
