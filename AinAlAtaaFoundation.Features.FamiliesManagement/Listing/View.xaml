@@ -19,10 +19,32 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <components:TopFilter
-            Grid.Row="0"
-            Margin="0,10"
-            FilterCommand="{Binding FilterCommand}" TopFilterViewModel="{Binding TopFilterViewModel}" />
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <components:TopFilter
+
+                Grid.Column="0"
+                Margin="0,10"
+                FilterCommand="{Binding FilterCommand}"
+                TopFilterViewModel="{Binding TopFilterViewModel}" />
+
+            <Button
+                Grid.Column="2"
+                Cursor="Hand"
+                Command="{Binding ShowCreateCommand}"
+                Background="#9b59b6"
+                Style="{StaticResource ButtonPrimary}"
+                Height="auto"
+                HorizontalAlignment="Left"
+                Content="إضافة"
+                FontSize="20" />
+        </Grid>
 
         <DataGrid
             Grid.Row="1"
