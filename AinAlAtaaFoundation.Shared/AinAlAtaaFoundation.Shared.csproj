@@ -13,10 +13,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
 		<ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Components\" />
+		<ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
 	</ItemGroup>
 
 </Project>

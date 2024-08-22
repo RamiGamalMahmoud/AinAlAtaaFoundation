@@ -16,4 +16,14 @@ namespace AinAlAtaaFoundation.Features.Management.FeaturedPointsManagement
 
         private readonly Repository _repository = repository;
     }
+
+    internal class CommandGetByDistrictHandler(Repository repository) : IRequestHandler<Shared.Commands.FeaturedPoints.CommandGetByDistrict, IEnumerable<FeaturedPoint>>
+    {
+        private readonly Repository _repository = repository;
+
+        public async Task<IEnumerable<FeaturedPoint>> Handle(FeaturedPoints.CommandGetByDistrict request, CancellationToken cancellationToken)
+        {
+            return await _repository.GetByDistrict(request.District);
+        }
+    }
 }

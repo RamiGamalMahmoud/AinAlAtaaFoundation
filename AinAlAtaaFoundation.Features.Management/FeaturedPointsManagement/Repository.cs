@@ -3,6 +3,7 @@ using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.Management.FeaturedPointsManagement
@@ -48,6 +49,22 @@ namespace AinAlAtaaFoundation.Features.Management.FeaturedPointsManagement
                     SetEntities(featuredPoints);
                 }
                 return _entities;
+            }
+        }
+
+        public async Task<IEnumerable<FeaturedPoint>> GetByDistrict(District district)
+        {
+            if(_entities.Any())
+            {
+                return _entities.Where(x => x.District == district);
+            }
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .FeaturedPoints
+                    .Include(x => x.District)
+                    .Where(x => x.District == district)
+                    .ToListAsync();
             }
         }
 

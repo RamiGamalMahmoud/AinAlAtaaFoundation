@@ -1,21 +1,53 @@
 ﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared.Abstraction;
+using AinAlAtaaFoundation.Shared.Components;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
 {
-    internal partial class ViewModel(IMediator mediator, IMessenger messenger) : ObservableObject
+    internal partial class ViewModel(IMediator mediator, IMessenger messenger, TopFilterViewModel topFilterViewModel) : ObservableObject
     {
+        public TopFilterViewModel TopFilterViewModel { get; } = topFilterViewModel;
         public async Task LoadDataAsync()
         {
-            Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
-            FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
-            SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
+            TopFilterViewModel.Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
+            TopFilterViewModel.FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
+            TopFilterViewModel.SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
 
-            Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
+            TopFilterViewModel.Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
         }
+
+        [RelayCommand]
+        private async Task Filter()
+        {
+            IEnumerable<Disbursement> disbursements = await _mediator.Send(new Shared.Commands.Disbursements.GetHistory(
+                TopFilterViewModel.Clan,
+                TopFilterViewModel.Branch,
+                TopFilterViewModel.BranchRepresentative,
+                TopFilterViewModel.District,
+                TopFilterViewModel.DistrictRepresentative,
+                TopFilterViewModel.FamilyType,
+                TopFilterViewModel.SocialStatus,
+                TopFilterViewModel.OrphanType));
+            Disbursements = new System.Collections.ObjectModel.ObservableCollection<Disbursement>(disbursements);
+        }
+
+        [RelayCommand]
+        private async Task Remove(Disbursement disbursement)
+        {
+            await _mediator.Send(new Shared.Commands.Disbursements.CommandRemove(disbursement));
+            Disbursements.Remove(disbursement);
+            _messenger.Send(new Shared.Notifications.SuccessNotification("تم الحذف بنجاح"));
+        }
+
+        [ObservableProperty]
+        private ObservableCollection<Disbursement> _disbursements;
 
         private readonly IMediator _mediator = mediator;
         private readonly IMessenger _messenger = messenger;

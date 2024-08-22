@@ -1,5 +1,6 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared;
+using AinAlAtaaFoundation.Shared.Components;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -12,12 +13,13 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
 {
     internal partial class ViewModel : ObservableObject
     {
-        public ViewModel(IMediator mediator, IMessenger messenger)
+        public ViewModel(IMediator mediator, IMessenger messenger, TopFilterViewModel topFilterViewModel)
         {
             _mediator = mediator;
 
             messenger.Register<ViewModel, Shared.Messages.EntityCreated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
             messenger.Register<ViewModel, Shared.Messages.EntityUpdated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
+            TopFilterViewModel = topFilterViewModel;
         }
 
         public async Task LoadDataAsync(bool reload = false)
@@ -27,14 +29,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 _allFamilies = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>(reload));
                 Families = _allFamilies;
 
-                Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
-                FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
-                SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
-
-                Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
+                await TopFilterViewModel.LoadDataAsync();
             }
         }
 
+        public TopFilterViewModel TopFilterViewModel { get; }
         [RelayCommand]
         private async Task ShowCreate()
         {
@@ -111,11 +110,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [RelayCommand]
         private void ViewAll()
         {
-            Clan = null;
-            Branch = null;
-            BranchRepresentative = null;
-            FamilyType = null;
-            SocialStatus = null;
             Families = _allFamilies;
         }
 
@@ -124,13 +118,15 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         {
             IsVewAll = false;
             Families = _allFamilies
-                .Where(x => Clan is null || x.Clan is null || x.Clan.Id == Clan.Id)
-                .Where(x => Branch is null || x.Branch is not null && x.Branch.Id == Branch.Id)
-                .Where(x => BranchRepresentative is null || x.BranchRepresentative is null || x.BranchRepresentative.Id == BranchRepresentative.Id)
-                .Where(x => SocialStatus is null || x.SocialStatus is null || x.SocialStatus.Id == SocialStatus.Id)
-                .Where(x => FamilyType is null || x.FamilyType is null || x.FamilyType.Id == FamilyType.Id)
-                .Where(x => District is null || x.Address.District.Id == District.Id)
-                .Where(x => DistrictRepresentative is null || x.DistrictRepresentative.Id == DistrictRepresentative.Id);
+                .Where(x => TopFilterViewModel.Clan is null || x.Clan is null || x.Clan.Id == TopFilterViewModel.Clan.Id)
+                .Where(x => TopFilterViewModel.Branch is null || x.Branch is not null && x.Branch.Id == TopFilterViewModel.Branch.Id)
+                .Where(x => TopFilterViewModel.BranchRepresentative is null || x.BranchRepresentative is null || x.BranchRepresentative.Id == TopFilterViewModel.BranchRepresentative.Id)
+                .Where(x => TopFilterViewModel.SocialStatus is null || x.SocialStatus is null || x.SocialStatus.Id == TopFilterViewModel.SocialStatus.Id)
+                .Where(x => TopFilterViewModel.FamilyType is null || x.FamilyType is null || x.FamilyType.Id == TopFilterViewModel.FamilyType.Id)
+                .Where(x => TopFilterViewModel.OrphanType is null || x.OrphanType is null || x.OrphanType == TopFilterViewModel.OrphanType)
+                .Where(x => TopFilterViewModel.District is null || x.Address.District.Id == TopFilterViewModel.District.Id)
+                .Where(x => TopFilterViewModel.DistrictRepresentative is null || x.DistrictRepresentative.Id == TopFilterViewModel.DistrictRepresentative.Id)
+                .Where(x => TopFilterViewModel.FeaturedPoint is null || x.Address.FeaturedPoint is null || x.Address.FeaturedPoint == TopFilterViewModel.FeaturedPoint);
         }
 
         [ObservableProperty]
@@ -143,76 +139,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         }
         private IEnumerable<Family> _families;
         private IEnumerable<Family> _allFamilies;
-
-        [ObservableProperty]
-        private IEnumerable<Clan> _clans;
-
-        [ObservableProperty]
-        private IEnumerable<Branch> _branches;
-
-        [ObservableProperty]
-        private IEnumerable<BranchRepresentative> _branchRepresentatives;
-
-        [ObservableProperty]
-        private IEnumerable<FamilyType> _familyTypes;
-
-        [ObservableProperty]
-        private IEnumerable<SocialStatus> _socialStatuses;
-
-        [ObservableProperty]
-        private Clan _clan;
-        async partial void OnClanChanged(Clan oldValue, Clan newValue)
-        {
-            Branches = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Branch>()))
-                .Where(x => newValue is not null && x.Clan.Id == newValue.Id);
-
-            BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>()))
-                .Where(x => newValue is not null && x.Clan.Id == newValue.Id);
-        }
-
-        [ObservableProperty]
-        private Branch _branch;
-        async partial void OnBranchChanged(Branch oldValue, Branch newValue)
-        {
-            if (newValue is null)
-            {
-                BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>()))
-                    .Where(x => x.Clan.Id == Clan.Id);
-            }
-            else
-            {
-                BranchRepresentatives = (await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<BranchRepresentative>()))
-                    .Where(x => x.Branch is not null && x.Branch.Id == newValue.Id);
-            }
-        }
-
-        [ObservableProperty]
-        private BranchRepresentative _branchRepresentative;
-
-        [ObservableProperty]
-        private IEnumerable<District> _districts;
-
-        [ObservableProperty]
-        private District _district;
-        async partial void OnDistrictChanged(District oldValue, District newValue)
-        {
-            DistrictRepresentatives = await _mediator
-                .Send(new Shared.Commands.Generic.GetAllCommand<DistrictRepresentative>())
-                .ContinueWith(x => x
-                .Result
-                .Where(x => newValue is not null && x.District.Id == newValue.Id));
-        }
-
-        [ObservableProperty]
-        private IEnumerable<DistrictRepresentative> _districtRepresentatives;
-        [ObservableProperty]
-        private DistrictRepresentative _districtRepresentative;
-
-        [ObservableProperty]
-        private FamilyType _familyType;
-
-        [ObservableProperty]
-        private SocialStatus _socialStatus;
 
         private readonly IMediator _mediator;
     }
