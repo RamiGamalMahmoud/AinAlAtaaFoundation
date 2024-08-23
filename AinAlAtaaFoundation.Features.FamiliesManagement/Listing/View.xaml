@@ -18,31 +18,10 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Grid>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
-
-            <components:TopFilter
-                Grid.Column="0"
-                Margin="0,10"
-                FilterCommand="{Binding FilterCommand}"
-                TopFilterViewModel="{Binding TopFilterViewModel}" />
-
-            <Button
-                Grid.Column="2"
-                Height="auto"
-                HorizontalAlignment="Left"
-                Background="#9b59b6"
-                Command="{Binding ShowCreateCommand}"
-                Content="إضافة"
-                Cursor="Hand"
-                FontSize="20"
-                Style="{StaticResource ButtonPrimary}" />
-        </Grid>
+        <components:TopFilter
+            Grid.Row="0"
+            FilterCommand="{Binding FilterCommand}"
+            TopFilterViewModel="{Binding TopFilterViewModel}" />
 
         <DataGrid
             Grid.Row="1"
