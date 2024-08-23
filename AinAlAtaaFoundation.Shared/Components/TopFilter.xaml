@@ -18,6 +18,7 @@
             Command="{Binding ElementName=root, Path=TopFilterViewModel.ClearFiltersCommand}"
             Content="إعادة ضبط"
             Cursor="Hand"
+            VerticalAlignment="Bottom"
             FontSize="16"
             Foreground="{StaticResource Black}"
             Style="{StaticResource ButtonWarning}" />
