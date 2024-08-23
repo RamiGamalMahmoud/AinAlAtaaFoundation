@@ -10,9 +10,11 @@
     Name="root"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal">
+    <WrapPanel>
 
         <Button
+            Width="150"
+            Margin="5"
             Command="{Binding ElementName=root, Path=TopFilterViewModel.ClearFiltersCommand}"
             Content="إعادة ضبط"
             Cursor="Hand"
@@ -21,8 +23,8 @@
             Style="{StaticResource ButtonWarning}" />
 
         <hc:ComboBox
-            Width="120"
-            Margin="10,0"
+            Width="150"
+            Margin="5"
             VerticalAlignment="Center"
             hc:InfoElement.Placeholder="العشيرة"
             hc:InfoElement.ShowClearButton="True"
@@ -36,7 +38,7 @@
 
         <hc:ComboBox
             Width="150"
-            Margin="10,0"
+            Margin="5"
             VerticalAlignment="Center"
             hc:InfoElement.Placeholder="الفخذ"
             hc:InfoElement.ShowClearButton="True"
@@ -50,7 +52,7 @@
 
         <hc:ComboBox
             Width="150"
-            Margin="10,0"
+            Margin="5"
             VerticalAlignment="Center"
             hc:InfoElement.Placeholder="ممثل الفخذ"
             hc:InfoElement.ShowClearButton="True"
@@ -63,8 +65,8 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Width="120"
-            Margin="10,0"
+            Width="150"
+            Margin="5"
             VerticalAlignment="Center"
             hc:InfoElement.Placeholder="نوع العائلة"
             hc:InfoElement.ShowClearButton="True"
@@ -77,8 +79,8 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Width="120"
-            Margin="10,0"
+            Width="150"
+            Margin="5"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="الحالة الإجتماعية"
@@ -92,8 +94,8 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Width="120"
-            Margin="10,0"
+            Width="150"
+            Margin="5"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="نوع اليتم"
@@ -107,8 +109,8 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Width="120"
-            Margin="10,0"
+            Width="150"
+            Margin="5"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="الحي"
@@ -122,8 +124,8 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Width="120"
-            Margin="10,0"
+            Width="150"
+            Margin="5"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="المختار"
@@ -137,8 +139,8 @@
             SelectedValuePath="Id" />
 
         <hc:ComboBox
-            Width="120"
-            Margin="10,0"
+            Width="150"
+            Margin="5"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="أقرب نقطة دالة"
@@ -151,6 +153,6 @@
             SelectedValue="{Binding ElementName=root, Path=TopFilterViewModel.FeaturedPoint.Id}"
             SelectedValuePath="Id" />
 
-    </StackPanel>
+    </WrapPanel>
 
 </UserControl>
