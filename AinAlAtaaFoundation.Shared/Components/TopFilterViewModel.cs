@@ -19,6 +19,12 @@ namespace AinAlAtaaFoundation.Shared.Components
             Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
         }
 
+        [ObservableProperty]
+        private string _rationCard;
+
+        [ObservableProperty]
+        private int _familyId;
+
         [RelayCommand]
         private void ClearFilters()
         {
