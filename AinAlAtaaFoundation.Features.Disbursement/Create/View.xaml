@@ -20,18 +20,25 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Label
-            Grid.Row="0"
-            Height="auto"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            BorderBrush="{StaticResource Blue}"
-            Content="{Binding Clock.Time, FallbackValue=2000-01-01 00:00:00 AM}"
-            FlowDirection="LeftToRight"
-            FontFamily="Arial"
-            FontSize="30"
-            FontWeight="Bold"
-            Foreground="{StaticResource Blue}" />
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <local:Item
+                Title="اخر صرف"
+                Grid.Row="0"
+                Width="300"
+                Height="auto"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                Value="{Binding LastFamilyDisbursement.Date, StringFormat={}{0:yyyy-MM-dd hh:mm tt}}" />
+            <Button
+                Height="auto"
+                Margin="10,0,0,0"
+                VerticalAlignment="Bottom"
+                Content="عرض السجل"
+                Cursor="Hand"
+                FontSize="16"
+                FontWeight="Bold"
+                Style="{StaticResource ButtonWarning}" />
+        </StackPanel>
 
         <StackPanel
             Grid.Row="1"
@@ -42,6 +49,7 @@
 
             <ToggleButton
                 x:Name="ManulInput"
+                Width="100"
                 Height="30"
                 Margin="5,0"
                 Content="{Binding InputType}"
@@ -49,9 +57,8 @@
                 FlowDirection="LeftToRight"
                 FontSize="14"
                 FontWeight="Bold"
-                Style="{StaticResource ToggleButtonDanger}"
-                Width="100"
-                IsChecked="{Binding ManualInput}" />
+                IsChecked="{Binding ManualInput}"
+                Style="{StaticResource ToggleButtonDanger}" />
 
             <StackPanel Margin="5,0">
                 <TextBlock Text="تسلسل العائلة" TextAlignment="Center" />
@@ -264,14 +271,6 @@
                         Height="auto"
                         Margin="5"
                         Value="{Binding Family.Notes}" />
-
-                    <local:Item
-                        Title="اخر صرف"
-                        Grid.Row="6"
-                        Grid.Column="0"
-                        Height="auto"
-                        Margin="5"
-                        Value="{Binding LastFamilyDisbursement.Date, StringFormat={}{0:yyyy-MM-dd hh:mm tt}}" />
 
                     <ListView Grid.Row="7" ItemsSource="{Binding Family.Phones}">
                         <ListView.View>
