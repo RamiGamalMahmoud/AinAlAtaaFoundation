@@ -8,7 +8,7 @@
     Name="root"
     mc:Ignorable="d">
 
-    <StackPanel MinWidth="200" Margin="5">
+    <StackPanel MinWidth="200" >
 
         <TextBlock
             Padding="5"
