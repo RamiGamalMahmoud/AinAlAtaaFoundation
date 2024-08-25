@@ -135,7 +135,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         [RelayCommand(CanExecute = nameof(HasFamily))]
         private void ShowFamilyDisbursementsHistory(Family family)
         {
-
+            _mediator.Send(new Shared.Commands.Disbursements.ShowFamilyDisbursementsHistory(family)) ;
         }
 
         private readonly IMediator _mediator;

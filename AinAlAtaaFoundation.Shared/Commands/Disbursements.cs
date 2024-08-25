@@ -24,5 +24,6 @@ namespace AinAlAtaaFoundation.Shared.Commands
             ) : IFilterParameters, IRequest<IEnumerable<Disbursement>>;
 
         public record CommandRemove(Disbursement Disbursement) : IRequest<bool>;
+        public record ShowFamilyDisbursementsHistory(Family Family) : IRequest;
     }
 }
