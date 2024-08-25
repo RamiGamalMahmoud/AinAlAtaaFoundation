@@ -1,0 +1,106 @@
+﻿<Window
+    x:Class="AinAlAtaaFoundation.Features.DisbursementManagement.FamilyDisbursementsHistory.View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.DisbursementManagement.FamilyDisbursementsHistory"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="View"
+    d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+    x:ClassModifier="internal"
+    FontFamily="Arial"
+    FontSize="16"
+    FontWeight="Bold"
+    Foreground="{StaticResource Black}"
+    SizeToContent="Width"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Border Padding="5">
+        <Grid FlowDirection="RightToLeft">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel
+                Grid.Row="0"
+                Margin="0,10"
+                HorizontalAlignment="Center"
+                Orientation="Vertical">
+
+                <TextBlock Foreground="{StaticResource Blue}" Text="سجل الصرف للعائلة التي تحمل بطاقة تموينية رقم" />
+
+                <Label
+                    Height="auto"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    Content="{Binding Family.RationCard}"
+                    FontSize="20"
+                    Foreground="#9b59b6" />
+
+            </StackPanel>
+
+            <DataGrid
+                Grid.Row="1"
+                d:ItemsSource="{d:SampleData}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding Disbursements}">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding TicketNumber}"
+                        Header="رقم التذكرة" />
+
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding Family.RationCard}"
+                        Header="رقم البطاقة" />
+
+                    <DataGridTextColumn
+                        Width="200"
+                        Binding="{Binding Date, StringFormat=yyyy-MM-dd}"
+                        Header="تاريخ الصرف" />
+
+                    <DataGridTextColumn
+                        Width="200"
+                        Binding="{Binding Date, StringFormat=hh:mm:ss - tt}"
+                        Header="وقت الصرف" />
+
+                    <DataGridTemplateColumn Header="حذف">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.RemoveCommand}"
+                                    CommandParameter="{Binding}"
+                                    Content="حذف"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="12"
+                                    FontWeight="Bold"
+                                    Style="{StaticResource ButtonDanger}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <hc:Pagination
+                Grid.Row="2"
+                Margin="0,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                MaxPageCount="{Binding Pages}"
+                PageUpdated="Pagination_PageUpdated" />
+
+        </Grid>
+    </Border>
+</Window>
