@@ -48,6 +48,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
+
                                 <Button
                                     Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=DataContext.ShowUpdateCommand}"
                                     CommandParameter="{Binding}"
@@ -57,6 +58,18 @@
                                     FontSize="10"
                                     FontWeight="Bold"
                                     Style="{StaticResource ButtonInfo}" />
+
+                                <Button
+                                    Margin="5,0"
+                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=DataContext.RemoveCommand}"
+                                    CommandParameter="{Binding}"
+                                    Content="حذف"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="10"
+                                    FontWeight="Bold"
+                                    Style="{StaticResource ButtonDanger}" />
+
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

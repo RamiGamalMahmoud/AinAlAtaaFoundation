@@ -70,5 +70,23 @@ namespace AinAlAtaaFoundation.Features.Management.DistrictsManagement
                 }
             }
         }
+
+        public async Task<bool> Remove(District district)
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                try
+                {
+                    dbContext.Districts.Remove(district);
+                    await dbContext.SaveChangesAsync();
+                    _entities.Remove(district);
+                    return true;
+                }
+                catch(Microsoft.EntityFrameworkCore.DbUpdateException)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
