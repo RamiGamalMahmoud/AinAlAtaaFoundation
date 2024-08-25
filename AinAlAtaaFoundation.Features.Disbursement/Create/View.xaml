@@ -36,6 +36,8 @@
                 Content="عرض السجل"
                 Cursor="Hand"
                 FontSize="16"
+                Command="{Binding ShowFamilyDisbursementsHistoryCommand}"
+                CommandParameter="{Binding Family}"
                 FontWeight="Bold"
                 Style="{StaticResource ButtonWarning}" />
         </StackPanel>

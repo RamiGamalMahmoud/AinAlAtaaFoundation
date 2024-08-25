@@ -71,12 +71,13 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(ExecutePrintCommand))]
+        [NotifyCanExecuteChangedFor(nameof(ShowFamilyDisbursementsHistoryCommand))]
         private Family _family;
 
-        private bool CanExecutePrint() => Family is not null;
+        private bool HasFamily() => Family is not null;
 
 
-        [RelayCommand(CanExecute = nameof(CanExecutePrint))]
+        [RelayCommand(CanExecute = nameof(HasFamily))]
         private async Task ExecutePrint()
         {
             Disbursement disbursement = await Create(++LastTicketNumber, Family);
@@ -129,6 +130,12 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
                 { "TicketNumber", [disbursement.TicketNumber.ToString()] }
             };
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", parameters));
+        }
+
+        [RelayCommand(CanExecute = nameof(HasFamily))]
+        private void ShowFamilyDisbursementsHistory(Family family)
+        {
+
         }
 
         private readonly IMediator _mediator;
