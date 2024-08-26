@@ -185,7 +185,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             set
             {
                 SetProperty(ref _socialStatus, value, true);
-                IsOrphan = _socialStatus is not null && _socialStatus.Id == 1;
+                IsOrphan = _socialStatus is not null && _socialStatus.Name == "أيتام";
                 if (!IsOrphan) OrphanType = null;
             }
         }
