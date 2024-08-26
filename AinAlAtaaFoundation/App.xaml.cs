@@ -10,6 +10,7 @@ using AinAlAtaaFoundation.Services.Printing;
 using AinAlAtaaFoundation.Shared;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.Messaging;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Notification.Wpf;
@@ -90,7 +91,15 @@ namespace AinAlAtaaFoundation
             }
             else _messenger.Send(new Shared.Notifications.SuccessNotification("تم الاتصال بقاعدة البيانات"));
 
+            await ApplyMigrations();
+        }
 
+        private async Task ApplyMigrations()
+        {
+            using (AppDbContext dbContext = _host.Services.GetRequiredService<AppDbContextFactory>().CreateDbContext())
+            {
+                await dbContext.Database.MigrateAsync();
+            }
         }
 
         private static void RegisterLicences()
