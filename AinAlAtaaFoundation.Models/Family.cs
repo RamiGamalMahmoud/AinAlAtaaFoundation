@@ -22,6 +22,9 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         private string _rationCardOwnerName;
 
+        [ObservableProperty]
+        private bool _isSponsored;
+
         public int ClanId { get; set; }
         public Clan Clan
         {

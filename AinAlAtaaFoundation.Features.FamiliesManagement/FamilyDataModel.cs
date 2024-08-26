@@ -55,6 +55,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
                 SocialStatus = model.SocialStatus;
                 Street = model.Address.Street;
+
+                IsSponsered = model.IsSponsored;
             }
             ValidateAllProperties();
         }
@@ -93,6 +95,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             model.Notes = Notes;
             model.Phones.Clear();
             model.Phones.AddRange(Phones);
+
+            model.IsSponsored = IsSponsered;
         }
 
         [ObservableProperty]
@@ -133,6 +137,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [NotifyDataErrorInfo]
         [NotifyPropertyChangedFor(nameof(IsValid))]
         private Gender _gender;
+
+        [ObservableProperty]
+        private bool _isSponsered;
 
         [ObservableProperty]
         private FeaturedPoint _featuredPoint;

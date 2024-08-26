@@ -50,7 +50,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         OrphanTypeId = dataModel.OrphanType?.Id,
                         RationCard = dataModel.RationCard,
                         RationCardOwnerName = dataModel.RationCardOwnerName,
-                        SocialStatusId = dataModel.SocialStatus.Id
+                        SocialStatusId = dataModel.SocialStatus.Id,
+                        IsSponsored = dataModel.IsSponsered
                     };
 
                     foreach (Phone phone in dataModel.Phones)
@@ -114,6 +115,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 stored.OrphanTypeId = dataModel.OrphanType?.Id;
                 stored.FamilyTypeId = dataModel.FamilyType.Id;
                 stored.Notes = dataModel.Notes;
+                stored.IsSponsored = dataModel.IsSponsered;
 
                 IEnumerable<int> phonesIds = dataModel.Phones.Select(x => x.Id).Where(x => x > 0);
                 IEnumerable<Phone> newPhones = dataModel.Phones.Where(x => x.Id == 0);

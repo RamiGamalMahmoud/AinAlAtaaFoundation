@@ -252,6 +252,11 @@
                                     SelectedItem="{Binding DataModel.SocialStatus}"
                                     SelectedValue="{Binding DataModel.SocialStatus.Id}"
                                     SelectedValuePath="Id" />
+                                <CheckBox
+                                    Margin="0,10,0,0"
+                                    Content="مكفولة"
+                                    IsChecked="{Binding DataModel.IsSponsered}"
+                                    Visibility="{Binding DataModel.IsOrphan, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             </StackPanel>
 
                             <StackPanel
