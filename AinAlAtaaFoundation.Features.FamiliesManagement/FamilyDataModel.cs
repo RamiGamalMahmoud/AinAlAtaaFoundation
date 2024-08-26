@@ -186,7 +186,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             {
                 SetProperty(ref _socialStatus, value, true);
                 IsOrphan = _socialStatus is not null && _socialStatus.Name == "أيتام";
-                if (!IsOrphan) OrphanType = null;
+                if (!IsOrphan)
+                {
+                    OrphanType = null;
+                    IsSponsered = false;
+                }
             }
         }
         private SocialStatus _socialStatus;
