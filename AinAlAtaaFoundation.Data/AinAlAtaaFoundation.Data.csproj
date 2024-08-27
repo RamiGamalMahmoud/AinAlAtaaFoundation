@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="DB\data.db">
+		<None Update="DB\al-ain.db">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>

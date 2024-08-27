@@ -68,7 +68,7 @@ namespace AinAlAtaaFoundation
         }
 
         private static string AppDataFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AinAlAtaaFoundation");
-        private static string DatabaseFile => Path.Combine(AppDataFolder, "data.db");
+        private static string DatabaseFile => Path.Combine(AppDataFolder, "al-ain.db");
 
         private static void CreateDatabaseFile()
         {
@@ -76,7 +76,7 @@ namespace AinAlAtaaFoundation
             string currentPath = AppDomain.CurrentDomain.BaseDirectory;
             if (!File.Exists(DatabaseFile))
             {
-                File.Copy(Path.Combine(currentPath, "DB\\data.db"), DatabaseFile);
+                File.Copy(Path.Combine(currentPath, "DB\\al-ain.db"), DatabaseFile);
             }
         }
 

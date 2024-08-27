@@ -10,7 +10,7 @@ namespace AinAlAtaaFoundation.Data
             Console.WriteLine(args.Length.ToString());
             DbContextOptionsBuilder<AppDbContext> builder = new DbContextOptionsBuilder<AppDbContext>();
             builder
-                .UseSqlite("Data Source = .\\DB\\data.db")
+                .UseSqlite("Data Source = .\\DB\\al-ain.db")
                 .UseSnakeCaseNamingConvention();
 
             AppDbContext dbContext = new AppDbContext(builder.Options);
