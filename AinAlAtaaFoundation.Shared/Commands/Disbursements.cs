@@ -1,6 +1,7 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using MediatR;
+using System;
 using System.Collections.Generic;
 
 namespace AinAlAtaaFoundation.Shared.Commands
@@ -25,5 +26,6 @@ namespace AinAlAtaaFoundation.Shared.Commands
 
         public record CommandRemove(Disbursement Disbursement) : IRequest<bool>;
         public record ShowFamilyDisbursementsHistory(Family Family) : IRequest;
+        public record GetDisbursementsHistoryByDateCommand(DateTime Date) : IRequest<IEnumerable<Disbursement>>;
     }
 }

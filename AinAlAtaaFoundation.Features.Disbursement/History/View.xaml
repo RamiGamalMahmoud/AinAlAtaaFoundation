@@ -4,9 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:components="clr-namespace:AinAlAtaaFoundation.Shared.Components;assembly=AinAlAtaaFoundation.Shared"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.DisbursementManagement.History"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:sf="http://schemas.syncfusion.com/wpf"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
     d:DataContext="{d:DesignInstance Type=local:ViewModel}"
     x:ClassModifier="internal"
     mc:Ignorable="d">
@@ -17,11 +19,98 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <components:TopFilter
-            Grid.Row="0"
-            Margin="0,5"
-            FilterCommand="{Binding FilterCommand}"
-            TopFilterViewModel="{Binding TopFilterViewModel}" />
+        <StackPanel>
+
+            <Border
+                Margin="0,5"
+                Padding="10"
+                HorizontalAlignment="Center"
+                Background="{StaticResource White}"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                CornerRadius="5">
+                <StackPanel Orientation="Horizontal">
+
+                    <ToggleButton
+                        x:Name="buttonFilter"
+                        Margin="10,0"
+                        Content="الفلاتر"
+                        Cursor="Hand"
+                        FontSize="14"
+                        FontWeight="Bold">
+                        <ToggleButton.Style>
+                            <Style BasedOn="{StaticResource ToggleButtonDefault}" TargetType="ToggleButton">
+                                <Style.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource Blue}" />
+                                        <Setter Property="Foreground" Value="White" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ToggleButton.Style>
+                    </ToggleButton>
+
+                    <TextBlock
+                        Margin="10,0"
+                        VerticalAlignment="Center"
+                        Text="سجل الصرف ليوم : " />
+
+                    <Button
+                        Command="{Binding ChangeDateCommand}"
+                        Content="السابق"
+                        Cursor="Hand"
+                        FontFamily="Arial"
+                        FontWeight="Bold"
+                        Style="{StaticResource ButtonInfo}">
+                        <Button.CommandParameter>
+                            <system:Int32>-1</system:Int32>
+                        </Button.CommandParameter>
+                    </Button>
+
+                    <hc:DatePicker
+                        Width="200"
+                        Margin="10,0"
+                        hc:InfoElement.ShowClearButton="True"
+                        BorderBrush="{StaticResource Blue}"
+                        FontSize="20"
+                        SelectedDate="{Binding SearchDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                        Validation.ErrorTemplate="{x:Null}" />
+
+                    <Button
+                        Command="{Binding ChangeDateCommand}"
+                        Content="التالي"
+                        Cursor="Hand"
+                        FontFamily="Arial"
+                        FontWeight="Bold"
+                        Style="{StaticResource ButtonInfo}">
+                        <Button.CommandParameter>
+                            <system:Int32>1</system:Int32>
+                        </Button.CommandParameter>
+                    </Button>
+
+                    <Button
+                        Margin="10,0"
+                        Command="{Binding RefreshCommand}"
+                        Content="تحديث"
+                        Cursor="Hand"
+                        FontFamily="Arial"
+                        FontWeight="Bold"
+                        Style="{StaticResource ButtonDanger}" />
+
+                </StackPanel>
+            </Border>
+
+            <Border
+                Margin="0,5"
+                HorizontalAlignment="Center"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                CornerRadius="5"
+                Visibility="{Binding ElementName=buttonFilter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <components:TopFilter FilterCommand="{Binding FilterCommand}" TopFilterViewModel="{Binding TopFilterViewModel}" />
+            </Border>
+
+        </StackPanel>
 
         <DataGrid
             Grid.Row="1"
@@ -41,6 +130,11 @@
                     Width="100"
                     Binding="{Binding Family.RationCard}"
                     Header="رقم البطاقة" />
+
+                <DataGridTextColumn
+                    Width="100"
+                    Binding="{Binding Family.Clan.Name}"
+                    Header="العشيرة" />
 
                 <DataGridTextColumn
                     Width="200"

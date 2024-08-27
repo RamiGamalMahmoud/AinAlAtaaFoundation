@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
             TopFilterViewModel.SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
 
             TopFilterViewModel.Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
+
+            SearchDate = DateTime.Now;
         }
 
         [RelayCommand]
@@ -46,8 +49,26 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
             _messenger.Send(new Shared.Notifications.SuccessNotification("تم الحذف بنجاح"));
         }
 
+        [RelayCommand]
+        private void ChangeDate(int value)
+        {
+            SearchDate = SearchDate.AddDays(value);
+        }
+
+        [RelayCommand]
+        private void Refresh() => SearchDate = DateTime.Now;
+
+        async partial void OnSearchDateChanged(DateTime oldValue, DateTime newValue)
+        {
+            TopFilterViewModel.ClearFiltersCommand.Execute(null);
+            Disbursements = new ObservableCollection<Disbursement>(await _mediator.Send(new Shared.Commands.Disbursements.GetDisbursementsHistoryByDateCommand(newValue)));
+        }
+
         [ObservableProperty]
         private ObservableCollection<Disbursement> _disbursements;
+
+        [ObservableProperty]
+        private DateTime _searchDate;
 
         private readonly IMediator _mediator = mediator;
         private readonly IMessenger _messenger = messenger;

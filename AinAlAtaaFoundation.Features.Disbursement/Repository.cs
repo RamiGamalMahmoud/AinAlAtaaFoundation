@@ -148,6 +148,18 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             }
         }
 
+        public async Task<IEnumerable<Disbursement>> GetDisbursementsHistoryByDate(DateTime date)
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext.Disbursements
+                    .Include(x => x.Family)
+                        .ThenInclude(x => x.Applicant)
+                    .OrderByDescending(x => x.Date)
+                    .Where(x => x.Date.Date == date.Date).ToListAsync();
+            }
+        }
+
         private readonly AppDbContextFactory _dbContextFactory = dbContextFactory;
     }
 }

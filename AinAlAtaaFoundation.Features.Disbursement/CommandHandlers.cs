@@ -87,4 +87,12 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             private readonly Repository _repository = repository;
         }
     }
+
+    internal class GetDisbursementsHistoryByDateCommandHandler(Repository repository) : IRequestHandler<Shared.Commands.Disbursements.GetDisbursementsHistoryByDateCommand, IEnumerable<Disbursement>>
+    {
+        public async Task<IEnumerable<Disbursement>> Handle(GetDisbursementsHistoryByDateCommand request, CancellationToken cancellationToken)
+        {
+            return await repository.GetDisbursementsHistoryByDate(request.Date);
+        }
+    }
 }
