@@ -46,5 +46,29 @@ namespace AinAlAtaaFoundation.Features.Settings.Properties {
                 this["AutoSave"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0.0")]
+        public string DatabaseVersion {
+            get {
+                return ((string)(this["DatabaseVersion"]));
+            }
+            set {
+                this["DatabaseVersion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FreshStart {
+            get {
+                return ((bool)(this["FreshStart"]));
+            }
+            set {
+                this["FreshStart"] = value;
+            }
+        }
     }
 }

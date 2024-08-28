@@ -4,7 +4,9 @@ using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using System;
 using System.ComponentModel;
+using System.IO;
 
 namespace AinAlAtaaFoundation.Features.Settings
 {
@@ -16,6 +18,8 @@ namespace AinAlAtaaFoundation.Features.Settings
             _settings = settings;
             settings.Save();
             messenger.Register<ViewModel, Messages.LoginSuccededMessage>(this, (reciver, message) => User = message.User);
+            messenger.Register<ViewModel, Messages.SettingsMessages.GetSatrtStatusRequestMessage>(this, (r, m) => m.Reply(r.IsFeshStart));
+            messenger.Register<ViewModel, Messages.SettingsMessages.UpdateStartStatusMessage>(this, (r, m) => r.IsFeshStart = m.IsFreshStart);
         }
         public User User
         {
@@ -43,6 +47,18 @@ namespace AinAlAtaaFoundation.Features.Settings
                 OnPropertyChanged(nameof(AutoSave));
             }
         }
+
+        public bool IsFeshStart
+        {
+            get => _settings.FreshStart;
+            set
+            {
+                _settings.FreshStart = value;
+                _settings.Save();
+            }
+        }
+
+        public string AppDataFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AinAlAtaaFoundation");
 
         protected override void OnPropertyChanged(PropertyChangedEventArgs e)
         {
