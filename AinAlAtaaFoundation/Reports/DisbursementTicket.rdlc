@@ -9,10 +9,10 @@
     </Style>
     <ReportItems>
       <Textbox Name="TextBox1">
-        <Left>8.90488mm</Left>
-        <Top>52.7761mm</Top>
-        <Height>12.96045mm</Height>
-        <Width>60.18857mm</Width>
+        <Left>8.90697mm</Left>
+        <Top>54.8886mm</Top>
+        <Height>8.9917mm</Height>
+        <Width>60.18443mm</Width>
         <Style>
           <VerticalAlign>Middle</VerticalAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -31,7 +31,7 @@
               <TextRun>
                 <Value>=Parameters!Date.Value</Value>
                 <Style>
-                  <FontSize>10mm</FontSize>
+                  <FontSize>7.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                 </Style>
@@ -44,10 +44,10 @@
         </Paragraphs>
       </Textbox>
       <Textbox Name="TextBox3">
-        <Left>22.07205mm</Left>
-        <Top>4.23333mm</Top>
-        <Height>6.60631mm</Height>
-        <Width>33.85839mm</Width>
+        <Left>5.80018mm</Left>
+        <Top>19.04587mm</Top>
+        <Height>6.60218mm</Height>
+        <Width>66.398mm</Width>
         <Style>
           <VerticalAlign>Middle</VerticalAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -66,7 +66,7 @@
               <TextRun>
                 <Value>=Parameters!Name.Value</Value>
                 <Style>
-                  <FontSize>4.99999mm</FontSize>
+                  <FontSize>6.00001mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                 </Style>
@@ -79,10 +79,10 @@
         </Paragraphs>
       </Textbox>
       <Textbox Name="TextBox4">
-        <Left>22.07205mm</Left>
-        <Top>11.88971mm</Top>
-        <Height>6.60631mm</Height>
-        <Width>33.85839mm</Width>
+        <Left>6.19705mm</Left>
+        <Top>26.70228mm</Top>
+        <Height>6.60218mm</Height>
+        <Width>65.60426mm</Width>
         <Style>
           <VerticalAlign>Middle</VerticalAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -114,10 +114,10 @@
         </Paragraphs>
       </Textbox>
       <Textbox Name="TextBox5">
-        <Left>8.90488mm</Left>
-        <Top>71.8261mm</Top>
-        <Height>12.96045mm</Height>
-        <Width>60.18857mm</Width>
+        <Left>8.90697mm</Left>
+        <Top>67.5886mm</Top>
+        <Height>8.9917mm</Height>
+        <Width>60.18443mm</Width>
         <Style>
           <VerticalAlign>Middle</VerticalAlign>
           <PaddingLeft>2pt</PaddingLeft>
@@ -136,7 +136,7 @@
               <TextRun>
                 <Value>=Parameters!Time.Value</Value>
                 <Style>
-                  <FontSize>10mm</FontSize>
+                  <FontSize>7.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                 </Style>
@@ -150,8 +150,8 @@
       </Textbox>
       <Textbox Name="TextBox6">
         <Left>6.85644mm</Left>
-        <Top>21.67929mm</Top>
-        <Height>25.92089mm</Height>
+        <Top>34.37519mm</Top>
+        <Height>19.30218mm</Height>
         <Width>64.28548mm</Width>
         <Style>
           <BackgroundColor>#f2f2f2</BackgroundColor>
@@ -184,8 +184,58 @@
           </Paragraph>
         </Paragraphs>
       </Textbox>
+      <Textbox Name="TextBox2">
+        <Left>5.79811mm</Left>
+        <Top>2.37712mm</Top>
+        <Height>14.54795mm</Height>
+        <Width>66.40627mm</Width>
+        <Style>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>مؤسسة عين العطاء</Value>
+                <Style>
+                  <FontSize>6.00001mm</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value> للإغاثة و التنمية</Value>
+                <Style>
+                  <FontSize>6.00001mm</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+      </Textbox>
     </ReportItems>
-    <Height>88.37082mm</Height>
+    <Height>80.69791mm</Height>
   </Body>
   <ReportParameters>
     <ReportParameter Name="RationCard">
@@ -211,7 +261,7 @@
   </ReportParameters>
   <Width>77.99999mm</Width>
   <Page>
-    <PageHeight>100mm</PageHeight>
+    <PageHeight>101.04mm</PageHeight>
     <PageWidth>78mm</PageWidth>
     <LeftMargin>0mm</LeftMargin>
     <RightMargin>0mm</RightMargin>
