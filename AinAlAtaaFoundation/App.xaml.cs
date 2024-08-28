@@ -10,11 +10,12 @@ using AinAlAtaaFoundation.Services.Printing;
 using AinAlAtaaFoundation.Shared;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Win32;
 using Notification.Wpf;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,22 +34,43 @@ namespace AinAlAtaaFoundation
                 .CreateDefaultBuilder()
                 .ConfigureServices(s =>
                 {
-                    s.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
-                    s.AddSingleton<AppDbContextFactory>(new AppDbContextFactory($"Data Source = {DatabaseFile}"));
-                    s.AddSingleton<IAppDbContextFactory>(new AppDbContextFactory($"Data Source = {DatabaseFile}"));
-                    s.AddTransient<Shared.Components.TopFilterViewModel>();
-                    s.ConfigureMainWindowFeature();
-                    s.ConfigureFamiliesFeature();
-                    s.ConfigureServicePrint();
-                    s.ConfigureManegementFeature();
-                    s.ConfigureDisbursementFeature();
-                    s.ConfigureUsersFeature();
-                    s.ConfigureSettingsFeature();
-                    s.ConfigureAuthFeature();
+                    ConfigureServices(s);
                 })
                 .Build();
 
             _messenger = _host.Services.GetRequiredService<IMessenger>();
+
+            RegisterRecipients();
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
+            services.AddSingleton<AppDbContextFactory>(new AppDbContextFactory($"Data Source = {AppHelpers.DatabaseFile}"));
+            services.AddSingleton<IAppDbContextFactory>(new AppDbContextFactory($"Data Source = {AppHelpers.DatabaseFile}"));
+            services.AddTransient<Shared.Components.TopFilterViewModel>();
+            services.AddSingleton<DatabaseHelpers>();
+            services.ConfigureMainWindowFeature();
+            services.ConfigureFamiliesFeature();
+            services.ConfigureServicePrint();
+            services.ConfigureManegementFeature();
+            services.ConfigureDisbursementFeature();
+            services.ConfigureUsersFeature();
+            services.ConfigureSettingsFeature();
+            services.ConfigureAuthFeature();
+        }
+
+        private void RegisterRecipients()
+        {
+            _messenger.Register<Shared.Messages.LoginSuccededMessage>(this, (s, m) =>
+            {
+                Window window = MainWindow;
+                MainWindow = _host.Services.GetRequiredService<Features.MainWindow.View>();
+                MainWindow.Show();
+                window.Close();
+            });
+
+            _messenger.Register(this, (MessageHandler<object, Shared.Commands.Generic.CommandLogout>)((r, m) => ShowLoing()));
 
             _messenger.Register<Shared.Notifications.SuccessNotification>(this, (r, m) =>
             {
@@ -65,71 +87,67 @@ namespace AinAlAtaaFoundation
                 _messenger.Send(new Shared.Notifications.FailerNotification("مستخدم غير موجود أو كلمة مرور غير صحيحة"));
                 _messenger.Send(new Shared.Notifications.FailerNotification("للمستخدم : " + m.UserName));
             });
-        }
 
-        private static string AppDataFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AinAlAtaaFoundation");
-        private static string DataFolder => Path.Combine(AppDataFolder, "data");
-        private static string DatabaseFile => Path.Combine(DataFolder, "al-ain.db");
-        private static string BackupsFolder => Path.Combine( AppDataFolder, "backups");
-
-        private static void CreateDatabaseFile()
-        {
-            Directory.CreateDirectory(AppDataFolder);
-            Directory.CreateDirectory(DataFolder);
-            Directory.CreateDirectory(BackupsFolder);
-            string currentPath = AppDomain.CurrentDomain.BaseDirectory;
-            if (!File.Exists(DatabaseFile))
+            _messenger.Register<Messages.Database.BackupMessage>(this, (r, m) =>
             {
-                File.Copy(Path.Combine(currentPath, "DB\\al-ain.db"), DatabaseFile);
-            }
-        }
+                bool isOk = _messenger.Send(new Messages.ConfirmRequestMessage("هل تريد انشاء نسخة احتياطية ؟"));
+                if (isOk)
+                {
+                    DatabaseHelpers.Backup(AppHelpers.BackupFolder,AppHelpers.DatabaseFile);
+                    _messenger.Send(new Shared.Notifications.SuccessNotification("تم إنشاء نسخة احتياطية لقاعدة البيانات"));
+                }
+            });
 
-        private async Task ConnecteToDatabase()
-        {
-            if (!await CanConnect())
+            _messenger.Register<Messages.Database.ResoreMessage>(this, (r, m) =>
             {
-                _messenger.Send(new Shared.Notifications.FailerNotification("سوف يتم الخروج من البرنامج"));
-                _messenger.Send(new Shared.Notifications.FailerNotification("لا يمكن الاتصال بقاعدة البيانات, تحقق من بيانات الاتصال"));
-                await Task.Delay(5000);
-                Shutdown();
-            }
-            else _messenger.Send(new Shared.Notifications.SuccessNotification("تم الاتصال بقاعدة البيانات"));
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                if (fileDialog.ShowDialog() == true)
+                {
+                    string file = fileDialog.FileName;
+                }
 
-            await ApplyMigrations();
-        }
+            });
 
-        private async Task ApplyMigrations()
-        {
-            using (AppDbContext dbContext = _host.Services.GetRequiredService<AppDbContextFactory>().CreateDbContext())
+            _messenger.Register<Messages.ConfirmRequestMessage>(this, (r, m) =>
             {
-                await dbContext.Database.MigrateAsync();
-            }
-        }
+                bool reply = MessageBox.Show(m.Message, "رسالة تأكيد", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK;
 
-        private static void RegisterLicences()
-        {
-            Bold.Licensing.BoldLicenseProvider.RegisterLicense("MDAyQDM2MmUzMTJlMzBOd2hxV01OKzROclgwVE9jaFUwbk5NRHppeEUzR0lzTlZXUWxrSld3cnNrPWV5Sk1hV05sYm5ObFZHOXJaVzRpT2lKdlZtZDZVMjVOVWtWT1RWRlBhakZNVVd0eWNYWnhhVWhUT0dwaE9XTTBRbG96VnpFNGQzbFphemROUFNJc0lreHBZMlZ1YzJWUVpYSnBiMlFpT2lJNU9UazVMVEV5TFRNeFZESXpPalU1T2pVNUxqazVOeUlzSWtselJWTlZjMlZ5SWpwMGNuVmxMQ0pKYzFCbGNuQmxkSFZoYkV4cFkyVnVjMlVpT21aaGJITmxmUT09\r\n", true);
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzM2Mzc2M0AzMjM2MmUzMDJlMzBjMEkyZXZObXZQQ0FvTXBvOWdTUmQ2Yk1JLzJGZEk4dWhlZmJHUVI1aUUwPQ==;MzM2Mzc2NEAzMjM2MmUzMDJlMzBnS3NqcFRVTXZtbjNLdUdYYUJvZW1KMG1rNlhaS2x6bHlYSWJYU2htVkFBPQ==");
+                m.Reply(reply);
+            });
+
+            _messenger.Register<Messages.Database.ResetMessage>(this, async (r, m) =>
+            {
+                bool isOk = _messenger.Send(new Messages.ConfirmRequestMessage("أنت على وشك حذف قاعدة البيانات, هل تريد الإستمرار ؟"));
+                if (isOk)
+                {
+                    _messenger.Send(new Shared.Notifications.SuccessNotification("سوف يتم حذف قاعدة البيانات بعد إعادة تشغيل البرنامج"));
+                    _messenger.Send(new Messages.SettingsMessages.UpdateStartStatusMessage(true));
+                    await Task.Delay(2000);
+                    _messenger.Send(new Shared.Notifications.SuccessNotification("جاري إغلاق البرنامج"));
+                    await Task.Delay(2000);
+                    AppHelpers.Restart(this);
+                }
+            });
         }
 
         protected override async void OnStartup(StartupEventArgs e)
         {
-            CreateDatabaseFile();
-            await ConnecteToDatabase();
-            RegisterLicences();
             LoadSettings();
 
-            _messenger.Register<Shared.Messages.LoginSuccededMessage>(this, (s, m) =>
+            bool isfresh = _messenger.Send<Messages.SettingsMessages.GetSatrtStatusRequestMessage>();
+
+            if (isfresh)
             {
-                Window window = MainWindow;
-                MainWindow = _host.Services.GetRequiredService<Features.MainWindow.View>();
-                MainWindow.Show();
-                window.Close();
-            });
+                DatabaseHelpers.Reset(AppHelpers.DataFolder);
+                _messenger.Send(new Messages.SettingsMessages.UpdateStartStatusMessage(false));
+            }
+            AppHelpers.CreateAppDataFolder();
 
+            AppHelpers.CreateDatabase();
+            await AppHelpers.TestDatabaseConnection(_host.Services.GetRequiredService<IAppDbContextFactory>(), _messenger, Shutdown);
 
-
-            _messenger.Register(this, (MessageHandler<object, Shared.Commands.Generic.CommandLogout>)((r, m) => ShowLoing()));
+            await DatabaseHelpers.ApplyMigrations(_host.Services.GetRequiredService<IAppDbContextFactory>());
+            AppHelpers.RegisterLicences();
 
             await _host.StartAsync();
             ShowMainWindow();
@@ -155,18 +173,10 @@ namespace AinAlAtaaFoundation
             _host.Services.GetRequiredService<IAppState>();
         }
 
-        private async Task<bool> CanConnect()
-        {
-            using (AppDbContext dbContext = _host.Services.GetRequiredService<AppDbContextFactory>().CreateDbContext())
-            {
-                return await dbContext.Database.CanConnectAsync();
-            }
-        }
         private readonly NotificationManager _notificationManager = new NotificationManager();
         private readonly IMessenger _messenger;
-
-
         private readonly IHost _host;
+
     }
 
 }
