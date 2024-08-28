@@ -57,13 +57,15 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             await _mediator.Send(new Shared.Commands.Generic.ShowCreate<Family>());
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
         private void ShowUpdate(Family family)
         {
             _mediator.Send(new Shared.Commands.Generic.ShowUpdate<Family>(family));
         }
 
-        [RelayCommand]
+        public bool CanPerformFamilyAction(Family family) => family is not null;
+
+        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
         private void ShowPrint(Family family)
         {
             var members = family.FamilyMembers.Select(member =>
@@ -85,7 +87,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
         private void PrintBarcode(Family family)
         {
             string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
