@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.MainWindow"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="مؤسسة عين العطاء للإغاثة و التنمية"
@@ -126,6 +127,31 @@
                             FontWeight="Bold"
                             Style="{StaticResource ButtonPrimary}" />
 
+                        <hc:SideMenu
+                            Margin="0,5"
+                            AutoSelect="False"
+                            Cursor="Hand">
+
+                            <hc:SideMenuItem
+                                Padding="5"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                Header="ادارة قاعدة البيانات">
+                                <hc:SideMenuItem
+                                    Command="{Binding BackupCommand}"
+                                    FontSize="16"
+                                    Header="نسخ" />
+                                <hc:SideMenuItem
+                                    Command="{Binding ResetDatabaseCommand}"
+                                    FontSize="16"
+                                    Header="حذف" />
+                                <hc:SideMenuItem
+                                    FontSize="16"
+                                    Header="استعادة"
+                                    Visibility="Collapsed" />
+                            </hc:SideMenuItem>
+
+                        </hc:SideMenu>
 
                     </StackPanel>
 

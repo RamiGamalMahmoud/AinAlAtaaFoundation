@@ -1,4 +1,5 @@
 ﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -27,6 +28,15 @@ namespace AinAlAtaaFoundation.Features.MainWindow
 
         [ObservableProperty]
         private object _currentView;
+
+        [RelayCommand]
+        private void Backup() => _messenger.Send<Messages.Database.BackupMessage>();
+
+        [RelayCommand]
+        private void Restore() => _messenger.Send<Messages.Database.ResoreMessage>();
+
+        [RelayCommand]
+        private void ResetDatabase() => _messenger.Send<Messages.Database.ResetMessage>();
 
         public static string LogoPath => Path.Combine(Environment.CurrentDirectory, "Images\\logo-100.png");
 
