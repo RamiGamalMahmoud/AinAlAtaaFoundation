@@ -234,6 +234,17 @@
           </Paragraph>
         </Paragraphs>
       </Textbox>
+      <Line Name="Line1">
+        <Left>3.175mm</Left>
+        <Top>17.72708mm</Top>
+        <Height>0mm</Height>
+        <Width>71.43749mm</Width>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
     </ReportItems>
     <Height>80.69791mm</Height>
   </Body>
