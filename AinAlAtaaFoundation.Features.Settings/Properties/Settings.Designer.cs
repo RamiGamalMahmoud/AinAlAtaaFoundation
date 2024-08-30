@@ -70,5 +70,41 @@ namespace AinAlAtaaFoundation.Features.Settings.Properties {
                 this["FreshStart"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RecipePrinter {
+            get {
+                return ((string)(this["RecipePrinter"]));
+            }
+            set {
+                this["RecipePrinter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LabelPrinter {
+            get {
+                return ((string)(this["LabelPrinter"]));
+            }
+            set {
+                this["LabelPrinter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultPrinter {
+            get {
+                return ((string)(this["DefaultPrinter"]));
+            }
+            set {
+                this["DefaultPrinter"] = value;
+            }
+        }
     }
 }
