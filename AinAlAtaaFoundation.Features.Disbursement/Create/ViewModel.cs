@@ -1,4 +1,4 @@
-﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -28,10 +28,10 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 
         private async void FamilyGetter_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-                if (!ManualInput)
-                {
-                    _messenger.Send<Messages.MessageInputFinished>();
-                }
+            if (!ManualInput)
+            {
+                _messenger.Send<Messages.MessageInputFinished>();
+            }
             if (e.PropertyName is nameof(FamilyGetter.RationCard) or nameof(FamilyGetter.FamilyId))
             {
                 Family = await _familyGetter.GetFamily();
