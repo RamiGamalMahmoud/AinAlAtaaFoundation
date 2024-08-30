@@ -23,5 +23,10 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         }
         private bool _isLoaded;
         private readonly ViewModel _viewModel;
+
+        private void DataGrid_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            (sender as DataGrid).SelectedItem = null;
+        }
     }
 }

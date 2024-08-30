@@ -28,7 +28,26 @@
             d:ItemsSource="{d:SampleData}"
             AutoGenerateColumns="False"
             IsReadOnly="True"
-            ItemsSource="{Binding Families, IsAsync=True}">
+            ItemsSource="{Binding Families, IsAsync=True}"
+            LostFocus="DataGrid_LostFocus">
+
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem
+                        Command="{Binding PrintBarcodeCommand}"
+                        CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
+                        Header="طباعة البار كود" />
+                    <MenuItem
+                        Command="{Binding ShowPrintCommand}"
+                        CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
+                        Header="طباعة العائلة" />
+                    <MenuItem
+                        Command="{Binding ShowUpdateCommand}"
+                        CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
+                        Header="تعديل" />
+                    <MenuItem Header="حذف" />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
