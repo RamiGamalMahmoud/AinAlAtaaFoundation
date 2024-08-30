@@ -49,7 +49,7 @@ namespace AinAlAtaaFoundation.Features.Settings.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.0.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string DatabaseVersion {
             get {
                 return ((string)(this["DatabaseVersion"]));
@@ -73,7 +73,7 @@ namespace AinAlAtaaFoundation.Features.Settings.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
         public string RecipePrinter {
             get {
                 return ((string)(this["RecipePrinter"]));
@@ -85,7 +85,7 @@ namespace AinAlAtaaFoundation.Features.Settings.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
         public string LabelPrinter {
             get {
                 return ((string)(this["LabelPrinter"]));
@@ -97,7 +97,7 @@ namespace AinAlAtaaFoundation.Features.Settings.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
         public string DefaultPrinter {
             get {
                 return ((string)(this["DefaultPrinter"]));

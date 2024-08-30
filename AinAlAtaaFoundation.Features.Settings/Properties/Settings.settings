@@ -9,19 +9,19 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DatabaseVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1.0.0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="FreshStart" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="RecipePrinter" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Default</Value>
     </Setting>
     <Setting Name="LabelPrinter" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Default</Value>
     </Setting>
     <Setting Name="DefaultPrinter" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Default</Value>
     </Setting>
   </Settings>
 </SettingsFile>
