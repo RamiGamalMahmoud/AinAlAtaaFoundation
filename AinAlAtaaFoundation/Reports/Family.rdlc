@@ -618,7 +618,7 @@
               <TextRun>
                 <Value>=Parameters!FamilyType.Value</Value>
                 <Style>
-                  <FontSize>4.58801mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -655,7 +655,7 @@
               <TextRun>
                 <Value>=Parameters!SocialStatus.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -692,7 +692,7 @@
               <TextRun>
                 <Value>=Parameters!OrphanType.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -729,7 +729,7 @@
               <TextRun>
                 <Value>=Parameters!Clan.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -766,7 +766,7 @@
               <TextRun>
                 <Value>=Parameters!Branch.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -803,7 +803,7 @@
               <TextRun>
                 <Value>=Parameters!BranchRepresentative.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -840,7 +840,7 @@
               <TextRun>
                 <Value>=Parameters!District.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -877,7 +877,7 @@
               <TextRun>
                 <Value>=Parameters!Street.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -914,7 +914,7 @@
               <TextRun>
                 <Value>=Parameters!FeaturedPoint.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -951,7 +951,7 @@
               <TextRun>
                 <Value>=Parameters!DistrictRepresentative.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -988,7 +988,7 @@
               <TextRun>
                 <Value>=Parameters!RationCard.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -1025,7 +1025,7 @@
               <TextRun>
                 <Value>=Parameters!RationCardOwnerName.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -1062,7 +1062,7 @@
               <TextRun>
                 <Value>=Parameters!Notes.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -1099,7 +1099,7 @@
               <TextRun>
                 <Value>=Parameters!ApplicantName.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -1315,7 +1315,7 @@
               <TextRun>
                 <Value>=Parameters!Id.Value</Value>
                 <Style>
-                  <FontSize>3.52777mm</FontSize>
+                  <FontSize>4.99999mm</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <Color>#000000</Color>
                   <Language>ar</Language>
@@ -1892,7 +1892,7 @@
       <Prompt>ApplicantName</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <Width>209.9999mm</Width>
+  <Width>209.55mm</Width>
   <Page>
     <PageHeight>296.926mm</PageHeight>
     <PageWidth>210.058mm</PageWidth>
@@ -1902,12 +1902,12 @@
           <Style>None</Style>
         </Border>
       </Style>
-      <Height>62.70624mm</Height>
+      <Height>62.70623mm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
         <Image Name="Logo">
-          <Left>90.70246mm</Left>
+          <Left>91.54789mm</Left>
           <Top>0mm</Top>
           <Value>logo_200</Value>
           <Height>26.4542mm</Height>
@@ -1922,8 +1922,8 @@
           <Sizing>FitProportional</Sizing>
         </Image>
         <Textbox Name="TextBox1">
-          <Left>61.28834mm</Left>
-          <Top>26.44179mm</Top>
+          <Left>61.91456mm</Left>
+          <Top>26.43767mm</Top>
           <Height>6.61458mm</Height>
           <Width>85.72499mm</Width>
           <Style>
@@ -1957,8 +1957,8 @@
           </Paragraphs>
         </Textbox>
         <Textbox Name="TextBox21">
-          <Left>61.28834mm</Left>
-          <Top>35.16894mm</Top>
+          <Left>61.91456mm</Left>
+          <Top>33.05228mm</Top>
           <Height>6.61458mm</Height>
           <Width>85.72499mm</Width>
           <Style>
@@ -1978,7 +1978,7 @@
                 <TextRun>
                   <Value>بيانات عائلة</Value>
                   <Style>
-                    <FontSize>4.58801mm</FontSize>
+                    <FontSize>4.99999mm</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Color>#000000</Color>
                     <Language>ar</Language>
@@ -2003,12 +2003,12 @@
             </Border>
           </Style>
         </Line>
-        <Image Name="Image1">
-          <Left>79.46594mm</Left>
-          <Top>44.22262mm</Top>
+        <Image Name="Image2">
+          <Left>77.25832mm</Left>
+          <Top>41.26673mm</Top>
           <Value>=Parameters!img.Value</Value>
-          <Height>13.7542mm</Height>
-          <Width>51.06458mm</Width>
+          <Height>16.40417mm</Height>
+          <Width>55.03333mm</Width>
           <Visibility />
           <Style>
             <Border>
@@ -2016,6 +2016,7 @@
             </Border>
           </Style>
           <Source>Database</Source>
+          <MIMEType>image/png</MIMEType>
           <Sizing>Fit</Sizing>
         </Image>
       </ReportItems>
