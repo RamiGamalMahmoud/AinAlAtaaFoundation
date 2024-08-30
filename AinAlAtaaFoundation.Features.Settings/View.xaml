@@ -12,6 +12,7 @@
     x:ClassModifier="internal"
     FontSize="14"
     FontWeight="Bold"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Border Padding="5" FlowDirection="RightToLeft">
