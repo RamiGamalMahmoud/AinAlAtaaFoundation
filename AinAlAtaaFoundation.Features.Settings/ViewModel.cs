@@ -1,78 +1,49 @@
-﻿using AinAlAtaaFoundation.Models;
-using AinAlAtaaFoundation.Shared;
-using AinAlAtaaFoundation.Shared.Abstraction;
+﻿using AinAlAtaaFoundation.Shared;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System;
-using System.ComponentModel;
+using Syncfusion.Data.Extensions;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing.Printing;
 using System.IO;
+using System.Linq;
 
 namespace AinAlAtaaFoundation.Features.Settings
 {
-    internal partial class ViewModel : ObservableObject, IAppState
+    internal partial class ViewModel : ObservableObject
     {
-        public ViewModel(IMessenger messenger, Properties.Settings settings)
+        public ViewModel(AppState appState, IMessenger messenger)
         {
+            AppState = appState;
             _messenger = messenger;
-            _settings = settings;
-            settings.Save();
-            messenger.Register<ViewModel, Messages.LoginSuccededMessage>(this, (reciver, message) => User = message.User);
-            messenger.Register<ViewModel, Messages.SettingsMessages.GetSatrtStatusRequestMessage>(this, (r, m) => m.Reply(r.IsFeshStart));
-            messenger.Register<ViewModel, Messages.SettingsMessages.UpdateStartStatusMessage>(this, (r, m) => r.IsFeshStart = m.IsFreshStart);
-        }
-        public User User
-        {
-            get => _user;
-            private set => SetProperty(ref _user, value);
-        }
-        private User _user;
+            PrinterSettings printerSettings = new PrinterSettings();
 
-        public bool CloseCreateWindow
-        {
-            get => _settings.CloseCreateWindow;
-            set
-            {
-                _settings.CloseCreateWindow = value;
-                OnPropertyChanged(nameof(CloseCreateWindow));
-            }
+            DefaultPrinter = printerSettings.PrinterName;
+            IEnumerable<string> printers = PrinterSettings.InstalledPrinters.ToList<string>();
+            _printers = new List<string>(printers) { "Default" };
         }
+        public AppState AppState { get; }
+        public string DefaultPrinter { get; }
 
-        public bool AutoSave
-        {
-            get => _settings.AutoSave;
-            set
-            {
-                _settings.AutoSave = value;
-                OnPropertyChanged(nameof(AutoSave));
-            }
-        }
-
-        public bool IsFeshStart
-        {
-            get => _settings.FreshStart;
-            set
-            {
-                _settings.FreshStart = value;
-                _settings.Save();
-            }
-        }
-
-        public string AppDataFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AinAlAtaaFoundation");
-
-        protected override void OnPropertyChanged(PropertyChangedEventArgs e)
-        {
-            if (AutoSave) SaveCommand.Execute(null);
-        }
+        [ObservableProperty]
+        private IEnumerable<string> _printers;
 
         [RelayCommand]
-        private void Save() => _settings.Save();
-
+        private void Backup() => _messenger.Send<Messages.Database.BackupMessage>();
 
         [RelayCommand]
-        private void Reset() => _settings.Reset();
+        private void Restore() => _messenger.Send<Messages.Database.ResoreMessage>();
+
+        [RelayCommand]
+        private void ResetDatabase() => _messenger.Send<Messages.Database.ResetMessage>();
+
+        [RelayCommand]
+        private void OpenDataFolder()
+        {
+            Process.Start("explorer.exe", AppState.AppDataFolder);
+        }
 
         private readonly IMessenger _messenger;
-        private readonly Properties.Settings _settings;
     }
 }
