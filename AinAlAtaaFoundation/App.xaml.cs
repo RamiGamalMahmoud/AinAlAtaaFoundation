@@ -6,6 +6,7 @@ using AinAlAtaaFoundation.Features.MainWindow;
 using AinAlAtaaFoundation.Features.Management;
 using AinAlAtaaFoundation.Features.Settings;
 using AinAlAtaaFoundation.Features.Users;
+using AinAlAtaaFoundation.Helpers;
 using AinAlAtaaFoundation.Services.Printing;
 using AinAlAtaaFoundation.Shared;
 using AinAlAtaaFoundation.Shared.Abstraction;
