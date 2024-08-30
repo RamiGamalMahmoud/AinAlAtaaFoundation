@@ -1,4 +1,4 @@
-using AinAlAtaaFoundation.Models;
+﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -121,21 +121,21 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         [RelayCommand]
         private void PrintTicket(Disbursement disbursement)
         {
-            Dictionary<string, List<string>> parameters = new Dictionary<string, List<string>>
+            Dictionary<string, string> keyValues = new Dictionary<string, string>()
             {
-                { "Date", [disbursement.Date.ToString("yyyy-MM-dd")] },
-                { "Time", [disbursement.Date.ToString("hh:mm:ss - tt")] },
-                { "RationCard", [disbursement.Family.RationCard] },
-                { "Name", [disbursement.Family.Applicant.Name] },
-                { "TicketNumber", [disbursement.TicketNumber.ToString()] }
+                { "Date", disbursement.Date.ToString("yyyy-MM-dd") },
+                { "Time", disbursement.Date.ToString("hh:mm:ss - tt") },
+                { "RationCard", disbursement.Family.RationCard },
+                { "Name", disbursement.Family.Applicant.Name },
+                { "TicketNumber", disbursement.TicketNumber.ToString() }
             };
-            _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", parameters));
+            _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", keyValues));
         }
 
         [RelayCommand(CanExecute = nameof(HasFamily))]
         private void ShowFamilyDisbursementsHistory(Family family)
         {
-            _mediator.Send(new Shared.Commands.Disbursements.ShowFamilyDisbursementsHistory(family)) ;
+            _mediator.Send(new Shared.Commands.Disbursements.ShowFamilyDisbursementsHistory(family));
         }
 
         private readonly IMediator _mediator;
