@@ -1,0 +1,175 @@
+﻿<Window
+    x:Class="AinAlAtaaFoundation.Features.Settings.View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.Settings"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="View"
+    Width="800"
+    Height="450"
+    d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+    x:ClassModifier="internal"
+    FontSize="14"
+    FontWeight="Bold"
+    mc:Ignorable="d">
+
+    <Border Padding="5" FlowDirection="RightToLeft">
+
+        <TabControl>
+            <TabItem Header="قاعدة البيانات">
+                <Border Padding="5">
+                    <StackPanel>
+
+                        <Border
+                            Padding="5"
+                            HorizontalAlignment="Center"
+                            Background="{StaticResource White}"
+                            BorderBrush="LightGray"
+                            BorderThickness="1"
+                            CornerRadius="5">
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button
+                                    Grid.Row="0"
+                                    Margin="5"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding BackupCommand}"
+                                    Content="نسخ احتياطي"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="14"
+                                    FontWeight="Bold" />
+                                <Button
+                                    Grid.Row="1"
+                                    Margin="5"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding RestoreCommand}"
+                                    Content="استعادة"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="14"
+                                    FontWeight="Bold" />
+                                <Button
+                                    Grid.Row="2"
+                                    Margin="5"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{Binding ResetDatabaseCommand}"
+                                    Content="مسح"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="14"
+                                    FontWeight="Bold" />
+
+                                <Button
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Width="150"
+                                    Margin="5"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding OpenDataFolderCommand}"
+                                    Content="مسار قاعدة البيانات"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="14"
+                                    FontWeight="Bold" />
+
+                            </StackPanel>
+                        </Border>
+
+                        <Grid Visibility="Collapsed">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="115" />
+                                <ColumnDefinition Width="200" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Text="اسم قاعدة البيانات" />
+                            <TextBox
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="5"
+                                Text="al_ain" />
+
+                        </Grid>
+
+                    </StackPanel>
+                </Border>
+            </TabItem>
+
+            <TabItem Header="عام">
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text="طابعة الفواتير" />
+                    <ComboBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="5"
+                        FlowDirection="LeftToRight"
+                        ItemsSource="{Binding Printers}"
+                        SelectedValue="{Binding AppState.RecipePrinter}" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text="طابعة الملصقات" />
+                    <ComboBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5"
+                        FlowDirection="LeftToRight"
+                        ItemsSource="{Binding Printers}"
+                        SelectedValue="{Binding AppState.LabelPrinter}" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text="طابعة" />
+                    <ComboBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="5"
+                        FlowDirection="LeftToRight"
+                        ItemsSource="{Binding Printers}"
+                        SelectedValue="{Binding AppState.DefaultPrinter}" />
+
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+    </Border>
+
+</Window>
