@@ -1,6 +1,7 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared;
 using AinAlAtaaFoundation.Shared.Abstraction;
+using AinAlAtaaFoundation.Shared.Abstraction.Settings;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -50,6 +51,12 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         private void GoToHome()
         {
             CurrentView = _serviceProvider.GetRequiredService<WelcomeView>();
+        }
+
+        [RelayCommand]
+        private void ShowSettings()
+        {
+            _serviceProvider.GetRequiredService<ISettingsView>().Show();
         }
 
         [RelayCommand]

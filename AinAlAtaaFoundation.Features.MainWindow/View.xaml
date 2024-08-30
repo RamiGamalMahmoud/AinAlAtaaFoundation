@@ -127,31 +127,21 @@
                             FontWeight="Bold"
                             Style="{StaticResource ButtonPrimary}" />
 
-                        <hc:SideMenu
-                            Margin="0,5"
-                            AutoSelect="False"
-                            Cursor="Hand">
+                        <Button
+                            Grid.Row="2"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Stretch"
+                            Background="#9b59b6"
+                            Command="{Binding ShowSettingsCommand}"
+                            Content="الإعدادات"
+                            Cursor="Hand"
+                            FontFamily="Arial"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Foreground="White" />
 
-                            <hc:SideMenuItem
-                                Padding="5"
-                                FontSize="16"
-                                FontWeight="Bold"
-                                Header="ادارة قاعدة البيانات">
-                                <hc:SideMenuItem
-                                    Command="{Binding BackupCommand}"
-                                    FontSize="16"
-                                    Header="نسخ" />
-                                <hc:SideMenuItem
-                                    Command="{Binding ResetDatabaseCommand}"
-                                    FontSize="16"
-                                    Header="حذف" />
-                                <hc:SideMenuItem
-                                    FontSize="16"
-                                    Header="استعادة"
-                                    Visibility="Collapsed" />
-                            </hc:SideMenuItem>
-
-                        </hc:SideMenu>
 
                     </StackPanel>
 
