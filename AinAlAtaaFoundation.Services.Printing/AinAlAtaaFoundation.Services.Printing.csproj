@@ -3,8 +3,15 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
 		<AssemblyVersion>0.1.0</AssemblyVersion>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.22" />
+	  <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
+	  <PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.0" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
