@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AinAlAtaaFoundation.Feature
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5354B25B-52C5-4581-B2F8-75649D9B2277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AinAlAtaaFoundation.Services.Printing", "AinAlAtaaFoundation.Services.Printing\AinAlAtaaFoundation.Services.Printing.csproj", "{4186AAE2-9C01-41DB-885D-B56050314BE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AinAlAtaaFoundation.Services.Printing", "AinAlAtaaFoundation.Services.Printing\AinAlAtaaFoundation.Services.Printing.csproj", "{4186AAE2-9C01-41DB-885D-B56050314BE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
