@@ -13,7 +13,7 @@ namespace AinAlAtaaFoundation.Data
         public static void Reset(string dataFolder)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(dataFolder);
-            foreach(FileInfo fileInfo in directoryInfo.GetFiles())
+            foreach (FileInfo fileInfo in directoryInfo.GetFiles())
             {
                 fileInfo.Delete();
             }
@@ -23,7 +23,12 @@ namespace AinAlAtaaFoundation.Data
         {
             using (AppDbContext dbContext = dbContextFactory.CreateDbContext())
             {
-                await dbContext.Database.MigrateAsync();
+                IEnumerable<string> pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
+
+                if (pendingMigrations.Any())
+                {
+                    await dbContext.Database.MigrateAsync();
+                }
             }
         }
 
