@@ -1,4 +1,4 @@
-﻿using BoldReports.Windows;
+﻿using Microsoft.Reporting.WinForms;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -11,28 +11,18 @@ namespace AinAlAtaaFoundation.Services.Printing
             InitializeComponent();
         }
 
-        public ViewPrint(string reportPath)
+        public ViewPrint(string reportPath, List<ReportParameter> reportParameters, Dictionary<string, object> dataSources) : this()
         {
-            InitializeComponent();
+            reportViewer.LocalReport.ReportPath = reportPath;
+            reportViewer.LocalReport.EnableExternalImages = true;
+            reportViewer.LocalReport.SetParameters(reportParameters);
+            reportViewer.LocalReport.DataSources.Clear();
 
-            reportViewer.ReportPath = reportPath;
-            reportViewer.DataSources.Clear();
-            reportViewer.RefreshReport();
-        }
-
-        public ViewPrint(string reportPath, List<ReportParameter> reportParameters, Dictionary<string, object> dataSources)
-        {
-            InitializeComponent();
-
-            reportViewer.ReportPath = reportPath;
-            reportViewer.SetParameters(reportParameters);
-            reportViewer.DataSources.Clear();
-
-            if(dataSources is not null)
+            if (dataSources is not null)
             {
-                foreach(KeyValuePair<string, object> keyValuePair in dataSources)
+                foreach (KeyValuePair<string, object> keyValuePair in dataSources)
                 {
-                    reportViewer.DataSources.Add(new ReportDataSource(keyValuePair.Key, keyValuePair.Value));
+                    reportViewer.LocalReport.DataSources.Add(new ReportDataSource(keyValuePair.Key, keyValuePair.Value));
                 }
             }
 
