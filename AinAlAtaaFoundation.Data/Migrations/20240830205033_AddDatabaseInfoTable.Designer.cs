@@ -3,6 +3,7 @@ using System;
 using AinAlAtaaFoundation.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AinAlAtaaFoundation.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240830205033_AddDatabaseInfoTable")]
+    partial class AddDatabaseInfoTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
@@ -198,15 +201,6 @@ namespace AinAlAtaaFoundation.Data.Migrations
                         .HasName("pk_database_infos");
 
                     b.ToTable("database_infos", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateUpdated = new DateTime(2024, 8, 30, 11, 50, 0, 0, DateTimeKind.Unspecified),
-                            Discreption = "Initial Database Schema",
-                            Version = 1
-                        });
                 });
 
             modelBuilder.Entity("AinAlAtaaFoundation.Models.Disbursement", b =>

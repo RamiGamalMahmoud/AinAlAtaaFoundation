@@ -22,6 +22,7 @@ namespace AinAlAtaaFoundation.Data
         public DbSet<OrphanType> OrphanTypes { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Disbursement> Disbursements { get; set; }
+        public DbSet<DatabaseInfo> DatabaseInfos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
