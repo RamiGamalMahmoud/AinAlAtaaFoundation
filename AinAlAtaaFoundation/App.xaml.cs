@@ -6,18 +6,19 @@ using AinAlAtaaFoundation.Features.MainWindow;
 using AinAlAtaaFoundation.Features.Management;
 using AinAlAtaaFoundation.Features.Settings;
 using AinAlAtaaFoundation.Features.Users;
-using AinAlAtaaFoundation.Helpers;
+using AinAlAtaaFoundation.Services;
+using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Services.Printing;
 using AinAlAtaaFoundation.Shared;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Win32;
 using Notification.Wpf;
 using System.Threading.Tasks;
 using System.Windows;
 using Velopack;
+using System.Diagnostics;
 
 namespace AinAlAtaaFoundation
 {
@@ -37,6 +38,9 @@ namespace AinAlAtaaFoundation
                 .Build();
 
             _messenger = _host.Services.GetRequiredService<IMessenger>();
+            _appService = _host.Services.GetRequiredService<AppService>();
+            _appState = _host.Services.GetRequiredService<IAppState>();
+            _databaseService = _host.Services.GetRequiredService<DatabaseService>();
 
             RegisterRecipients();
         }
@@ -44,10 +48,11 @@ namespace AinAlAtaaFoundation
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IMessenger>(WeakReferenceMessenger.Default);
-            services.AddSingleton<AppDbContextFactory>(new AppDbContextFactory($"Data Source = {AppHelpers.DatabaseFile}"));
-            services.AddSingleton<IAppDbContextFactory>(new AppDbContextFactory($"Data Source = {AppHelpers.DatabaseFile}"));
+            services.AddSingleton<AppDbContextFactory>(new AppDbContextFactory($"Data Source = {AppService.DatabaseFile}"));
+            services.AddSingleton<IAppDbContextFactory>(new AppDbContextFactory($"Data Source = {AppService.DatabaseFile}"));
             services.AddTransient<Shared.Components.TopFilterViewModel>();
-            services.AddSingleton<DatabaseHelpers>();
+            services.AddSingleton<DatabaseService>();
+            services.AddSingleton<AppService>();
             services.ConfigureMainWindowFeature();
             services.ConfigureFamiliesFeature();
             services.ConfigureServicePrint();
@@ -70,6 +75,11 @@ namespace AinAlAtaaFoundation
 
             _messenger.Register(this, (MessageHandler<object, Shared.Commands.Generic.CommandLogout>)((r, m) => ShowLoing()));
 
+            _messenger.Register<Shared.Notifications.Notification>(this, (r, m) =>
+            {
+                _notificationManager.Show("", m.Message);
+            });
+
             _messenger.Register<Shared.Notifications.SuccessNotification>(this, (r, m) =>
             {
                 _notificationManager.Show("رسالة", m.Message, NotificationType.Success);
@@ -86,24 +96,14 @@ namespace AinAlAtaaFoundation
                 _messenger.Send(new Shared.Notifications.FailerNotification("للمستخدم : " + m.UserName));
             });
 
-            _messenger.Register<Messages.Database.BackupMessage>(this, (r, m) =>
+            _messenger.Register<Messages.Database.BackupMessage>(this, async (r, m) =>
             {
-                bool isOk = _messenger.Send(new Messages.ConfirmRequestMessage("هل تريد انشاء نسخة احتياطية ؟"));
-                if (isOk)
+                if (_messenger.Send(new Messages.ConfirmRequestMessage("هل تريد انشاء نسخة احتياطية ؟")))
                 {
-                    DatabaseHelpers.Backup(AppHelpers.BackupFolder,AppHelpers.DatabaseFile);
-                    _messenger.Send(new Shared.Notifications.SuccessNotification("تم إنشاء نسخة احتياطية لقاعدة البيانات"));
+                    DatabaseInfo info = await _messenger.Send(new Messages.Database.GetCurrentDatabaseVersion());
+                    _databaseService.Backup(AppService.BackupFolder, AppService.DatabaseFile, info.Version);
+                    _messenger.Send(new Shared.Notifications.Notification("تم إنشاء نسخة احتياطية لقاعدة البيانات"));
                 }
-            });
-
-            _messenger.Register<Messages.Database.ResoreMessage>(this, (r, m) =>
-            {
-                OpenFileDialog fileDialog = new OpenFileDialog();
-                if (fileDialog.ShowDialog() == true)
-                {
-                    string file = fileDialog.FileName;
-                }
-
             });
 
             _messenger.Register<Messages.ConfirmRequestMessage>(this, (r, m) =>
@@ -113,18 +113,35 @@ namespace AinAlAtaaFoundation
                 m.Reply(reply);
             });
 
+            _messenger.Register<Messages.Application.RestartMessage>(this, (r, m) =>
+            {
+                Restart();
+            });
+
             _messenger.Register<Messages.Database.ResetMessage>(this, async (r, m) =>
             {
                 bool isOk = _messenger.Send(new Messages.ConfirmRequestMessage("أنت على وشك حذف قاعدة البيانات, هل تريد الإستمرار ؟"));
                 if (isOk)
                 {
-                    _messenger.Send(new Shared.Notifications.SuccessNotification("سوف يتم حذف قاعدة البيانات بعد إعادة تشغيل البرنامج"));
+                    _messenger.Send(new Shared.Notifications.SuccessNotification("سوف تتم العملية بعد إعادة تشغيل البرنامج"));
                     _messenger.Send(new Messages.SettingsMessages.UpdateStartStatusMessage(true));
                     await Task.Delay(2000);
                     _messenger.Send(new Shared.Notifications.SuccessNotification("جاري إغلاق البرنامج"));
                     await Task.Delay(2000);
-                    AppHelpers.Restart(this);
+                    _messenger.Send(new Messages.Application.RestartMessage());
                 }
+            });
+
+            // get current database version
+            _messenger.Register<App, Messages.Database.GetCurrentDatabaseVersion>(this, (r, m) =>
+            {
+                m.Reply(_databaseService.GetDatabaseVersion());
+            });
+
+            // update database version
+            _messenger.Register<Messages.Database.UpdateDatabaseVersionMessage>(this, async (r, m) =>
+            {
+                await _databaseService.UpdateDatabaseVersion(m.Description);
             });
         }
 
@@ -132,20 +149,29 @@ namespace AinAlAtaaFoundation
         {
             LoadSettings();
 
-            bool isfresh = _messenger.Send<Messages.SettingsMessages.GetSatrtStatusRequestMessage>();
-
-            if (isfresh)
+            if (_messenger.Send<Messages.SettingsMessages.GetSatrtStatusRequestMessage>())
             {
-                DatabaseHelpers.Reset(AppHelpers.DataFolder);
+                _databaseService.Reset(AppService.DataFolder);
                 _messenger.Send(new Messages.SettingsMessages.UpdateStartStatusMessage(false));
             }
-            AppHelpers.CreateAppDataFolder();
 
-            AppHelpers.CreateDatabase();
-            await AppHelpers.TestDatabaseConnection(_host.Services.GetRequiredService<IAppDbContextFactory>(), _messenger, Shutdown);
+            // restore backup database
+            if (_appState.HasBackupFileToRestore)
+            {
+                _messenger.Send(new Shared.Notifications.Notification($"جاري استعادة النسخة الإحتياطية من الملف {_appState.BackupFileToRestore}"));
+                _databaseService.RestoreDatabase(_appState.BackupFileToRestore);
+                _messenger.Send(new Messages.Database.DatabaseBackedupMessage());
+                _messenger.Send(new Shared.Notifications.Notification($"تم استعادة النسخة الإحتياطية من الملف {_appState.BackupFileToRestore}"));
+                // set backup state to false
+            }
 
-            await DatabaseHelpers.ApplyMigrations(_host.Services.GetRequiredService<IAppDbContextFactory>());
-            AppHelpers.RegisterLicences();
+            _appService.CreateAppDataFolder();
+
+            _appService.CreateDatabase();
+            await _appService.TestDatabaseConnection(Shutdown);
+
+            await _databaseService.ApplyMigrations();
+            _appService.RegisterLicences();
 
             await _host.StartAsync();
             ShowMainWindow();
@@ -171,6 +197,15 @@ namespace AinAlAtaaFoundation
             _host.Services.GetRequiredService<IAppState>();
         }
 
+        public void Restart()
+        {
+            Process.Start(Process.GetCurrentProcess().MainModule.FileName);
+            Shutdown();
+        }
+
+        private readonly AppService _appService;
+        private readonly IAppState _appState;
+        private readonly DatabaseService _databaseService;
         private readonly NotificationManager _notificationManager = new NotificationManager();
         private readonly IMessenger _messenger;
         private readonly IHost _host;
