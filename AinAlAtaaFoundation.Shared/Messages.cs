@@ -16,19 +16,26 @@ namespace AinAlAtaaFoundation.Shared
             public string Message { get; } = message;
         }
 
+        public static class Application
+        {
+            public record RestartMessage;
+            public record ShutdownMessage;
+        }
+
         public static class Database
         {
             public record BackupMessage;
-            public record ResoreMessage;
+            public record RestoreMessage(string FileName);
             public record ResetMessage;
-            public class GetCurrentDatabaseVersion : RequestMessage<DatabaseInfo>;
+            public class GetCurrentDatabaseVersion : AsyncRequestMessage<DatabaseInfo>;
             public record UpdateDatabaseVersionMessage(string Description);
+            public record DatabaseBackedupMessage;
         }
 
         public static class SettingsMessages
         {
             public class GetSatrtStatusRequestMessage : RequestMessage<bool>;
-
+            public class HasBackupFileRequestMessage : RequestMessage<bool>;
             public record UpdateStartStatusMessage(bool IsFreshStart);
         }
     }

@@ -19,17 +19,25 @@
 
         <TabControl>
             <TabItem Header="قاعدة البيانات">
-                <Border Padding="5">
-                    <StackPanel>
-
-                        <Border
-                            Padding="5"
-                            HorizontalAlignment="Center"
-                            Background="{StaticResource White}"
-                            BorderBrush="LightGray"
-                            BorderThickness="1"
-                            CornerRadius="5">
-                            <StackPanel Orientation="Horizontal">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Border
+                        Grid.Row="0"
+                        Padding="5"
+                        HorizontalAlignment="Center"
+                        Background="{StaticResource White}"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        CornerRadius="5">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
 
                                 <Button
                                     Grid.Row="0"
@@ -75,42 +83,49 @@
                                     FontSize="14"
                                     FontWeight="Bold" />
 
+
                             </StackPanel>
-                        </Border>
 
-                        <Grid Visibility="Collapsed">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="115" />
-                                <ColumnDefinition Width="200" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                VerticalAlignment="Center"
-                                Text="اسم قاعدة البيانات" />
-                            <TextBox
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Margin="5"
-                                Text="al_ain" />
-
+                            <ListView
+                                Grid.Row="1"
+                                FlowDirection="LeftToRight"
+                                ItemsSource="{Binding Backups}"
+                                SelectedValue="{Binding SelectedBackup, UpdateSourceTrigger=PropertyChanged}" />
                         </Grid>
+                    </Border>
 
-                    </StackPanel>
-                </Border>
+                    <Grid Grid.Row="1" Visibility="Collapsed">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="115" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            Text="اسم قاعدة البيانات" />
+                        <TextBox
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="5"
+                            Text="al_ain" />
+
+                    </Grid>
+
+                </Grid>
             </TabItem>
 
             <TabItem Header="عام">

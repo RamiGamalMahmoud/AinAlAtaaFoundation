@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace AinAlAtaaFoundation.Features.Settings
 {
@@ -29,11 +30,42 @@ namespace AinAlAtaaFoundation.Features.Settings
         [ObservableProperty]
         private IEnumerable<string> _printers;
 
-        [RelayCommand]
-        private void Backup() => _messenger.Send<Messages.Database.BackupMessage>();
+        public IEnumerable<string> Backups
+        {
+            get
+            {
+                string pattern = @"(?<version>V-(?<ver>\d{2}))";
+                string fileNamePattern = @"(\d{4}_\d{2}_\d{2}__\d{2}_\d{2}_\d{2}__\d{4} \[V-\d{2}\])";
+                Regex regex = new Regex(fileNamePattern);
+                return Directory.EnumerateFiles(Path.Combine(AppState.AppDataFolder, "backups"))
+                    .Where(x => regex.Match(x).Success)
+                    .Select(x => regex.Match(x).Value);
+            }
+        }
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(RestoreCommand))]
+        private string _selectedBackup;
 
         [RelayCommand]
-        private void Restore() => _messenger.Send<Messages.Database.ResoreMessage>();
+        private void Backup()
+        {
+            _messenger.Send<Messages.Database.BackupMessage>();
+            OnPropertyChanged(nameof(Backups));
+        }
+
+        [RelayCommand(CanExecute = nameof(CanRestore))]
+        private void Restore()
+        {
+            bool isOk = _messenger.Send(new Messages.ConfirmRequestMessage("أنت على وشك استعادة نسخة من قاعدة البيانات, هل تريد الإستمرار ؟"));
+            if (!isOk) return;
+
+            _messenger.Send(new Shared.Notifications.SuccessNotification("سوف تتم العملية بعد إعادة تشغيل البرنامج"));
+            _messenger.Send(new Messages.Database.RestoreMessage(SelectedBackup));
+            _messenger.Send(new Messages.Application.RestartMessage());
+            SelectedBackup = null;
+        }
+        private bool CanRestore => !string.IsNullOrEmpty(SelectedBackup);
 
         [RelayCommand]
         private void ResetDatabase() => _messenger.Send<Messages.Database.ResetMessage>();
