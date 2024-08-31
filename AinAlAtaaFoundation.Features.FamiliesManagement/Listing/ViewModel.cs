@@ -121,6 +121,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             parameters.Add("RationCardOwnerName", family.RationCardOwnerName);
             parameters.Add("Notes", family.Notes);
             parameters.Add("ApplicantName", family.Applicant.Name);
+            parameters.Add("IsSponsoredParameter", family.IsSponsored.ToString());
 
             return parameters;
         }
