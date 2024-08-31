@@ -7,5 +7,7 @@ namespace AinAlAtaaFoundation.Shared.Abstraction
         User User { get; }
         string AppDataFolder { get; }
         bool IsFeshStart { get; }
+        bool HasBackupFileToRestore { get; }
+        string BackupFileToRestore { get; }
     }
 }

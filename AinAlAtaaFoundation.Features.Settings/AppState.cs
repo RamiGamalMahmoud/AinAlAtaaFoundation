@@ -16,10 +16,23 @@ namespace AinAlAtaaFoundation.Features.Settings
         {
             _messenger = messenger;
             _settings = settings;
-            settings.Save();
+
             messenger.Register<AppState, Messages.LoginSuccededMessage>(this, (reciver, message) => User = message.User);
             messenger.Register<AppState, Messages.SettingsMessages.GetSatrtStatusRequestMessage>(this, (r, m) => m.Reply(r.IsFeshStart));
             messenger.Register<AppState, Messages.SettingsMessages.UpdateStartStatusMessage>(this, (r, m) => r.IsFeshStart = m.IsFreshStart);
+            messenger.Register<AppState, Messages.Database.RestoreMessage>(this, (r, m) =>
+            {
+                _settings.BackupFileToRestore = m.FileName;
+                Save();
+            });
+
+            messenger.Register<Messages.Database.DatabaseBackedupMessage>(this, (r, m) =>
+            {
+                _settings.BackupFileToRestore = null;
+                Save();
+            });
+
+            // clear BackupFileToRestore
         }
         public User User
         {
@@ -47,6 +60,9 @@ namespace AinAlAtaaFoundation.Features.Settings
                 OnPropertyChanged(nameof(AutoSave));
             }
         }
+
+        public bool HasBackupFileToRestore => !string.IsNullOrEmpty(_settings.BackupFileToRestore);
+        public string BackupFileToRestore => _settings.BackupFileToRestore;
 
         public bool IsFeshStart
         {

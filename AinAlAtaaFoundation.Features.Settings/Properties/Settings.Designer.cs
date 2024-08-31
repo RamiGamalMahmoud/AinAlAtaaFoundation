@@ -106,5 +106,17 @@ namespace AinAlAtaaFoundation.Features.Settings.Properties {
                 this["DefaultPrinter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BackupFileToRestore {
+            get {
+                return ((string)(this["BackupFileToRestore"]));
+            }
+            set {
+                this["BackupFileToRestore"] = value;
+            }
+        }
     }
 }
