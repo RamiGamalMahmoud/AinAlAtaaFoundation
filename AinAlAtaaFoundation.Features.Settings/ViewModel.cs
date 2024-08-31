@@ -35,9 +35,7 @@ namespace AinAlAtaaFoundation.Features.Settings
         {
             get
             {
-                string pattern = @"(?<version>V-(?<ver>\d{2}))";
                 DatabaseInfo version = _messenger.Send(new Messages.Database.GetCurrentDatabaseVersion()).Response.Result;
-
 
                 string fileNamePattern = $@"(\d{{4}}_\d{{2}}_\d{{2}}__\d{{2}}_\d{{2}}_\d{{2}}__\d{{{4}}} \[V-{version.Version:00}\])";
                 Regex regex = new Regex(fileNamePattern);
