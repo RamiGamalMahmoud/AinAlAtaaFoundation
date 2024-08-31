@@ -21,6 +21,8 @@ namespace AinAlAtaaFoundation.Shared
             public record BackupMessage;
             public record ResoreMessage;
             public record ResetMessage;
+            public class GetCurrentDatabaseVersion : RequestMessage<DatabaseInfo>;
+            public record UpdateDatabaseVersionMessage(string Description);
         }
 
         public static class SettingsMessages

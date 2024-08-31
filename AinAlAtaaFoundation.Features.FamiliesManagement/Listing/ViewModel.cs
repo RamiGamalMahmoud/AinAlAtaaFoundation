@@ -146,7 +146,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 .Where(x => TopFilterViewModel.OrphanType is null || x.OrphanType is null || x.OrphanType == TopFilterViewModel.OrphanType)
                 .Where(x => TopFilterViewModel.District is null || x.Address.District.Id == TopFilterViewModel.District.Id)
                 .Where(x => TopFilterViewModel.DistrictRepresentative is null || x.DistrictRepresentative.Id == TopFilterViewModel.DistrictRepresentative.Id)
-                .Where(x => TopFilterViewModel.FeaturedPoint is null || x.Address.FeaturedPoint is null || x.Address.FeaturedPoint == TopFilterViewModel.FeaturedPoint);
+                .Where(x => TopFilterViewModel.FeaturedPoint is null || x.Address.FeaturedPoint is null || x.Address.FeaturedPoint == TopFilterViewModel.FeaturedPoint)
+                .Where(x => TopFilterViewModel.SponsoringStatus is null || x.IsSponsored == TopFilterViewModel.SponsoringStatus.IsSponsored);
         }
 
         [ObservableProperty]

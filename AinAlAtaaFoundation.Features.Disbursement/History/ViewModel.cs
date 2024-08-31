@@ -37,7 +37,8 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
                 TopFilterViewModel.DistrictRepresentative,
                 TopFilterViewModel.FamilyType,
                 TopFilterViewModel.SocialStatus,
-                TopFilterViewModel.OrphanType));
+                TopFilterViewModel.OrphanType,
+                TopFilterViewModel.SponsoringStatus?.IsSponsored));
             Disbursements = new System.Collections.ObjectModel.ObservableCollection<Disbursement>(disbursements);
         }
 

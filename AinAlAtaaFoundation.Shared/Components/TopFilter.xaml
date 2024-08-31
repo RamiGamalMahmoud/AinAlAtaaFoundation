@@ -15,10 +15,10 @@
         <Button
             Width="150"
             Margin="5"
+            VerticalAlignment="Bottom"
             Command="{Binding ElementName=root, Path=TopFilterViewModel.ClearFiltersCommand}"
             Content="إعادة ضبط"
             Cursor="Hand"
-            VerticalAlignment="Bottom"
             FontSize="16"
             Foreground="{StaticResource Black}"
             Style="{StaticResource ButtonWarning}" />
@@ -34,10 +34,10 @@
             Width="150"
             Margin="5"
             hc:InfoElement.Placeholder="تسلسل العائلة"
-            Visibility="Collapsed"
             hc:InfoElement.ShowClearButton="True"
             hc:InfoElement.Title="تسلسل العائلة"
-            Text="{Binding ElementName=root, Path=TopFilterViewModel.FamilyId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+            Text="{Binding ElementName=root, Path=TopFilterViewModel.FamilyId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            Visibility="Collapsed" />
 
         <hc:ComboBox
             Width="150"
@@ -178,6 +178,20 @@
             SelectedItem="{Binding ElementName=root, Path=TopFilterViewModel.FeaturedPoint, UpdateSourceTrigger=PropertyChanged}"
             SelectedValue="{Binding ElementName=root, Path=TopFilterViewModel.FeaturedPoint.Id}"
             SelectedValuePath="Id" />
+
+        <hc:ComboBox
+            Width="150"
+            Margin="5"
+            VerticalAlignment="Center"
+            hc:ComboBoxAttach.IsMouseWheelEnabled="true"
+            hc:InfoElement.Placeholder="الكفالة"
+            hc:InfoElement.ShowClearButton="True"
+            hc:InfoElement.Title="الكفالة"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            Cursor="Hand"
+            DisplayMemberPath="Title"
+            ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.SponsoringStatuses}"
+            SelectedItem="{Binding ElementName=root, Path=TopFilterViewModel.SponsoringStatus, UpdateSourceTrigger=PropertyChanged}" />
 
     </WrapPanel>
 

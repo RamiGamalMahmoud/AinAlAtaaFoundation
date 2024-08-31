@@ -116,6 +116,23 @@ namespace AinAlAtaaFoundation.Shared.Components
         [ObservableProperty]
         private FeaturedPoint _featuredPoint;
 
+        [ObservableProperty]
+        private SponsoringStatus _sponsoringStatus;
+
+        public IEnumerable<SponsoringStatus> SponsoringStatuses =>
+        [
+            new SponsoringStatus("مكفول", true),
+            new SponsoringStatus("غير مكفول", false)
+        ];
+
         private readonly IMediator _mediator = mediator;
+    }
+
+    public class SponsoringStatus(string title, bool isSponsored)
+    {
+        public string Title { get; set; } = title;
+        public bool IsSponsored { get; set; } = isSponsored;
+
+
     }
 }

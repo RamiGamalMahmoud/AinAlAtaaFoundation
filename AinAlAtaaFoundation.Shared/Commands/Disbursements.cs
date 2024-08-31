@@ -21,7 +21,8 @@ namespace AinAlAtaaFoundation.Shared.Commands
             DistrictRepresentative DistrictRepresentative,
             FamilyType FamilyType,
             SocialStatus SocialStatus,
-            OrphanType OrphanType
+            OrphanType OrphanType,
+            bool? IsSponsored = null
             ) : IFilterParameters, IRequest<IEnumerable<Disbursement>>;
 
         public record CommandRemove(Disbursement Disbursement) : IRequest<bool>;

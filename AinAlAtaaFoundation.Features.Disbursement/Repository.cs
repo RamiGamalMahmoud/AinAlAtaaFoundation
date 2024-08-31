@@ -143,6 +143,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
                     .Where(x => parameters.FamilyType == null || x.Family.FamilyType == parameters.FamilyType)
                     .Where(x => parameters.SocialStatus == null || x.Family.SocialStatus == parameters.SocialStatus)
                     .Where(x => parameters.OrphanType == null || x.Family.OrphanType == parameters.OrphanType)
+                    .Where(x => parameters.IsSponsored == null || x.Family.IsSponsored == parameters.IsSponsored)
 
                     .ToListAsync();
             }

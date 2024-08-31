@@ -12,5 +12,6 @@ namespace AinAlAtaaFoundation.Shared.Abstraction
         public FamilyType FamilyType { get; }
         public SocialStatus SocialStatus { get; }
         public OrphanType OrphanType { get; }
+        public bool? IsSponsored { get; }
     }
 }
