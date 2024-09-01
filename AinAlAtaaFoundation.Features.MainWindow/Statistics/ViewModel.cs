@@ -8,7 +8,7 @@ namespace AinAlAtaaFoundation.Features.MainWindow.Statistics
 {
     internal partial class ViewModel : ObservableObject
     {
-        public ViewModel(AppDbContextFactory appDbContextFactory)
+        public ViewModel(IAppDbContextFactory appDbContextFactory)
         {
             _appDbContextFactory = appDbContextFactory;
         }
@@ -27,7 +27,7 @@ namespace AinAlAtaaFoundation.Features.MainWindow.Statistics
             set => SetProperty(ref _totalFamilies, value);
         }
 
-        private readonly AppDbContextFactory _appDbContextFactory;
+        private readonly IAppDbContextFactory _appDbContextFactory;
         private int _totalFamilies;
     }
 }
