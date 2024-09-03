@@ -2093,7 +2093,7 @@
             </Border>
           </Style>
           <Source>Database</Source>
-          <MIMEType>image/png</MIMEType>
+          <MIMEType>image/gif</MIMEType>
           <Sizing>Fit</Sizing>
         </Image>
       </ReportItems>
