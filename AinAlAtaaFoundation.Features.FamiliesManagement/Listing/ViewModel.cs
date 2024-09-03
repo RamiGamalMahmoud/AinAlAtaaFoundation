@@ -94,7 +94,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             parameters.Add("Barcode", barcodeImageString);
-            parameters.Add("RationCard", family.RationCard);
 
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("FamilyBarcode.rdlc", parameters));
         }
