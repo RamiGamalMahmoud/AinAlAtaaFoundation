@@ -1,0 +1,35 @@
+﻿<UserControl
+    x:Class="AinAlAtaaFoundation.Features.MainWindow.Statistics.Components.HeaderItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.MainWindow.Statistics.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="root"
+    mc:Ignorable="d">
+
+    <Border
+        Width="250"
+        Margin="5"
+        Padding="5"
+        HorizontalAlignment="Center"
+        BorderBrush="LightGray"
+        BorderThickness="1"
+        CornerRadius="3">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Text="{Binding ElementName=root, Path=Title}" />
+            <TextBlock
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Text="{Binding ElementName=root, Path=Value}" />
+        </Grid>
+    </Border>
+
+</UserControl>
