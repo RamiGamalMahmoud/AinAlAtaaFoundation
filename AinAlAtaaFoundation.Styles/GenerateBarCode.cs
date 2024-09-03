@@ -12,8 +12,8 @@ namespace AinAlAtaaFoundation.Shared
         public static string ToBarCodeString(int code)
         {
             Image img = ToImage(code);
-
-            string barcodeImageString = ImageToBase64(img, ImageFormat.Png);
+            img.Save("barcode.gif", ImageFormat.Gif);
+            string barcodeImageString = ImageToBase64(img, ImageFormat.Gif);
             return barcodeImageString;
         }
 
@@ -24,7 +24,7 @@ namespace AinAlAtaaFoundation.Shared
                 IncludeLabel = true
             };
             return Image
-                .FromStream(b.Encode(BarcodeStandard.Type.Code128, code.ToString(), SKColors.Black, SKColors.White, 290, 120)
+                .FromStream(b.Encode(BarcodeStandard.Type.Code128, code.ToString(), SKColors.Black, SKColors.White, 2900, 1200)
                 .Encode()
                 .AsStream());
         }
