@@ -1,4 +1,4 @@
-using AinAlAtaaFoundation.Data;
+﻿using AinAlAtaaFoundation.Data;
 using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using HandyControl.Tools.Extension;
@@ -195,6 +195,38 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     .Include(x => x.SocialStatus)
                     .Where(x => x.IsDelted)
                     .ToListAsync();
+            }
+        }
+
+        public async Task Restore(Family family)
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+
+                    Family familyToBeDeleted = await dbContext.Families.Where(x => x.Id == family.Id).SingleOrDefaultAsync();
+                    IEnumerable<FamilyMember> familyMembersToBeDeleted = await dbContext.FamilyMembers.Where(x => x.Family.Id == family.Id).ToListAsync();
+
+                    if (familyToBeDeleted is not null)
+                    {
+                        familyToBeDeleted.IsDelted = false;
+                        dbContext.Families.Update(familyToBeDeleted);
+                    }
+
+                    if (familyMembersToBeDeleted.Any())
+                    {
+                        foreach (FamilyMember familyMember in familyMembersToBeDeleted)
+                        {
+                            familyMember.IsDelted = false;
+                        }
+                    }
+
+                    dbContext.FamilyMembers.UpdateRange(familyMembersToBeDeleted);
+
+                    await dbContext.SaveChangesAsync();
+                    transaction.Commit();
+                }
             }
         }
 
