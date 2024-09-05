@@ -95,4 +95,14 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             return await repository.GetDisbursementsHistoryByDate(request.Date);
         }
     }
+
+    internal class CommandHandlerRemoveDisbusement(Repository repository) : IRequestHandler<Shared.Commands.Disbursements.CommandRemove, bool>
+    {
+        public async Task<bool> Handle(Disbursements.CommandRemove request, CancellationToken cancellationToken)
+        {
+            return await _repository.Remove(request.Disbursement);
+        }
+
+        private readonly Repository _repository = repository;
+    }
 }

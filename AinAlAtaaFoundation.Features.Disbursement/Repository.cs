@@ -161,6 +161,17 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
             }
         }
 
+        public async Task<bool> Remove(Disbursement disbursement)
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                dbContext.Disbursements
+                    .Remove(disbursement);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
+        }
+
         private readonly AppDbContextFactory _dbContextFactory = dbContextFactory;
     }
 }

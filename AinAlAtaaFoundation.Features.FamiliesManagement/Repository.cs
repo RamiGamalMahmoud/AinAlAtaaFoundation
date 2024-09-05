@@ -269,12 +269,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             }
         }
 
-        public async Task<bool> Remove(Disbursement disbursement)
+        public async Task<bool> Remove(Family family)
         {
             using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
             {
-                dbContext.Disbursements
-                    .Remove(disbursement);
+                dbContext.Families
+                    .Remove(family);
                 await dbContext.SaveChangesAsync();
                 return true;
             }

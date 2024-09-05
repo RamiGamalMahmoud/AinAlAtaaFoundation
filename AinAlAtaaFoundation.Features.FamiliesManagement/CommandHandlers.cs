@@ -35,13 +35,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         private readonly Repository _repository = repository;
     }
 
-    internal class CommandHandlerRemoveDisbusement(Repository repository) : IRequestHandler<Shared.Commands.Disbursements.CommandRemove, bool>
+    internal class RemoveFamilyCommandHandler(Repository repository) : IRequestHandler<Shared.Commands.Generic.RemoveCommand<Family>, bool>
     {
-        public async Task<bool> Handle(Disbursements.CommandRemove request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(Generic.RemoveCommand<Family> request, CancellationToken cancellationToken)
         {
-            return await _repository.Remove(request.Disbursement);
+            return await repository.Remove(request.Model);
         }
-
-        private readonly Repository _repository = repository;
     }
 }
