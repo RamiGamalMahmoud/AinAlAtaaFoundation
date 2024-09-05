@@ -25,6 +25,9 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         private bool _isSponsored;
 
+        [ObservableProperty]
+        private bool _isDelted = false;
+
         public int ClanId { get; set; }
         public Clan Clan
         {

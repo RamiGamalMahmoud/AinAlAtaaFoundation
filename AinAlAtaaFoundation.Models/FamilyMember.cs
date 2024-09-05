@@ -24,6 +24,9 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         private bool _isDeserves = true;
 
+        [ObservableProperty]
+        private bool _isDelted = false;
+
         public bool IsNowOrphan => Family.SocialStatus.Name == "أيتام" && Age < 18;
         public int Age => DateTime.Now.Year - YearOfBirth;
 
