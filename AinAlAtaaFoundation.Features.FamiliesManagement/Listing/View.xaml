@@ -60,11 +60,11 @@
                 <DataGridTextColumn Binding="{Binding Clan.Name}" Header="العشيرة" />
                 <DataGridTextColumn Binding="{Binding SocialStatus.Name}" Header="الحالة الإجتماعية" />
                 <DataGridTextColumn Binding="{Binding FamilyType.Name}" Header="(عام / خاص)" />
-                <DataGridTextColumn Binding="{Binding BranchRepresentative.Name}" Header="ممثل الفخذ" />
+                <!--<DataGridTextColumn Binding="{Binding BranchRepresentative.Name}" Header="ممثل الفخذ" />
                 <DataGridTextColumn Binding="{Binding Address.District.Name}" Header="الحي" />
                 <DataGridTextColumn Binding="{Binding Address.Street}" Header="الشارع" />
                 <DataGridTextColumn Binding="{Binding Address.FeaturedPoint.Name}" Header="أقرب نقطة دالة" />
-                <DataGridTextColumn Binding="{Binding DistrictRepresentative.Name}" Header="اسم المختار" />
+                <DataGridTextColumn Binding="{Binding DistrictRepresentative.Name}" Header="اسم المختار" />-->
 
 
                 <DataGridTemplateColumn Header="خيارات">
