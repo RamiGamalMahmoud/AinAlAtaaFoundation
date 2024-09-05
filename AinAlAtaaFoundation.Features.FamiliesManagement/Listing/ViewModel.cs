@@ -148,6 +148,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             Families = _allFamilies;
         }
 
+        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
+        private async Task Remove(Family family)
+        {
+            await _mediator.Send(new Shared.Commands.Generic.RemoveCommand<Family>(family));
+        }
+
         [RelayCommand]
         private void Filter()
         {

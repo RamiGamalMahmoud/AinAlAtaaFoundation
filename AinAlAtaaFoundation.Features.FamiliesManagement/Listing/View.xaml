@@ -45,7 +45,10 @@
                         Command="{Binding ShowUpdateCommand}"
                         CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
                         Header="تعديل" />
-                    <MenuItem Header="حذف" />
+                    <MenuItem
+                        Command="{Binding RemoveCommand}"
+                        CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
+                        Header="حذف" />
                 </ContextMenu>
             </DataGrid.ContextMenu>
 
