@@ -274,10 +274,33 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         {
             using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
             {
-                dbContext.Families
-                    .Remove(family);
-                await dbContext.SaveChangesAsync();
-                return true;
+                using (var transaction = dbContext.Database.BeginTransaction())
+                {
+
+                    Family familyToBeDeleted = await dbContext.Families.Where(x => x.Id == family.Id).SingleOrDefaultAsync();
+                    IEnumerable<FamilyMember> familyMembersToBeDeleted = await dbContext.FamilyMembers.Where(x => x.Family.Id == family.Id).ToListAsync();
+
+                    if (familyToBeDeleted is not null)
+                    {
+                        familyToBeDeleted.IsDelted = true;
+                        dbContext.Families.Update(familyToBeDeleted);
+                    }
+
+                    if (familyMembersToBeDeleted.Any())
+                    {
+                        foreach (FamilyMember familyMember in familyMembersToBeDeleted)
+                        {
+                            familyMember.IsDelted = true;
+                        }
+                    }
+
+                    dbContext.FamilyMembers.UpdateRange(familyMembersToBeDeleted);
+
+                    await dbContext.SaveChangesAsync();
+                    transaction.Commit();
+                    _entities.Remove(family);
+                    return true;
+                }
             }
         }
     }
