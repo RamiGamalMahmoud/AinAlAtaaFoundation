@@ -91,6 +91,18 @@
                                     Background="{StaticResource Blue-Light}"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.PrintBarcodeCommand}"
                                     CommandParameter="{Binding}"
+                                    Content="معاينة الباركود"
+                                    Cursor="Hand"
+                                    FontFamily="Arial"
+                                    FontSize="10"
+                                    FontWeight="Bold"
+                                    Style="{StaticResource ButtonPrimary}" />
+
+                                <Button
+                                    Margin="10,0,0,0"
+                                    Background="{StaticResource Blue-Light}"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.DirectPrintBarcodeCommand}"
+                                    CommandParameter="{Binding}"
                                     Content="طباعة الباركود"
                                     Cursor="Hand"
                                     FontFamily="Arial"

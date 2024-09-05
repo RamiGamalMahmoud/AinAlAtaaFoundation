@@ -33,11 +33,11 @@
                 Height="auto"
                 Margin="10,0,0,0"
                 VerticalAlignment="Bottom"
+                Command="{Binding ShowFamilyDisbursementsHistoryCommand}"
+                CommandParameter="{Binding Family}"
                 Content="عرض السجل"
                 Cursor="Hand"
                 FontSize="16"
-                Command="{Binding ShowFamilyDisbursementsHistoryCommand}"
-                CommandParameter="{Binding Family}"
                 FontWeight="Bold"
                 Style="{StaticResource ButtonWarning}" />
         </StackPanel>
@@ -118,10 +118,18 @@
                 Margin="5,0"
                 VerticalAlignment="Stretch"
                 Command="{Binding ExecutePrintCommand}"
+                Content="معاينة الطباعة"
                 Cursor="Hand"
-                Style="{StaticResource ButtonPrimary}">
-                <Image Source="{StaticResource PrintIcon}" />
-            </Button>
+                Style="{StaticResource ButtonPrimary}" />
+
+            <Button
+                Height="30"
+                Margin="5,0"
+                VerticalAlignment="Stretch"
+                Command="{Binding ExecuteDirectPrintCommand}"
+                Content="طباعة"
+                Cursor="Hand"
+                Style="{StaticResource ButtonInfo}" />
 
             <Label
                 Height="auto"

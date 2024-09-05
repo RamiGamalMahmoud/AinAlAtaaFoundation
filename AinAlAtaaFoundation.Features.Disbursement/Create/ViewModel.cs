@@ -1,4 +1,5 @@
 ﻿using AinAlAtaaFoundation.Models;
+using AinAlAtaaFoundation.Shared.Abstraction;
 using AinAlAtaaFoundation.Shared.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -13,11 +14,12 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 {
     internal partial class ViewModel : ObservableValidator
     {
-        public ViewModel(IMediator mediator, IMessenger messenger)
+        public ViewModel(IMediator mediator, IMessenger messenger, IAppState appState)
         {
             Clock = new Clock();
             _mediator = mediator;
             _messenger = messenger;
+            _appState = appState;
             _familyGetterById = new FamilyGetterById(mediator);
             _familyGetterByRationCard = new FamilyGetterByRationCard(mediator);
             FamilyGetter = _familyGetterById;
@@ -71,6 +73,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(ExecutePrintCommand))]
+        [NotifyCanExecuteChangedFor(nameof(ExecuteDirectPrintCommand))]
         [NotifyCanExecuteChangedFor(nameof(ShowFamilyDisbursementsHistoryCommand))]
         private Family _family;
 
@@ -82,6 +85,15 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         {
             Disbursement disbursement = await Create(++LastTicketNumber, Family);
             PrintTicket(disbursement);
+            LastFamilyDisbursement = disbursement;
+            _messenger.Send<Messages.ClearInputMessage>();
+        }
+
+        [RelayCommand(CanExecute = nameof(HasFamily))]
+        private async Task ExecuteDirectPrint()
+        {
+            Disbursement disbursement = await Create(++LastTicketNumber, Family);
+            DirectPrintTicket(disbursement);
             LastFamilyDisbursement = disbursement;
             _messenger.Send<Messages.ClearInputMessage>();
         }
@@ -132,6 +144,20 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", keyValues));
         }
 
+        [RelayCommand]
+        private void DirectPrintTicket(Disbursement disbursement)
+        {
+            Dictionary<string, string> keyValues = new Dictionary<string, string>()
+            {
+                { "Date", disbursement.Date.ToString("yyyy-MM-dd") },
+                { "Time", disbursement.Date.ToString("hh:mm:ss - tt") },
+                { "RationCard", disbursement.Family.RationCard },
+                { "Name", disbursement.Family.Applicant.Name },
+                { "TicketNumber", disbursement.TicketNumber.ToString() }
+            };
+            _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("DisbursementTicket.rdlc", _appState.RecipePrinter, keyValues));
+        }
+
         [RelayCommand(CanExecute = nameof(HasFamily))]
         private void ShowFamilyDisbursementsHistory(Family family)
         {
@@ -140,6 +166,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 
         private readonly IMediator _mediator;
         private readonly IMessenger _messenger;
+        private readonly IAppState _appState;
         private IFamilyGetter _familyGetter;
         private FamilyGetterById _familyGetterById;
         private FamilyGetterByRationCard _familyGetterByRationCard;

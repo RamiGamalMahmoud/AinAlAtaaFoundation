@@ -1,6 +1,9 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared;
+using AinAlAtaaFoundation.Shared.Abstraction;
 using AinAlAtaaFoundation.Shared.Components;
+using BoldReports.Processing.ObjectModel;
+using BoldReports.RDL.DOM;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -13,13 +16,14 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
 {
     internal partial class ViewModel : ObservableObject
     {
-        public ViewModel(IMediator mediator, IMessenger messenger, TopFilterViewModel topFilterViewModel)
+        public ViewModel(IMediator mediator, IMessenger messenger, TopFilterViewModel topFilterViewModel, IAppState appState)
         {
             _mediator = mediator;
 
             messenger.Register<ViewModel, Shared.Messages.EntityCreated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
             messenger.Register<ViewModel, Shared.Messages.EntityUpdated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
             TopFilterViewModel = topFilterViewModel;
+            _appState = appState;
             TopFilterViewModel.PropertyChanged += TopFilterViewModel_PropertyChanged;
         }
 
@@ -87,15 +91,26 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
         }
 
-        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
-        private void PrintBarcode(Family family)
+        [RelayCommand]
+        private async Task DirectPrintBarcode(Family family)
         {
             string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             parameters.Add("Barcode", barcodeImageString);
 
-            _mediator.Send(new Shared.Commands.Generic.PrintCommand("FamilyBarcode.rdlc", parameters));
+            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("FamilyBarcode.rdlc", _appState.LabelPrinter, parameters));
+        }
+
+        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
+        private async Task PrintBarcode(Family family)
+        {
+            string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+
+            parameters.Add("Barcode", barcodeImageString);
+
+            await _mediator.Send(new Shared.Commands.Generic.PrintCommand("FamilyBarcode.rdlc", parameters));
         }
 
         private static Dictionary<string, string> GetParameters(Family family)
@@ -162,5 +177,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         private IEnumerable<Family> _allFamilies;
 
         private readonly IMediator _mediator;
+        private readonly IAppState _appState;
     }
 }
