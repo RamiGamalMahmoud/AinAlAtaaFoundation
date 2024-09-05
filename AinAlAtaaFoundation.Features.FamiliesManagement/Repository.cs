@@ -1,4 +1,4 @@
-﻿using AinAlAtaaFoundation.Data;
+using AinAlAtaaFoundation.Data;
 using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using HandyControl.Tools.Extension;
@@ -165,6 +165,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         .Include(x => x.OrphanType)
                         .Include(x => x.Phones)
                         .Include(x => x.SocialStatus)
+                        .Where(x => !x.IsDelted)
                         .ToListAsync();
                     SetEntities(families);
                 }

@@ -55,6 +55,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                         .OrderBy(x => x.Family.RationCard)
                         .ThenBy(x => x.Mother.Name)
                         .ThenBy(x => x.Name)
+                        .Where(x => !x.IsDelted)
                         .ToListAsync();
                     SetEntities(familyMembers);
                 }
