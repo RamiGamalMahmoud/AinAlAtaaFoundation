@@ -173,6 +173,31 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             }
         }
 
+        public async Task<IEnumerable<Family>> GetAllDeletedAsync()
+        {
+            using (AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                return await dbContext
+                    .Families
+                    .Include(x => x.Address)
+                        .ThenInclude(x => x.FeaturedPoint)
+                    .Include(x => x.Applicant)
+                        .ThenInclude(x => x.Gender)
+                    .Include(x => x.Branch)
+                    .Include(x => x.BranchRepresentative)
+                    .Include(x => x.Clan)
+                    .Include(x => x.DistrictRepresentative)
+                        .ThenInclude(x => x.District)
+                    .Include(x => x.FamilyMembers)
+                    .Include(x => x.FamilyType)
+                    .Include(x => x.OrphanType)
+                    .Include(x => x.Phones)
+                    .Include(x => x.SocialStatus)
+                    .Where(x => x.IsDelted)
+                    .ToListAsync();
+            }
+        }
+
         public async Task<Family> GetByRationCard(string RationCard)
         {
             Family family;
