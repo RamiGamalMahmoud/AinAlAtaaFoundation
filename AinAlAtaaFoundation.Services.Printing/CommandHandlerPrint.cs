@@ -23,9 +23,12 @@ namespace AinAlAtaaFoundation.Services.Printing
         {
             List<BoldReports.Windows.ReportParameter> reportParameters = [];
 
-            foreach (KeyValuePair<string, string> keyValuePair in parameters)
+            if (parameters is not null)
             {
-                reportParameters.Add(new BoldReports.Windows.ReportParameter() { Name = keyValuePair.Key, Values = [keyValuePair.Value] });
+                foreach (KeyValuePair<string, string> keyValuePair in parameters)
+                {
+                    reportParameters.Add(new BoldReports.Windows.ReportParameter() { Name = keyValuePair.Key, Values = [keyValuePair.Value] });
+                }
             }
 
             new BoldReportsViewerWindow(reportPath, reportParameters, dataSources).Show();
