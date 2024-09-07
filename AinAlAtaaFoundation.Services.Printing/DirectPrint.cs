@@ -5,9 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Services.Printing
 {
@@ -30,7 +28,6 @@ namespace AinAlAtaaFoundation.Services.Printing
             </DeviceInfo>";
 
             _streams = [];
-
             report.Render("Image", deviceInfo, CreateStream, out Warning[] warnings);
 
             foreach (Stream stream in _streams)
@@ -51,6 +48,7 @@ namespace AinAlAtaaFoundation.Services.Printing
 
             PrintDocument printDoc = new PrintDocument();
             printDoc.DefaultPageSettings.Landscape = report.GetDefaultPageSettings().IsLandscape;
+            printDoc.DefaultPageSettings.PaperSize = report.GetDefaultPageSettings().PaperSize;
 
             if (printerName is not null && !string.IsNullOrEmpty(printerName) && printerName != "Default")
                 printDoc.PrinterSettings.PrinterName = printerName;
