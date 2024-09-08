@@ -69,7 +69,24 @@
                 Height="auto"
                 Margin="5,0"
                 Background="Transparent"
-                Command="{Binding ExportCommand}"
+                Command="{Binding ExportToPdfCommand}"
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/pdf.png" />
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="PDF" />
+                </StackPanel>
+            </Button>
+
+            <Button
+                Height="auto"
+                Margin="5,0"
+                Background="Transparent"
+                Command="{Binding ExportToExcelCommand}"
                 Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
                     <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/excel.png" />
