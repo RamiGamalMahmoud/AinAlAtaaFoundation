@@ -62,6 +62,35 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [RelayCommand]
         private async Task PrintFamilies()
         {
+            (string reportName, Dictionary<string, string> parameters, Dictionary<string, object> dataSource) = PrepareReport();
+
+            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand(reportName, _appState.DefaultPrinter, parameters, dataSource));
+        }
+
+        [RelayCommand]
+        private async Task ShowPrintFamilies()
+        {
+            (string reportName, Dictionary<string, string> parameters, Dictionary<string, object> dataSource) = PrepareReport();
+
+            await _mediator.Send(new Shared.Commands.Generic.PrintCommand(reportName, parameters, dataSource));
+        }
+
+        [RelayCommand]
+        private async Task ExportToExcel()
+        {
+            await Task.CompletedTask;
+        }
+
+        [RelayCommand]
+        private async Task ExportToPdf()
+        {
+            (string reportName, Dictionary<string, string> parameters, Dictionary<string, object> dataSource) = PrepareReport();
+
+            await _mediator.Send(new Shared.Commands.Generic.ExportToPdfCommand(reportName, parameters, dataSource));
+        }
+
+        private (string, Dictionary<string, string>, Dictionary<string, object>) PrepareReport()
+        {
             var families = Families.Select(family =>
             {
                 return new
@@ -90,47 +119,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 { "OrphanType", TopFilterViewModel.OrphanType?.Name },
                 { "SponsoredStatus", TopFilterViewModel.SponsoringStatus?.Title }
             };
-            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("FilteredFamiliesReport.rdlc", _appState.DefaultPrinter, parameters, dataSource));
-        }
 
-        [RelayCommand]
-        private async Task ShowPrintFamilies()
-        {
-            var families = Families.Select(family =>
-            {
-                return new
-                { 
-                    family.Id,
-                    family.RationCard,
-                    family.RationCardOwnerName,
-                    ApplicantName = family.Applicant.Name
-                };
-            });
-
-            Dictionary<string, object> dataSource = new Dictionary<string, object>()
-            {
-                { "Families", families}
-            };
-
-            Dictionary<string, string> parameters = new Dictionary<string, string>
-            {
-                { "Clan", TopFilterViewModel.Clan?.Name},
-                { "Branch", TopFilterViewModel.Branch?.Name},
-                { "BranchRepresentative", TopFilterViewModel.BranchRepresentative?.Name },
-                { "District", TopFilterViewModel.District?.Name },
-                { "DistrictRepresentative", TopFilterViewModel.DistrictRepresentative?.Name },
-                { "FamilyType", TopFilterViewModel.FamilyType?.Name },
-                { "SocialStatus", TopFilterViewModel.SocialStatus?.Name },
-                { "OrphanType", TopFilterViewModel.OrphanType?.Name },
-                { "SponsoredStatus", TopFilterViewModel.SponsoringStatus?.Title }
-            };
-            await _mediator.Send(new Shared.Commands.Generic.PrintCommand("FilteredFamiliesReport.rdlc", parameters, dataSource));
-        }
-
-        [RelayCommand]
-        private async Task Export()
-        {
-            await Task.CompletedTask;
+            return ("FilteredFamiliesReport.rdlc", parameters, dataSource);
         }
 
         private static bool CanPerformFamilyAction(Family family) => family is not null;
