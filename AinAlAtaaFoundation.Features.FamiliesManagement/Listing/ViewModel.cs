@@ -2,8 +2,6 @@
 using AinAlAtaaFoundation.Shared;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using AinAlAtaaFoundation.Shared.Components;
-using BoldReports.Processing.ObjectModel;
-using BoldReports.RDL.DOM;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -59,58 +57,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         private async Task ShowCreate()
         {
             await _mediator.Send(new Shared.Commands.Generic.ShowCreate<Family>());
-        }
-
-        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
-        private void ShowUpdate(Family family)
-        {
-            _mediator.Send(new Shared.Commands.Generic.ShowUpdate<Family>(family));
-        }
-
-        public bool CanPerformFamilyAction(Family family) => family is not null;
-
-        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
-        private void ShowPrint(Family family)
-        {
-            var members = family.FamilyMembers.Select(member =>
-            {
-                return new
-                {
-                    member.Name,
-                    member.YearOfBirth,
-                    member.Age,
-                    IsDeserves = member.IsDeserves ? "نعم" : "لا",
-                    MotherName = member.Mother?.Name
-                };
-            });
-            Dictionary<string, object> dataSources = new Dictionary<string, object>
-            {
-                { "Phones", family.Phones },
-                { "Members", members }
-            };
-            _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
-        }
-
-        [RelayCommand]
-        private async Task DirectPrintBarcode(Family family)
-        {
-            string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            parameters.Add("Barcode", barcodeImageString);
-
-            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("FamilyBarcode.rdlc", _appState.LabelPrinter, parameters));
-        }
-
-        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
-        private async Task PrintBarcode(Family family)
-        {
-            string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            parameters.Add("Barcode", barcodeImageString);
-
-            await _mediator.Send(new Shared.Commands.Generic.PrintCommand("FamilyBarcode.rdlc", parameters));
         }
 
         private static Dictionary<string, string> GetParameters(Family family)
