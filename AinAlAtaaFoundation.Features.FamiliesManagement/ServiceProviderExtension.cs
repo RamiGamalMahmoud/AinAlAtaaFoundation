@@ -16,6 +16,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 .AddSingleton<IFamilyMembersView, Members.View>()
                 .AddSingleton<Members.ViewModel>()
 
+                .AddTransient<Deleted.View>()
+                .AddTransient<Deleted.ViewModel>()
+
                 .AddSingleton<Repository>()
                 .AddSingleton< IFamiliesView, Listing.View>()
                 .AddSingleton<Listing.ViewModel>();

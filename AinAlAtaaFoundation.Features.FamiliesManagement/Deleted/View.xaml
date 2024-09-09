@@ -1,0 +1,87 @@
+﻿<Window
+    x:Class="AinAlAtaaFoundation.Features.FamiliesManagement.Deleted.View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Deleted"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="العائلات المحذوفة"
+    d:DataContext="{d:DesignInstance Type=local:ViewModel}"
+    x:ClassModifier="internal"
+    FontFamily="Arial"
+    FontSize="16"
+    FontWeight="Bold"
+    Foreground="{StaticResource Black}"
+    SizeToContent="WidthAndHeight"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Border Padding="5">
+        <Grid FlowDirection="RightToLeft">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel
+                Grid.Row="0"
+                Margin="0,10"
+                HorizontalAlignment="Center"
+                Orientation="Vertical">
+
+                <TextBlock Foreground="{StaticResource Blue}" Text="سجل االعائلات المحذوفة" />
+
+            </StackPanel>
+
+            <DataGrid
+                Grid.Row="1"
+                d:ItemsSource="{d:SampleData}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding Families}">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding Id}"
+                        Header="التسلسل" />
+
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding RationCard}"
+                        Header="رقم البطاقة" />
+                    <DataGridTextColumn
+                        Width="100"
+                        Binding="{Binding Clan.Name}"
+                        Header="العشيرة" />
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Height="auto"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.RestoreFamilyCommand}"
+                                    CommandParameter="{Binding}"
+                                    Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/restore.png" />
+                                        <TextBlock
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="Bold"
+                                            Text="استعادة" />
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Border>
+</Window>

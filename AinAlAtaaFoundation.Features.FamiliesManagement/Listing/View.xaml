@@ -110,6 +110,23 @@
                 </StackPanel>
             </Button>
 
+            <Button
+                Height="auto"
+                Margin="5,0"
+                Background="Transparent"
+                Command="{Binding ShowDeletedFamiliesCommand}"
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/trash.png" />
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="العائلات المحذوفة" />
+                </StackPanel>
+            </Button>
+
         </StackPanel>
 
         <DataGrid

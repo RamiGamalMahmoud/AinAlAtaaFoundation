@@ -17,6 +17,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             _mediator = mediator;
 
             messenger.Register<Shared.Messages.EntityUpdated<Family>>(this, async (r, m) => await LoadDataAsync(true));
+            messenger.Register<Shared.Messages.EntityRestored<Family>>(this, async (r, m) => await LoadDataAsync(true));
+            messenger.Register<Shared.Messages.EntityRemoved<Family>>(this, async (r, m) => await LoadDataAsync(true));
+
         }
 
         public async Task LoadDataAsync(bool reload = false)

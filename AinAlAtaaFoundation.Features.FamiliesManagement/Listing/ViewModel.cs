@@ -20,6 +20,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             _messenger = messenger;
             _messenger.Register<ViewModel, Shared.Messages.EntityCreated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
             _messenger.Register<ViewModel, Shared.Messages.EntityUpdated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
+            _messenger.Register<ViewModel, Shared.Messages.EntityRestored<Family>>(this, async (reciver, message) => await LoadDataAsync(true));
             TopFilterViewModel = topFilterViewModel;
             _appState = appState;
             TopFilterViewModel.PropertyChanged += TopFilterViewModel_PropertyChanged;
@@ -98,6 +99,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         private async Task Remove(Family family)
         {
             await _mediator.Send(new Shared.Commands.Generic.RemoveCommand<Family>(family));
+            _messenger.Send(new Shared.Notifications.SuccessNotification("تم حذف العائلة"));
+            _messenger.Send(new Shared.Messages.EntityRemoved<Family>(family));
         }
 
         [RelayCommand]
@@ -115,6 +118,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 .Where(x => TopFilterViewModel.DistrictRepresentative is null || x.DistrictRepresentative.Id == TopFilterViewModel.DistrictRepresentative.Id)
                 .Where(x => TopFilterViewModel.FeaturedPoint is null || x.Address.FeaturedPoint is null || x.Address.FeaturedPoint == TopFilterViewModel.FeaturedPoint)
                 .Where(x => TopFilterViewModel.SponsoringStatus is null || x.IsSponsored == TopFilterViewModel.SponsoringStatus.IsSponsored);
+        }
+
+        [RelayCommand]
+        private async Task ShowDeletedFamilies()
+        {
+            await _mediator.Send(new Shared.Commands.Generic.ShowDeletedEntities<Family>());
         }
 
         [ObservableProperty]
