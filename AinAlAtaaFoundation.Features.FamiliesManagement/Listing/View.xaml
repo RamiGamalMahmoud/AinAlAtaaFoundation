@@ -13,6 +13,17 @@
     x:ClassModifier="internal"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style
+            x:Key="MyDataGridRowStyle"
+            BasedOn="{StaticResource DataGridRowStyle}"
+            TargetType="DataGridRow">
+            <Style.Setters>
+                <Setter Property="Margin" Value="0" />
+            </Style.Setters>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -95,7 +106,7 @@
                         VerticalAlignment="Center"
                         FontSize="14"
                         FontWeight="Bold"
-                        Text="تصدير" />
+                        Text="تصدير الى اكسل" />
                 </StackPanel>
             </Button>
 
@@ -105,28 +116,71 @@
             Grid.Row="2"
             d:ItemsSource="{d:SampleData}"
             AutoGenerateColumns="False"
+            GridLinesVisibility="All"
+            HorizontalGridLinesBrush="LightGray"
             IsReadOnly="True"
             ItemsSource="{Binding Families, IsAsync=True}"
-            LostFocus="DataGrid_LostFocus">
+            LostFocus="DataGrid_LostFocus"
+            RowStyle="{StaticResource MyDataGridRowStyle}"
+            VerticalGridLinesBrush="LightGray">
 
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem
+                        Command="{Binding DirectPrintBarcodeCommand}"
+                        CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
+                        Header="طباعة البار كود">
+                        <MenuItem.Icon>
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/printout.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem
                         Command="{Binding PrintBarcodeCommand}"
                         CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
-                        Header="طباعة البار كود" />
+                        Header="طباعة البار كود">
+                        <MenuItem.Icon>
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/preview.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <Separator />
+
                     <MenuItem
-                        Command="{Binding ShowPrintCommand}"
+                        Command="{Binding PrintFamilyCommand}"
                         CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
-                        Header="طباعة العائلة" />
+                        Header="طباعة العائلة">
+                        <MenuItem.Icon>
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/printout.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem
+                        Command="{Binding ShowPrintFamilyCommand}"
+                        CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
+                        Header="معاينة طباعة العائلة">
+                        <MenuItem.Icon>
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/preview.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <Separator />
+
                     <MenuItem
                         Command="{Binding ShowUpdateCommand}"
                         CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
-                        Header="تعديل" />
+                        Header="تعديل">
+                        <MenuItem.Icon>
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/edit.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <MenuItem
                         Command="{Binding RemoveCommand}"
                         CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
-                        Header="حذف" />
+                        Header="حذف">
+                        <MenuItem.Icon>
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/remove.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </ContextMenu>
             </DataGrid.ContextMenu>
 
@@ -150,46 +204,87 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button
+                                    Height="auto"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ShowUpdateCommand}"
                                     CommandParameter="{Binding}"
-                                    Content="تعديل"
-                                    Cursor="Hand"
-                                    FontFamily="Arial"
-                                    FontSize="10"
-                                    FontWeight="Bold"
-                                    Style="{StaticResource ButtonInfo}" />
+                                    Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="20" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/edit.png" />
+                                        <TextBlock
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            FontWeight="Bold"
+                                            Text="تعديل العائلة" />
+                                    </StackPanel>
+                                </Button>
 
                                 <Button
+                                    Height="auto"
                                     Margin="10,0,0,0"
-                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ShowPrintCommand}"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ShowPrintFamilyCommand}"
                                     CommandParameter="{Binding}"
-                                    Content="طباعة العائلة"
-                                    Cursor="Hand"
-                                    Style="{StaticResource ButtonSuccess}" />
+                                    Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="20" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/preview.png" />
+                                        <TextBlock
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="Bold"
+                                            Text="معاينة الطباعة" />
+                                    </StackPanel>
+                                </Button>
 
                                 <Button
+                                    Height="auto"
                                     Margin="10,0,0,0"
-                                    Background="{StaticResource Blue-Light}"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.PrintFamilyCommand}"
+                                    CommandParameter="{Binding}"
+                                    Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="20" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/printout.png" />
+                                        <TextBlock
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="Bold"
+                                            Text="الطباعة" />
+                                    </StackPanel>
+                                </Button>
+
+                                <Button
+                                    Height="auto"
+                                    Margin="10,0,0,0"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.PrintBarcodeCommand}"
                                     CommandParameter="{Binding}"
-                                    Content="معاينة الباركود"
-                                    Cursor="Hand"
-                                    FontFamily="Arial"
-                                    FontSize="10"
-                                    FontWeight="Bold"
-                                    Style="{StaticResource ButtonPrimary}" />
+                                    Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="20" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/preview.png" />
+                                        <TextBlock
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="Bold"
+                                            Text="معاينة الباركود" />
+                                    </StackPanel>
+                                </Button>
 
                                 <Button
+                                    Height="auto"
                                     Margin="10,0,0,0"
-                                    Background="{StaticResource Blue-Light}"
                                     Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.DirectPrintBarcodeCommand}"
                                     CommandParameter="{Binding}"
-                                    Content="طباعة الباركود"
-                                    Cursor="Hand"
-                                    FontFamily="Arial"
-                                    FontSize="10"
-                                    FontWeight="Bold"
-                                    Style="{StaticResource ButtonPrimary}" />
+                                    Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="20" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/printout.png" />
+                                        <TextBlock
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="Bold"
+                                            Text="طباعة الباركود" />
+                                    </StackPanel>
+                                </Button>
 
                             </StackPanel>
                         </DataTemplate>

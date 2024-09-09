@@ -1,5 +1,6 @@
 ﻿using AinAlAtaaFoundation.Models;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         }
 
         [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
-        private void ShowPrint(Family family)
+        private void ShowPrintFamily(Family family)
         {
             var members = family.FamilyMembers.Select(member =>
             {
@@ -34,6 +35,28 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 { "Members", members }
             };
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
+        }
+
+        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
+        private async Task PrintFamily(Family family)
+        {
+            var members = family.FamilyMembers.Select(member =>
+            {
+                return new
+                {
+                    member.Name,
+                    member.YearOfBirth,
+                    member.Age,
+                    IsDeserves = member.IsDeserves ? "نعم" : "لا",
+                    MotherName = member.Mother?.Name
+                };
+            });
+            Dictionary<string, object> dataSources = new Dictionary<string, object>
+            {
+                { "Phones", family.Phones },
+                { "Members", members }
+            };
+            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("Family.rdlc", _appState.DefaultPrinter, GetParameters(family), dataSources));
         }
 
         [RelayCommand]
@@ -78,7 +101,10 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [RelayCommand]
         private async Task ExportToExcel()
         {
-            await Task.CompletedTask;
+            (string reportName, Dictionary<string, string> parameters, Dictionary<string, object> dataSource) = PrepareReport();
+
+            await _mediator.Send(new Shared.Commands.Generic.ExportToExcelCommand("العائلات", reportName, parameters, dataSource));
+            _messenger.Send(new Shared.Notifications.Notification("تم انشاء التقرير"));
         }
 
         [RelayCommand]
@@ -86,7 +112,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         {
             (string reportName, Dictionary<string, string> parameters, Dictionary<string, object> dataSource) = PrepareReport();
 
-            await _mediator.Send(new Shared.Commands.Generic.ExportToPdfCommand(reportName, parameters, dataSource));
+            string fileName = await _mediator.Send(new Shared.Commands.Generic.ExportToPdfCommand("العائلات", reportName, parameters, dataSource));
+            _messenger.Send(new Shared.Notifications.Notification("تم انشاء التقرير"));
         }
 
         private (string, Dictionary<string, string>, Dictionary<string, object>) PrepareReport()

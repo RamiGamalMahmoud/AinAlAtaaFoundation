@@ -17,9 +17,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         public ViewModel(IMediator mediator, IMessenger messenger, TopFilterViewModel topFilterViewModel, IAppState appState)
         {
             _mediator = mediator;
-
-            messenger.Register<ViewModel, Shared.Messages.EntityCreated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
-            messenger.Register<ViewModel, Shared.Messages.EntityUpdated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
+            _messenger = messenger;
+            _messenger.Register<ViewModel, Shared.Messages.EntityCreated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
+            _messenger.Register<ViewModel, Shared.Messages.EntityUpdated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
             TopFilterViewModel = topFilterViewModel;
             _appState = appState;
             TopFilterViewModel.PropertyChanged += TopFilterViewModel_PropertyChanged;
@@ -129,6 +129,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         private IEnumerable<Family> _allFamilies;
 
         private readonly IMediator _mediator;
+        private readonly IMessenger _messenger;
         private readonly IAppState _appState;
     }
 }
