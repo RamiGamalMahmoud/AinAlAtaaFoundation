@@ -24,6 +24,8 @@
 	  <None Remove="Images\preview.png" />
 	  <None Remove="Images\printout.png" />
 	  <None Remove="Images\remove.png" />
+	  <None Remove="Images\restore.png" />
+	  <None Remove="Images\trash.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -50,6 +52,8 @@
 	  <Resource Include="Images\preview.png" />
 	  <Resource Include="Images\printout.png" />
 	  <Resource Include="Images\remove.png" />
+	  <Resource Include="Images\restore.png" />
+	  <Resource Include="Images\trash.png" />
 	</ItemGroup>
 
 	<ItemGroup>
