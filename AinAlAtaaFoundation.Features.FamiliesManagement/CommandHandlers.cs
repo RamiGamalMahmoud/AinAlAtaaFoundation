@@ -1,6 +1,8 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Commands;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,6 +42,32 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         public async Task<bool> Handle(Generic.RemoveCommand<Family> request, CancellationToken cancellationToken)
         {
             return await repository.Remove(request.Model);
+        }
+    }
+
+    internal class GetDeletedFamiliesCommandHandler(Repository repository) : IRequestHandler<Shared.Commands.Generic.GetDeletedCommand<Family>, IEnumerable<Family>>
+    {
+        public async Task<IEnumerable<Family>> Handle(Generic.GetDeletedCommand<Family> request, CancellationToken cancellationToken)
+        {
+            return await repository.GetAllDeletedAsync();
+        }
+    }
+
+    internal class RestoreFamily(Repository repository) : IRequestHandler<Shared.Commands.Generic.RestoreDeletedEntity<Family>>
+    {
+        public async Task Handle(Generic.RestoreDeletedEntity<Family> request, CancellationToken cancellationToken)
+        {
+            await repository.Restore(request.Model);
+        }
+    }
+
+    internal class ShowDeletedFamiliesCommandHandler(IServiceProvider serviceProvider) : IRequestHandler<Shared.Commands.Generic.ShowDeletedEntities<Family>>
+    {
+        public Task Handle(Generic.ShowDeletedEntities<Family> request, CancellationToken cancellationToken)
+        {
+            Deleted.View view = serviceProvider.GetRequiredService<Deleted.View>();
+            view.ShowDialog();
+            return Task.CompletedTask;
         }
     }
 }
