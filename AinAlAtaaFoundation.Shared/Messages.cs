@@ -10,6 +10,7 @@ namespace AinAlAtaaFoundation.Shared
         public record EntityCreated<TEntity>(TEntity Entity);
         public record EntityUpdated<TEntity>(TEntity Entity);
         public record EntityRemoved<TEntity>(TEntity Entity);
+        public record EntityRestored<TEntity>();
 
         public class ConfirmRequestMessage(string message) : RequestMessage<bool>
         {
