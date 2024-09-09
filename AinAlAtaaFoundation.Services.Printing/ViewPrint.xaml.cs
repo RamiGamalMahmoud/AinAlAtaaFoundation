@@ -13,6 +13,7 @@ namespace AinAlAtaaFoundation.Services.Printing
 
         public ViewPrint(string reportPath, List<ReportParameter> reportParameters, Dictionary<string, object> dataSources) : this()
         {
+            reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
             reportViewer.LocalReport.ReportPath = reportPath;
             reportViewer.LocalReport.EnableExternalImages = true;
             reportViewer.LocalReport.SetParameters(reportParameters);
