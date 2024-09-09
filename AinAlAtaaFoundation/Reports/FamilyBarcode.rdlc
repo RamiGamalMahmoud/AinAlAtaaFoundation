@@ -12,11 +12,11 @@
         </Style>
         <ReportItems>
           <Image Name="Image1">
-            <Left>0.03499in</Left>
-            <Top>0.04142in</Top>
+            <Left>0.26937in</Left>
+            <Top>0.09342in</Top>
             <Value>=Parameters!Barcode.Value</Value>
-            <Height>0.81706in</Height>
-            <Width>1.88965in</Width>
+            <Height>0.66081in</Height>
+            <Width>1.4209in</Width>
             <Style>
               <FontFamily>Arial</FontFamily>
               <FontSize>0.13889in</FontSize>
