@@ -125,7 +125,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                     family.Id,
                     family.RationCard,
                     family.RationCardOwnerName,
-                    ApplicantName = family.Applicant.Name
+                    ApplicantName = family.Applicant.Name,
+                    Clan = family.Clan.Name,
+                    Branch = family.Branch?.Name,
+                    BranchRepresentative = family.BranchRepresentative.Name,
+                    FamilyType = family.FamilyType.Name,
+                    family.IsSponsored
                 };
             });
 
