@@ -206,14 +206,8 @@
                 <DataGridTextColumn Binding="{Binding Clan.Name}" Header="العشيرة" />
                 <DataGridTextColumn Binding="{Binding SocialStatus.Name}" Header="الحالة الإجتماعية" />
                 <DataGridTextColumn Binding="{Binding FamilyType.Name}" Header="(عام / خاص)" />
-                <!--<DataGridTextColumn Binding="{Binding BranchRepresentative.Name}" Header="ممثل الفخذ" />
-                <DataGridTextColumn Binding="{Binding Address.District.Name}" Header="الحي" />
-                <DataGridTextColumn Binding="{Binding Address.Street}" Header="الشارع" />
-                <DataGridTextColumn Binding="{Binding Address.FeaturedPoint.Name}" Header="أقرب نقطة دالة" />
-                <DataGridTextColumn Binding="{Binding DistrictRepresentative.Name}" Header="اسم المختار" />-->
 
-
-                <DataGridTemplateColumn Header="خيارات">
+                <DataGridTemplateColumn Header="العائلة">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -228,7 +222,7 @@
                                             Margin="5"
                                             VerticalAlignment="Center"
                                             FontWeight="Bold"
-                                            Text="تعديل العائلة" />
+                                            Text="تعديل" />
                                     </StackPanel>
                                 </Button>
 
@@ -245,7 +239,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="14"
                                             FontWeight="Bold"
-                                            Text="معاينة الطباعة" />
+                                            Text="معاينة" />
                                     </StackPanel>
                                 </Button>
 
@@ -266,6 +260,16 @@
                                     </StackPanel>
                                 </Button>
 
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="البار كود">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+
                                 <Button
                                     Height="auto"
                                     Margin="10,0,0,0"
@@ -279,7 +283,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="14"
                                             FontWeight="Bold"
-                                            Text="معاينة الباركود" />
+                                            Text="معاينة" />
                                     </StackPanel>
                                 </Button>
 
@@ -296,7 +300,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="14"
                                             FontWeight="Bold"
-                                            Text="طباعة الباركود" />
+                                            Text="طباعة" />
                                     </StackPanel>
                                 </Button>
 
