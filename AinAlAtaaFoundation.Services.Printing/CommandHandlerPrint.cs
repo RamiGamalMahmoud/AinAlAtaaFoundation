@@ -1,4 +1,5 @@
-﻿using AinAlAtaaFoundation.Shared.Commands;
+﻿using AinAlAtaaFoundation.Shared.Abstraction;
+using AinAlAtaaFoundation.Shared.Commands;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Services.Printing
 {
-    internal class CommandHandlerPrint : IRequestHandler<Shared.Commands.Generic.PrintCommand>
+    internal class CommandHandlerPrint(IAppState appState) : IRequestHandler<Shared.Commands.Generic.PrintCommand>
     {
         public Task Handle(Generic.PrintCommand request, CancellationToken cancellationToken)
         {
             string reportPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Reports", request.ReportName);
 
-            ShowBoldReports(reportPath, request.Parameters, request.DataSources);
             ShowNormalViewer(reportPath, request.Parameters, request.DataSources);
             return Task.CompletedTask;
         }
