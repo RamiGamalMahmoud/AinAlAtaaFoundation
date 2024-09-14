@@ -843,10 +843,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.73958in</Width>
+                  <Width>0.73942in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.70833in</Width>
+                  <Width>0.70817in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.5in</Width>
@@ -858,16 +858,16 @@
                   <Width>0.88542in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.58333in</Width>
+                  <Width>1.58317in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.60417in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.42708in</Width>
+                  <Width>1.42692in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>1.00049in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -880,7 +880,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.48975in</Height>
-                          <Width>0.73958in</Width>
+                          <Width>0.73942in</Width>
                           <Style>
                             <BackgroundColor>#f2f2f2</BackgroundColor>
                             <FontFamily>Arial</FontFamily>
@@ -927,7 +927,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.48975in</Height>
-                          <Width>0.70833in</Width>
+                          <Width>0.70817in</Width>
                           <Style>
                             <BackgroundColor>#f2f2f2</BackgroundColor>
                             <FontFamily>Arial</FontFamily>
@@ -948,7 +948,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>نوع العائلة</Value>
+                                  <Value>الحالة الإجتماعية</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>0.17400in</FontSize>
@@ -1115,7 +1115,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.48975in</Height>
-                          <Width>1.58333in</Width>
+                          <Width>1.58317in</Width>
                           <Style>
                             <BackgroundColor>#f2f2f2</BackgroundColor>
                             <FontFamily>Arial</FontFamily>
@@ -1209,7 +1209,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.48975in</Height>
-                          <Width>1.42708in</Width>
+                          <Width>1.42692in</Width>
                           <Style>
                             <BackgroundColor>#f2f2f2</BackgroundColor>
                             <FontFamily>Arial</FontFamily>
@@ -1256,7 +1256,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.48975in</Height>
-                          <Width>1in</Width>
+                          <Width>1.00049in</Width>
                           <Style>
                             <BackgroundColor>#f2f2f2</BackgroundColor>
                             <FontFamily>Arial</FontFamily>
@@ -1308,7 +1308,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.42627in</Height>
-                          <Width>0.73958in</Width>
+                          <Width>0.73942in</Width>
                           <Style>
                             <FontFamily>Arial</FontFamily>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -1353,7 +1353,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.42627in</Height>
-                          <Width>0.70833in</Width>
+                          <Width>0.70817in</Width>
                           <Style>
                             <FontFamily>Arial</FontFamily>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -1372,7 +1372,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!FamilyType.Value</Value>
+                                  <Value>=Fields!SocialStatus.Value</Value>
                                   <Style>
                                     <FontFamily>Arial</FontFamily>
                                     <FontSize>0.17000in</FontSize>
@@ -1533,7 +1533,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.42627in</Height>
-                          <Width>1.58333in</Width>
+                          <Width>1.58317in</Width>
                           <Style>
                             <FontFamily>Arial</FontFamily>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -1623,7 +1623,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.42627in</Height>
-                          <Width>1.42708in</Width>
+                          <Width>1.42692in</Width>
                           <Style>
                             <FontFamily>Arial</FontFamily>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -1668,7 +1668,7 @@
                           <Left>0in</Left>
                           <Top>0in</Top>
                           <Height>0.42627in</Height>
-                          <Width>1in</Width>
+                          <Width>1.00049in</Width>
                           <Style>
                             <FontFamily>Arial</FontFamily>
                             <VerticalAlign>Middle</VerticalAlign>
@@ -1798,7 +1798,7 @@
               <Top>0in</Top>
               <Value>logo_100</Value>
               <Height>0.82292in</Height>
-              <Width>0.73958in</Width>
+              <Width>0.73942in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <FontFamily>Arial</FontFamily>
@@ -1917,8 +1917,8 @@
           <DataField>BranchRepresentative</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="FamilyType">
-          <DataField>FamilyType</DataField>
+        <Field Name="SocialStatus">
+          <DataField>SocialStatus</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="IsSponsored">

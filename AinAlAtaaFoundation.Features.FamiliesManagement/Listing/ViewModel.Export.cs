@@ -129,7 +129,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                     Clan = family.Clan.Name,
                     Branch = family.Branch?.Name,
                     BranchRepresentative = family.BranchRepresentative.Name,
-                    FamilyType = family.FamilyType.Name,
+                    SocialStatus = family.SocialStatus.Name,
                     family.IsSponsored
                 };
             });
