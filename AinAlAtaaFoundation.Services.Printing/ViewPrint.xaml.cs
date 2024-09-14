@@ -14,6 +14,8 @@ namespace AinAlAtaaFoundation.Services.Printing
         public ViewPrint(string reportPath, List<ReportParameter> reportParameters, Dictionary<string, object> dataSources) : this()
         {
             reportViewer.SetDisplayMode(DisplayMode.PrintLayout);
+            reportViewer.ZoomMode = ZoomMode.Percent;
+            reportViewer.ZoomPercent = 100;
             reportViewer.LocalReport.ReportPath = reportPath;
             reportViewer.LocalReport.EnableExternalImages = true;
             reportViewer.LocalReport.SetParameters(reportParameters);
