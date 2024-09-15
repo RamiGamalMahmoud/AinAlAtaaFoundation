@@ -17,18 +17,21 @@ namespace AinAlAtaaFoundation.Services.Printing
             await Export(LocalReportHelpers.CreateLocalReport(reportPath, request.Parameters, request.DataSources), request.OutputFileName);
         }
 
-        private async Task<string> Export(LocalReport localReport, string outputFileName)
+        private static async Task<string> Export(LocalReport localReport, string outputFileName)
         {
-            byte[] bytes = localReport.Render("IMAGE", "<DeviceInfo><OutputFormat>TIFF</OutputFormat></DeviceInfo>", out string mimeType,
-                out string encoding,
-                out string filenameExtension,
-                out string[] streamids,
-                out Warning[] warnings);
+            byte[] bytes = localReport.Render("IMAGE", "<DeviceInfo><OutputFormat>PNG</OutputFormat></DeviceInfo>");
 
-            string renderDate = DateTime.Now.ToString("yyyy_MM_dd__hh_mm_ss");
-            string outputFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AinAlAtaaFoundation", "images");
-            string fileName = $"{outputFolder}\\{outputFileName}-{renderDate}.TIFF";
-            Directory.CreateDirectory(outputFolder);
+            string outputFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AinAlAtaaFoundation");
+            if (outputFileName.Contains('\\'))
+            {
+                string[] outputFileNameContents = outputFileName.Split('\\');
+                Directory.CreateDirectory(Path.Combine(outputFolder, outputFileNameContents[0]));
+            }
+            else
+            {
+                Directory.CreateDirectory(outputFolder);
+            }
+            string fileName = $"{outputFolder}\\{outputFileName}.png";
 
             await File.WriteAllBytesAsync(fileName, bytes);
 
