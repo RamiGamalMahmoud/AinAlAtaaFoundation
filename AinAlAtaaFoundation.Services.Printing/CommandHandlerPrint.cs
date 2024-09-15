@@ -1,15 +1,13 @@
-﻿using AinAlAtaaFoundation.Shared.Abstraction;
-using AinAlAtaaFoundation.Shared.Commands;
+﻿using AinAlAtaaFoundation.Shared.Commands;
 using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Services.Printing
 {
-    internal class CommandHandlerPrint(IAppState appState) : IRequestHandler<Shared.Commands.Generic.PrintCommand>
+    internal class CommandHandlerPrint() : IRequestHandler<Shared.Commands.Generic.PrintCommand>
     {
         public Task Handle(Generic.PrintCommand request, CancellationToken cancellationToken)
         {
@@ -19,26 +17,11 @@ namespace AinAlAtaaFoundation.Services.Printing
             return Task.CompletedTask;
         }
 
-        private void ShowBoldReports(string reportPath, Dictionary<string, string> parameters, Dictionary<string, object> dataSources)
-        {
-            List<BoldReports.Windows.ReportParameter> reportParameters = [];
-
-            if (parameters is not null)
-            {
-                foreach (KeyValuePair<string, string> keyValuePair in parameters)
-                {
-                    reportParameters.Add(new BoldReports.Windows.ReportParameter() { Name = keyValuePair.Key, Values = [keyValuePair.Value] });
-                }
-            }
-
-            new BoldReportsViewerWindow(reportPath, reportParameters, dataSources).Show();
-        }
-
-        private void ShowNormalViewer(string reportPath, Dictionary<string, string> parameters, Dictionary<string, object> dataSources)
+        private static void ShowNormalViewer(string reportPath, Dictionary<string, string> parameters, Dictionary<string, object> dataSources)
         {
             List<Microsoft.Reporting.WinForms.ReportParameter> reportParameters = [];
 
-            if (parameters is not null && parameters.Any())
+            if (parameters is not null && parameters.Count > 0)
             {
 
                 foreach (KeyValuePair<string, string> keyValue in parameters)

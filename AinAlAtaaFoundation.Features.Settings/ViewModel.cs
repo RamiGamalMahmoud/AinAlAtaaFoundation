@@ -3,7 +3,6 @@ using AinAlAtaaFoundation.Shared;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Syncfusion.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Printing;
@@ -22,7 +21,7 @@ namespace AinAlAtaaFoundation.Features.Settings
             PrinterSettings printerSettings = new PrinterSettings();
 
             DefaultPrinter = printerSettings.PrinterName;
-            IEnumerable<string> printers = PrinterSettings.InstalledPrinters.ToList<string>();
+            IEnumerable<string> printers = PrinterSettings.InstalledPrinters.Cast<string>().ToList<string>();
             _printers = new List<string>(printers) { "Default" };
         }
         public AppState AppState { get; }

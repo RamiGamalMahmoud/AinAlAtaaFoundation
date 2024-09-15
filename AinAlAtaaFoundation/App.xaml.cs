@@ -171,7 +171,6 @@ namespace AinAlAtaaFoundation
             await _appService.TestDatabaseConnection(Shutdown);
 
             await _databaseService.ApplyMigrations();
-            _appService.RegisterLicences();
 
             await _host.StartAsync();
             ShowMainWindow();

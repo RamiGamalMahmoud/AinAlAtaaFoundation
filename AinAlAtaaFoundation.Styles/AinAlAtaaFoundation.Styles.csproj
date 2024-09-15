@@ -31,8 +31,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="BarcodeLib" Version="3.1.4" />
-		<PackageReference Include="BoldReports.WPF" Version="6.1.48" />
 		<PackageReference Include="HandyControls" Version="3.5.3" />
+		<PackageReference Include="System.Drawing.Common" Version="8.0.0" />
 		<PackageReference Include="System.Text.Json" Version="8.0.4" />
 		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
 	</ItemGroup>
