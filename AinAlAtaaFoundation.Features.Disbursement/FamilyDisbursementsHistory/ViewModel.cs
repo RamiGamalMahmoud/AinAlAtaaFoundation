@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using Syncfusion.Data.Extensions;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,13 +20,13 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.FamilyDisbursement
 
             Pages = (int)Math.Ceiling(_allDisbursements.Count / (double)_itesmCount);
             OnPropertyChanged(nameof(Pages));
-            Disbursements = _allDisbursements.Skip(0).Take(_itesmCount).ToObservableCollection();
+            Disbursements = new ObservableCollection<Disbursement>( _allDisbursements.Skip(0).Take(_itesmCount));
         }
 
         [RelayCommand]
         private Task NextPage(int index)
         {
-            Disbursements = _allDisbursements.Skip(index * _itesmCount).Take(_itesmCount).ToObservableCollection();
+            Disbursements = new ObservableCollection<Disbursement>( _allDisbursements.Skip(index * _itesmCount).Take(_itesmCount));
             return Task.CompletedTask;
         }
 

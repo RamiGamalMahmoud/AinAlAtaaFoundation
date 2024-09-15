@@ -2,7 +2,6 @@
 using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
 using Microsoft.EntityFrameworkCore;
-using Syncfusion.Data.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

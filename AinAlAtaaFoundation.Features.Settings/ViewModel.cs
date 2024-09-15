@@ -3,7 +3,7 @@ using AinAlAtaaFoundation.Shared;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Syncfusion.Data.Extensions;
+using Syncfusion.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Printing;
