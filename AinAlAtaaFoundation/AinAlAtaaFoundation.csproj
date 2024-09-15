@@ -12,6 +12,7 @@
 		<None Remove="Reports\DisbursementTicket.rdlc" />
 		<None Remove="Reports\Family.rdlc" />
 		<None Remove="Reports\FamilyBarcode.rdlc" />
+		<None Remove="Reports\FamilyCard.rdlc" />
 		<None Remove="Reports\FilteredFamiliesReport.rdlc" />
 	</ItemGroup>
 
@@ -25,6 +26,9 @@
 		</Content>
 		<Content Include="Reports\FamilyBarcode.rdlc">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Reports\FamilyCard.rdlc">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Reports\FilteredFamiliesReport.rdlc">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
