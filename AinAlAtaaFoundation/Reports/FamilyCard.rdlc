@@ -14,7 +14,7 @@
                   <TextRun>
                     <Value>تسلسل العائلة</Value>
                     <Style>
-                      <FontSize>0.15in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -24,10 +24,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>0.40918in</Top>
-            <Left>2.05843in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.14567in</Width>
+            <Top>1.53418in</Top>
+            <Left>3.30843in</Left>
+            <Height>0.30208in</Height>
+            <Width>1.78092in</Width>
             <Style>
               <Border>
                 <Color>Silver</Color>
@@ -49,8 +49,9 @@
                   <TextRun>
                     <Value>=Parameters!FamilyId.Value</Value>
                     <Style>
-                      <FontSize>0.13889in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -59,10 +60,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>0.40918in</Top>
-            <Left>0.0555in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.94445in</Width>
+            <Top>1.53418in</Top>
+            <Left>0.14925in</Left>
+            <Height>0.30208in</Height>
+            <Width>3.1007in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -85,8 +86,9 @@
                   <TextRun>
                     <Value>=Parameters!RationCard.Value</Value>
                     <Style>
-                      <FontSize>0.13889in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -95,10 +97,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>0.75033in</Top>
-            <Left>0.0555in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.94445in</Width>
+            <Top>1.96912in</Top>
+            <Left>0.14925in</Left>
+            <Height>0.30208in</Height>
+            <Width>3.1007in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -121,8 +123,9 @@
                   <TextRun>
                     <Value>=Parameters!RationCardOwnerName.Value</Value>
                     <Style>
-                      <FontSize>0.13889in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -131,10 +134,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.09163in</Top>
-            <Left>0.0555in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.94445in</Width>
+            <Top>2.40405in</Top>
+            <Left>0.14925in</Left>
+            <Height>0.30208in</Height>
+            <Width>3.1007in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -157,8 +160,9 @@
                   <TextRun>
                     <Value>=Parameters!ApplicantName.Value</Value>
                     <Style>
-                      <FontSize>0.13889in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -167,10 +171,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.43278in</Top>
-            <Left>0.0555in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.94445in</Width>
+            <Top>2.83899in</Top>
+            <Left>0.14925in</Left>
+            <Height>0.30208in</Height>
+            <Width>3.1007in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -191,11 +195,11 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>مؤسسة عين العطاء للإغاثة و التنمية</Value>
+                    <Value>مؤسسة عين العطاء</Value>
                     <Style>
-                      <FontSize>0.15in</FontSize>
+                      <FontSize>0.3in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#000000</Color>
+                      <Color>#ffffff</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -203,36 +207,14 @@
                   <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
-            </Paragraphs>
-            <Top>0.06022in</Top>
-            <Left>0.0555in</Left>
-            <Height>0.2796in</Height>
-            <Width>4.20014in</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Color>Silver</Color>
-                <Style>Dashed</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="TextBox4">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>بطاقة عائلة</Value>
+                    <Value>للإغاثة و التنمية</Value>
                     <Style>
-                      <FontSize>0.15in</FontSize>
+                      <FontSize>0.3in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#000000</Color>
+                      <Color>#ffffff</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -241,16 +223,16 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.35938in</Top>
-            <Left>3.26253in</Left>
-            <Height>0.32292in</Height>
-            <Width>0.98958in</Width>
-            <ZIndex>6</ZIndex>
+            <Top>0.26855in</Top>
+            <Left>1.93929in</Left>
+            <Height>0.83168in</Height>
+            <Width>3.26071in</Width>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
-                <Style>Dashed</Style>
+                <Style>None</Style>
               </Border>
+              <BackgroundColor>#3867d6</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -267,7 +249,7 @@
                   <TextRun>
                     <Value>رقم البطاقة التموينية</Value>
                     <Style>
-                      <FontSize>0.15in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -277,11 +259,11 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>0.75033in</Top>
-            <Left>2.05843in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.14567in</Width>
-            <ZIndex>7</ZIndex>
+            <Top>1.96912in</Top>
+            <Left>3.30843in</Left>
+            <Height>0.30208in</Height>
+            <Width>1.78092in</Width>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Color>Silver</Color>
@@ -303,7 +285,7 @@
                   <TextRun>
                     <Value>اسم صاحب البطاقة</Value>
                     <Style>
-                      <FontSize>0.15in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -313,11 +295,11 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.09163in</Top>
-            <Left>2.05843in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.14567in</Width>
-            <ZIndex>8</ZIndex>
+            <Top>2.40405in</Top>
+            <Left>3.30843in</Left>
+            <Height>0.30208in</Height>
+            <Width>1.78092in</Width>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Color>Silver</Color>
@@ -339,7 +321,7 @@
                   <TextRun>
                     <Value>اسم مقدم الطلب</Value>
                     <Style>
-                      <FontSize>0.15in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -349,11 +331,11 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.43278in</Top>
-            <Left>2.05843in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.14567in</Width>
-            <ZIndex>9</ZIndex>
+            <Top>2.83899in</Top>
+            <Left>3.30843in</Left>
+            <Height>0.30208in</Height>
+            <Width>1.78092in</Width>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Color>Silver</Color>
@@ -375,7 +357,7 @@
                   <TextRun>
                     <Value>التاريخ</Value>
                     <Style>
-                      <FontSize>0.15in</FontSize>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -385,11 +367,11 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.77393in</Top>
-            <Left>2.05843in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.14567in</Width>
-            <ZIndex>10</ZIndex>
+            <Top>3.27393in</Top>
+            <Left>3.30843in</Left>
+            <Height>0.30208in</Height>
+            <Width>1.78092in</Width>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Color>Silver</Color>
@@ -411,8 +393,10 @@
                   <TextRun>
                     <Value>=Globals!ExecutionTime</Value>
                     <Style>
+                      <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Format>yyyy-MM-dd</Format>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -421,11 +405,11 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.77393in</Top>
-            <Left>0.0555in</Left>
-            <Height>0.28125in</Height>
-            <Width>1.94445in</Width>
-            <ZIndex>11</ZIndex>
+            <Top>3.27393in</Top>
+            <Left>0.14925in</Left>
+            <Height>0.30208in</Height>
+            <Width>3.1007in</Width>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Color>Silver</Color>
@@ -442,37 +426,63 @@
             <Source>Database</Source>
             <Value>=Parameters!Barcode.Value</Value>
             <MIMEType>image/png</MIMEType>
-            <Sizing>FitProportional</Sizing>
-            <Top>1.73145in</Top>
-            <Left>3.26253in</Left>
-            <Height>0.32292in</Height>
-            <Width>0.98958in</Width>
-            <ZIndex>12</ZIndex>
+            <Sizing>Fit</Sizing>
+            <Top>1.15579in</Top>
+            <Left>3.89176in</Left>
+            <Height>0.32284in</Height>
+            <Width>1.19759in</Width>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
-                <Style>Dashed</Style>
+                <Style>None</Style>
               </Border>
             </Style>
           </Image>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.26855in</Top>
+            <Height>0.83168in</Height>
+            <Width>1.93929in</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>#3867d6</BackgroundColor>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
           <Image Name="Image2">
             <Source>Embedded</Source>
             <Value>logo200</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>0.40918in</Top>
-            <Left>3.26253in</Left>
-            <Height>0.90088in</Height>
-            <Width>0.98926in</Width>
+            <Left>0.26253in</Left>
+            <Height>1.4528in</Height>
+            <Width>1.67676in</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
-                <Style>Dashed</Style>
+                <Style>None</Style>
               </Border>
             </Style>
           </Image>
         </ReportItems>
-        <Height>2.1in</Height>
+        <Height>3.8in</Height>
         <Style>
           <Border>
             <Color>LightGrey</Color>
@@ -480,10 +490,10 @@
           </Border>
         </Style>
       </Body>
-      <Width>4.3in</Width>
+      <Width>5.2in</Width>
       <Page>
-        <PageHeight>2.1in</PageHeight>
-        <PageWidth>4.3in</PageWidth>
+        <PageHeight>3.8in</PageHeight>
+        <PageWidth>5.2in</PageWidth>
         <Style />
       </Page>
     </ReportSection>
@@ -631,5 +641,5 @@ FF5rRmm1LiMZCD12C6NDE/H+pAUwMJ2OJl0nHXvdePLUtl3tW+qaplZq5Q9p23W4QZseVr826WYZ36C7
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>cdc674eb-36a2-4be6-ab6c-a3c1537c606f</rd:ReportID>
+  <rd:ReportID>6e1dc213-0be6-4ad3-a421-dd4289022c48</rd:ReportID>
 </Report>
