@@ -39,7 +39,7 @@ namespace AinAlAtaaFoundation.Services.Printing
 
             localReport.EnableExternalImages = true;
 
-            localReport.SetParameters(reportParameters);
+            if(parameters is not null) localReport.SetParameters(reportParameters);
 
             localReport.Refresh();
             return localReport;
