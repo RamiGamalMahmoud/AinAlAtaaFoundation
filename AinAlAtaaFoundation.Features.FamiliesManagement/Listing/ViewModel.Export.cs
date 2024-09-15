@@ -128,7 +128,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 { "ApplicantName", family.Applicant.Name },
                 { "Barcode", barcodeImageString }
             };
-            await _mediator.Send(new Shared.Commands.Generic.ExportToImageCommand($"Families\\[{family.RationCard}]", "FamilyCard.rdlc", parameters, null));
+            await _mediator.Send(new Shared.Commands.Generic.ExportToImageCommand($"Families\\بطاقة عائلة [ {family.RationCard} ]", "FamilyCard.rdlc", parameters, null));
         }
 
         private (string, Dictionary<string, string>, Dictionary<string, object>) PrepareReport()
