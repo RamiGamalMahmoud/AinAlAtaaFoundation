@@ -12,7 +12,7 @@ namespace AinAlAtaaFoundation.Services.Printing
         public async Task Handle(ExportToExcelCommand request, CancellationToken cancellationToken)
         {
             string reportPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Reports", request.ReportName);
-            LocalReport localReport = LocalReportHelpers.CreateLocalReport(reportPath, request.Parameters, request.DataSources);
+            LocalReport localReport = await LocalReportHelpers.CreateLocalReport(reportPath, request.Parameters, request.DataSources);
             await LocalReportHelpers.Render(localReport, request.OutputFileName, "EXCELOPENXML", "xlsx");
         }
     }

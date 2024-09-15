@@ -14,12 +14,12 @@ namespace AinAlAtaaFoundation.Services.Printing
         {
             string reportPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Reports", request.ReportName);
 
-            await Export(LocalReportHelpers.CreateLocalReport(reportPath, request.Parameters, request.DataSources), request.OutputFileName);
+            await Export(await LocalReportHelpers.CreateLocalReport(reportPath, request.Parameters, request.DataSources), request.OutputFileName);
         }
 
         private static async Task<string> Export(LocalReport localReport, string outputFileName)
         {
-            byte[] bytes = localReport.Render("IMAGE", "<DeviceInfo><OutputFormat>PNG</OutputFormat></DeviceInfo>");
+            byte[] bytes = await Task.Run(() => localReport.Render("IMAGE", "<DeviceInfo><OutputFormat>PNG</OutputFormat></DeviceInfo>"));
 
             string outputFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AinAlAtaaFoundation");
             if (outputFileName.Contains('\\'))

@@ -9,44 +9,48 @@ namespace AinAlAtaaFoundation.Services.Printing
 {
     internal static class LocalReportHelpers
     {
-        public static LocalReport CreateLocalReport(string reportPath, Dictionary<string, string> parameters, Dictionary<string, object> dataSources)
+        public static async Task<LocalReport> CreateLocalReport(string reportPath, Dictionary<string, string> parameters, Dictionary<string, object> dataSources)
         {
-            List<Microsoft.Reporting.WinForms.ReportParameter> reportParameters = [];
-            if (parameters is not null && parameters.Any())
+            return await Task.Run(() =>
             {
-                foreach (KeyValuePair<string, string> keyValue in parameters)
+                List<Microsoft.Reporting.WinForms.ReportParameter> reportParameters = [];
+                if (parameters is not null && parameters.Any())
                 {
-                    Microsoft.Reporting.WinForms.ReportParameter reportParameter = new Microsoft.Reporting.WinForms.ReportParameter(keyValue.Key, keyValue.Value);
+                    foreach (KeyValuePair<string, string> keyValue in parameters)
+                    {
+                        Microsoft.Reporting.WinForms.ReportParameter reportParameter = new Microsoft.Reporting.WinForms.ReportParameter(keyValue.Key, keyValue.Value);
 
-                    reportParameters.Add(reportParameter);
+                        reportParameters.Add(reportParameter);
+                    }
                 }
-            }
 
-            LocalReport localReport = new LocalReport()
-            {
-                ReportPath = reportPath
-            };
-
-            localReport.DataSources.Clear();
-
-            if (dataSources is not null && dataSources.Count > 0)
-            {
-                foreach (KeyValuePair<string, object> keyValuePair in dataSources)
+                LocalReport localReport = new LocalReport()
                 {
-                    localReport.DataSources.Add(new ReportDataSource(keyValuePair.Key, keyValuePair.Value));
+                    ReportPath = reportPath
+                };
+
+                localReport.DataSources.Clear();
+
+                if (dataSources is not null && dataSources.Count > 0)
+                {
+                    foreach (KeyValuePair<string, object> keyValuePair in dataSources)
+                    {
+                        localReport.DataSources.Add(new ReportDataSource(keyValuePair.Key, keyValuePair.Value));
+                    }
                 }
-            }
 
-            localReport.EnableExternalImages = true;
+                localReport.EnableExternalImages = true;
 
-            if(parameters is not null) localReport.SetParameters(reportParameters);
+                if (parameters is not null) localReport.SetParameters(reportParameters);
 
-            localReport.Refresh();
-            return localReport;
+                localReport.Refresh();
+                return localReport;
+            });
+
         }
         public static async Task<string> Render(LocalReport localReport, string outputFileName, string format, string extension)
         {
-            byte[] bytes = localReport.Render(format, $"<DeviceInfo><OutputFormat>{extension.ToUpper()}</OutputFormat></DeviceInfo>");
+            byte[] bytes = await Task.Run(() => localReport.Render(format, $"<DeviceInfo><OutputFormat>{extension.ToUpper()}</OutputFormat></DeviceInfo>"));
 
             string renderDate = DateTime.Now.ToString("yyyy_MM_dd__hh_mm_ss");
             string outputFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AinAlAtaaFoundation", $"{format}");

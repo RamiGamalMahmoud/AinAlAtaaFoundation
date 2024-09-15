@@ -16,9 +16,9 @@ namespace AinAlAtaaFoundation.Services.Printing
             await Task.Run(() => Print(reportPath, request.Parameters, request.DataSources, request.printerName), cancellationToken);
         }
 
-        private static void Print(string reportPath, Dictionary<string, string> parameters, Dictionary<string, object> dataSources, string printer = "Default")
+        private static async void Print(string reportPath, Dictionary<string, string> parameters, Dictionary<string, object> dataSources, string printer = "Default")
         {
-            LocalReport localReport = LocalReportHelpers.CreateLocalReport(reportPath, parameters, dataSources);
+            LocalReport localReport = await LocalReportHelpers.CreateLocalReport(reportPath, parameters, dataSources);
             using (DirectPrint directPrint = new DirectPrint(localReport, printer))
             {
                 directPrint.Export().Print();
