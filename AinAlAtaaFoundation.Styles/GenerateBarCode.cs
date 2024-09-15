@@ -24,7 +24,7 @@ namespace AinAlAtaaFoundation.Shared
                 IncludeLabel = true
             };
             return Image
-                .FromStream(b.Encode(BarcodeStandard.Type.Code128, code.ToString(), SKColors.Black, SKColors.White, 290, 120)
+                .FromStream(b.Encode(BarcodeStandard.Type.Code128, code.ToString(), SKColors.Black, SKColors.White)
                 .Encode()
                 .AsStream());
         }
