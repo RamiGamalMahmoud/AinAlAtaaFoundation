@@ -260,6 +260,23 @@
                                     </StackPanel>
                                 </Button>
 
+                                <Button
+                                    Height="auto"
+                                    Margin="10,0,0,0"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ExportFamilyCardCommand}"
+                                    CommandParameter="{Binding}"
+                                    Cursor="Hand">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="20" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/id-card.png" />
+                                        <TextBlock
+                                            Margin="5"
+                                            VerticalAlignment="Center"
+                                            FontSize="14"
+                                            FontWeight="Bold"
+                                            Text="بطاقة العائلة" />
+                                    </StackPanel>
+                                </Button>
+
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

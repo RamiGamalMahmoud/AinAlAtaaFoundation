@@ -116,6 +116,21 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             _messenger.Send(new Shared.Notifications.Notification("تم انشاء التقرير"));
         }
 
+        [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
+        private async Task ExportFamilyCard(Family family)
+        {
+            string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                { "FamilyId", family.Id.ToString() },
+                { "RationCard", family.RationCard},
+                { "RationCardOwnerName", family.RationCardOwnerName },
+                { "ApplicantName", family.Applicant.Name },
+                { "Barcode", barcodeImageString }
+            };
+            await _mediator.Send(new Shared.Commands.Generic.ExportToImageCommand($"Families\\[{family.RationCard}]", "FamilyCard.rdlc", parameters, null));
+        }
+
         private (string, Dictionary<string, string>, Dictionary<string, object>) PrepareReport()
         {
             var families = Families.Select(family =>
