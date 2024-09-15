@@ -63,9 +63,10 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         private async Task DirectPrintBarcode(Family family)
         {
             string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            parameters.Add("Barcode", barcodeImageString);
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                { "Barcode", barcodeImageString }
+            };
 
             await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("FamilyBarcode.rdlc", _appState.LabelPrinter, parameters));
         }
@@ -112,7 +113,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         {
             (string reportName, Dictionary<string, string> parameters, Dictionary<string, object> dataSource) = PrepareReport();
 
-            string fileName = await _mediator.Send(new Shared.Commands.Generic.ExportToPdfCommand("العائلات", reportName, parameters, dataSource));
+            await _mediator.Send(new Shared.Commands.Generic.ExportToPdfCommand("العائلات", reportName, parameters, dataSource));
             _messenger.Send(new Shared.Notifications.Notification("تم انشاء التقرير"));
         }
 
