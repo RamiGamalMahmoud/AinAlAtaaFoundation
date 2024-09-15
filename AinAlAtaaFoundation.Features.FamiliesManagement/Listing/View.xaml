@@ -42,7 +42,6 @@
             <Button
                 Height="auto"
                 Margin="5,0"
-                Background="Transparent"
                 Command="{Binding PrintFamiliesCommand}"
                 Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
@@ -59,7 +58,6 @@
             <Button
                 Height="auto"
                 Margin="5,0"
-                Background="Transparent"
                 Command="{Binding ShowPrintFamiliesCommand}"
                 Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
@@ -76,7 +74,6 @@
             <Button
                 Height="auto"
                 Margin="5,0"
-                Background="Transparent"
                 Command="{Binding ExportToPdfCommand}"
                 Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
@@ -93,7 +90,6 @@
             <Button
                 Height="auto"
                 Margin="5,0"
-                Background="Transparent"
                 Command="{Binding ExportToExcelCommand}"
                 Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
@@ -110,7 +106,22 @@
             <Button
                 Height="auto"
                 Margin="5,0"
-                Background="Transparent"
+                Command="{Binding ExportAllCardsCommand}"
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/id-card.png" />
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="تصدير كل البطاقات" />
+                </StackPanel>
+            </Button>
+
+            <Button
+                Height="auto"
+                Margin="5,0"
                 Command="{Binding ShowDeletedFamiliesCommand}"
                 Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
@@ -174,6 +185,15 @@
                         Header="معاينة طباعة العائلة">
                         <MenuItem.Icon>
                             <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/preview.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem
+                        Command="{Binding ExportFamilyCardCommand}"
+                        CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource FindAncestor, AncestorType=ContextMenu}}"
+                        Header="بطاقة العائلة">
+                        <MenuItem.Icon>
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/id-card.png" />
                         </MenuItem.Icon>
                     </MenuItem>
 

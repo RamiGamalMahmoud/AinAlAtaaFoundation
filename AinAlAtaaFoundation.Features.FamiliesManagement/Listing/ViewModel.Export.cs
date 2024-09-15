@@ -117,6 +117,15 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             _messenger.Send(new Shared.Notifications.Notification("تم انشاء التقرير"));
         }
 
+        [RelayCommand]
+        private async Task ExportAllCards()
+        {
+            foreach(Family family in Families)
+            {
+                await ExportFamilyCard(family);
+            }
+        }
+
         [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
         private async Task ExportFamilyCard(Family family)
         {
