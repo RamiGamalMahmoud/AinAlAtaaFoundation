@@ -45,13 +45,16 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Source="{Binding LogoPath}" />
+                    <Image
+                        Grid.Row="0"
+                        Height="80"
+                        Source="{Binding LogoPath}" />
 
 
                     <StackPanel Grid.Row="1" Visibility="{Binding AppState.User.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button
                             Width="auto"
-                            Height="40"
+                            Height="35"
                             HorizontalAlignment="Stretch"
                             Command="{Binding GoToManagementCommand}"
                             Content="إدارة"
@@ -62,8 +65,8 @@
                             Style="{StaticResource ButtonPrimary}" />
                         <Button
                             Width="auto"
-                            Height="40"
-                            Margin="0,10,0,0"
+                            Height="35"
+                            Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             Command="{Binding GoToFamiliesCommand}"
                             Content="العائلات"
@@ -75,10 +78,9 @@
 
                         <Button
                             Width="auto"
-                            Height="40"
-                            Margin="0,10,0,0"
+                            Height="35"
+                            Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
-                            Background="#1abc9c"
                             Command="{Binding AddFamilyCommand}"
                             Content="إضافة عائلة"
                             Cursor="Hand"
@@ -89,8 +91,8 @@
 
                         <Button
                             Width="auto"
-                            Height="40"
-                            Margin="0,10,0,0"
+                            Height="35"
+                            Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             Command="{Binding GoToFamilyMembersCommand}"
                             Content="أفراد العائلات"
@@ -102,8 +104,8 @@
 
                         <Button
                             Width="auto"
-                            Height="40"
-                            Margin="0,10,0,0"
+                            Height="35"
+                            Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             Command="{Binding GoToStatisticsCommand}"
                             Content="إحصاءات"
@@ -114,10 +116,9 @@
                             Style="{StaticResource ButtonPrimary}" />
 
                         <Button
-                            Grid.Row="2"
                             Width="auto"
-                            Height="40"
-                            Margin="0,10,0,0"
+                            Height="35"
+                            Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             Command="{Binding GoToDisbursementHistoryCommand}"
                             Content="سجل الصرف"
@@ -128,19 +129,18 @@
                             Style="{StaticResource ButtonPrimary}" />
 
                         <Button
-                            Grid.Row="2"
                             Width="auto"
-                            Height="40"
-                            Margin="0,10,0,0"
+                            Height="35"
+                            Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
-                            Background="#9b59b6"
                             Command="{Binding ShowSettingsCommand}"
                             Content="الإعدادات"
                             Cursor="Hand"
                             FontFamily="Arial"
                             FontSize="16"
                             FontWeight="Bold"
-                            Foreground="White" />
+                            Foreground="White"
+                            Style="{StaticResource ButtonPrimary}" />
 
 
                     </StackPanel>
@@ -150,8 +150,8 @@
                         <Button
                             Grid.Row="2"
                             Width="auto"
-                            Height="40"
-                            Margin="0,10,0,0"
+                            Height="35"
+                            Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             Command="{Binding GoToDisbursementCommand}"
                             Content="صرف"
@@ -164,8 +164,8 @@
                         <Button
                             Grid.Row="3"
                             Width="auto"
-                            Height="40"
-                            Margin="0,10,0,0"
+                            Height="35"
+                            Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             Command="{Binding LogoutCommand}"
                             Content="خروج"
@@ -174,6 +174,72 @@
                             FontSize="16"
                             FontWeight="Bold"
                             Style="{StaticResource ButtonPrimary}" />
+
+                        <hc:SideMenu
+                            Name="sideMenu"
+                            Margin="0,5,0,0"
+                            AutoSelect="False"
+                            Cursor="Hand"
+                            ExpandMode="Freedom">
+
+                            <hc:SideMenuItem
+                                Cursor="Hand"
+                                FontSize="14"
+                                Header="مخرجات التطبيق">
+
+                                <hc:SideMenuItem.Icon>
+                                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/folder.png" />
+                                </hc:SideMenuItem.Icon>
+
+                                <hc:SideMenuItem
+                                    Padding="5"
+                                    Command="{Binding OpenDirectoryCommand}"
+                                    Cursor="Hand"
+                                    FontSize="14"
+                                    Header="المجلد الرئيسي">
+                                    <hc:SideMenuItem.Icon>
+                                        <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/home.png" />
+                                    </hc:SideMenuItem.Icon>
+                                </hc:SideMenuItem>
+
+                                <hc:SideMenuItem
+                                    Padding="5"
+                                    Command="{Binding OpenDirectoryCommand}"
+                                    CommandParameter="PDF"
+                                    Cursor="Hand"
+                                    FontSize="14"
+                                    Header="PDF">
+                                    <hc:SideMenuItem.Icon>
+                                        <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/pdf.png" />
+                                    </hc:SideMenuItem.Icon>
+                                </hc:SideMenuItem>
+
+                                <hc:SideMenuItem
+                                    Padding="5"
+                                    Command="{Binding OpenDirectoryCommand}"
+                                    CommandParameter="EXCELOPENXML"
+                                    Cursor="Hand"
+                                    FontSize="14"
+                                    Header="Excel">
+                                    <hc:SideMenuItem.Icon>
+                                        <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/excel.png" />
+                                    </hc:SideMenuItem.Icon>
+                                </hc:SideMenuItem>
+
+                                <hc:SideMenuItem
+                                    Padding="5"
+                                    Command="{Binding OpenDirectoryCommand}"
+                                    CommandParameter="بطاقات"
+                                    Cursor="Hand"
+                                    FontSize="14"
+                                    Header="بطاقات">
+                                    <hc:SideMenuItem.Icon>
+                                        <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/id-card.png" />
+                                    </hc:SideMenuItem.Icon>
+                                </hc:SideMenuItem>
+
+                            </hc:SideMenuItem>
+                        </hc:SideMenu>
 
                     </StackPanel>
 
