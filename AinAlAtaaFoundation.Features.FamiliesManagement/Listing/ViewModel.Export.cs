@@ -126,6 +126,15 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             }
         }
 
+        [RelayCommand]
+        private async Task PrintAll()
+        {
+            foreach (Family family in Families)
+            {
+                await PrintFamilyCommand.ExecuteAsync(family);
+            }
+        }
+
         [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
         private async Task ExportFamilyCard(Family family)
         {

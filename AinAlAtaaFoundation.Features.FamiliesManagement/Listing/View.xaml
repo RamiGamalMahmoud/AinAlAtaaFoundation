@@ -28,16 +28,29 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <components:TopFilter
-            Grid.Row="0"
-            FilterCommand="{Binding FilterCommand}"
-            TopFilterViewModel="{Binding TopFilterViewModel}" />
-
         <StackPanel
-            Grid.Row="1"
+            Grid.Row="0"
             Margin="0,5"
-            HorizontalAlignment="Center"
             Orientation="Horizontal">
+
+            <ToggleButton
+                x:Name="buttonFilter"
+                Margin="10,0"
+                Content="الفلاتر"
+                Cursor="Hand"
+                FontSize="14"
+                FontWeight="Bold">
+                <ToggleButton.Style>
+                    <Style BasedOn="{StaticResource ToggleButtonDefault}" TargetType="ToggleButton">
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="{StaticResource Blue}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
 
             <Button
                 Height="auto"
@@ -106,6 +119,22 @@
             <Button
                 Height="auto"
                 Margin="5,0"
+                Command="{Binding PrintAllCommand}"
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/printout.png" />
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="طباعة كل العائلات" />
+                </StackPanel>
+            </Button>
+
+            <Button
+                Height="auto"
+                Margin="5,0"
                 Command="{Binding ExportAllCardsCommand}"
                 Cursor="Hand">
                 <StackPanel Orientation="Horizontal">
@@ -136,6 +165,17 @@
             </Button>
 
         </StackPanel>
+
+        <Border
+            Grid.Row="1"
+            Margin="0,5"
+            HorizontalAlignment="Center"
+            BorderBrush="LightGray"
+            BorderThickness="1"
+            CornerRadius="5"
+            Visibility="{Binding ElementName=buttonFilter, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <components:TopFilter FilterCommand="{Binding FilterCommand}" TopFilterViewModel="{Binding TopFilterViewModel}" />
+        </Border>
 
         <DataGrid
             Grid.Row="2"
