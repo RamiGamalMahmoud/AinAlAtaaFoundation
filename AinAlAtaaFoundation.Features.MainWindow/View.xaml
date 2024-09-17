@@ -47,100 +47,146 @@
 
                     <Image
                         Grid.Row="0"
-                        Height="80"
+                        Height="60"
                         Source="{Binding LogoPath}" />
 
 
                     <StackPanel Grid.Row="1" Visibility="{Binding AppState.User.IsAdmin, Converter={StaticResource BooleanToVisibilityConverter}}">
                         <Button
-                            Width="auto"
-                            Height="35"
+                            Height="auto"
                             HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
                             Command="{Binding GoToManagementCommand}"
-                            Content="إدارة"
                             Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
-                            FontWeight="Bold"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/categories.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="إدارة" />
+                            </StackPanel>
+                        </Button>
                         <Button
                             Width="auto"
-                            Height="35"
+                            Height="auto"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
                             Command="{Binding GoToFamiliesCommand}"
-                            Content="العائلات"
                             Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
-                            FontWeight="Bold"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/family.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="العائلات" />
+                            </StackPanel>
+                        </Button>
 
                         <Button
                             Width="auto"
-                            Height="35"
+                            Height="auto"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
                             Command="{Binding AddFamilyCommand}"
-                            Content="إضافة عائلة"
                             Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
-                            FontWeight="Bold"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/add.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="إضافة عائلة" />
+                            </StackPanel>
+                        </Button>
 
                         <Button
                             Width="auto"
-                            Height="35"
+                            Height="auto"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
                             Command="{Binding GoToFamilyMembersCommand}"
-                            Content="أفراد العائلات"
                             Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
-                            FontWeight="Bold"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/people.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="أفراد العائلات" />
+                            </StackPanel>
+                        </Button>
 
                         <Button
                             Width="auto"
-                            Height="35"
+                            Height="auto"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
                             Command="{Binding GoToStatisticsCommand}"
-                            Content="إحصاءات"
                             Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
-                            FontWeight="Bold"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/statistics.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="إحصاءات" />
+                            </StackPanel>
+                        </Button>
 
                         <Button
                             Width="auto"
-                            Height="35"
+                            Height="auto"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
                             Command="{Binding GoToDisbursementHistoryCommand}"
-                            Content="سجل الصرف"
-                            Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
-                            FontWeight="Bold"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/history.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="سجل الصرف" />
+                            </StackPanel>
+                        </Button>
 
                         <Button
                             Width="auto"
-                            Height="35"
+                            Height="auto"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
                             Command="{Binding ShowSettingsCommand}"
-                            Content="الإعدادات"
                             Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
-                            FontWeight="Bold"
                             Foreground="White"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/settings.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="الإعدادات" />
+                            </StackPanel>
+                        </Button>
 
 
                     </StackPanel>
@@ -150,30 +196,46 @@
                         <Button
                             Grid.Row="2"
                             Width="auto"
-                            Height="35"
+                            Height="auto"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
                             Command="{Binding GoToDisbursementCommand}"
-                            Content="صرف"
                             Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
                             FontWeight="Bold"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/cart.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="صرف سلة" />
+                            </StackPanel>
+                        </Button>
 
                         <Button
                             Grid.Row="3"
                             Width="auto"
-                            Height="35"
+                            Height="auto"
                             Margin="0,5,0,0"
                             HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left"
                             Command="{Binding LogoutCommand}"
-                            Content="خروج"
                             Cursor="Hand"
-                            FontFamily="Arial"
-                            FontSize="16"
                             FontWeight="Bold"
-                            Style="{StaticResource ButtonPrimary}" />
+                            Style="{StaticResource ButtonPrimary}">
+                            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/logout.png" />
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="خروج" />
+                            </StackPanel>
+                        </Button>
 
                         <hc:SideMenu
                             Name="sideMenu"
