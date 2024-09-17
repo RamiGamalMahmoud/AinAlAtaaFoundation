@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace AinAlAtaaFoundation.Features.MainWindow
@@ -97,5 +98,23 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         {
             _messenger.Send(new Shared.Commands.Generic.CommandLogout());
         }
+
+        [RelayCommand]
+        private void OpenDirectory(string dirName = "")
+        {
+            string directory = Path.Combine(_outputDirectory, string.IsNullOrWhiteSpace(dirName) ? "" : dirName);
+
+            if(Directory.Exists(directory))
+            {
+                Process.Start("explorer", directory);
+            }
+            else
+            {
+                _messenger.Send(new Shared.Notifications.FailerNotification(dirName));
+                _messenger.Send(new Shared.Notifications.FailerNotification("مسار غير موجود"));
+            }
+        }
+
+        private static readonly string _outputDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AinAlAtaaFoundation");
     }
 }
