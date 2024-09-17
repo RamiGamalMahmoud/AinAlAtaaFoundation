@@ -16,6 +16,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -24,13 +25,13 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.53418in</Top>
+            <Top>1.19738in</Top>
             <Left>3.30843in</Left>
             <Height>0.30208in</Height>
             <Width>1.78092in</Width>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
               <VerticalAlign>Middle</VerticalAlign>
@@ -51,7 +52,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#000000</Color>
+                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -60,16 +61,17 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.53418in</Top>
+            <Top>1.19738in</Top>
             <Left>0.14925in</Left>
             <Height>0.30208in</Height>
             <Width>3.1007in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
+              <BackgroundColor>White</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>5pt</PaddingRight>
@@ -88,7 +90,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#000000</Color>
+                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -97,16 +99,17 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.96912in</Top>
+            <Top>1.56981in</Top>
             <Left>0.14925in</Left>
             <Height>0.30208in</Height>
             <Width>3.1007in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
+              <BackgroundColor>White</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>5pt</PaddingRight>
@@ -125,7 +128,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#000000</Color>
+                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -134,16 +137,17 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.40405in</Top>
+            <Top>1.94225in</Top>
             <Left>0.14925in</Left>
             <Height>0.30208in</Height>
             <Width>3.1007in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
+              <BackgroundColor>White</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>5pt</PaddingRight>
@@ -162,7 +166,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#000000</Color>
+                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -171,71 +175,20 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.83899in</Top>
+            <Top>2.31469in</Top>
             <Left>0.14925in</Left>
             <Height>0.30208in</Height>
             <Width>3.1007in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
+              <BackgroundColor>White</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>5pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="TextBox3">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>مؤسسة عين العطاء</Value>
-                    <Style>
-                      <FontSize>0.3in</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>#ffffff</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>للإغاثة و التنمية</Value>
-                    <Style>
-                      <FontSize>0.3in</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>#ffffff</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <Top>0.26855in</Top>
-            <Left>1.93929in</Left>
-            <Height>0.83168in</Height>
-            <Width>3.26071in</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <BackgroundColor>#3867d6</BackgroundColor>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
@@ -251,6 +204,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -259,14 +213,14 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.96912in</Top>
+            <Top>1.56981in</Top>
             <Left>3.30843in</Left>
             <Height>0.30208in</Height>
             <Width>1.78092in</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
               <VerticalAlign>Middle</VerticalAlign>
@@ -287,6 +241,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -295,14 +250,14 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.40405in</Top>
+            <Top>1.94225in</Top>
             <Left>3.30843in</Left>
             <Height>0.30208in</Height>
             <Width>1.78092in</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
               <VerticalAlign>Middle</VerticalAlign>
@@ -323,6 +278,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -331,14 +287,14 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.83899in</Top>
+            <Top>2.31469in</Top>
             <Left>3.30843in</Left>
             <Height>0.30208in</Height>
             <Width>1.78092in</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
               <VerticalAlign>Middle</VerticalAlign>
@@ -359,6 +315,7 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -367,14 +324,14 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>3.27393in</Top>
+            <Top>2.68713in</Top>
             <Left>3.30843in</Left>
             <Height>0.30208in</Height>
             <Width>1.78092in</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
               <VerticalAlign>Middle</VerticalAlign>
@@ -396,7 +353,7 @@
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Format>yyyy-MM-dd</Format>
-                      <Color>#000000</Color>
+                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -405,16 +362,17 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>3.27393in</Top>
+            <Top>2.68713in</Top>
             <Left>0.14925in</Left>
             <Height>0.30208in</Height>
             <Width>3.1007in</Width>
-            <ZIndex>10</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
-                <Color>Silver</Color>
+                <Color>#d1c4e9</Color>
                 <Style>Dashed</Style>
               </Border>
+              <BackgroundColor>White</BackgroundColor>
               <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>5pt</PaddingRight>
@@ -427,11 +385,11 @@
             <Value>=Parameters!Barcode.Value</Value>
             <MIMEType>image/png</MIMEType>
             <Sizing>Fit</Sizing>
-            <Top>1.15579in</Top>
+            <Top>0.80509in</Top>
             <Left>3.89176in</Left>
             <Height>0.32284in</Height>
             <Width>1.19759in</Width>
-            <ZIndex>11</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -453,9 +411,9 @@
               </Paragraph>
             </Paragraphs>
             <Top>0.26855in</Top>
-            <Height>0.83168in</Height>
+            <Height>0.50876in</Height>
             <Width>1.93929in</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -471,18 +429,54 @@
             <Source>Embedded</Source>
             <Value>logo200</Value>
             <Sizing>FitProportional</Sizing>
-            <Left>0.26253in</Left>
-            <Height>1.4528in</Height>
-            <Width>1.67676in</Width>
-            <ZIndex>13</ZIndex>
+            <Height>1.09863in</Height>
+            <Width>1.11426in</Width>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Image>
+          <Textbox Name="TextBox3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>مؤسسة عين العطاء للإغاثة و التنمية</Value>
+                    <Style>
+                      <FontSize>0.3in</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#ffffff</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.26855in</Top>
+            <Left>1.14204in</Left>
+            <Height>0.50876in</Height>
+            <Width>4.05796in</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>#3867d6</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>3.8in</Height>
+        <Height>3.1in</Height>
         <Style>
           <Border>
             <Color>LightGrey</Color>
@@ -492,7 +486,7 @@
       </Body>
       <Width>5.2in</Width>
       <Page>
-        <PageHeight>3.8in</PageHeight>
+        <PageHeight>3.1in</PageHeight>
         <PageWidth>5.2in</PageWidth>
         <Style />
       </Page>
