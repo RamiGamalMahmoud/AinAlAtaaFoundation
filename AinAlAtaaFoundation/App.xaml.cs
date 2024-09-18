@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Velopack;
 using System.Diagnostics;
+using System;
 
 namespace AinAlAtaaFoundation
 {
@@ -43,6 +44,22 @@ namespace AinAlAtaaFoundation
             _databaseService = _host.Services.GetRequiredService<DatabaseService>();
 
             RegisterRecipients();
+
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            _messenger.Send(new Shared.Notifications.FailerNotification("خطأ"));
+            _messenger.Send(new Shared.Notifications.FailerNotification(e.ToString()));
+        }
+
+        private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            _messenger.Send(new Shared.Notifications.FailerNotification("خطأ"));
+            _messenger.Send(new Shared.Notifications.FailerNotification(e.Exception.Message));
+            e.Handled = true;
         }
 
         private static void ConfigureServices(IServiceCollection services)
