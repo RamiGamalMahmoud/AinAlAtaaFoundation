@@ -39,6 +39,7 @@
 	  <None Remove="Images\pdf.png" />
 	  <None Remove="Images\people.png" />
 	  <None Remove="Images\preview.png" />
+	  <None Remove="Images\print-label-dark.png" />
 	  <None Remove="Images\printout.png" />
 	  <None Remove="Images\remove.png" />
 	  <None Remove="Images\restore.png" />
@@ -114,6 +115,7 @@
 	  <Resource Include="Images\preview.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\print-label-dark.png" />
 	  <Resource Include="Images\printout.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
