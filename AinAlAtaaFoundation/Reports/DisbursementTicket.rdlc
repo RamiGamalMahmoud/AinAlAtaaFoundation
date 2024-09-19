@@ -12,9 +12,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Cdate(Parameters!Date.Value).ToString("yyyy-MM-dd dddd")</Value>
+                    <Value>=Parameters!Date.Value</Value>
                     <Style>
-                      <FontSize>6mm</FontSize>
+                      <FontSize>7.99999mm</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>#000000</Color>
                     </Style>
@@ -25,10 +25,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>58.0636mm</Top>
-            <Left>3.175mm</Left>
+            <Top>54.8886mm</Top>
+            <Left>8.90697mm</Left>
             <Height>8.9917mm</Height>
-            <Width>71.43749mm</Width>
+            <Width>60.18443mm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -61,9 +61,9 @@
               </Paragraph>
             </Paragraphs>
             <Top>19.04587mm</Top>
-            <Left>3.175mm</Left>
+            <Left>5.80018mm</Left>
             <Height>6.60218mm</Height>
-            <Width>71.43749mm</Width>
+            <Width>66.398mm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -97,9 +97,9 @@
               </Paragraph>
             </Paragraphs>
             <Top>26.70228mm</Top>
-            <Left>3.175mm</Left>
+            <Left>6.19705mm</Left>
             <Height>6.60218mm</Height>
-            <Width>71.43749mm</Width>
+            <Width>65.60426mm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -132,10 +132,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>70.7636mm</Top>
-            <Left>3.175mm</Left>
+            <Top>67.5886mm</Top>
+            <Left>8.90697mm</Left>
             <Height>8.9917mm</Height>
-            <Width>71.43749mm</Width>
+            <Width>60.18443mm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -221,9 +221,9 @@
               </Paragraph>
             </Paragraphs>
             <Top>2.37712mm</Top>
-            <Left>3.175mm</Left>
+            <Left>5.79811mm</Left>
             <Height>14.54795mm</Height>
-            <Width>71.43749mm</Width>
+            <Width>66.40627mm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -249,7 +249,7 @@
             </Style>
           </Line>
         </ReportItems>
-        <Height>82.81458mm</Height>
+        <Height>80.69791mm</Height>
         <Style>
           <Border>
             <Style>None</Style>
