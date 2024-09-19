@@ -18,13 +18,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Images\add-colored.png" />
 	  <None Remove="Images\add.png" />
+	  <None Remove="Images\archive-colored.png" />
+	  <None Remove="Images\basket-colored.png" />
 	  <None Remove="Images\calender.png" />
 	  <None Remove="Images\cart.png" />
 	  <None Remove="Images\categories.png" />
 	  <None Remove="Images\categorize.png" />
+	  <None Remove="Images\control.png" />
+	  <None Remove="Images\disbursement-colored.png" />
 	  <None Remove="Images\edit.png" />
 	  <None Remove="Images\excel.png" />
+	  <None Remove="Images\family-colored.png" />
 	  <None Remove="Images\family.png" />
 	  <None Remove="Images\folder.png" />
 	  <None Remove="Images\history.png" />
@@ -34,16 +40,20 @@
 	  <None Remove="Images\logo-100.png" />
 	  <None Remove="Images\logo-200.png" />
 	  <None Remove="Images\logo.png" />
+	  <None Remove="Images\logout-colored.png" />
 	  <None Remove="Images\logout.png" />
 	  <None Remove="Images\output.png" />
 	  <None Remove="Images\pdf.png" />
+	  <None Remove="Images\people-colored.png" />
 	  <None Remove="Images\people.png" />
 	  <None Remove="Images\preview.png" />
 	  <None Remove="Images\print-label-dark.png" />
 	  <None Remove="Images\printout.png" />
 	  <None Remove="Images\remove.png" />
 	  <None Remove="Images\restore.png" />
+	  <None Remove="Images\setting-colored.png" />
 	  <None Remove="Images\settings.png" />
+	  <None Remove="Images\statistics-pi-colored.png" />
 	  <None Remove="Images\statistics.png" />
 	  <None Remove="Images\ticket.png" />
 	  <None Remove="Images\trash.png" />
@@ -58,21 +68,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Resource Include="Images\add-colored.png" />
 	  <Resource Include="Images\add.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\archive-colored.png" />
+	  <Resource Include="Images\basket-colored.png" />
 	  <Resource Include="Images\cart.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Images\categories.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\control.png" />
+	  <Resource Include="Images\disbursement-colored.png" />
 	  <Resource Include="Images\edit.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
 	  <Resource Include="Images\excel.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\family-colored.png" />
 	  <Resource Include="Images\family.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
@@ -100,6 +116,7 @@
 	  <Resource Include="Images\logo.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\logout-colored.png" />
 	  <Resource Include="Images\logout.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
@@ -109,6 +126,7 @@
 	  <Resource Include="Images\pdf.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\people-colored.png" />
 	  <Resource Include="Images\people.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
@@ -125,9 +143,11 @@
 	  <Resource Include="Images\restore.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\setting-colored.png" />
 	  <Resource Include="Images\settings.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
+	  <Resource Include="Images\statistics-pi-colored.png" />
 	  <Resource Include="Images\statistics.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Resource>
