@@ -151,6 +151,22 @@
             <Button
                 Height="auto"
                 Margin="5,0"
+                Command="{Binding PrintAllBarcodesCommand}"
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/print-label-dark.png" />
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="طباعة كل الباركود" />
+                </StackPanel>
+            </Button>
+
+            <Button
+                Height="auto"
+                Margin="5,0"
                 Command="{Binding ShowDeletedFamiliesCommand}"
                 Cursor="Hand">
                 <StackPanel Orientation="Horizontal">

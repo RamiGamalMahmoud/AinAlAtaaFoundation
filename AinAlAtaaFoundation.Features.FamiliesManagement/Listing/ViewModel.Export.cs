@@ -135,6 +135,15 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             }
         }
 
+        [RelayCommand]
+        private async Task PrintAllBarcodes()
+        {
+            foreach (Family family in Families)
+            {
+                await DirectPrintBarcodeCommand.ExecuteAsync(family);
+            }
+        }
+
         [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
         private async Task ExportFamilyCard(Family family)
         {
