@@ -25,10 +25,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>54.8886mm</Top>
-            <Left>8.90697mm</Left>
-            <Height>8.9917mm</Height>
-            <Width>60.18443mm</Width>
+            <Top>58.0333mm</Top>
+            <Left>4.29686mm</Left>
+            <Height>8.25513mm</Height>
+            <Width>66.40627mm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -61,9 +61,9 @@
               </Paragraph>
             </Paragraphs>
             <Top>19.04587mm</Top>
-            <Left>5.80018mm</Left>
+            <Left>4.29686mm</Left>
             <Height>6.60218mm</Height>
-            <Width>66.398mm</Width>
+            <Width>66.40627mm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -96,10 +96,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>26.70228mm</Top>
-            <Left>6.19705mm</Left>
+            <Top>28.00655mm</Top>
+            <Left>4.29686mm</Left>
             <Height>6.60218mm</Height>
-            <Width>65.60426mm</Width>
+            <Width>66.40627mm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -132,10 +132,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>67.5886mm</Top>
-            <Left>8.90697mm</Left>
-            <Height>8.9917mm</Height>
-            <Width>60.18443mm</Width>
+            <Top>69.11065mm</Top>
+            <Left>4.29686mm</Left>
+            <Height>8.25513mm</Height>
+            <Width>66.40627mm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -168,8 +168,8 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>34.37519mm</Top>
-            <Left>6.85644mm</Left>
+            <Top>36.96724mm</Top>
+            <Left>5.35726mm</Left>
             <Height>19.30218mm</Height>
             <Width>64.28548mm</Width>
             <ZIndex>4</ZIndex>
@@ -221,7 +221,7 @@
               </Paragraph>
             </Paragraphs>
             <Top>2.37712mm</Top>
-            <Left>5.79811mm</Left>
+            <Left>4.29686mm</Left>
             <Height>14.54795mm</Height>
             <Width>66.40627mm</Width>
             <ZIndex>5</ZIndex>
@@ -238,7 +238,7 @@
           </Textbox>
           <Line Name="Line1">
             <Top>17.72708mm</Top>
-            <Left>3.175mm</Left>
+            <Left>1.78126mm</Left>
             <Height>0mm</Height>
             <Width>71.43749mm</Width>
             <ZIndex>6</ZIndex>
@@ -248,19 +248,44 @@
               </Border>
             </Style>
           </Line>
+          <Line Name="Line2">
+            <Top>80.6mm</Top>
+            <Left>1.78126mm</Left>
+            <Height>0mm</Height>
+            <Width>71.43749mm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
         </ReportItems>
-        <Height>80.69791mm</Height>
+        <Height>8.5cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
+          <TopBorder>
+            <Color>Black</Color>
+            <Style>Double</Style>
+            <Width>2pt</Width>
+          </TopBorder>
+          <BottomBorder>
+            <Color>Black</Color>
+            <Style>None</Style>
+          </BottomBorder>
         </Style>
       </Body>
-      <Width>77.99999mm</Width>
+      <Width>7.5cm</Width>
       <Page>
-        <PageHeight>3.97795in</PageHeight>
-        <PageWidth>3.07087in</PageWidth>
-        <ColumnSpacing>12.7mm</ColumnSpacing>
+        <PageHeight>15cm</PageHeight>
+        <PageWidth>7.6cm</PageWidth>
+        <LeftMargin>0cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style>
           <Border>
             <Style>None</Style>
@@ -354,6 +379,6 @@ sRTaWMg7ZBmC78X0SPgl8CyrgeLNdIgTg1IOSMd8eRsKlU44H3kHHqUvuT8M227oi4MWoZTQI3DtzhPK
 4GL8Q/aXre2fbFIO432xYSedyJ97ddJ/IQbxPl2x4aM18vbTT5uU7DUPgk5iEZzLmhFFMZ4xKzZuhNUe7GYQ64phvcVcXxQt5+oQth6FH1bDMGUypTIF+Fd3wuJONSS9UrFE3bb5q13nY3hTD0jzeF99Izr2O/wf6Mv7YM4c3tRDiiM3qflMP2mUv/acbcuBa8FQCsohRRXD+PZTWN6r4f5EhrXrBbUwy3kGg9RSaEbl4ySFIfYPnwsVrlWO33suafCS4ya8MRu28Xh/8p1V7/AaX/IGz1nIG7dlX58p+5X6zzlmNmSZ5PXhK8/YDV0m5TBkuaTNwEUSlu/P3q/Nm7RPnDdy/QYeb9Jk2m6QcPN3eId3eId3eId3eId3eId3+JeDx/t/N5Q2JFb8iVoAAAAASUVORK5CYII=</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>648f1cbb-d94f-4c4f-b3ad-29204808d8e2</rd:ReportID>
 </Report>
