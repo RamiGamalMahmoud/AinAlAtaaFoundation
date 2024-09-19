@@ -132,28 +132,12 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         [RelayCommand]
         private void PrintTicket(Disbursement disbursement)
         {
-            Dictionary<string, string> keyValues = new Dictionary<string, string>()
-            {
-                { "Date", disbursement.Date.ToString("yyyy-MM-dd") },
-                { "Time", disbursement.Date.ToString("hh:mm:ss - tt") },
-                { "RationCard", disbursement.Family.RationCard },
-                { "Name", disbursement.Family.Applicant.Name },
-                { "TicketNumber", disbursement.TicketNumber.ToString() }
-            };
             _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", TicketParameters(disbursement)));
         }
 
         [RelayCommand]
         private void DirectPrintTicket(Disbursement disbursement)
         {
-            Dictionary<string, string> keyValues = new Dictionary<string, string>()
-            {
-                { "Date", disbursement.Date.ToString() },
-                { "Time", disbursement.Date.ToString() },
-                { "RationCard", disbursement.Family.RationCard },
-                { "Name", disbursement.Family.Applicant.Name },
-                { "TicketNumber", disbursement.TicketNumber.ToString() }
-            };
             _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("DisbursementTicket.rdlc", _appState.RecipePrinter, false, TicketParameters(disbursement)));
         }
 
@@ -162,7 +146,6 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             return new Dictionary<string, string>()
             {
                 { "Date", disbursement.Date.ToString() },
-                { "Time", disbursement.Date.ToString() },
                 { "RationCard", disbursement.Family.RationCard },
                 { "Name", disbursement.Family.Applicant.Name },
                 { "TicketNumber", disbursement.TicketNumber.ToString() }
