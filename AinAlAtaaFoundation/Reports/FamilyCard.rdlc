@@ -16,7 +16,6 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -52,7 +51,8 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#673ab7</Color>
+                      <Language>ar-IQ</Language>
+                      <NumeralVariant>3</NumeralVariant>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -90,7 +90,6 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -128,7 +127,6 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -166,7 +164,6 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -204,7 +201,6 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -241,7 +237,6 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -278,7 +273,6 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -315,7 +309,6 @@
                     <Style>
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
-                      <Color>#795548</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -353,7 +346,6 @@
                       <FontSize>0.2in</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Format>yyyy-MM-dd</Format>
-                      <Color>#673ab7</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -475,12 +467,48 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="TextBox4">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>هوية خاصة للمساعدات الغذائية من المؤسسة</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#c0392b</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.84675in</Top>
+            <Left>1.1837in</Left>
+            <Height>0.30208in</Height>
+            <Width>2.63861in</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Color>#d1c4e9</Color>
+                <Style>Dashed</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>5pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>3.1in</Height>
         <Style>
           <Border>
-            <Color>LightGrey</Color>
-            <Style>Dashed</Style>
+            <Style>None</Style>
           </Border>
         </Style>
       </Body>
@@ -634,6 +662,7 @@ FF5rRmm1LiMZCD12C6NDE/H+pAUwMJ2OJl0nHXvdePLUtl3tW+qaplZq5Q9p23W4QZseVr826WYZ36C7
 424T7zY1tUKLgQ54Z+wsfDk9FCaeGzFobiR+WxIPi7XpmLYlF3YRuXBLOgL35KNwT2JRr0fgKe/jD8NuRy5seZzscDhqcRQGztmBHm5b8YV1KNqPClDpKY17TpUs2uK630840Kib+frmRuN9Xjcc2e/z74fWrv2ulX8+gZ5enXafG7VoZTKyZ8s+Eyc26jbOy+C78RubdJmY1Oj7SUdYCht1mVRBuEYuYIPGprZo0stOTeZJaWxqBwN+1sh0GvSNrUmizav1u5mVNTCccFO/68TDBt/aJDXubL65eZeJXm17Wpi/2WVkz1c6Gr3uo6dXV3cJtVIrf11547Neb7YzGtOpnfGYb9oam3/fxtjMsK3RRJO3DSeZtu5i1veNruP6tDa0MH67p2WXtr34veHor1p3G/Zx04+/a6WrolZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZqpVZq5V9a9PT+F7K+RQyBJPjhAAAAAElFTkSuQmCC</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
+  <Language>ar-IQ</Language>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>6e1dc213-0be6-4ad3-a421-dd4289022c48</rd:ReportID>
 </Report>
