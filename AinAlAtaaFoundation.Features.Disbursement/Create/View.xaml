@@ -32,14 +32,19 @@
             <Button
                 Height="auto"
                 Margin="10,0,0,0"
-                VerticalAlignment="Bottom"
                 Command="{Binding ShowFamilyDisbursementsHistoryCommand}"
                 CommandParameter="{Binding Family}"
-                Content="عرض السجل"
-                Cursor="Hand"
-                FontSize="16"
-                FontWeight="Bold"
-                Style="{StaticResource ButtonWarning}" />
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/archive-colored.png" />
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="عرض السجل" />
+                </StackPanel>
+            </Button>
         </StackPanel>
 
         <StackPanel
@@ -114,22 +119,36 @@
             </StackPanel>
 
             <Button
-                Height="30"
+                Height="auto"
                 Margin="5,0"
-                VerticalAlignment="Stretch"
                 Command="{Binding ExecutePrintCommand}"
-                Content="معاينة الطباعة"
-                Cursor="Hand"
-                Style="{StaticResource ButtonPrimary}" />
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/preview.png" />
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="معاينة الطباعة" />
+                </StackPanel>
+            </Button>
 
             <Button
-                Height="30"
+                Height="auto"
                 Margin="5,0"
-                VerticalAlignment="Stretch"
                 Command="{Binding ExecuteDirectPrintCommand}"
-                Content="طباعة"
-                Cursor="Hand"
-                Style="{StaticResource ButtonInfo}" />
+                Cursor="Hand">
+                <StackPanel Orientation="Horizontal">
+                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/printout.png" />
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="طباعة" />
+                </StackPanel>
+            </Button>
 
             <Label
                 Height="auto"
