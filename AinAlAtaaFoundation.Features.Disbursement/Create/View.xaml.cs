@@ -27,6 +27,8 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
                 _currentInputBox.Focus();
                 _currentInputBox.SelectAll();
             });
+
+            messenger.Register<Messages.ClearInputMessage>(this, (r, m) => ClearAll());
         }
 
         private async void View_Loaded(object sender, System.Windows.RoutedEventArgs e)
