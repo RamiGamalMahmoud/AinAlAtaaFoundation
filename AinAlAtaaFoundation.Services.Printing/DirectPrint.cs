@@ -9,7 +9,7 @@ using System.Text;
 
 namespace AinAlAtaaFoundation.Services.Printing
 {
-    internal class DirectPrint(LocalReport report, string printerName = "Default") : IDisposable
+    internal class DirectPrint(LocalReport report, string printerName = "Default", bool isLabel = false) : IDisposable
     {
         private List<Stream> _streams;
         private int _currentPageIndex = 0;
@@ -38,7 +38,6 @@ namespace AinAlAtaaFoundation.Services.Printing
             return this;
         }
 
-
         public void Print()
         {
             if (_streams == null || _streams.Count == 0)
@@ -47,8 +46,17 @@ namespace AinAlAtaaFoundation.Services.Printing
             }
 
             PrintDocument printDoc = new PrintDocument();
-            printDoc.DefaultPageSettings.Landscape = report.GetDefaultPageSettings().IsLandscape;
-            printDoc.DefaultPageSettings.PaperSize = report.GetDefaultPageSettings().PaperSize;
+
+            if (isLabel)
+            {
+                PaperSize paperSize = report.GetDefaultPageSettings().PaperSize;
+                printDoc.DefaultPageSettings.PaperSize = new PaperSize(paperSize.PaperName, paperSize.Height, paperSize.Width);
+            }
+            else
+            {
+                printDoc.DefaultPageSettings.Landscape = report.GetDefaultPageSettings().IsLandscape;
+                printDoc.DefaultPageSettings.PaperSize = report.GetDefaultPageSettings().PaperSize;
+            }
 
             if (printerName is not null && !string.IsNullOrEmpty(printerName) && printerName != "Default")
                 printDoc.PrinterSettings.PrinterName = printerName;
