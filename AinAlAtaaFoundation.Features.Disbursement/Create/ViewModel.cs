@@ -140,7 +140,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
                 { "Name", disbursement.Family.Applicant.Name },
                 { "TicketNumber", disbursement.TicketNumber.ToString() }
             };
-            _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", keyValues));
+            _mediator.Send(new Shared.Commands.Generic.PrintCommand("DisbursementTicket.rdlc", TicketParameters(disbursement)));
         }
 
         [RelayCommand]
@@ -148,13 +148,25 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         {
             Dictionary<string, string> keyValues = new Dictionary<string, string>()
             {
-                { "Date", disbursement.Date.ToString("yyyy-MM-dd") },
-                { "Time", disbursement.Date.ToString("hh:mm:ss - tt") },
+                { "Date", disbursement.Date.ToString() },
+                { "Time", disbursement.Date.ToString() },
                 { "RationCard", disbursement.Family.RationCard },
                 { "Name", disbursement.Family.Applicant.Name },
                 { "TicketNumber", disbursement.TicketNumber.ToString() }
             };
-            _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("DisbursementTicket.rdlc", _appState.RecipePrinter, false, keyValues));
+            _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("DisbursementTicket.rdlc", _appState.RecipePrinter, false, TicketParameters(disbursement)));
+        }
+
+        private Dictionary<string, string> TicketParameters(Disbursement disbursement)
+        {
+            return new Dictionary<string, string>()
+            {
+                { "Date", disbursement.Date.ToString() },
+                { "Time", disbursement.Date.ToString() },
+                { "RationCard", disbursement.Family.RationCard },
+                { "Name", disbursement.Family.Applicant.Name },
+                { "TicketNumber", disbursement.TicketNumber.ToString() }
+            };
         }
 
         [RelayCommand(CanExecute = nameof(HasFamily))]
