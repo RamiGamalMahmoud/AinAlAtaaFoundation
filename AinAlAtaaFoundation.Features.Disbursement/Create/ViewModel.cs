@@ -16,7 +16,6 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
     {
         public ViewModel(IMediator mediator, IMessenger messenger, IAppState appState)
         {
-            Clock = new Clock();
             _mediator = mediator;
             _messenger = messenger;
             _appState = appState;
@@ -170,7 +169,5 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         private IFamilyGetter _familyGetter;
         private FamilyGetterById _familyGetterById;
         private FamilyGetterByRationCard _familyGetterByRationCard;
-
-        public Clock Clock { get; }
     }
 }
