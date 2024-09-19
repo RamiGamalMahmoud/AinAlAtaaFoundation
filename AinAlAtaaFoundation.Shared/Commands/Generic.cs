@@ -18,7 +18,7 @@ namespace AinAlAtaaFoundation.Shared.Commands
         public record ExportToPdfCommand(string OutputFileName, string ReportName, Dictionary<string, string> Parameters = null, Dictionary<string, object> DataSources = null) : IRequest<string>;
         public record ExportToExcelCommand(string OutputFileName, string ReportName, Dictionary<string, string> Parameters = null, Dictionary<string, object> DataSources = null) : IRequest;
         public record ExportToImageCommand(string OutputFileName, string ReportName, Dictionary<string, string> Parameters = null, Dictionary<string, object> DataSources = null) : IRequest;
-        public record DirectPrintCommand(string ReportName, string printerName, Dictionary<string, string> Parameters = null, Dictionary<string, object> DataSources = null) : IRequest;
+        public record DirectPrintCommand(string ReportName, string printerName, bool IsLabel, Dictionary<string, string> Parameters = null, Dictionary<string, object> DataSources = null) : IRequest;
         public record GetAllCommand<TModel>(bool Reload = false) : IRequest<IEnumerable<TModel>>;
         public record GetDeletedCommand<TModel>() : IRequest<IEnumerable<TModel>>;
         public record RemoveCommand<TModel>(TModel Model) : IRequest<bool>;

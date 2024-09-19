@@ -13,13 +13,13 @@ namespace AinAlAtaaFoundation.Services.Printing
         public async Task Handle(Generic.DirectPrintCommand request, CancellationToken cancellationToken)
         {
             string reportPath = System.IO.Path.Combine(Environment.CurrentDirectory, "Reports", request.ReportName);
-            await Task.Run(() => Print(reportPath, request.Parameters, request.DataSources, request.printerName), cancellationToken);
+            await Print(reportPath, request.IsLabel, request.Parameters, request.DataSources, request.printerName);
         }
 
-        private static async void Print(string reportPath, Dictionary<string, string> parameters, Dictionary<string, object> dataSources, string printer = "Default")
+        private static async Task Print(string reportPath, bool isLabel, Dictionary<string, string> parameters, Dictionary<string, object> dataSources, string printer = "Default")
         {
             LocalReport localReport = await LocalReportHelpers.CreateLocalReport(reportPath, parameters, dataSources);
-            using (DirectPrint directPrint = new DirectPrint(localReport, printer))
+            using (DirectPrint directPrint = new DirectPrint(localReport, printer, isLabel))
             {
                 directPrint.Export().Print();
             }
