@@ -155,7 +155,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
                 { "Name", disbursement.Family.Applicant.Name },
                 { "TicketNumber", disbursement.TicketNumber.ToString() }
             };
-            _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("DisbursementTicket.rdlc", _appState.RecipePrinter, keyValues));
+            _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("DisbursementTicket.rdlc", _appState.RecipePrinter, false, keyValues));
         }
 
         [RelayCommand(CanExecute = nameof(HasFamily))]

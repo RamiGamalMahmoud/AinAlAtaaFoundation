@@ -57,6 +57,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 { "Members", members }
             };
             await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("Family.rdlc", _appState.DefaultPrinter, GetParameters(family), dataSources));
+            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("Family.rdlc", _appState.DefaultPrinter, false, GetParameters(family), dataSources));
         }
 
         [RelayCommand]
@@ -69,6 +70,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             };
 
             await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("FamilyBarcode.rdlc", _appState.LabelPrinter, parameters));
+            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("FamilyBarcode.rdlc", _appState.LabelPrinter, true, parameters));
         }
 
         [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
@@ -89,6 +91,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             (string reportName, Dictionary<string, string> parameters, Dictionary<string, object> dataSource) = PrepareReport();
 
             await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand(reportName, _appState.DefaultPrinter, parameters, dataSource));
+            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand(reportName, _appState.DefaultPrinter, false, parameters, dataSource));
         }
 
         [RelayCommand]
