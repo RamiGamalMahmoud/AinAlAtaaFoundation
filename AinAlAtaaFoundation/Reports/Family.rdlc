@@ -800,8 +800,8 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>32.01044mm</Top>
-            <Left>3.96461mm</Left>
+            <Top>45.00026mm</Top>
+            <Left>2.37711mm</Left>
             <Height>10mm</Height>
             <Width>60mm</Width>
             <ZIndex>8</ZIndex>
@@ -838,10 +838,10 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>32.01044mm</Top>
-            <Left>65.28178mm</Left>
+            <Top>45.00026mm</Top>
+            <Left>64.14549mm</Left>
             <Height>10mm</Height>
-            <Width>29.89791mm</Width>
+            <Width>34.73894mm</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -1235,8 +1235,8 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>59.57672mm</Top>
-            <Left>4.2292mm</Left>
+            <Top>72.56654mm</Top>
+            <Left>2.6417mm</Left>
             <Height>10mm</Height>
             <Width>60mm</Width>
             <ZIndex>17</ZIndex>
@@ -1310,8 +1310,8 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>45.00397mm</Top>
-            <Left>55.4426mm</Left>
+            <Top>57.99379mm</Top>
+            <Left>59.14734mm</Left>
             <Height>10mm</Height>
             <Width>40mm</Width>
             <ZIndex>19</ZIndex>
@@ -1384,8 +1384,8 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>59.57672mm</Top>
-            <Left>60.44075mm</Left>
+            <Top>72.56654mm</Top>
+            <Left>64.14549mm</Left>
             <Height>10mm</Height>
             <Width>34.99999mm</Width>
             <ZIndex>21</ZIndex>
@@ -1720,8 +1720,8 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>45.00397mm</Top>
-            <Left>4.2292mm</Left>
+            <Top>57.99379mm</Top>
+            <Left>2.6417mm</Left>
             <Height>10mm</Height>
             <Width>60mm</Width>
             <ZIndex>30</ZIndex>
@@ -1838,6 +1838,81 @@
             <Height>10mm</Height>
             <Width>35mm</Width>
             <ZIndex>33</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="TextBox30">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=CDate(Parameters!DateCreated.Value).ToString("tt hh:mm yyyy-MM-dd")</Value>
+                    <Style>
+                      <FontSize>4.99999mm</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#000000</Color>
+                      <Language>ar</Language>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>32.00622mm</Top>
+            <Left>2.90044mm</Left>
+            <Height>10mm</Height>
+            <Width>60mm</Width>
+            <ZIndex>34</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>#f2f2f2</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2mm</PaddingLeft>
+              <PaddingRight>2mm</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="TextBox31">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>تاريخ التسجيل</Value>
+                    <Style>
+                      <FontSize>4.58801mm</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>#000000</Color>
+                      <Language>ar</Language>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>32.01035mm</Top>
+            <Left>64.14734mm</Left>
+            <Height>10mm</Height>
+            <Width>35mm</Width>
+            <ZIndex>35</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2168,6 +2243,12 @@
       <DataType>Boolean</DataType>
       <Prompt>IsSponsoredParameter</Prompt>
     </ReportParameter>
+    <ReportParameter Name="DateCreated">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2258,6 +2339,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>8</RowIndex>
           <ParameterName>IsSponsoredParameter</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>DateCreated</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
