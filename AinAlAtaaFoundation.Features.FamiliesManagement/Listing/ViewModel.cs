@@ -83,6 +83,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             parameters.Add("Notes", family.Notes);
             parameters.Add("ApplicantName", family.Applicant.Name);
             parameters.Add("IsSponsoredParameter", family.IsSponsored.ToString());
+            parameters.Add("DateCreated", family.DateCreated?.ToString());
 
             return parameters;
         }

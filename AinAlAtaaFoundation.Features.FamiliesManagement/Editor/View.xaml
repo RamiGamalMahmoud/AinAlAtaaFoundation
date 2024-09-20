@@ -542,6 +542,29 @@
 
                             </StackPanel>
 
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="5"
+                                Orientation="Vertical">
+                                <TextBlock Foreground="{StaticResource Blue}" Text="تاريخ التسجيل" />
+                                <Label HorizontalAlignment="Stretch">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
+                                            Margin="5,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Background="WhiteSmoke"
+                                            Text="{Binding DataModel.DateCreated, StringFormat={}{0:yyyy-MM-dd}}" />
+                                        <TextBlock
+                                            Margin="5,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Background="WhiteSmoke"
+                                            Text="{Binding DataModel.DateCreated, StringFormat={}{0:hh:mm tt}}" />
+                                    </StackPanel>
+                                </Label>
+                            </StackPanel>
+
                         </Grid>
                     </Border>
 
