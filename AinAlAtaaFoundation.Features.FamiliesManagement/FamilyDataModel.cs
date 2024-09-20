@@ -25,10 +25,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
                 Phones = [];
                 FamilyMembers = new ObservableCollection<FamilyMember>();
+                DateCreated = DateTime.Now;
             }
 
             else
             {
+                DateCreated = model.DateCreated;
                 Model = model;
                 Address = model.Address;
                 Applicant = model.Applicant;
@@ -137,6 +139,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [NotifyDataErrorInfo]
         [NotifyPropertyChangedFor(nameof(IsValid))]
         private Gender _gender;
+
+        [ObservableProperty]
+        private DateTime? _dateCreated;
 
         [ObservableProperty]
         private bool _isSponsered;

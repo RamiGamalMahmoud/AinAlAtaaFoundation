@@ -51,7 +51,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         RationCard = dataModel.RationCard,
                         RationCardOwnerName = dataModel.RationCardOwnerName,
                         SocialStatusId = dataModel.SocialStatus.Id,
-                        IsSponsored = dataModel.IsSponsered
+                        IsSponsored = dataModel.IsSponsered,
+                        DateCreated = dataModel.DateCreated
                     };
 
                     foreach (Phone phone in dataModel.Phones)

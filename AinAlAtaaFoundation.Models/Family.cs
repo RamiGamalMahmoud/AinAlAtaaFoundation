@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -27,6 +28,9 @@ namespace AinAlAtaaFoundation.Models
 
         [ObservableProperty]
         private bool _isDelted = false;
+
+        [ObservableProperty]
+        private DateTime? _dateCreated;
 
         public int ClanId { get; set; }
         public Clan Clan

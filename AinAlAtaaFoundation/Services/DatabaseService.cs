@@ -20,6 +20,7 @@ namespace AinAlAtaaFoundation.Services
                 if (pendingMigrations.Any())
                 {
                     await dbContext.Database.MigrateAsync();
+                    await UpdateDatabaseVersion("");
                 }
             }
         }
