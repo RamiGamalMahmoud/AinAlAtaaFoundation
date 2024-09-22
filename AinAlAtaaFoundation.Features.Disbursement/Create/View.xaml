@@ -124,19 +124,6 @@
             FocusManager.FocusedElement="{Binding ElementName=MainInput}"
             Orientation="Horizontal">
 
-            <ToggleButton
-                x:Name="ManulInput"
-                Width="100"
-                Height="30"
-                Margin="5,0"
-                Content="{Binding InputType}"
-                Cursor="Hand"
-                FlowDirection="LeftToRight"
-                FontSize="14"
-                FontWeight="Bold"
-                IsChecked="{Binding ManualInput}"
-                Style="{StaticResource ToggleButtonDanger}" />
-
             <StackPanel Margin="5,0">
                 <TextBlock Text="تسلسل العائلة" TextAlignment="Center" />
 
@@ -147,6 +134,7 @@
                     Focusable="True"
                     FontSize="30"
                     GotFocus="Input_GotFocus"
+                    KeyUp="Input_KeyUp"
                     TextAlignment="Center">
 
                     <Behaviors:Interaction.Triggers>
@@ -178,6 +166,7 @@
                     Focusable="True"
                     FontSize="30"
                     GotFocus="Input_GotFocus"
+                    KeyUp="Input_KeyUp"
                     Text="{Binding FamilyGetter.RationCard, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     TextAlignment="Center">
                     <Behaviors:Interaction.Triggers>
