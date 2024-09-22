@@ -29,15 +29,8 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
 
         private async void FamilyGetter_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (!ManualInput)
-            {
-                _messenger.Send<Messages.MessageInputFinished>();
-            }
-            if (e.PropertyName is nameof(FamilyGetter.RationCard) or nameof(FamilyGetter.FamilyId))
-            {
-                Family = await _familyGetter.GetFamily();
-                LastFamilyDisbursement = await _familyGetter.GetDisbursement();
-            }
+            Family = await _familyGetter.GetFamily();
+            LastFamilyDisbursement = await _familyGetter.GetDisbursement();
         }
 
         public IFamilyGetter FamilyGetter
@@ -46,15 +39,15 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             private set => SetProperty(ref _familyGetter, value);
         }
 
-        public string InputType => !ManualInput ? "إدخال يدوي" : "قارئ البار كود";
+        //public string InputType => !ManualInput ? "إدخال يدوي" : "قارئ البار كود";
 
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(InputType))]
-        private bool _manualInput;
-        partial void OnManualInputChanged(bool oldValue, bool newValue)
-        {
-            _messenger.Send(new Messages.MessageManualInputChanged(ManualInput));
-        }
+        //[ObservableProperty]
+        //[NotifyPropertyChangedFor(nameof(InputType))]
+        //private bool _manualInput;
+        //partial void OnManualInputChanged(bool oldValue, bool newValue)
+        //{
+        //    _messenger.Send(new Messages.MessageManualInputChanged(ManualInput));
+        //}
 
         public int LastTicketNumber
         {

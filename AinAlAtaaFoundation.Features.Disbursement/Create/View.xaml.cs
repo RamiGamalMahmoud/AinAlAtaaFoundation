@@ -22,11 +22,11 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
                 _currentInputBox.SelectAll();
             });
 
-            messenger.Register<Messages.MessageManualInputChanged>(this, (r, m) =>
-            {
-                _currentInputBox.Focus();
-                _currentInputBox.SelectAll();
-            });
+            //messenger.Register<Messages.MessageManualInputChanged>(this, (r, m) =>
+            //{
+            //    _currentInputBox.Focus();
+            //    _currentInputBox.SelectAll();
+            //});
 
             messenger.Register<Messages.ClearInputMessage>(this, (r, m) => ClearAll());
         }
@@ -41,7 +41,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         private void ClearAll()
         {
             RationCardInput.Text = "";
-            MainInput.Text = "";
+            MainInput.Text = "0";
         }
 
         private void Input_GotFocus(object sender, System.Windows.RoutedEventArgs e)
@@ -58,5 +58,13 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         }
 
         private TextBox _currentInputBox;
+
+        private void Input_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == System.Windows.Input.Key.Return)
+            {
+                (sender as TextBox).SelectAll();
+            }
+        }
     }
 }
