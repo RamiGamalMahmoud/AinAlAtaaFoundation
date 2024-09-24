@@ -21,6 +21,17 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             _messenger.Register<ViewModel, Shared.Messages.EntityCreated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
             _messenger.Register<ViewModel, Shared.Messages.EntityUpdated<FamilyMember>>(this, async (reciver, message) => await LoadDataAsync(true));
             _messenger.Register<ViewModel, Shared.Messages.EntityRestored<Family>>(this, async (reciver, message) => await LoadDataAsync(true));
+
+            _messenger.Register<Shared.Messages.EntityUpdated<Family>>(this, async (r, m) =>
+            {
+                await ShowPrintFamily(m.Entity);
+            });
+
+            _messenger.Register<Shared.Messages.EntityCreated<Family>>(this, async (r, m) =>
+            {
+                await ShowPrintFamily(m.Entity);
+            });
+
             TopFilterViewModel = topFilterViewModel;
             _appState = appState;
             TopFilterViewModel.PropertyChanged += TopFilterViewModel_PropertyChanged;

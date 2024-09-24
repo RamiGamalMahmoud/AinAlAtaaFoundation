@@ -16,7 +16,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         }
 
         [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
-        private void ShowPrintFamily(Family family)
+        private async Task ShowPrintFamily(Family family)
         {
             var members = family.FamilyMembers.Select(member =>
             {
@@ -34,7 +34,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 { "Phones", family.Phones },
                 { "Members", members }
             };
-            _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
+            await _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
         }
 
         [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
