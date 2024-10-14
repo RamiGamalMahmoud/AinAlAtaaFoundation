@@ -283,7 +283,7 @@
                 <DataGridTextColumn Binding="{Binding SocialStatus.Name}" Header="الحالة الإجتماعية" />
                 <DataGridTextColumn Binding="{Binding FamilyType.Name}" Header="(عام / خاص)" />
 
-                <DataGridTemplateColumn Header="مميز">
+                <DataGridTemplateColumn Header="مميز" SortMemberPath="HasFlag">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Width="20" Height="20">
