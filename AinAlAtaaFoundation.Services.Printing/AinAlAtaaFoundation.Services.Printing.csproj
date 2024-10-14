@@ -8,9 +8,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.22" />
+	  <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.23" />
 	  <PackageReference Include="System.Formats.Asn1" Version="8.0.1" />
-	  <PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.0" />
+	  <PackageReference Include="System.Security.Cryptography.Pkcs" Version="8.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
