@@ -283,6 +283,24 @@
                 <DataGridTextColumn Binding="{Binding SocialStatus.Name}" Header="الحالة الإجتماعية" />
                 <DataGridTextColumn Binding="{Binding FamilyType.Name}" Header="(عام / خاص)" />
 
+                <DataGridTemplateColumn Header="مميز">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Width="20" Height="20">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding HasFlag}" Value="True">
+                                                <Setter Property="Background" Value="Pink" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
                 <DataGridTemplateColumn Header="العائلة">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

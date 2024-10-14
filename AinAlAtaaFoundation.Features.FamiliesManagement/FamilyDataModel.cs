@@ -59,6 +59,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 Street = model.Address.Street;
 
                 IsSponsered = model.IsSponsored;
+
+                HasFlag = model.HasFlag;
+                
             }
             ValidateAllProperties();
         }
@@ -99,6 +102,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             model.Phones.AddRange(Phones);
 
             model.IsSponsored = IsSponsered;
+            model.HasFlag = HasFlag;
         }
 
         [ObservableProperty]
@@ -139,6 +143,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [NotifyDataErrorInfo]
         [NotifyPropertyChangedFor(nameof(IsValid))]
         private Gender _gender;
+
+        [ObservableProperty]
+        private bool _hasFlag;
 
         [ObservableProperty]
         private DateTime? _dateCreated;

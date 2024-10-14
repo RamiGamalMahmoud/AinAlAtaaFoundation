@@ -15,6 +15,9 @@ namespace AinAlAtaaFoundation.Models
         }
 
         [ObservableProperty]
+        private bool _hasFlag;
+
+        [ObservableProperty]
         private string _rationCard;
 
         [ObservableProperty]

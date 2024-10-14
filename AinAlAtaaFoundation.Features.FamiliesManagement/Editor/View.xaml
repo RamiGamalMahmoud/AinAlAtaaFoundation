@@ -68,7 +68,18 @@
                                 MinWidth="200"
                                 Margin="5">
 
-                                <TextBlock Foreground="{StaticResource Blue}" Text="رقم البطاقة التموينية" />
+                                <TextBlock Text="رقم البطاقة التموينية">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=ToggleButtonHasFlag, Path=IsChecked}" Value="True">
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+
                                 <TextBox Text="{Binding DataModel.RationCard, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock Cursor="Hand">
@@ -85,6 +96,25 @@
                                     Text="{Binding HasMessageObject.Message}"
                                     Visibility="{Binding HasMessageObject.HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
+                                <ToggleButton
+                                    x:Name="ToggleButtonHasFlag"
+                                    HorizontalAlignment="Left"
+                                    Content="تمييز"
+                                    Cursor="Hand"
+                                    IsChecked="{Binding DataModel.HasFlag}">
+                                    <ToggleButton.Style>
+                                        <Style BasedOn="{StaticResource ToggleButtonDefault}" TargetType="ToggleButton">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="Background" Value="Pink" />
+                                                    <Setter Property="Foreground" Value="DarkRed" />
+                                                    <Setter Property="BorderThickness" Value="0" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ToggleButton.Style>
+                                </ToggleButton>
+
                             </StackPanel>
 
                             <StackPanel
@@ -93,7 +123,18 @@
                                 MinWidth="200"
                                 Margin="5">
 
-                                <TextBlock Text="اسم صاحب البطاقة" />
+                                <TextBlock Text="اسم صاحب البطاقة">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=ToggleButtonHasFlag, Path=IsChecked}" Value="True">
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+
                                 <TextBox Text="{Binding DataModel.RationCardOwnerName, UpdateSourceTrigger=PropertyChanged}" />
                                 <ListBox ItemsSource="{Binding FoundFamiliesForRationCardOwner}">
                                     <ListBox.ItemTemplate>

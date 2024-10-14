@@ -82,6 +82,10 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .HasForeignKey<Family>(x => x.ApplicantId)
                 .IsRequired(false);
 
+            builder.Property(x => x.HasFlag)
+                .IsRequired()
+                .HasDefaultValue(false);
+
         }
     }
 }

@@ -117,6 +117,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 stored.FamilyTypeId = dataModel.FamilyType.Id;
                 stored.Notes = dataModel.Notes;
                 stored.IsSponsored = dataModel.IsSponsered;
+                stored.HasFlag = dataModel.HasFlag;
 
                 IEnumerable<int> phonesIds = dataModel.Phones.Select(x => x.Id).Where(x => x > 0);
                 IEnumerable<Phone> newPhones = dataModel.Phones.Where(x => x.Id == 0);
