@@ -156,6 +156,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
         }
 
         [RelayCommand]
+        private async Task AddSocialStatus()
+        {
+            await _mediator.Send(new Shared.Commands.Generic.ShowCreate<SocialStatus>());
+        }
+
+        [RelayCommand]
         private async Task AddBranchRepresentative()
         {
             await _mediator.Send(new Shared.Commands.Generic.ShowCreate<BranchRepresentative>());

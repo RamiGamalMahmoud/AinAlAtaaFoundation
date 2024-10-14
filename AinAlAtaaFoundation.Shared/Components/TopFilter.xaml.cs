@@ -36,5 +36,10 @@ namespace AinAlAtaaFoundation.Shared.Components
                 typeof(TopFilter),
                 new PropertyMetadata(null)
                 );
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FilterCommand?.Execute(null);
+        }
     }
 }

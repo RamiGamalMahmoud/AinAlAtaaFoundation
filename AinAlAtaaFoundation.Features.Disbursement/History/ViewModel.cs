@@ -30,6 +30,9 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
         private async Task Filter()
         {
             IEnumerable<Disbursement> disbursements = await _mediator.Send(new Shared.Commands.Disbursements.GetHistory(
+                TopFilterViewModel.RationCard,
+                TopFilterViewModel.RationCardOwner,
+                TopFilterViewModel.ApplicantName,
                 TopFilterViewModel.Clan,
                 TopFilterViewModel.Branch,
                 TopFilterViewModel.BranchRepresentative,

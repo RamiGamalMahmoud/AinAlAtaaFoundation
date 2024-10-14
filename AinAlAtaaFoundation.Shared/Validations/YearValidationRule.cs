@@ -8,7 +8,7 @@ namespace AinAlAtaaFoundation.Shared.Validations
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if(int.TryParse(value as string, out int year) && year >= 1940 && year <= DateTime.Now.Year)
+            if(int.TryParse(value as string, out int year) && year >= 1900 && year <= DateTime.Now.Year)
             {
                 return System.Windows.Controls.ValidationResult.ValidResult;
             }

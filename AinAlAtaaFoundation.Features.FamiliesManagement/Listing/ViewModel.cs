@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,20 +35,20 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
 
             TopFilterViewModel = topFilterViewModel;
             _appState = appState;
-            TopFilterViewModel.PropertyChanged += TopFilterViewModel_PropertyChanged;
+            //TopFilterViewModel.PropertyChanged += TopFilterViewModel_PropertyChanged;
         }
 
         private void TopFilterViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(TopFilterViewModel.FamilyId))
+            if (e.PropertyName == nameof(TopFilterViewModel.FamilyId))
             {
-                if(TopFilterViewModel.FamilyId == 0)
+                if (TopFilterViewModel.FamilyId == 0)
                 {
                     Families = _allFamilies;
                 }
                 else Families = _allFamilies.Where(x => x.Id == TopFilterViewModel.FamilyId);
             }
-            else if(e.PropertyName == nameof(TopFilterViewModel.RationCard))
+            else if (e.PropertyName == nameof(TopFilterViewModel.RationCard))
             {
                 Families = _allFamilies.Where(x => x.RationCard.Contains(TopFilterViewModel.RationCard));
             }
@@ -58,7 +59,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             using (DoBusyWorkFactory.CreateBusyWork(DoBusyWorkObject))
             {
                 _allFamilies = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>(reload));
-                Families = _allFamilies;
+                Families = new ObservableCollection<Family>( _allFamilies);
 
                 await TopFilterViewModel.LoadDataAsync();
             }
@@ -120,6 +121,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         {
             IsVewAll = false;
             Families = _allFamilies
+                .Where(x => string.IsNullOrEmpty(TopFilterViewModel.RationCard) || x.RationCard.Contains(TopFilterViewModel.RationCard))
+                .Where(x => string.IsNullOrEmpty(TopFilterViewModel.RationCardOwner) || x.RationCardOwnerName.Contains(TopFilterViewModel.RationCardOwner))
+                .Where(x => string.IsNullOrEmpty(TopFilterViewModel.ApplicantName) || x.Applicant.Name.Contains(TopFilterViewModel.ApplicantName))
                 .Where(x => TopFilterViewModel.Clan is null || x.Clan is null || x.Clan.Id == TopFilterViewModel.Clan.Id)
                 .Where(x => TopFilterViewModel.Branch is null || x.Branch is not null && x.Branch.Id == TopFilterViewModel.Branch.Id)
                 .Where(x => TopFilterViewModel.BranchRepresentative is null || x.BranchRepresentative is null || x.BranchRepresentative.Id == TopFilterViewModel.BranchRepresentative.Id)

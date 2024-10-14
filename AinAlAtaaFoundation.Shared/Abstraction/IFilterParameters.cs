@@ -4,6 +4,9 @@ namespace AinAlAtaaFoundation.Shared.Abstraction
 {
     public interface IFilterParameters
     {
+        public string RationCard { get; }
+        public string RationCardOwner { get; }
+        public string ApplicantName { get; }
         public Clan Clan { get; }
         public Branch Branch { get; }
         public BranchRepresentative BranchRepresentative { get; }

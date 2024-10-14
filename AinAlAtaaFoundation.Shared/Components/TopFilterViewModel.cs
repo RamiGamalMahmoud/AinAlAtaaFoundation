@@ -23,6 +23,12 @@ namespace AinAlAtaaFoundation.Shared.Components
         private string _rationCard;
 
         [ObservableProperty]
+        private string _rationCardOwner;
+
+        [ObservableProperty]
+        private string _applicantName;
+
+        [ObservableProperty]
         private int _familyId;
 
         [RelayCommand]
@@ -39,6 +45,12 @@ namespace AinAlAtaaFoundation.Shared.Components
             FamilyType = null;
             SocialStatus = null;
             OrphanType = null;
+
+            ApplicantName = "";
+            RationCardOwner = "";
+
+            RationCard = "";
+            SponsoringStatus = null;
         }
 
         [ObservableProperty]

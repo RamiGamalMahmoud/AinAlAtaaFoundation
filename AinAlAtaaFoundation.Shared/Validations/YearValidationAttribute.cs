@@ -11,7 +11,7 @@ namespace AinAlAtaaFoundation.Shared.Validations
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if(value is int year && year >=1940 && year <= DateTime.Now.Year)
+            if(value is int year && year >=1900 && year <= DateTime.Now.Year)
             {
                 return ValidationResult.Success;
             }

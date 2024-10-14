@@ -132,6 +132,10 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement
                         .ThenInclude(x => x.Applicant)
                     .OrderByDescending(x => x.Date)
 
+                    .Where(x => string.IsNullOrEmpty(parameters.RationCard) || x.Family.RationCard.Contains(parameters.RationCard))
+                    .Where(x => string.IsNullOrEmpty(parameters.RationCardOwner) || x.Family.RationCardOwnerName.Contains(parameters.RationCardOwner))
+                    .Where(x => string.IsNullOrEmpty(parameters.ApplicantName) || x.Family.Applicant.Name.Contains(parameters.ApplicantName))
+
                     .Where(x => parameters.Clan == null || x.Family.Clan == parameters.Clan)
                     .Where(x => parameters.Branch == null || x.Family.Branch == null || x.Family.Branch == parameters.Branch)
                     .Where(x => parameters.BranchRepresentative == null || x.Family.BranchRepresentative == null || x.Family.BranchRepresentative == parameters.BranchRepresentative)

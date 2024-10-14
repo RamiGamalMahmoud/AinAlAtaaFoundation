@@ -14,6 +14,9 @@ namespace AinAlAtaaFoundation.Shared.Commands
         public record CommandGetLastDisbursementByRationCard(string RationCard) : IRequest<Disbursement>;
 
         public record GetHistory(
+            string RationCard,
+            string RationCardOwner,
+            string ApplicantName,
             Clan Clan, 
             Branch Branch, 
             BranchRepresentative BranchRepresentative,

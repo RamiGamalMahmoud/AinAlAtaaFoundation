@@ -11,6 +11,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             services
                 .AddMediatR((cfg) => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()))
 
+                .AddSingleton<SocialStatuses.Repository>()
+
                 .AddSingleton<Members.Repository>()
                 .AddTransient<IFamilyMembersViewWindow, Members.ListingWindow>()
                 .AddSingleton<IFamilyMembersView, Members.View>()

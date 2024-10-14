@@ -246,12 +246,22 @@
                                 MinWidth="200"
                                 Margin="5">
                                 <TextBlock Foreground="{StaticResource Blue}" Text="الحالة الإجتماعية" />
-                                <ComboBox
-                                    DisplayMemberPath="Name"
-                                    ItemsSource="{Binding SocialStatuses}"
-                                    SelectedItem="{Binding DataModel.SocialStatus}"
-                                    SelectedValue="{Binding DataModel.SocialStatus.Id}"
-                                    SelectedValuePath="Id" />
+                                <StackPanel Orientation="Horizontal">
+                                    <ComboBox
+                                        Width="200"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding SocialStatuses}"
+                                        SelectedItem="{Binding DataModel.SocialStatus}"
+                                        SelectedValue="{Binding DataModel.SocialStatus.Id}"
+                                        SelectedValuePath="Id" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                        Command="{Binding AddSocialStatusCommand}"
+                                        Cursor="Hand"
+                                        Style="{StaticResource ButtonPrimary}" />
+                                </StackPanel>
                                 <CheckBox
                                     Margin="0,10,0,0"
                                     Content="مكفولة"

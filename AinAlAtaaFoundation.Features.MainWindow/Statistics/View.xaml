@@ -11,91 +11,93 @@
     Foreground="{StaticResource Black}"
     mc:Ignorable="d">
 
-    <Grid>
+    <ScrollViewer>
+        <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <components:HeaderItem
-            Title="اجمالي عدد العائلات المسجلة"
-            Grid.Row="0"
-            Grid.Column="0"
-            Value="{Binding TotalFamilies}" />
+            <components:HeaderItem
+                Title="اجمالي عدد العائلات المسجلة"
+                Grid.Row="0"
+                Grid.Column="0"
+                Value="{Binding TotalFamilies}" />
 
-        <components:HeaderItem
-            Title="اجمالي عدد العشائر المسجلة"
-            Grid.Row="0"
-            Grid.Column="1"
-            Value="{Binding TotalClans}" />
+            <components:HeaderItem
+                Title="اجمالي عدد العشائر المسجلة"
+                Grid.Row="0"
+                Grid.Column="1"
+                Value="{Binding TotalClans}" />
 
-        <components:HeaderItem
-            Title="اجمالي عدد الأحياء المسجلة"
-            Grid.Row="0"
-            Grid.Column="2"
-            Value="{Binding TotalDistricts}" />
+            <components:HeaderItem
+                Title="اجمالي عدد الأحياء المسجلة"
+                Grid.Row="0"
+                Grid.Column="2"
+                Value="{Binding TotalDistricts}" />
 
-        <Separator
-            Grid.Row="1"
-            Grid.ColumnSpan="10"
-            Margin="0,5" />
+            <Separator
+                Grid.Row="1"
+                Grid.ColumnSpan="10"
+                Margin="0,5" />
 
-        <components:StatisticItem
-            Title="نوع العائلة"
-            Grid.Row="2"
-            Grid.Column="0"
-            Items="{Binding FamilyTypes}" />
+            <components:StatisticItem
+                Title="نوع العائلة"
+                Grid.Row="2"
+                Grid.Column="0"
+                Items="{Binding FamilyTypes}" />
 
-        <components:StatisticItem
-            Title="الحالة الإجتماعية"
-            Grid.Row="3"
-            Grid.Column="0"
-            Items="{Binding SocialStatuses}" />
+            <components:StatisticItem
+                Title="الحالة الإجتماعية"
+                Grid.Row="3"
+                Grid.Column="0"
+                Items="{Binding SocialStatuses}" />
 
-        <components:StatisticItem
-            Title="الكفالة"
-            Grid.Row="4"
-            Grid.Column="0"
-            Items="{Binding Sponsored}" />
+            <components:StatisticItem
+                Title="الكفالة"
+                Grid.Row="4"
+                Grid.Column="0"
+                Items="{Binding Sponsored}" />
 
-        <components:StatisticItem
-            Title="الأفراد"
-            Grid.Row="5"
-            Grid.Column="0"
-            Items="{Binding Members}" />
+            <components:StatisticItem
+                Title="الأفراد"
+                Grid.Row="5"
+                Grid.Column="0"
+                Items="{Binding Members}" />
 
-        <components:StatisticItem
-            Title="العشائر"
-            Grid.Row="2"
-            Grid.Column="1"
-            Items="{Binding Clans}" />
+            <components:StatisticItem
+                Title="العشائر"
+                Grid.Row="2"
+                Grid.Column="1"
+                Items="{Binding Clans}" />
 
-        <components:StatisticItem
-            Title="ممثل الفخذ"
-            Grid.Row="3"
-            Grid.Column="1"
-            Items="{Binding BranchRepresentatives}" />
+            <components:StatisticItem
+                Title="ممثل الفخذ"
+                Grid.Row="3"
+                Grid.Column="1"
+                Items="{Binding BranchRepresentatives}" />
 
-        <components:StatisticItem
-            Title="الصرف"
-            Grid.Row="4"
-            Grid.Column="1"
-            Items="{Binding Disbursements}" />
+            <components:StatisticItem
+                Title="الصرف"
+                Grid.Row="4"
+                Grid.Column="1"
+                Items="{Binding Disbursements}" />
 
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 
 </UserControl>
