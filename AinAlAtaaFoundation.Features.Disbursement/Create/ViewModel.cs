@@ -1,6 +1,5 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared.Abstraction;
-using AinAlAtaaFoundation.Shared.Helpers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -38,16 +37,6 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             get => _familyGetter;
             private set => SetProperty(ref _familyGetter, value);
         }
-
-        //public string InputType => !ManualInput ? "إدخال يدوي" : "قارئ البار كود";
-
-        //[ObservableProperty]
-        //[NotifyPropertyChangedFor(nameof(InputType))]
-        //private bool _manualInput;
-        //partial void OnManualInputChanged(bool oldValue, bool newValue)
-        //{
-        //    _messenger.Send(new Messages.MessageManualInputChanged(ManualInput));
-        //}
 
         public int LastTicketNumber
         {
