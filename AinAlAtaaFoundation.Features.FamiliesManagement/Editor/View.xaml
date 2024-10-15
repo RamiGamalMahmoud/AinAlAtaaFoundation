@@ -99,7 +99,7 @@
                                 <ToggleButton
                                     x:Name="ToggleButtonHasFlag"
                                     HorizontalAlignment="Left"
-                                    Content="تمييز"
+                                    Content="تنبيه"
                                     Cursor="Hand"
                                     IsChecked="{Binding DataModel.HasFlag}">
                                     <ToggleButton.Style>
