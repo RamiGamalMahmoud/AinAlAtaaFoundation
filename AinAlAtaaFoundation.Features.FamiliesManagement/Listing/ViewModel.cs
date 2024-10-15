@@ -35,23 +35,6 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
 
             TopFilterViewModel = topFilterViewModel;
             _appState = appState;
-            //TopFilterViewModel.PropertyChanged += TopFilterViewModel_PropertyChanged;
-        }
-
-        private void TopFilterViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(TopFilterViewModel.FamilyId))
-            {
-                if (TopFilterViewModel.FamilyId == 0)
-                {
-                    Families = _allFamilies;
-                }
-                else Families = _allFamilies.Where(x => x.Id == TopFilterViewModel.FamilyId);
-            }
-            else if (e.PropertyName == nameof(TopFilterViewModel.RationCard))
-            {
-                Families = _allFamilies.Where(x => x.RationCard.Contains(TopFilterViewModel.RationCard));
-            }
         }
 
         public async Task LoadDataAsync(bool reload = false)
