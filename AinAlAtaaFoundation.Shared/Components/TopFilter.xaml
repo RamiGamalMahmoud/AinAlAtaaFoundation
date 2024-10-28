@@ -26,6 +26,15 @@
         <hc:TextBox
             Width="150"
             Margin="5"
+            hc:InfoElement.Placeholder="تسلسل العائلة"
+            hc:InfoElement.ShowClearButton="True"
+            hc:InfoElement.Title="تسلسل العائلة"
+            Text="{Binding ElementName=root, Path=TopFilterViewModel.FamilyId, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            TextChanged="TextBox_TextChanged" />
+
+        <hc:TextBox
+            Width="150"
+            Margin="5"
             hc:InfoElement.Placeholder="رقم البطاقة التمونية"
             hc:InfoElement.ShowClearButton="True"
             hc:InfoElement.Title="رقم البطاقة التموينية"

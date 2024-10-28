@@ -42,7 +42,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             using (DoBusyWorkFactory.CreateBusyWork(DoBusyWorkObject))
             {
                 _allFamilies = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Family>(reload));
-                Families = new ObservableCollection<Family>( _allFamilies);
+                Families = new ObservableCollection<Family>(_allFamilies);
 
                 await TopFilterViewModel.LoadDataAsync();
             }
@@ -103,7 +103,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         private void Filter()
         {
             IsVewAll = false;
-            Families = _allFamilies
+            Families = _allFamilies?
+                .Where(x => string.IsNullOrEmpty(TopFilterViewModel.FamilyId) || x.Id.ToString().Contains(TopFilterViewModel.FamilyId))
                 .Where(x => string.IsNullOrEmpty(TopFilterViewModel.RationCard) || x.RationCard.Contains(TopFilterViewModel.RationCard))
                 .Where(x => string.IsNullOrEmpty(TopFilterViewModel.RationCardOwner) || x.RationCardOwnerName.Contains(TopFilterViewModel.RationCardOwner))
                 .Where(x => string.IsNullOrEmpty(TopFilterViewModel.ApplicantName) || x.Applicant.Name.Contains(TopFilterViewModel.ApplicantName))

@@ -9,6 +9,8 @@ namespace AinAlAtaaFoundation.Models
         public DateTime Date { get; set; }
         public int TicketNumber { get; set; }
 
+        public string Notes { get; set; }
+
         public int FamilyId { get; set; }
         public Family Family
         {

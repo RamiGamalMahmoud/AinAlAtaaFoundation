@@ -26,6 +26,9 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             _familyGetterByRationCard.PropertyChanged += FamilyGetter_PropertyChanged;
         }
 
+        [ObservableProperty]
+        private string _notes;
+
         private async void FamilyGetter_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             Family = await _familyGetter.GetFamily();
@@ -45,20 +48,28 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         }
         private int _lastTicketNumber;
 
-        public Disbursement LastFamilyDisbursement
-        {
-            get => _lastFamilyDisbursement;
-            private set => SetProperty(ref _lastFamilyDisbursement, value);
-        }
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(LastFamilyDisbursementLessThanWeek))]
         private Disbursement _lastFamilyDisbursement;
+
+        public bool LastFamilyDisbursementLessThanWeek
+        {
+            get
+            {
+                return LastFamilyDisbursement is not null && (DateTime.Now - LastFamilyDisbursement.Date).TotalDays < 7;
+            }
+        }
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(ExecutePrintCommand))]
         [NotifyCanExecuteChangedFor(nameof(ExecuteDirectPrintCommand))]
         [NotifyCanExecuteChangedFor(nameof(ShowFamilyDisbursementsHistoryCommand))]
+        [NotifyPropertyChangedFor(nameof(HasFlag))]
         private Family _family;
 
         private bool HasFamily() => Family is not null;
+
+        public bool HasFlag => HasFamily() && Family.HasFlag;
 
 
         [RelayCommand(CanExecute = nameof(HasFamily))]
@@ -85,10 +96,12 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             {
                 TicketNumber = ticketNumber,
                 Date = DateTime.Now,
-                Family = family
+                Family = family,
+                Notes = Notes
             };
 
             await _mediator.Send(new CommandHandlerCreate.Command(disbursement));
+            Notes = null;
             return disbursement;
         }
 

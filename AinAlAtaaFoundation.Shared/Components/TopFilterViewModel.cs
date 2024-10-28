@@ -29,11 +29,13 @@ namespace AinAlAtaaFoundation.Shared.Components
         private string _applicantName;
 
         [ObservableProperty]
-        private int _familyId;
+        private string _familyId;
 
         [RelayCommand]
         private void ClearFilters()
         {
+            FamilyId = null;
+
             Clan = null;
 
             Branch = null;
@@ -55,6 +57,7 @@ namespace AinAlAtaaFoundation.Shared.Components
 
         [ObservableProperty]
         private IEnumerable<Clan> _clans;
+
         [ObservableProperty]
         private Clan _clan;
         async partial void OnClanChanged(Clan oldValue, Clan newValue)
@@ -65,6 +68,7 @@ namespace AinAlAtaaFoundation.Shared.Components
 
         [ObservableProperty]
         private IEnumerable<Branch> _branches;
+
         [ObservableProperty]
         private Branch _branch;
         async partial void OnBranchChanged(Branch oldValue, Branch newValue)
@@ -87,6 +91,7 @@ namespace AinAlAtaaFoundation.Shared.Components
 
         [ObservableProperty]
         private IEnumerable<FamilyType> _familyTypes;
+
         [ObservableProperty]
         private FamilyType _familyType;
 

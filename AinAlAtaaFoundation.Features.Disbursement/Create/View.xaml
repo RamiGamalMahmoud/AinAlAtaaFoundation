@@ -27,10 +27,19 @@
 
             <StackPanel MinWidth="200">
 
-                <TextBlock
-                    Padding="5"
-                    Foreground="{StaticResource Blue}"
-                    Text="آخر صرف" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Padding="5"
+                        VerticalAlignment="Center"
+                        Foreground="{StaticResource Blue}"
+                        Text="آخر صرف" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                        Foreground="Red"
+                        Text=" ( صرف في مدة أقل من أسبوع )"
+                        Visibility="{Binding LastFamilyDisbursementLessThanWeek, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </StackPanel>
                 <Border
                     Height="auto"
                     Padding="10"
@@ -99,22 +108,29 @@
                 </Border>
 
             </StackPanel>
-            <Button
-                Height="auto"
-                Margin="10,0,0,0"
-                Command="{Binding ShowFamilyDisbursementsHistoryCommand}"
-                CommandParameter="{Binding Family}"
-                Cursor="Hand">
-                <StackPanel Orientation="Horizontal">
-                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/archive-colored.png" />
-                    <TextBlock
-                        Margin="5"
-                        VerticalAlignment="Center"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="عرض السجل" />
-                </StackPanel>
-            </Button>
+            <StackPanel VerticalAlignment="Bottom" Orientation="Vertical">
+                <Button
+                    Height="auto"
+                    Margin="10,0,0,0"
+                    Command="{Binding ShowFamilyDisbursementsHistoryCommand}"
+                    CommandParameter="{Binding Family}"
+                    Cursor="Hand">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/archive-colored.png" />
+                        <TextBlock
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            FontWeight="Bold"
+                            Text="عرض السجل" />
+                    </StackPanel>
+                </Button>
+                <Label
+                    Width="200"
+                    Margin="5"
+                    Content="{Binding LastFamilyDisbursement.Notes}"
+                    Foreground="{StaticResource Blue}" />
+            </StackPanel>
         </StackPanel>
 
         <StackPanel
@@ -177,55 +193,77 @@
                 </TextBox>
             </StackPanel>
 
-            <Button
-                Height="auto"
-                Margin="5,0"
-                Command="{Binding ExecutePrintCommand}"
-                Cursor="Hand">
+            <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/preview.png" />
-                    <TextBlock
-                        Margin="5"
-                        VerticalAlignment="Center"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="معاينة الطباعة" />
-                </StackPanel>
-            </Button>
+                    <Button
+                        Height="auto"
+                        Margin="5,0"
+                        Command="{Binding ExecutePrintCommand}"
+                        Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/preview.png" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Text="معاينة الطباعة" />
+                        </StackPanel>
+                    </Button>
 
-            <Button
-                Height="auto"
-                Margin="5,0"
-                Command="{Binding ExecuteDirectPrintCommand}"
-                Cursor="Hand">
-                <StackPanel Orientation="Horizontal">
-                    <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/printout.png" />
-                    <TextBlock
-                        Margin="5"
-                        VerticalAlignment="Center"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="طباعة" />
-                </StackPanel>
-            </Button>
+                    <Button
+                        Height="auto"
+                        Margin="5,0"
+                        Command="{Binding ExecuteDirectPrintCommand}"
+                        Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/printout.png" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Text="طباعة" />
+                        </StackPanel>
+                    </Button>
 
-            <Label
-                Height="auto"
-                Margin="10,0"
-                Content="{Binding ReadingNumber}" />
+                    <Label Height="auto" Margin="5,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="10,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Foreground="#c0392b"
+                                Text="أخر رقم" />
+                            <Label Height="auto" Content="{Binding LastTicketNumber}" />
+                        </StackPanel>
+                    </Label>
 
-            <Label Height="auto" Margin="5,0">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
+                    <Label
+                        Height="auto"
                         Margin="10,0"
-                        VerticalAlignment="Center"
-                        FontSize="14"
+                        Background="Pink"
+                        Content="تنبيه"
                         FontWeight="Bold"
-                        Foreground="#c0392b"
-                        Text="أخر رقم" />
-                    <Label Height="auto" Content="{Binding LastTicketNumber}" />
+                        Foreground="DarkRed"
+                        Visibility="{Binding HasFlag, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=False}" />
                 </StackPanel>
-            </Label>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        Text="ملاحظات" />
+                    <TextBox
+                        Width="200"
+                        Margin="5"
+                        Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                </StackPanel>
+
+            </StackPanel>
 
         </StackPanel>
 
@@ -342,7 +380,7 @@
                         Grid.Row="3"
                         Grid.Column="2"
                         Margin="5"
-                        Value="{Binding Family.Address.Street}" />
+                        Value="{Binding Family.Address.FeaturedPoint.Name}" />
 
                     <local:Item
                         Title="اسم المختار"

@@ -17,7 +17,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         {
             if (!_isLoaded)
             {
-                await Dispatcher.InvokeAsync(() => _viewModel.LoadDataAsync(false));
+                await Dispatcher.Invoke(() => _viewModel.LoadDataAsync(false));
                 _isLoaded = true;
             }
         }

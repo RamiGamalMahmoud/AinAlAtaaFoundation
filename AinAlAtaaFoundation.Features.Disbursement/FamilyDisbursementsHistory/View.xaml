@@ -73,6 +73,8 @@
                         Binding="{Binding Date, StringFormat=hh:mm:ss - tt}"
                         Header="وقت الصرف" />
 
+                    <DataGridTextColumn Binding="{Binding Notes}" Header="ملاحظات" />
+
                     <DataGridTemplateColumn Header="حذف">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

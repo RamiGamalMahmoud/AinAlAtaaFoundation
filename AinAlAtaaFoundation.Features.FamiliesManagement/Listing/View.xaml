@@ -11,6 +11,9 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
+
+        <CollectionViewSource x:Key="FamiliesViewSource" Source="{Binding Families}" />
+
         <Style
             x:Key="MyDataGridRowStyle"
             BasedOn="{StaticResource DataGridRowStyle}"
@@ -19,6 +22,7 @@
                 <Setter Property="Margin" Value="0" />
             </Style.Setters>
         </Style>
+
     </UserControl.Resources>
 
     <Grid>
@@ -200,7 +204,7 @@
             GridLinesVisibility="All"
             HorizontalGridLinesBrush="LightGray"
             IsReadOnly="True"
-            ItemsSource="{Binding Families, IsAsync=True}"
+            ItemsSource="{Binding Source={StaticResource FamiliesViewSource}, IsAsync=True}"
             LostFocus="DataGrid_LostFocus"
             RowStyle="{StaticResource MyDataGridRowStyle}"
             VerticalGridLinesBrush="LightGray">
