@@ -35,6 +35,9 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         private DateTime? _dateCreated;
 
+        [ObservableProperty]
+        private string _husbandName;
+
         public int ClanId { get; set; }
         public Clan Clan
         {

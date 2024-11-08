@@ -79,6 +79,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             parameters.Add("ApplicantName", family.Applicant.Name);
             parameters.Add("IsSponsoredParameter", family.IsSponsored.ToString());
             parameters.Add("DateCreated", family.DateCreated?.ToString());
+            parameters.Add("HusbandName", family.HusbandName);
 
             return parameters;
         }

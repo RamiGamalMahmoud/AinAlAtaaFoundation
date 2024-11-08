@@ -165,6 +165,11 @@
                         CornerRadius="5">
                         <Grid>
 
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
@@ -246,6 +251,18 @@
                                     SelectedItem="{Binding DataModel.Gender}"
                                     SelectedValue="{Binding DataModel.Gender.Id}"
                                     SelectedValuePath="Id" />
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                MinWidth="150"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="اسم الزوج" />
+                                <TextBox Text="{Binding DataModel.HusbandName, UpdateSourceTrigger=PropertyChanged}" />
+
                             </StackPanel>
 
                         </Grid>

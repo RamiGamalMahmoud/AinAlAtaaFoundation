@@ -61,6 +61,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 IsSponsered = model.IsSponsored;
 
                 HasFlag = model.HasFlag;
+                HusbandName = model.HusbandName;
                 
             }
             ValidateAllProperties();
@@ -103,6 +104,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
             model.IsSponsored = IsSponsered;
             model.HasFlag = HasFlag;
+
+            model.HusbandName = HusbandName;
         }
 
         [ObservableProperty]
@@ -116,6 +119,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [NotifyDataErrorInfo]
         [NotifyPropertyChangedFor(nameof(IsValid))]
         private string _name;
+
+        [ObservableProperty]
+        private string _husbandName;
 
         [ObservableProperty]
         [Required(ErrorMessage = "حقل مطلوب")]

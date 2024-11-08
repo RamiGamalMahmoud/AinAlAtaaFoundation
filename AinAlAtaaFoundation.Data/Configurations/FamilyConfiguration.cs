@@ -15,8 +15,12 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .IsRequired();
 
             builder.Property(x => x.RationCardOwnerName)
-                .HasColumnType("VARCHAR(20)")
+                .HasColumnType("VARCHAR(50)")
                 .IsRequired();
+
+            builder.Property(x => x.HusbandName)
+                .HasColumnType("VARCHAR(50)")
+                .IsRequired(false);
 
             builder.Property(x => x.IsSponsored)
                 .HasDefaultValue(false);

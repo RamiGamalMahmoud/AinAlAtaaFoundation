@@ -52,7 +52,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         RationCardOwnerName = dataModel.RationCardOwnerName,
                         SocialStatusId = dataModel.SocialStatus.Id,
                         IsSponsored = dataModel.IsSponsered,
-                        DateCreated = dataModel.DateCreated
+                        DateCreated = dataModel.DateCreated,
+                        HusbandName = dataModel.HusbandName
                     };
 
                     foreach (Phone phone in dataModel.Phones)
@@ -118,6 +119,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 stored.Notes = dataModel.Notes;
                 stored.IsSponsored = dataModel.IsSponsered;
                 stored.HasFlag = dataModel.HasFlag;
+                stored.HusbandName = dataModel.HusbandName;
 
                 IEnumerable<int> phonesIds = dataModel.Phones.Select(x => x.Id).Where(x => x > 0);
                 IEnumerable<Phone> newPhones = dataModel.Phones.Where(x => x.Id == 0);

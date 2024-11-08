@@ -320,79 +320,86 @@
                         Value="{Binding Family.Applicant.Name}" />
 
                     <local:Item
-                        Title="نوع العائلة"
+                        Title="اسم الزوج"
                         Grid.Row="1"
                         Grid.Column="0"
+                        Margin="5"
+                        Value="{Binding Family.HusbandName}" />
+
+                    <local:Item
+                        Title="نوع العائلة"
+                        Grid.Row="1"
+                        Grid.Column="1"
                         Margin="5"
                         Value="{Binding Family.FamilyType.Name}" />
 
                     <local:Item
                         Title="الحالة الإجتماعية"
                         Grid.Row="1"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Margin="5"
                         Value="{Binding Family.SocialStatus.Name}" />
 
                     <local:Item
                         Title="حالة اليتم"
-                        Grid.Row="1"
-                        Grid.Column="2"
+                        Grid.Row="2"
+                        Grid.Column="0"
                         Margin="5"
                         Value="{Binding Family.OrphanType.Name}" />
 
                     <local:Item
                         Title="العشيرة"
                         Grid.Row="2"
-                        Grid.Column="0"
+                        Grid.Column="1"
                         Margin="5"
                         Value="{Binding Family.Clan.Name}" />
 
                     <local:Item
                         Title="الفخذ"
                         Grid.Row="2"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Margin="5"
                         Value="{Binding Family.Branch.Name}" />
 
                     <local:Item
                         Title="ممثل الفخذ"
-                        Grid.Row="2"
-                        Grid.Column="2"
+                        Grid.Row="3"
+                        Grid.Column="0"
                         Margin="5"
                         Value="{Binding Family.BranchRepresentative.Name}" />
 
                     <local:Item
                         Title="الحي"
                         Grid.Row="3"
-                        Grid.Column="0"
+                        Grid.Column="1"
                         Margin="5"
                         Value="{Binding Family.Address.District.Name}" />
 
                     <local:Item
                         Title="الشارع"
                         Grid.Row="3"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Margin="5"
                         Value="{Binding Family.Address.Street}" />
 
                     <local:Item
                         Title="أقرب نقطة دالة"
-                        Grid.Row="3"
-                        Grid.Column="2"
+                        Grid.Row="4"
+                        Grid.Column="0"
                         Margin="5"
                         Value="{Binding Family.Address.FeaturedPoint.Name}" />
 
                     <local:Item
                         Title="اسم المختار"
                         Grid.Row="4"
-                        Grid.Column="0"
+                        Grid.Column="1"
                         Margin="5"
                         Value="{Binding Family.DistrictRepresentative.Name}" />
 
                     <local:Item
                         Title="ملاحظات"
                         Grid.Row="4"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Grid.ColumnSpan="2"
                         Height="auto"
                         Margin="5"
