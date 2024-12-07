@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AinAlAtaaFoundation.Data\AinAlAtaaFoundation.Data.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Auth\AinAlAtaaFoundation.Features.Auth.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Disbursement\AinAlAtaaFoundation.Features.DisbursementManagement.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.FamiliesManagement\AinAlAtaaFoundation.Features.FamiliesManagement.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Management\AinAlAtaaFoundation.Features.Management.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Settings\AinAlAtaaFoundation.Features.Settings.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Features.Users\AinAlAtaaFoundation.Features.Users.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Models\AinAlAtaaFoundation.Models.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Services.Printing\AinAlAtaaFoundation.Services.Printing.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Shared\AinAlAtaaFoundation.Shared.csproj" />
+    <ProjectReference Include="..\AinAlAtaaFoundation.Styles\AinAlAtaaFoundation.Styles.csproj" />
+  </ItemGroup>
+
+</Project>
