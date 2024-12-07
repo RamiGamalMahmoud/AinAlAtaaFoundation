@@ -142,6 +142,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
             {
                 { "Date", disbursement.Date.ToString() },
                 { "RationCard", disbursement.Family.RationCard },
+                { "FamilyId", disbursement.Family.Id.ToString() },
                 { "Name", disbursement.Family.Applicant.Name },
                 { "TicketNumber", disbursement.TicketNumber.ToString() }
             };

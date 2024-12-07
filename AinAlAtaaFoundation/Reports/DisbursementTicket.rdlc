@@ -83,7 +83,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!RationCard.Value</Value>
+                    <Value>=Parameters!FamilyId.Value</Value>
                     <Style>
                       <FontSize>4.99999mm</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -352,6 +352,10 @@
       <DataType>String</DataType>
       <Prompt>TicketNumber</Prompt>
     </ReportParameter>
+    <ReportParameter Name="FamilyId">
+      <DataType>Integer</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -377,6 +381,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>2</RowIndex>
           <ParameterName>TicketNumber</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>FamilyId</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
