@@ -18,6 +18,9 @@ namespace AinAlAtaaFoundation.Models
         private bool _hasFlag;
 
         [ObservableProperty]
+        private string _imagePath;
+
+        [ObservableProperty]
         private string _rationCard;
 
         [ObservableProperty]
@@ -37,6 +40,8 @@ namespace AinAlAtaaFoundation.Models
 
         [ObservableProperty]
         private string _husbandName;
+
+        public byte[] Image { get; set; }
 
         public int ClanId { get; set; }
         public Clan Clan

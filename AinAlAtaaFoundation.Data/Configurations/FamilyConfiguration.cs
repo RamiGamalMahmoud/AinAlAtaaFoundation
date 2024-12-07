@@ -90,6 +90,12 @@ namespace AinAlAtaaFoundation.Data.Configurations
                 .IsRequired()
                 .HasDefaultValue(false);
 
+            builder.Property(x => x.ImagePath)
+                .HasColumnType("TEXT")
+                .IsRequired(false);
+
+            builder.Ignore(x => x.Image);
+
         }
     }
 }
