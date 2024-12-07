@@ -16,6 +16,7 @@ namespace AinAlAtaaFoundation.Services
             Directory.CreateDirectory(DataFolder);
             Directory.CreateDirectory(BackupFolder);
             Directory.CreateDirectory(OutputFolder);
+            Directory.CreateDirectory(FamiliesImagesFolder);
         }
 
         public void CreateDatabase()
@@ -43,6 +44,8 @@ namespace AinAlAtaaFoundation.Services
         public static string DatabaseName => "al_ain";
         public static string AppDataFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AinAlAtaaFoundation");
         public static string DataFolder => Path.Combine(AppDataFolder, "data");
+        public static string ImagesFolder => Path.Combine(DataFolder, "images");
+        public static string FamiliesImagesFolder => Path.Combine(ImagesFolder, "families_images");
         public static string DatabaseFile => Path.Combine(DataFolder, $"{DatabaseName}.db");
         public static string BackupFolder => Path.Combine(AppDataFolder, "backups");
         public static string OutputFolder => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "AinAlAtaaFoundation");
