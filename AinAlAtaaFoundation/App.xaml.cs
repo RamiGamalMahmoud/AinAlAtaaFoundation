@@ -70,6 +70,7 @@ namespace AinAlAtaaFoundation
             services.AddTransient<Shared.Components.TopFilterViewModel>();
             services.AddSingleton<DatabaseService>();
             services.AddSingleton<AppService>();
+            services.AddSingleton<IRandomStringGenerator, RandomStringGenerator>();
             services.ConfigureMainWindowFeature();
             services.ConfigureFamiliesFeature();
             services.ConfigureServicePrint();
