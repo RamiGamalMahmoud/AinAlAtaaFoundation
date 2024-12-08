@@ -4,9 +4,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using System;
+using Microsoft.Win32;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -195,6 +194,21 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
         private void AddFeaturedPoint()
         {
             _mediator.Send(new Shared.Commands.Generic.ShowCreate<FeaturedPoint>());
+        }
+
+        [RelayCommand]
+        private void AddFamilyImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                DefaultExt = ".png",
+                Filter = "Image files|*.jpg;*.jpeg;*.png;",
+            };
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string fileName = openFileDialog.FileName;
+                DataModel.ImagePath = _messenger.Send(new Messages.Images.SaveFamilyImageMessage(fileName));
+            }
         }
 
         private bool CanAddPhoneNumber() => !string.IsNullOrEmpty(PhoneNumber);
