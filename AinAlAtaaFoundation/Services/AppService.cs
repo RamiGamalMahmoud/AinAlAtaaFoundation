@@ -1,15 +1,34 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
+﻿using AinAlAtaaFoundation.Shared;
+using AinAlAtaaFoundation.Shared.Abstraction;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Services
 {
-    internal class AppService(DatabaseService databaseService, IMessenger messenger)
+    internal class AppService
     {
-        private readonly DatabaseService _databaseService = databaseService;
-        private readonly IMessenger _messenger = messenger;
+        private readonly DatabaseService _databaseService;
+        private readonly IMessenger _messenger;
+        private readonly IRandomStringGenerator _randomStringGenerator;
 
+        public AppService(DatabaseService databaseService, IMessenger messenger, IRandomStringGenerator randomStringGenerator)
+        {
+            _databaseService = databaseService;
+            _messenger = messenger;
+            _randomStringGenerator = randomStringGenerator;
+
+            _messenger.Register<Messages.Images.FamiliesImagesFolderRequeatMessage>(this, (r, m) => m.Reply(FamiliesImagesFolder));
+
+            _messenger.Register<Messages.Images.SaveFamilyImageMessage>(this, (r, m) =>
+            {
+                string fileExtension = Path.GetExtension(m.FileName);
+                string imageFileName = $"{_randomStringGenerator.Gnerate(16).ToLower()}{fileExtension}";
+                File.Copy(m.FileName, Path.Combine(FamiliesImagesFolder, imageFileName));
+                m.Reply(Path.Combine(FamiliesImagesFolder, imageFileName));
+            });
+        }
         public void CreateAppDataFolder()
         {
             Directory.CreateDirectory(AppDataFolder);

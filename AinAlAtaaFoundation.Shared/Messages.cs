@@ -39,5 +39,15 @@ namespace AinAlAtaaFoundation.Shared
             public class HasBackupFileRequestMessage : RequestMessage<bool>;
             public record UpdateStartStatusMessage(bool IsFreshStart);
         }
+
+        public static class Images
+        {
+            public class SaveFamilyImageMessage(string fileName) : RequestMessage<string>
+            {
+                public string FileName { get; } = fileName;
+            }
+
+            public class FamiliesImagesFolderRequeatMessage : RequestMessage<string>;
+        }
     }
 }
