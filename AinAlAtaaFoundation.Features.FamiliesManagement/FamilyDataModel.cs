@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
 
 namespace AinAlAtaaFoundation.Features.FamiliesManagement
 {
@@ -38,6 +37,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 Branch = model.Branch;
                 BranchRepresentative = model.BranchRepresentative;
                 Clan = model.Clan;
+
+                ImagePath = model.ImagePath;
 
                 Gender = model.Applicant.Gender;
 
@@ -75,6 +76,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         {
             model.RationCard = RationCard;
             model.RationCardOwnerName = RationCardOwnerName;
+
+            model.ImagePath = ImagePath;
 
             model.Branch = Branch;
             model.Clan = Clan;
@@ -141,6 +144,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
         [NotifyDataErrorInfo]
         [NotifyPropertyChangedFor(nameof(IsValid))]
         private District _district;
+
+        [ObservableProperty]
+        private string _imagePath;
 
         public int Age => DateTime.Now.Year - YearOfBirth;
 
