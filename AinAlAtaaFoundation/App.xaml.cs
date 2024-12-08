@@ -42,6 +42,7 @@ namespace AinAlAtaaFoundation
             _appService = _host.Services.GetRequiredService<AppService>();
             _appState = _host.Services.GetRequiredService<IAppState>();
             _databaseService = _host.Services.GetRequiredService<DatabaseService>();
+            _imagesCleaner = _host.Services.GetRequiredService<IImagesCleaner>();
 
             RegisterRecipients();
 
@@ -71,6 +72,7 @@ namespace AinAlAtaaFoundation
             services.AddSingleton<DatabaseService>();
             services.AddSingleton<AppService>();
             services.AddSingleton<IRandomStringGenerator, RandomStringGenerator>();
+            services.AddSingleton<IImagesCleaner, ImagesCleaner>();
             services.ConfigureMainWindowFeature();
             services.ConfigureFamiliesFeature();
             services.ConfigureServicePrint();
@@ -167,6 +169,8 @@ namespace AinAlAtaaFoundation
         {
             LoadSettings();
 
+            await _imagesCleaner.CleanFamiliesIMages();
+
             if (_messenger.Send<Messages.SettingsMessages.GetSatrtStatusRequestMessage>())
             {
                 _databaseService.Reset(AppService.DataFolder);
@@ -226,6 +230,7 @@ namespace AinAlAtaaFoundation
         private readonly NotificationManager _notificationManager = new NotificationManager();
         private readonly IMessenger _messenger;
         private readonly IHost _host;
+        private readonly IImagesCleaner _imagesCleaner;
 
     }
 
