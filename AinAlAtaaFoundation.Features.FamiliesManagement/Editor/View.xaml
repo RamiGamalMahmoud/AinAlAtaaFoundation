@@ -565,7 +565,7 @@
                                 MinWidth="200"
                                 Margin="5">
 
-                                <TextBlock Foreground="{StaticResource Blue}" Text="الشارع" />
+                                <TextBlock Foreground="{StaticResource Blue}" Text="اسم ممثل الجمعية" />
                                 <TextBox Text="{Binding DataModel.Street, UpdateSourceTrigger=PropertyChanged}" />
 
                             </StackPanel>
