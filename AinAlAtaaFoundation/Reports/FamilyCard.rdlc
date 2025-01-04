@@ -26,7 +26,7 @@
             </Paragraphs>
             <Top>1.19738in</Top>
             <Left>3.30843in</Left>
-            <Height>0.30208in</Height>
+            <Height>0.41666in</Height>
             <Width>1.78092in</Width>
             <Style>
               <Border>
@@ -49,7 +49,7 @@
                   <TextRun>
                     <Value>=Parameters!FamilyId.Value</Value>
                     <Style>
-                      <FontSize>0.2in</FontSize>
+                      <FontSize>18pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Language>ar-IQ</Language>
                       <NumeralVariant>3</NumeralVariant>
@@ -63,7 +63,7 @@
             </Paragraphs>
             <Top>1.19738in</Top>
             <Left>0.14925in</Left>
-            <Height>0.30208in</Height>
+            <Height>0.41666in</Height>
             <Width>3.1007in</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -88,7 +88,7 @@
                   <TextRun>
                     <Value>=Parameters!RationCard.Value</Value>
                     <Style>
-                      <FontSize>0.2in</FontSize>
+                      <FontSize>18pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -98,9 +98,9 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.56981in</Top>
+            <Top>1.66878in</Top>
             <Left>0.14925in</Left>
-            <Height>0.30208in</Height>
+            <Height>0.375in</Height>
             <Width>3.1007in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -135,7 +135,7 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.94225in</Top>
+            <Top>2.0985in</Top>
             <Left>0.14925in</Left>
             <Height>0.30208in</Height>
             <Width>3.1007in</Width>
@@ -172,7 +172,7 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.31469in</Top>
+            <Top>2.45532in</Top>
             <Left>0.14925in</Left>
             <Height>0.30208in</Height>
             <Width>3.1007in</Width>
@@ -209,9 +209,9 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.56981in</Top>
+            <Top>1.66878in</Top>
             <Left>3.30843in</Left>
-            <Height>0.30208in</Height>
+            <Height>0.375in</Height>
             <Width>1.78092in</Width>
             <ZIndex>5</ZIndex>
             <Style>
@@ -245,7 +245,7 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>1.94225in</Top>
+            <Top>2.0985in</Top>
             <Left>3.30843in</Left>
             <Height>0.30208in</Height>
             <Width>1.78092in</Width>
@@ -281,7 +281,7 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.31469in</Top>
+            <Top>2.45532in</Top>
             <Left>3.30843in</Left>
             <Height>0.30208in</Height>
             <Width>1.78092in</Width>
@@ -317,7 +317,7 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.68713in</Top>
+            <Top>2.81213in</Top>
             <Left>3.30843in</Left>
             <Height>0.30208in</Height>
             <Width>1.78092in</Width>
@@ -354,7 +354,7 @@
                 </Style>
               </Paragraph>
             </Paragraphs>
-            <Top>2.68713in</Top>
+            <Top>2.81213in</Top>
             <Left>0.14925in</Left>
             <Height>0.30208in</Height>
             <Width>3.1007in</Width>
@@ -505,7 +505,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>3.1in</Height>
+        <Height>3.2in</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -514,7 +514,7 @@
       </Body>
       <Width>5.2in</Width>
       <Page>
-        <PageHeight>3.1in</PageHeight>
+        <PageHeight>3.2in</PageHeight>
         <PageWidth>5.2in</PageWidth>
         <Style />
       </Page>
