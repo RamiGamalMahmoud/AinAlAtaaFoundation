@@ -29,6 +29,12 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         [ObservableProperty]
         private string _notes;
 
+        [RelayCommand(CanExecute = nameof(HasFamily))]
+        private void ShowUpdate()
+        {
+            _mediator.Send(new Shared.Commands.Generic.ShowUpdate<Family>(Family));
+        }
+
         private async void FamilyGetter_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             Family = await _familyGetter.GetFamily();
@@ -64,6 +70,7 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         [NotifyCanExecuteChangedFor(nameof(ExecutePrintCommand))]
         [NotifyCanExecuteChangedFor(nameof(ExecuteDirectPrintCommand))]
         [NotifyCanExecuteChangedFor(nameof(ShowFamilyDisbursementsHistoryCommand))]
+        [NotifyCanExecuteChangedFor(nameof(ShowUpdateCommand))]
         [NotifyPropertyChangedFor(nameof(HasFlag))]
         private Family _family;
 

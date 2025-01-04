@@ -30,10 +30,10 @@
 
             <Image
                 Grid.Column="0"
-                Stretch="Uniform"
                 Height="100"
                 VerticalAlignment="Bottom"
-                Source="{Binding Family.ImagePath}" />
+                Source="{Binding Family.ImagePath}"
+                Stretch="Uniform" />
 
             <StackPanel
                 Grid.Row="0"
@@ -125,22 +125,40 @@
 
                 </StackPanel>
                 <StackPanel VerticalAlignment="Bottom" Orientation="Vertical">
-                    <Button
-                        Height="auto"
-                        Margin="10,0,0,0"
-                        Command="{Binding ShowFamilyDisbursementsHistoryCommand}"
-                        CommandParameter="{Binding Family}"
-                        Cursor="Hand">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/archive-colored.png" />
-                            <TextBlock
-                                Margin="5"
-                                VerticalAlignment="Center"
-                                FontSize="14"
-                                FontWeight="Bold"
-                                Text="عرض السجل" />
-                        </StackPanel>
-                    </Button>
+                    <StackPanel Orientation="Horizontal">
+                        <Button
+                            Height="auto"
+                            Margin="10,0,0,0"
+                            Command="{Binding ShowFamilyDisbursementsHistoryCommand}"
+                            CommandParameter="{Binding Family}"
+                            Cursor="Hand">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="24" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/archive-colored.png" />
+                                <TextBlock
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    FontSize="14"
+                                    FontWeight="Bold"
+                                    Text="عرض السجل" />
+                            </StackPanel>
+                        </Button>
+
+                        <Button
+                            Height="auto"
+                            Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ShowUpdateCommand}"
+                            CommandParameter="{Binding}"
+                            Cursor="Hand">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="20" Source="pack://application:,,,/AinAlAtaaFoundation.Styles;Component/Images/edit.png" />
+                                <TextBlock
+                                    Margin="5"
+                                    VerticalAlignment="Center"
+                                    FontWeight="Bold"
+                                    Text="تعديل" />
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
                     <Label
                         Width="200"
                         Margin="5"
