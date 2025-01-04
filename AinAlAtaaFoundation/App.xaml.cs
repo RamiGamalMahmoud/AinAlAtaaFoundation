@@ -169,8 +169,6 @@ namespace AinAlAtaaFoundation
         {
             LoadSettings();
 
-            await _imagesCleaner.CleanFamiliesIMages();
-
             if (_messenger.Send<Messages.SettingsMessages.GetSatrtStatusRequestMessage>())
             {
                 _databaseService.Reset(AppService.DataFolder);
@@ -193,6 +191,7 @@ namespace AinAlAtaaFoundation
             await _appService.TestDatabaseConnection(Shutdown);
 
             await _databaseService.ApplyMigrations();
+            await _imagesCleaner.CleanFamiliesIMages();
 
             await _host.StartAsync();
             ShowMainWindow();
