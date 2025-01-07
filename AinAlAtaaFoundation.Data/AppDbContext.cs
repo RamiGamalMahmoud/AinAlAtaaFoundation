@@ -23,6 +23,7 @@ namespace AinAlAtaaFoundation.Data
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Disbursement> Disbursements { get; set; }
         public DbSet<DatabaseInfo> DatabaseInfos { get; set; }
+        public DbSet<AssociationRepresentative> AssociationRepresentatives { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

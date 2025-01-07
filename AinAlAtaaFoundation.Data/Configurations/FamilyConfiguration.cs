@@ -96,6 +96,12 @@ namespace AinAlAtaaFoundation.Data.Configurations
 
             builder.Ignore(x => x.Image);
 
+            builder.HasOne(x => x.AssociationRepresentative)
+                .WithMany()
+                .IsRequired(false)
+                .HasForeignKey(x => x.AssociationRepresentativeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

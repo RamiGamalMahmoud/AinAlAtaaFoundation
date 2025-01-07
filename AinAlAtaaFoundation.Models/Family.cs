@@ -41,6 +41,10 @@ namespace AinAlAtaaFoundation.Models
         [ObservableProperty]
         private string _husbandName;
 
+        public int? AssociationRepresentativeId { get; set; }
+        [ObservableProperty]
+        private AssociationRepresentative _associationRepresentative;
+
         public byte[] Image { get; set; }
 
         public int ClanId { get; set; }
