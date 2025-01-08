@@ -44,7 +44,11 @@ namespace AinAlAtaaFoundation.Features.Management
             #region ClansManagement
                 .AddSingleton<ClansManagement.Repository>()
                 .AddSingleton<IClansView, ClansManagement.View>()
-                .AddSingleton<ClansManagement.ViewModel>() 
+                .AddSingleton<ClansManagement.ViewModel>()
+            #endregion
+
+            #region AssociationsManagement
+                .AddSingleton<AssociationRepresentatives.Repository>()
             #endregion
 
                 .AddSingleton<IManagementView, View>()
