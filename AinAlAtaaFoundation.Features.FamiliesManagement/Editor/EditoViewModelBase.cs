@@ -1,5 +1,6 @@
 ﻿using AinAlAtaaFoundation.Models;
 using AinAlAtaaFoundation.Shared;
+using AinAlAtaaFoundation.Shared.Commands;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -134,6 +135,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
                 Genders = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Gender>());
 
+                AssociationRepresentatives = await _mediator.Send(new Generic.GetAllCommand<AssociationRepresentative>());
+
                 await LoadBranches();
                 await LoadBranchRepresentatives();
                 await LoadDistrictRepresentatives();
@@ -194,6 +197,12 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
         private void AddFeaturedPoint()
         {
             _mediator.Send(new Shared.Commands.Generic.ShowCreate<FeaturedPoint>());
+        }
+
+        [RelayCommand]
+        private void AddAssociationRepresentative()
+        {
+            _mediator.Send(new Shared.Commands.Generic.ShowCreate<AssociationRepresentative>());
         }
 
         [RelayCommand]
@@ -296,5 +305,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Editor
 
         [ObservableProperty]
         private IEnumerable<OrphanType> _orphanTypes;
+
+        [ObservableProperty]
+        private IEnumerable<AssociationRepresentative> _associationRepresentatives;
     }
 }

@@ -63,6 +63,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
                 HasFlag = model.HasFlag;
                 HusbandName = model.HusbandName;
+                AssociationRepresentative = model.AssociationRepresentative;
                 
             }
             ValidateAllProperties();
@@ -109,6 +110,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
             model.HasFlag = HasFlag;
 
             model.HusbandName = HusbandName;
+            model.AssociationRepresentative = AssociationRepresentative;
         }
 
         [ObservableProperty]
@@ -230,6 +232,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
 
         [ObservableProperty]
         private FamilyMember _applicant;
+
+        [ObservableProperty]
+        private AssociationRepresentative _associationRepresentative;
 
         public ObservableCollection<Phone> Phones { get; } = [];
 

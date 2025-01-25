@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace AinAlAtaaFoundation.Models
 {
@@ -44,6 +45,8 @@ namespace AinAlAtaaFoundation.Models
         public int? AssociationRepresentativeId { get; set; }
         [ObservableProperty]
         private AssociationRepresentative _associationRepresentative;
+
+        public int SponsoredCount => FamilyMembers.Where(x => x.IsSponsored).Count();
 
         public byte[] Image { get; set; }
 

@@ -54,7 +54,8 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         IsSponsored = dataModel.IsSponsered,
                         DateCreated = dataModel.DateCreated,
                         HusbandName = dataModel.HusbandName,
-                        ImagePath = dataModel.ImagePath
+                        ImagePath = dataModel.ImagePath,
+                        AssociationRepresentativeId = dataModel.AssociationRepresentative.Id
                     };
 
                     foreach (Phone phone in dataModel.Phones)
@@ -122,6 +123,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                 stored.HasFlag = dataModel.HasFlag;
                 stored.HusbandName = dataModel.HusbandName;
                 stored.ImagePath = dataModel.ImagePath;
+                stored.AssociationRepresentativeId = dataModel.AssociationRepresentative?.Id;
 
                 IEnumerable<int> phonesIds = dataModel.Phones.Select(x => x.Id).Where(x => x > 0);
                 IEnumerable<Phone> newPhones = dataModel.Phones.Where(x => x.Id == 0);
@@ -171,6 +173,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         .Include(x => x.OrphanType)
                         .Include(x => x.Phones)
                         .Include(x => x.SocialStatus)
+                        .Include(x => x.AssociationRepresentative)
                         .Where(x => !x.IsDelted)
                         .ToListAsync();
                     SetEntities(families);
@@ -199,6 +202,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     .Include(x => x.OrphanType)
                     .Include(x => x.Phones)
                     .Include(x => x.SocialStatus)
+                    .Include(x => x.AssociationRepresentative)
                     .Where(x => x.IsDelted)
                     .ToListAsync();
             }
@@ -291,6 +295,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                         .Include(x => x.OrphanType)
                         .Include(x => x.Phones)
                         .Include(x => x.SocialStatus)
+                        .Include(x => x.AssociationRepresentative)
                         .Where(x => x.RationCardOwnerName.Contains(RationCardOwnerName))
                         .ToListAsync();
                 }
@@ -328,6 +333,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement
                     .Include(x => x.OrphanType)
                     .Include(x => x.Phones)
                     .Include(x => x.SocialStatus)
+                    .Include(x => x.AssociationRepresentative)
                     .Where(x => x.Id == id)
                     .FirstOrDefaultAsync();
             }

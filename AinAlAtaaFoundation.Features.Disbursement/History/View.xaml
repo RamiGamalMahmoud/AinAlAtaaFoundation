@@ -126,22 +126,27 @@
                     Header="رقم التذكرة" />
 
                 <DataGridTextColumn
-                    Width="100"
+                    Width="150"
                     Binding="{Binding Family.RationCard}"
                     Header="رقم البطاقة" />
 
                 <DataGridTextColumn
                     Width="100"
+                    Binding="{Binding Family.Id}"
+                    Header="تسلسل العائلة" />
+
+                <DataGridTextColumn
+                    Width="150"
                     Binding="{Binding Family.Clan.Name}"
                     Header="العشيرة" />
 
                 <DataGridTextColumn
-                    Width="200"
+                    Width="120"
                     Binding="{Binding Date, StringFormat=yyyy-MM-dd}"
                     Header="تاريخ الصرف" />
 
                 <DataGridTextColumn
-                    Width="200"
+                    Width="150"
                     Binding="{Binding Date, StringFormat=hh:mm:ss - tt}"
                     Header="وقت الصرف" />
 

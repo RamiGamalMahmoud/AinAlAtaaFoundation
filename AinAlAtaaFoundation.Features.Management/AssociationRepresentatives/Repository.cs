@@ -27,7 +27,7 @@ namespace AinAlAtaaFoundation.Features.Management.AssociationRepresentatives
                     return representative;
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -47,9 +47,24 @@ namespace AinAlAtaaFoundation.Features.Management.AssociationRepresentatives
             return _entities;
         }
 
-        public override Task<bool> Update(AssociationRepresentativeDataModel dataModel)
+        public override async Task<bool> Update(AssociationRepresentativeDataModel dataModel)
         {
-            throw new NotImplementedException();
+            using(AppDbContext dbContext = _dbContextFactory.CreateDbContext())
+            {
+                AssociationRepresentative stored = await dbContext.AssociationRepresentatives.FindAsync(dataModel.Model.Id);
+                stored.Name = dataModel.Name;
+
+                try
+                {
+                    await dbContext.SaveChangesAsync();
+                    dataModel.UpdateModel();
+                    return true;
+                }
+                catch(Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

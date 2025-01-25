@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.MainWindow
 {
@@ -61,6 +62,30 @@ namespace AinAlAtaaFoundation.Features.MainWindow
         private void GoToManagement()
         {
             CurrentView = _serviceProvider.GetRequiredService<IManagementView>();
+        }
+
+        [RelayCommand]
+        private void GoToBranches()
+        {
+            CurrentView = _serviceProvider.GetRequiredService<IBranchesView>();
+        }
+
+        [RelayCommand]
+        private void GoToClans()
+        {
+            CurrentView = _serviceProvider.GetRequiredService<IClansView>();
+        }
+
+        [RelayCommand]
+        private void GoToDistricts()
+        {
+            CurrentView = _serviceProvider.GetRequiredService<IDistrictsView>();
+        }
+
+        [RelayCommand]
+        private Task ShowDistricts()
+        {
+            return _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
         }
 
         [RelayCommand]

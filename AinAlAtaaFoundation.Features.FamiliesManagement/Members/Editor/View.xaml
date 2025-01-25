@@ -190,6 +190,16 @@
                     FlowDirection="LeftToRight"
                     IsChecked="{Binding DataModel.IsDeserves}" />
 
+                <CheckBox
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Margin="5"
+                    HorizontalAlignment="Right"
+                    Content="مكفول"
+                    Cursor="Hand"
+                    FlowDirection="LeftToRight"
+                    IsChecked="{Binding DataModel.IsSponsored}" />
+
                 <TextBlock
                     Grid.Row="7"
                     Grid.Column="0"

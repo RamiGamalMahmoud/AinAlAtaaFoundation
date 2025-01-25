@@ -21,6 +21,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
                 Mother = model.Mother;
                 IsOrphan = model.IsOrphan;
                 IsDeserves = model.IsDeserves;
+                IsSponsored = model.IsSponsored;
             }
             ValidateAllProperties();
         }
@@ -41,6 +42,9 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
 
         [ObservableProperty]
         private bool _isDeserves = true;
+
+        [ObservableProperty]
+        private bool _isSponsored = false;
 
         public bool IsNowOrphan => Family?.SocialStatus.Name == "أيتام" && Age < 18;
 
@@ -100,6 +104,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Members
             model.Mother = Mother;
             model.IsOrphan = IsOrphan;
             model.IsDeserves = IsDeserves;
+            model.IsSponsored = IsSponsored;
         }
     }
 }

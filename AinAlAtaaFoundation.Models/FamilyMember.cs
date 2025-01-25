@@ -15,6 +15,9 @@ namespace AinAlAtaaFoundation.Models
         private int _yearOfBirth;
 
         [ObservableProperty]
+        private bool _isSponsored;
+
+        [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNowOrphan))]
         private bool _isOrphan = false;
 

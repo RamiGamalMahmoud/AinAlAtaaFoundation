@@ -29,6 +29,12 @@ namespace AinAlAtaaFoundation.Features.DisbursementManagement.Create
         [ObservableProperty]
         private string _notes;
 
+        [RelayCommand]
+        private void ShowFamilyImage(Family family)
+        {
+            ImageViewer.ShowImage(family.ImagePath);
+        }
+
         [RelayCommand(CanExecute = nameof(HasFamily))]
         private void ShowUpdate()
         {

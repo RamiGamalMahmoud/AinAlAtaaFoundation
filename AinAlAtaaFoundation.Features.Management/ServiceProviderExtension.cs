@@ -49,6 +49,8 @@ namespace AinAlAtaaFoundation.Features.Management
 
             #region AssociationsManagement
                 .AddSingleton<AssociationRepresentatives.Repository>()
+                .AddSingleton< IAssociationRepresentativesListingView, AssociationRepresentatives.Listing.View>()
+                .AddSingleton<AssociationRepresentatives.Listing.ViewModel>()
             #endregion
 
                 .AddSingleton<IManagementView, View>()

@@ -30,6 +30,10 @@ namespace AinAlAtaaFoundation.Features.Management.AssociationRepresentatives
 
         public void UpdateModel(AssociationRepresentative model = null)
         {
+            if (model is null)
+            {
+                model = Model;
+            }
             model.Name = Name;
         }
     }

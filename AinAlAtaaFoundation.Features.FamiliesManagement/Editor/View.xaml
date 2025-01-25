@@ -559,19 +559,19 @@
 
                             </StackPanel>
 
+                            <!--<StackPanel
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            MinWidth="200"
+                            Margin="5">
+
+                            <TextBlock Foreground="{StaticResource Blue}" Text="الشارع" />
+                            <TextBox Text="{Binding DataModel.Street, UpdateSourceTrigger=PropertyChanged}" />
+
+                            </StackPanel>-->
+
                             <StackPanel
                                 Grid.Column="2"
-                                Grid.ColumnSpan="2"
-                                MinWidth="200"
-                                Margin="5">
-
-                                <TextBlock Foreground="{StaticResource Blue}" Text="الشارع" />
-                                <TextBox Text="{Binding DataModel.Street, UpdateSourceTrigger=PropertyChanged}" />
-
-                            </StackPanel>
-
-                            <StackPanel
-                                Grid.Column="4"
                                 Grid.ColumnSpan="2"
                                 MinWidth="200"
                                 Margin="5">
@@ -596,6 +596,39 @@
                                         Margin="5,0,0,0"
                                         hc:IconElement.Geometry="{StaticResource AddGeometry}"
                                         Command="{Binding AddFeaturedPointCommand}"
+                                        Cursor="Hand"
+                                        Style="{StaticResource ButtonPrimary}" />
+
+                                </Grid>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Column="4"
+                                Grid.ColumnSpan="2"
+                                MinWidth="200"
+                                Margin="5">
+
+                                <TextBlock Foreground="{StaticResource Blue}" Text="اسم ممثل الجمعية" />
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <hc:ComboBox
+                                        hc:InfoElement.ShowClearButton="True"
+                                        DisplayMemberPath="Name"
+                                        ItemsSource="{Binding AssociationRepresentatives}"
+                                        SelectedItem="{Binding DataModel.AssociationRepresentative}"
+                                        SelectedValue="{Binding DataModel.AssociationRepresentative.Id}"
+                                        SelectedValuePath="Id" />
+                                    <Button
+                                        Grid.Column="1"
+                                        Margin="5,0,0,0"
+                                        hc:IconElement.Geometry="{StaticResource AddGeometry}"
+                                        Command="{Binding AddAssociationRepresentativeCommand}"
                                         Cursor="Hand"
                                         Style="{StaticResource ButtonPrimary}" />
 

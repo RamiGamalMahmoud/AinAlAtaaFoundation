@@ -133,6 +133,22 @@
             Margin="5"
             VerticalAlignment="Center"
             hc:ComboBoxAttach.IsMouseWheelEnabled="true"
+            hc:InfoElement.Placeholder="ممثل الجمعية"
+            hc:InfoElement.ShowClearButton="True"
+            hc:InfoElement.Title="ممثل الجمعية"
+            helpers:SelectionChangedBehaviour.Command="{Binding ElementName=root, Path=FilterCommand}"
+            Cursor="Hand"
+            DisplayMemberPath="Name"
+            ItemsSource="{Binding ElementName=root, Path=TopFilterViewModel.AssociationRepresentatives}"
+            SelectedItem="{Binding ElementName=root, Path=TopFilterViewModel.AssociationRepresentative, UpdateSourceTrigger=PropertyChanged}"
+            SelectedValue="{Binding ElementName=root, Path=TopFilterViewModel.AssociationRepresentative.Id}"
+            SelectedValuePath="Id" />
+
+        <hc:ComboBox
+            Width="150"
+            Margin="5"
+            VerticalAlignment="Center"
+            hc:ComboBoxAttach.IsMouseWheelEnabled="true"
             hc:InfoElement.Placeholder="الحالة الإجتماعية"
             hc:InfoElement.ShowClearButton="True"
             hc:InfoElement.Title="الحالة الإجتماعية"

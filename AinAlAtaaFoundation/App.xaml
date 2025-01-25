@@ -32,6 +32,7 @@
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <convertes:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+            <convertes:RowIndexConverter x:Key="RowIndexConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

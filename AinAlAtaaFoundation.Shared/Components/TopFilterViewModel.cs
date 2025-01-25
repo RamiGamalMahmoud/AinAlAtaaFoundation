@@ -17,6 +17,7 @@ namespace AinAlAtaaFoundation.Shared.Components
             SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
 
             Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
+            AssociationRepresentatives = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<AssociationRepresentative>());
         }
 
         [ObservableProperty]
@@ -53,10 +54,16 @@ namespace AinAlAtaaFoundation.Shared.Components
 
             RationCard = "";
             SponsoringStatus = null;
+            AssociationRepresentative = null;
         }
 
         [ObservableProperty]
         private IEnumerable<Clan> _clans;
+
+        [ObservableProperty]
+        private IEnumerable<AssociationRepresentative> _associationRepresentatives;
+        [ObservableProperty]
+        private AssociationRepresentative _associationRepresentative;
 
         [ObservableProperty]
         private Clan _clan;

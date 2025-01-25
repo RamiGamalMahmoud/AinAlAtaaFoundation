@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -55,14 +56,20 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
             await _mediator.Send(new Shared.Commands.Generic.ShowCreate<Family>());
         }
 
-        private static Dictionary<string, string> GetParameters(Family family)
+        [RelayCommand]
+        private void ShowUpdateMember(FamilyMember familyMember)
+        {
+            _mediator.Send(new Shared.Commands.Generic.ShowUpdate<FamilyMember>(familyMember));
+        }
+
+        private static Dictionary<string, string> GetFamilyParameters(Family family)
         {
             string barcodeImageString = Shared.GenerateBarCode.ToBarCodeString(family.Id);
             Dictionary<string, string> parameters = new Dictionary<string, string>();
 
             parameters.Add("Id", family.Id.ToString());
             parameters.Add("img", barcodeImageString);
-
+            if(!string.IsNullOrEmpty(family.ImagePath)) parameters.Add("FamilyImage", $"file:///{family.ImagePath}");
             parameters.Add("FamilyType", family.FamilyType.Name);
             parameters.Add("SocialStatus", family.SocialStatus.Name);
             parameters.Add("OrphanType", family.OrphanType?.Name);
@@ -118,8 +125,11 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 .Where(x => TopFilterViewModel.District is null || x.Address.District.Id == TopFilterViewModel.District.Id)
                 .Where(x => TopFilterViewModel.DistrictRepresentative is null || x.DistrictRepresentative.Id == TopFilterViewModel.DistrictRepresentative.Id)
                 .Where(x => TopFilterViewModel.FeaturedPoint is null || x.Address.FeaturedPoint is null || x.Address.FeaturedPoint == TopFilterViewModel.FeaturedPoint)
-                .Where(x => TopFilterViewModel.SponsoringStatus is null || x.IsSponsored == TopFilterViewModel.SponsoringStatus.IsSponsored);
+                .Where(x => TopFilterViewModel.SponsoringStatus is null || x.IsSponsored == TopFilterViewModel.SponsoringStatus.IsSponsored)
+                .Where(x => TopFilterViewModel.AssociationRepresentative is null || x.AssociationRepresentative is not null && x.AssociationRepresentative.Id == TopFilterViewModel.AssociationRepresentative.Id);
         }
+
+        public int FamiliesCount => Families?.Count() ?? 0;
 
         [RelayCommand]
         private async Task ShowDeletedFamilies()
@@ -130,12 +140,10 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
         [ObservableProperty]
         private bool _isVewAll = true;
 
-        public IEnumerable<Family> Families
-        {
-            get => _families;
-            private set => SetProperty(ref _families, value);
-        }
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FamiliesCount))]
         private IEnumerable<Family> _families;
+
         private IEnumerable<Family> _allFamilies;
 
         private readonly IMediator _mediator;

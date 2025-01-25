@@ -133,6 +133,7 @@
 
                 <DataGridCheckBoxColumn Binding="{Binding IsNowOrphan, Mode=OneWay}" Header="يتيم" />
                 <DataGridCheckBoxColumn Binding="{Binding IsDeserves, Mode=OneWay}" Header="يستحق" />
+                <DataGridCheckBoxColumn Binding="{Binding IsSponsored, Mode=OneWay}" Header="مكفول" />
 
                 <DataGridTemplateColumn Header="خيارات">
                     <DataGridTemplateColumn.CellTemplate>

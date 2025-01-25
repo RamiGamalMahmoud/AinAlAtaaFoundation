@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:components="clr-namespace:AinAlAtaaFoundation.Shared.Components;assembly=AinAlAtaaFoundation.Shared"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
     xmlns:local="clr-namespace:AinAlAtaaFoundation.Features.FamiliesManagement.Listing"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance Type=local:ViewModel}"
@@ -30,6 +31,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <StackPanel
@@ -200,13 +202,16 @@
         <DataGrid
             Grid.Row="2"
             d:ItemsSource="{d:SampleData}"
+            AreRowDetailsFrozen="True"
             AutoGenerateColumns="False"
-            GridLinesVisibility="All"
+            SelectionUnit="FullRow"
+            GridLinesVisibility="Vertical"
             HorizontalGridLinesBrush="LightGray"
             IsReadOnly="True"
             ItemsSource="{Binding Source={StaticResource FamiliesViewSource}, IsAsync=True}"
+            LoadingRow="DataGrid_LoadingRow"
             LostFocus="DataGrid_LostFocus"
-            RowStyle="{StaticResource MyDataGridRowStyle}"
+            RowHeaderWidth="50"
             VerticalGridLinesBrush="LightGray">
 
             <DataGrid.ContextMenu>
@@ -286,6 +291,7 @@
                 <DataGridTextColumn Binding="{Binding Clan.Name}" Header="العشيرة" />
                 <DataGridTextColumn Binding="{Binding SocialStatus.Name}" Header="الحالة الإجتماعية" />
                 <DataGridTextColumn Binding="{Binding FamilyType.Name}" Header="(عام / خاص)" />
+                <DataGridTextColumn Binding="{Binding SponsoredCount}" Header="عدد المكفولين" />
 
                 <DataGridTemplateColumn Header="تنبيه" SortMemberPath="HasFlag">
                     <DataGridTemplateColumn.CellTemplate>
@@ -426,7 +432,89 @@
 
             </DataGrid.Columns>
 
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <DataGrid
+                            Grid.Row="1"
+                            Margin="5"
+                            HorizontalAlignment="Left"
+                            d:ItemsSource="{d:SampleData}"
+                            AutoGenerateColumns="False"
+                            BorderBrush="{StaticResource Blue}"
+                            BorderThickness="2"
+                            IsReadOnly="True"
+                            ItemsSource="{Binding FamilyMembers, IsAsync=True}">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                                    Width="70"
+                                    Binding="{Binding Id}"
+                                    Header="Id" />
+                                <DataGridTextColumn
+                                    Width="200"
+                                    Binding="{Binding Name}"
+                                    Header="الاسم" />
+
+                                <DataGridTextColumn
+                                    Width="60"
+                                    Binding="{Binding Gender.NameAr}"
+                                    Header="النوع" />
+
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding Mother.Name}"
+                                    Header="الأم" />
+
+                                <DataGridTextColumn
+                                    Width="150"
+                                    Binding="{Binding YearOfBirth}"
+                                    Header="تاريخ الميلاد" />
+
+                                <DataGridTextColumn
+                                    Width="50"
+                                    Binding="{Binding Age}"
+                                    Header="السن" />
+
+                                <DataGridCheckBoxColumn Binding="{Binding IsNowOrphan, Mode=OneWay}" Header="يتيم" />
+                                <DataGridCheckBoxColumn Binding="{Binding IsDeserves, Mode=OneWay}" Header="يستحق" />
+                                <DataGridCheckBoxColumn Binding="{Binding IsSponsored, Mode=OneWay}" Header="مكفول" />
+
+                                <DataGridTemplateColumn Header="خيارات">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button
+                                                Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl, Mode=FindAncestor}, Path=DataContext.ShowUpdateMemberCommand}"
+                                                CommandParameter="{Binding}"
+                                                Content="تعديل"
+                                                Cursor="Hand"
+                                                FontFamily="Arial"
+                                                FontSize="10"
+                                                FontWeight="Bold"
+                                                Style="{StaticResource ButtonInfo}" />
+
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+                    </Grid>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+
         </DataGrid>
+
+        <Grid Grid.Row="3">
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="عدد العائلات" />
+                <Label Margin="5,0,0,0" Content="{Binding FamiliesCount}" />
+            </StackPanel>
+
+        </Grid>
 
     </Grid>
 </UserControl>

@@ -12,16 +12,18 @@ using System.Threading.Tasks;
 
 namespace AinAlAtaaFoundation.Features.DisbursementManagement.History
 {
+
     internal partial class ViewModel(IMediator mediator, IMessenger messenger, TopFilterViewModel topFilterViewModel) : ObservableObject
     {
         public TopFilterViewModel TopFilterViewModel { get; } = topFilterViewModel;
         public async Task LoadDataAsync()
         {
-            TopFilterViewModel.Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
-            TopFilterViewModel.FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
-            TopFilterViewModel.SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
+            await TopFilterViewModel.LoadDataAsync();
+            //TopFilterViewModel.Clans = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<Clan>());
+            //TopFilterViewModel.FamilyTypes = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<FamilyType>());
+            //TopFilterViewModel.SocialStatuses = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<SocialStatus>());
 
-            TopFilterViewModel.Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
+            //TopFilterViewModel.Districts = await _mediator.Send(new Shared.Commands.Generic.GetAllCommand<District>());
 
             SearchDate = DateTime.Now;
         }

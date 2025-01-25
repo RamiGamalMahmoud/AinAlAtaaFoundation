@@ -34,7 +34,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 { "Phones", family.Phones },
                 { "Members", members }
             };
-            await _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetParameters(family), dataSources));
+            await _mediator.Send(new Shared.Commands.Generic.PrintCommand("Family.rdlc", GetFamilyParameters(family), dataSources));
         }
 
         [RelayCommand(CanExecute = nameof(CanPerformFamilyAction))]
@@ -56,7 +56,7 @@ namespace AinAlAtaaFoundation.Features.FamiliesManagement.Listing
                 { "Phones", family.Phones },
                 { "Members", members }
             };
-            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("Family.rdlc", _appState.DefaultPrinter, false, GetParameters(family), dataSources));
+            await _mediator.Send(new Shared.Commands.Generic.DirectPrintCommand("Family.rdlc", _appState.DefaultPrinter, false, GetFamilyParameters(family), dataSources));
         }
 
         [RelayCommand]

@@ -14,6 +14,7 @@ namespace AinAlAtaaFoundation.Features.Management
         public object DistrictsView { get; } = serviceProvider.GetRequiredService<IDistrictsView>();
         public object DistrictRepresentativesView { get; } = serviceProvider.GetRequiredService<IClanRepresentativesView>();
         public object FeaturedPointsView { get; } = serviceProvider.GetRequiredService<IFeaturedPointsView>();
+        public object AssociationRepresentativesView { get; } = serviceProvider.GetRequiredService<IAssociationRepresentativesListingView>();
 
         public object UsersView { get; } = serviceProvider.GetRequiredService<IUserView>();
 
